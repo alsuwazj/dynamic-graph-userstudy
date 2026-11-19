@@ -1,0 +1,47 @@
+{
+  "version": "two-part-template-v1",
+  "placeholderNotice": "Template preview: graphs, animations and target nodes are placeholders from the earlier advisor demo.",
+  "minWindowWidth": 900,
+  "timing": {
+    "part1ResponseMs": 60000,
+    "part2MemorizeMs": 6000,
+    "part2ResponseMs": 30000
+  },
+  "graphs": ["small", "wien", "wien356"],
+  "part1": {
+    "title": "Part 1 · Match nodes in static drawings",
+    "instruction": "Select the nodes in the right drawing that match the highlighted nodes in the left drawing.",
+    "methodOrder": ["ARCOL", "DARCOL"],
+    "targets": {
+      "small": [15, 31, 1, 18],
+      "wien": [51, 14, 13, 52],
+      "wien356": [51, 14, 13, 52]
+    }
+  },
+  "part2": {
+    "title": "Part 2 · Track nodes through an animation",
+    "instruction": "Memorize the highlighted nodes, watch the graph change, then select the same nodes in the final drawing.",
+    "method": "DARCOL",
+    "conditions": {
+      "region": {
+        "label": "Highlighted graph region",
+        "intro": "In this section, a group of nodes in one region of the graph is highlighted. Keep track of them while the graph changes.",
+        "targets": {
+          "small": [15, 31, 1, 18],
+          "wien": [51, 14, 13, 52],
+          "wien356": [51, 14, 13, 52]
+        }
+      },
+      "moved": {
+        "label": "Nodes moved for the aspect-ratio change",
+        "intro": "In this section, the highlighted nodes are ones the layout moves to fit the new shape. Keep track of them while the graph changes.",
+        "targetsNote": "Placeholder: the four nodes with the largest normalized displacement between the start and DARCOL drawings. Replace with the structures DARCOL actually moved.",
+        "targets": {
+          "small": [8, 9, 7, 19],
+          "wien": [60, 59, 58, 57],
+          "wien356": [60, 59, 58, 57]
+        }
+      }
+    }
+  }
+}
