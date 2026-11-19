@@ -43,26 +43,30 @@ export function drawingSvg(asset, options = {}) {
   const image = attrs => `<image href="${asset.url}" x="${ix}" y="${iy}" width="${iw}" height="${ih}" preserveAspectRatio="xMidYMid meet" ${attrs}/>`;
   const byId = new Map(asset.hitboxes.map(b => [b.id, b]));
   const targets = highlight.map(id => byId.get(id)).filter(Boolean);
-  const parts = [image('')];
+  const parts = [];
 
   if (fadeContext) {
-    // Wash the whole drawing out, then paint the targets (and the edges
-    // joining them) back on top at full strength through a mask.
-    const maskId = `focus-${++uid}`;
+    // Draw the whole drawing in grey and wash it out, then paint the targets
+    // (and straight edges joining them) back on top in full colour via a mask.
+    const id = ++uid;
     const inTarget = new Set(highlight);
     const links = edges
       .filter(([u, v]) => inTarget.has(u) && inTarget.has(v) && byId.has(u) && byId.has(v))
-      .map(([u, v]) => {
-        const [x1, y1] = centre(byId.get(u));
-        const [x2, y2] = centre(byId.get(v));
-        return `<line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" stroke="white" stroke-width="6" stroke-linecap="round"/>`;
-      });
-    const holes = targets.map(b => `<rect x="${b.x - 3}" y="${b.y - 3}" width="${b.width + 6}" height="${b.height + 6}" fill="white"/>`);
+      .map(([u, v]) => [centre(byId.get(u)), centre(byId.get(v))])
+      // Only axis-aligned edges: a bent route can't be uncovered by a straight
+      // strip without also uncovering neighbouring nodes.
+      .filter(([[x1, y1], [x2, y2]]) => Math.abs(x1 - x2) < 2 || Math.abs(y1 - y2) < 2)
+      .map(([[x1, y1], [x2, y2]]) => `<line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" stroke="white" stroke-width="4"/>`);
+    const holes = targets.map(b => `<rect x="${b.x - 2}" y="${b.y - 2}" width="${b.width + 4}" height="${b.height + 4}" fill="white"/>`);
     parts.push(
+      `<filter id="grey-${id}"><feColorMatrix type="saturate" values="0"/></filter>`,
+      image(`filter="url(#grey-${id})"`),
       `<rect class="context-wash" x="${ix}" y="${iy}" width="${iw}" height="${ih}"/>`,
-      `<mask id="${maskId}" maskUnits="userSpaceOnUse" x="${ix}" y="${iy}" width="${iw}" height="${ih}"><rect x="${ix}" y="${iy}" width="${iw}" height="${ih}" fill="black"/>${links.join('')}${holes.join('')}</mask>`,
-      image(`mask="url(#${maskId})"`),
+      `<mask id="focus-${id}" maskUnits="userSpaceOnUse" x="${ix}" y="${iy}" width="${iw}" height="${ih}"><rect x="${ix}" y="${iy}" width="${iw}" height="${ih}" fill="black"/>${links.join('')}${holes.join('')}</mask>`,
+      image(`mask="url(#focus-${id})"`),
     );
+  } else {
+    parts.push(image(''));
   }
 
   for (const b of targets) {
