@@ -19,16 +19,39 @@ export function shuffle(items, rng) {
 }
 
 /**
- * Part 1: one block per method in config order (ARCOL, then DARCOL), graphs
- * shuffled inside each block.
+ * Shuffle the graphs for one block so that graphs sharing a start drawing
+ * (same family) are never back to back, and the block does not open with the
+ * graph that closed the previous block. Falls back to a plain shuffle if the
+ * graph list makes that impossible.
+ */
+function orderGraphs(config, rng, previous) {
+  const family = id => config.graphFamilies?.[id] ?? id;
+  let order;
+  for (let attempt = 0; attempt < 500; attempt++) {
+    order = shuffle(config.graphs, rng);
+    const clash = order.some((g, i) => i > 0 && family(g) === family(order[i - 1]));
+    if (!clash && order[0] !== previous) return order;
+  }
+  return order;
+}
+
+/**
+ * Part 1: one block per method in config order (ARCOL, then DARCOL).
  * Part 2: the two conditions as blocks, their order alternating by seed
- * parity (counterbalanced across participants), graphs shuffled inside.
+ * parity (counterbalanced across participants).
+ * Inside every block the graph order is shuffled (see orderGraphs).
  */
 export function buildScreens(config, seed) {
   const rng = random(seed);
   const screens = [{ type: 'part1-intro' }];
+  let last = null;
+  const block = () => {
+    const order = orderGraphs(config, rng, last);
+    last = order[order.length - 1];
+    return order;
+  };
   for (const method of config.part1.methodOrder) {
-    for (const graph of shuffle(config.graphs, rng)) {
+    for (const graph of block()) {
       screens.push({ type: 'part1', method, graph, target: config.part1.targets[graph] });
     }
   }
@@ -37,7 +60,7 @@ export function buildScreens(config, seed) {
   const conditionOrder = seed % 2 ? [...conditions].reverse() : conditions;
   for (const condition of conditionOrder) {
     screens.push({ type: 'condition-intro', condition });
-    for (const graph of shuffle(config.graphs, rng)) {
+    for (const graph of block()) {
       screens.push({
         type: 'part2',
         method: config.part2.method,

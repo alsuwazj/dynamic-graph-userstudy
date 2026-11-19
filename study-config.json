@@ -7,19 +7,48 @@
     "part2MemorizeMs": 6000,
     "part2ResponseMs": 30000
   },
-  "graphs": ["small", "wien", "wien356"],
+  "graphs": [
+    "small",
+    "wien",
+    "wien356"
+  ],
+  "graphFamilies": {
+    "small": "small",
+    "wien": "wien",
+    "wien356": "wien"
+  },
+  "graphFamiliesNote": "Graphs in the same family share a start drawing; they are never shown back to back within a section and never reuse target nodes.",
   "part1": {
-    "title": "Part 1 · Match nodes in static drawings",
+    "title": "Part 1 \u00b7 Match nodes in static drawings",
     "instruction": "Select the nodes in the right drawing that match the highlighted nodes in the left drawing.",
-    "methodOrder": ["ARCOL", "DARCOL"],
+    "methodOrder": [
+      "ARCOL",
+      "DARCOL"
+    ],
     "targets": {
-      "small": [15, 31, 1, 18],
-      "wien": [51, 14, 13, 52],
-      "wien356": [51, 14, 13, 52]
-    }
+      "small": [
+        3,
+        5,
+        7,
+        27
+      ],
+      "wien": [
+        3,
+        57,
+        64,
+        71
+      ],
+      "wien356": [
+        46,
+        58,
+        76,
+        81
+      ]
+    },
+    "targetsNote": "Placeholder: 4 nodes spread across the drawing, at least 3 edges apart. Same targets for ARCOL and DARCOL of a graph so the two methods are compared on identical tasks."
   },
   "part2": {
-    "title": "Part 2 · Track nodes through an animation",
+    "title": "Part 2 \u00b7 Track nodes through an animation",
     "instruction": "Memorize the highlighted nodes, watch the graph change, then select the same nodes in the final drawing.",
     "method": "DARCOL",
     "conditions": {
@@ -27,19 +56,50 @@
         "label": "Highlighted graph region",
         "intro": "In this section, a group of nodes in one region of the graph is highlighted. Keep track of them while the graph changes.",
         "targets": {
-          "small": [15, 31, 1, 18],
-          "wien": [51, 14, 13, 52],
-          "wien356": [51, 14, 13, 52]
-        }
+          "small": [
+            11,
+            16,
+            20,
+            30
+          ],
+          "wien": [
+            9,
+            16,
+            29,
+            34
+          ],
+          "wien356": [
+            2,
+            6,
+            45,
+            62
+          ]
+        },
+        "targetsNote": "Placeholder: 4 nodes within one area of the drawing, at least 3 edges apart (no neighbours or siblings)."
       },
       "moved": {
         "label": "Nodes moved for the aspect-ratio change",
         "intro": "In this section, the highlighted nodes are ones the layout moves to fit the new shape. Keep track of them while the graph changes.",
-        "targetsNote": "Placeholder: the four nodes with the largest normalized displacement between the start and DARCOL drawings. Replace with the structures DARCOL actually moved.",
+        "targetsNote": "Placeholder: 4 of the most-displaced nodes (start vs DARCOL drawing), at least 3 edges apart. Replace with the structures DARCOL actually moved.",
         "targets": {
-          "small": [8, 9, 7, 19],
-          "wien": [60, 59, 58, 57],
-          "wien356": [60, 59, 58, 57]
+          "small": [
+            4,
+            8,
+            19,
+            23
+          ],
+          "wien": [
+            10,
+            25,
+            59,
+            61
+          ],
+          "wien356": [
+            0,
+            21,
+            24,
+            33
+          ]
         }
       }
     }
