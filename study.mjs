@@ -53,6 +53,7 @@ function save() {
           setStatus('Responses saved');
         } catch {
           session.uploadFailed = true;
+          try { sessionStorage.setItem(STORAGE_KEY, JSON.stringify(session)); } catch { /* offer download */ }
           setStatus('Saving failed · your answers are kept in this tab');
         }
       }
@@ -110,6 +111,10 @@ async function boot() {
       session = saved;
       screens = buildScreens(config, session.seed).screens;
       resume();
+    } else if (saved && saved.version === config.version && saved.uploadFailed) {
+      session = saved;
+      screens = buildScreens(config, session.seed).screens;
+      await finish(saved.status);
     } else {
       welcome();
     }
@@ -545,18 +550,20 @@ async function finish(status) {
   save();
   $('#withdraw').hidden = true;
   await uploadQueue;
-  sessionStorage.removeItem(STORAGE_KEY);
   const failed = service && session.uploadFailed;
+  if (!failed) sessionStorage.removeItem(STORAGE_KEY);
+  else try { sessionStorage.setItem(STORAGE_KEY, JSON.stringify(session)); } catch { /* offer download */ }
   main.innerHTML = `
     <div class="narrow">
       <h1>Thank you for taking part.</h1>
       <p class="lead">${status === 'complete' ? 'Your responses help us understand how people follow graphs that change shape.' : 'Your session has ended and your answers so far have been saved.'}</p>
-      ${failed ? '<div class="notice error">Your answers could not be uploaded. Please download your response file and send it to the researcher.</div>' : ''}
+      ${failed ? '<div class="notice error">Some responses have not been saved online. Keep this tab open and try saving again, or download your response file.</div><button class="primary" id="retry-save">Try saving again</button>' : ''}
       ${!service ? '<div class="notice">Test mode: responses were not uploaded.</div>' : ''}
       ${failed || !service ? '<button class="secondary" id="download">Download responses</button>' : ''}
       <p class="help">Session code: <strong>${escapeHtml(session.id.replace(/^local-/, '').slice(0, 8))}</strong></p>
     </div>`;
   $('#download')?.addEventListener('click', () => downloadJson(session, `darcol-study-${session.id}.json`));
+  $('#retry-save')?.addEventListener('click', () => finish(status));
 }
 
 $('#withdraw').onclick = () => {
