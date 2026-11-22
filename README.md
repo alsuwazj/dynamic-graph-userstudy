@@ -8,13 +8,14 @@ Participant website for the DARCOL aspect-ratio study. It is a static site
   different ARs. The same six path nodes are highlighted for both methods. Method order varies across
   participants and graph order is shuffled within blocks.
 - **Part 2 · Animated node tracking (DARCOL):** one panel at a time.
-  Memorize the highlighted nodes (rest of the graph in light grey), watch the
-  transition, then select the same nodes. Two conditions, *highlighted region*
-  and *nodes moved for the aspect-ratio change*, in counterbalanced order.
+  Memorize the highlighted path (all node fills stay the same gray), watch the
+  transition, then select the same nodes. Two animation modes, *tree turns
+  and corner moves* and *landmarks, computed first*, in counterbalanced order.
 
-Part 2 has 20 questions: ten other Rome graphs, each appearing in both target
-conditions. Targets are memorized for six seconds, followed by a six-second
-GUI-rendered optimizer trajectory and a 25-second response window. There are
+Part 2 has 20 questions: ten other Rome graphs, each appearing in both
+animation modes, with identical endpoints and target nodes in each pair.
+Targets are memorized for six seconds, followed by a six-second
+GUI-rendered animation and a 25-second response window. There are
 20 distinct source graphs in total. See [STUDY-DESIGN.md](STUDY-DESIGN.md) for
 selection rules, provenance, timing definitions and remaining pilot checks.
 

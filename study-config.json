@@ -1,5 +1,5 @@
 {
-  "version": "two-part-rome-path6-v3",
+  "version": "two-part-rome-modes-v4",
   "placeholderNotice": "",
   "minWindowWidth": 900,
   "timing": {
@@ -159,139 +159,139 @@
   },
   "part2": {
     "title": "Part 2 \u00b7 Track nodes through an animation",
-    "instruction": "Memorize the highlighted nodes, watch the graph change, then select the same nodes in the final drawing.",
+    "instruction": "Memorize the four highlighted nodes along the path, watch the graph change, then select the same four nodes in the final drawing.",
     "method": "DARCOL",
     "conditions": {
-      "region": {
-        "label": "Highlighted graph region",
-        "intro": "In this section, a group of nodes in one region of the graph is highlighted. Keep track of them while the graph changes.",
+      "rotation": {
+        "label": "Tree turns and corner moves",
+        "intro": "Memorize the highlighted nodes, watch the animation, then select the same nodes in the final drawing.",
+        "animationMode": "rotation",
         "targets": {
           "grafo7242.37": [
-            12,
             4,
-            8,
-            5
-          ],
-          "grafo5520.35": [
-            2,
-            25,
-            34,
-            6
-          ],
-          "grafo7304.45": [
-            42,
-            13,
-            31,
-            35
-          ],
-          "grafo6916.42": [
-            37,
-            32,
-            18,
-            14
-          ],
-          "grafo11663.38": [
-            29,
-            27,
-            26,
-            28
-          ],
-          "grafo10562.33": [
-            13,
-            25,
-            26,
-            14
-          ],
-          "grafo7455.41": [
-            12,
             7,
-            25,
-            9
-          ],
-          "grafo1998.31": [
-            12,
-            6,
-            17,
-            18
-          ],
-          "grafo9849.35": [
-            0,
-            25,
-            26,
-            19
-          ],
-          "grafo3277.42": [
-            21,
-            5,
-            26,
-            8
-          ]
-        },
-        "targetsNote": "Four spatially close nodes in the initial drawing."
-      },
-      "moved": {
-        "label": "Nodes moved for the aspect-ratio change",
-        "intro": "In this section, the highlighted nodes are ones the layout moves to fit the new shape. Keep track of them while the graph changes.",
-        "targetsNote": "Four nodes with greatest centroid-aligned movement under DARCOL, excluding the region targets.",
-        "targets": {
-          "grafo7242.37": [
-            34,
-            25,
-            24,
-            9
+            11,
+            13
           ],
           "grafo5520.35": [
-            22,
-            27,
-            11,
-            18
+            10,
+            0,
+            23,
+            33
           ],
           "grafo7304.45": [
-            11,
-            24,
-            30,
-            10
+            4,
+            0,
+            5,
+            33
           ],
           "grafo6916.42": [
-            41,
-            0,
-            36,
-            6
+            16,
+            20,
+            24,
+            21
           ],
           "grafo11663.38": [
-            0,
-            1,
-            2,
-            3
+            26,
+            30,
+            21,
+            34
           ],
           "grafo10562.33": [
             11,
-            3,
-            18,
-            22
+            22,
+            6,
+            23
           ],
           "grafo7455.41": [
-            23,
-            11,
-            15,
+            31,
+            38,
+            26,
             33
           ],
           "grafo1998.31": [
-            28,
-            26,
-            22,
-            4
+            1,
+            21,
+            2,
+            22
           ],
           "grafo9849.35": [
-            10,
-            11,
-            4,
-            30
+            6,
+            20,
+            8,
+            32
           ],
           "grafo3277.42": [
+            26,
+            3,
+            16,
+            30
+          ]
+        }
+      },
+      "landmarks_precomputed": {
+        "label": "Landmarks, layout computed first",
+        "intro": "Memorize the highlighted nodes, watch the animation, then select the same nodes in the final drawing.",
+        "animationMode": "landmarks_precomputed",
+        "targets": {
+          "grafo7242.37": [
+            4,
             7,
+            11,
+            13
+          ],
+          "grafo5520.35": [
+            10,
+            0,
+            23,
+            33
+          ],
+          "grafo7304.45": [
+            4,
+            0,
+            5,
+            33
+          ],
+          "grafo6916.42": [
+            16,
+            20,
+            24,
+            21
+          ],
+          "grafo11663.38": [
+            26,
+            30,
+            21,
+            34
+          ],
+          "grafo10562.33": [
+            11,
+            22,
             6,
-            34,
+            23
+          ],
+          "grafo7455.41": [
+            31,
+            38,
+            26,
+            33
+          ],
+          "grafo1998.31": [
+            1,
+            21,
+            2,
+            22
+          ],
+          "grafo9849.35": [
+            6,
+            20,
+            8,
+            32
+          ],
+          "grafo3277.42": [
+            26,
+            3,
+            16,
             30
           ]
         }

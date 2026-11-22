@@ -8,8 +8,9 @@ corpus or a demonstration that DARCOL improves recovery accuracy.
 
 Drawings and videos use a shared neutral medium-dark gray presentation filter
 (approximately #737373 node interiors), removing node identity cues from the
-source palettes. Target and selection overlays remain red. Memorization
-context is lightly faded; original screenshots and videos are preserved.
+source palettes. Target outlines and selection overlays remain red. Node
+fill colors stay constant before, during and after playback; memorization
+context is not faded. Original screenshots and videos are preserved.
 
 ## Part 1: static matching (20 questions)
 
@@ -31,20 +32,22 @@ node-spread error (at most 25%).
 
 ## Part 2: animated tracking (20 questions)
 
-Ten different graphs each appear in two DARCOL-only conditions. The region
-condition uses four spatially nearby nodes. The moved condition uses four
-other nodes with the greatest centroid-aligned displacement. This is a
-comparison of target conditions within DARCOL, not an animated ARCOL versus
-DARCOL comparison. Conditions use different targets, so condition effects
-also reflect target difficulty.
+Ten different graphs each appear in two DARCOL-only animation conditions:
+`rotation` (tree turns and core corner moves) and `landmarks_precomputed`
+(the layout is computed first, then the GUI's curved landmark motion is
+played). The identical four-node path is targeted in both conditions. Both
+movies share exactly the same starting and final drawing from one optimizer
+run with tree rotation and corner shift enabled. This is a comparison of
+DARCOL animation modes, not an animated ARCOL versus DARCOL comparison.
 
 For each question, targets are highlighted for six seconds, then removed
-before the animation. The same six-second movie is used in both conditions.
+before the animation. Both movies have a six-second presentation duration.
 Participants have 25 seconds after the movie to select the remembered nodes.
-Each movie contains accepted current-optimizer snapshots rendered through
-GraphCanvas. Snapshot order is preserved and uniformly sampled to 180 frames
-at 30 fps; solver wall time is excluded. This is not endpoint interpolation
-and is not real-time optimizer playback. Part 2 starts from the recorded
+The rotation movie contains accepted current-optimizer snapshots rendered
+through GraphCanvas, in order. The computed-first movie uses the GUI's
+EndpointMotion implementation between the same exact endpoints. Both are
+sampled to 180 frames at 30 fps; solver wall time is excluded, and these are
+not real-time optimizer recordings. Part 2 starts from the recorded
 original HOLA input, whereas Part 1 compares recorded resized endpoints.
 
 Condition order uses a separate seed bit from Part 1 method order. Graphs are

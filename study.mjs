@@ -99,6 +99,7 @@ async function boot() {
         darcol: o.finalB,
         video: o.video,
         videoDurationMs: o.videoDurationMs,
+        videos: o.videos || {},
       };
     }
     const missing = config.graphs.filter(id => !graphs[id]);
@@ -133,7 +134,7 @@ function welcome() {
       ${config.placeholderNotice ? `<div class="notice">${escapeHtml(config.placeholderNotice)}</div>` : ''}
       <h2>What you’ll do</h2>
       <p><strong>Part 1 · Match a path (20 questions).</strong> Two drawings of the same graph, produced by the same method, appear at different aspect ratios. Select the ${config.part1.targetCount || 4} nodes on the right that match the highlighted path on the left.</p>
-      <p><strong>Part 2 · Track nodes (20 questions).</strong> Memorize four highlighted nodes for ${config.timing.part2MemorizeMs / 1000} seconds. The highlights disappear before the animation starts. Select the same nodes in the final drawing.</p>
+      <p><strong>Part 2 · Track nodes (20 questions).</strong> Each of ten graphs appears with two animation styles. Memorize four highlighted nodes for ${config.timing.part2MemorizeMs / 1000} seconds. The highlights disappear before the animation starts. Select the same nodes in the final drawing.</p>
       <p><strong>Time:</strong> about 25–30 minutes, including instructions.</p>
       <h2>Good to know</h2>
       <ul>
@@ -284,6 +285,7 @@ function describe(screen) {
     part: screen.type === 'part1' ? 1 : 2,
     method: screen.method,
     condition: screen.condition ?? null,
+    animationMode: screen.type === 'part2' ? (config.part2.conditions[screen.condition].animationMode || null) : null,
     graph: screen.graph,
     graphName: graph.name,
     targetAspect: graph.targetAspect,
@@ -427,6 +429,7 @@ async function part1Question(screen) {
 
 async function part2Question(screen) {
   const graph = graphs[screen.graph];
+  const movie = graph.videos[screen.condition] || {url:graph.video,durationMs:graph.videoDurationMs};
   const { index, total } = questionNumber(2);
   const box = cropBox([graph.initial, graph.darcol]);
   const selected = new Set();
@@ -454,7 +457,7 @@ async function part2Question(screen) {
     video.addEventListener('canplaythrough', resolve, { once: true });
     video.addEventListener('error', () => reject(Error('The animation could not be loaded.')), { once: true });
   });
-  video.src = graph.video;
+  video.src = movie.url;
   video.load();
 
   try {
@@ -475,7 +478,7 @@ async function part2Question(screen) {
     $('#submit').disabled = true;
     $('#submit').textContent = 'Submit answer';
     $('#phase').textContent = 'Memorize the highlighted nodes';
-    stage.innerHTML = drawingSvg(graph.initial, { box, highlight: screen.target, fadeContext: true, edges: graph.edges, label: 'Graph with highlighted nodes to memorize' });
+    stage.innerHTML = drawingSvg(graph.initial, { box, highlight: screen.target, edges: graph.edges, label: 'Graph with highlighted nodes to memorize' });
     times.memorizeStart = performance.now();
     times.startedAt = nowIso();
     countdown(trial, $('#clock'), config.timing.part2MemorizeMs, s => `${s}s`, animate);
@@ -504,7 +507,7 @@ async function part2Question(screen) {
     };
     video.onended = end;
     // Safety net in case `ended` never fires.
-    trial.timers.add(setTimeout(end, (graph.videoDurationMs || 1500) + 3000));
+    trial.timers.add(setTimeout(end, (movie.durationMs || 1500) + 3000));
     video.currentTime = 0;
     video.play().catch(() => technicalProblem(screen, 'The animation could not be played.'));
   }
