@@ -1,5 +1,5 @@
 {
-  "version": "two-part-rome-v2",
+  "version": "two-part-rome-path6-v3",
   "placeholderNotice": "",
   "minWindowWidth": 900,
   "timing": {
@@ -54,74 +54,94 @@
   "graphFamiliesNote": "Graphs in the same family share a start drawing; they are never shown back to back within a section and never reuse target nodes.",
   "part1": {
     "title": "Part 1 \u00b7 Match nodes in static drawings",
-    "instruction": "The highlighted nodes on the left form a path. Select the same nodes in the drawing on the right, shown at a different aspect ratio.",
+    "instruction": "The six highlighted nodes on the left form a path. Select the same six nodes in the drawing on the right, shown at a different aspect ratio.",
     "methodOrder": [
       "ARCOL",
       "DARCOL"
     ],
     "targets": {
       "grafo5199.42": [
-        7,
-        19,
+        6,
+        17,
+        5,
+        16,
         3,
-        16
+        18
       ],
       "grafo7366.35": [
-        6,
-        5,
-        26,
-        21
+        15,
+        34,
+        20,
+        16,
+        8,
+        31
       ],
       "grafo2735.36": [
-        9,
-        22,
-        23,
-        27
+        4,
+        5,
+        2,
+        32,
+        18,
+        26
       ],
       "grafo3074.26": [
+        3,
+        19,
+        10,
         1,
-        11,
-        2,
-        13
+        24,
+        17
       ],
       "grafo5838.35": [
-        26,
-        23,
-        29,
-        28
+        2,
+        24,
+        20,
+        27,
+        1,
+        9
       ],
       "grafo1141.47": [
+        34,
+        1,
+        42,
+        30,
         10,
-        45,
-        36,
-        13
+        43
       ],
       "grafo7183.53": [
-        12,
-        52,
+        16,
+        21,
+        30,
+        43,
         17,
-        46
+        27
       ],
       "grafo9786.77": [
-        51,
-        13,
         26,
-        52
+        52,
+        14,
+        58,
+        49,
+        75
       ],
       "grafo3826.51": [
-        30,
-        48,
-        27,
-        37
+        0,
+        47,
+        45,
+        23,
+        42,
+        40
       ],
       "grafo1427.51": [
-        16,
-        23,
+        32,
+        38,
+        19,
         20,
-        19
+        25,
+        44
       ]
     },
-    "targetsNote": "Four nodes on a shortest path; identical target IDs and AR transitions for both methods.",
+    "targetsNote": "Six nodes on a shortest path (five edges); exactly the same node IDs and nominal AR transition for both methods. Path chosen by deterministic hash, without method-performance criteria.",
     "graphs": [
       "grafo5199.42",
       "grafo7366.35",
@@ -134,7 +154,8 @@
       "grafo3826.51",
       "grafo1427.51"
     ],
-    "counterbalanceMethods": true
+    "counterbalanceMethods": true,
+    "targetCount": 6
   },
   "part2": {
     "title": "Part 2 \u00b7 Track nodes through an animation",

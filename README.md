@@ -5,7 +5,7 @@ Participant website for the DARCOL aspect-ratio study. It is a static site
 
 - **Part 1 · Static path matching (20 questions):** ten graphs, each shown
   once per method. Both drawings within a question use that method at two
-  different ARs. Four path nodes are highlighted. Method order varies across
+  different ARs. The same six path nodes are highlighted for both methods. Method order varies across
   participants and graph order is shuffled within blocks.
 - **Part 2 · Animated node tracking (DARCOL):** one panel at a time.
   Memorize the highlighted nodes (rest of the graph in light grey), watch the

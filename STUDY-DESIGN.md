@@ -15,8 +15,8 @@ context is lightly faded; original screenshots and videos are preserved.
 
 Ten graphs each appear once with ARCOL and once with DARCOL. Both drawings
 within a question come from the same method, at two distinct destination
-aspect ratios in the existing evaluation. Each graph has the same four-node
-shortest-path target and nominal AR transition for both methods. Source and
+aspect ratios in the existing evaluation. Each graph has the same six-node
+shortest-path target (five edges) and nominal AR transition for both methods. Source and
 destination layouts need not have identical coordinates across methods.
 
 The method block order varies with the session seed. Graph order is shuffled
