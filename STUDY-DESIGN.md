@@ -6,6 +6,11 @@ from the Rome evaluation corpus. Selection is reproducible from
 These are a controlled pilot stimulus set, not a random sample of the entire
 corpus or a demonstration that DARCOL improves recovery accuracy.
 
+Drawings and videos use a shared neutral medium-dark gray presentation filter
+(approximately #737373 node interiors), removing node identity cues from the
+source palettes. Target and selection overlays remain red. Memorization
+context is lightly faded; original screenshots and videos are preserved.
+
 ## Part 1: static matching (20 questions)
 
 Ten graphs each appear once with ARCOL and once with DARCOL. Both drawings

@@ -7,7 +7,7 @@
   --accent: #0f172a;
   --highlight: #ff0000;
   --highlight-fill: rgba(255, 0, 0, 0.28);
-  --wash: rgba(255, 255, 255, 0.72);
+  --wash: rgba(255, 255, 255, 0.30);
   color-scheme: light;
 }
 
@@ -104,6 +104,7 @@ main > h2 { font-size: 17px; font-weight: 500; margin-bottom: 18px; }
 .stage { position: relative; height: min(56vh, 480px); overflow: hidden; background: #fff; }
 .stage.tall { height: min(62vh, 540px); }
 .stage > svg { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+.stage > svg image, .stage-video { filter: url("#study-neutral"); }
 .stage-video { position: absolute; display: block; max-width: none; }
 .stage-message, #stage-area > .stage-message {
   position: absolute;

@@ -5,9 +5,19 @@
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="description" content="A study of how people find the same nodes after a graph drawing changes shape.">
   <title>Graph Layout Study</title>
-  <link rel="stylesheet" href="style.css?v=two-part-rome-v2">
+  <link rel="stylesheet" href="style.css?v=gray-nodes-v3">
 </head>
 <body class="welcome-only">
+  <svg width="0" height="0" aria-hidden="true" style="position:absolute;pointer-events:none"><defs>
+    <filter id="study-neutral" color-interpolation-filters="sRGB">
+      <feColorMatrix type="saturate" values="0"/>
+      <feComponentTransfer>
+        <feFuncR type="discrete" tableValues="0 .45 .45 .45 .45 .45 .45 .45 .45 .45 .45 .45 .45 .45 .45 .45 .45 .45 .45 1"/>
+        <feFuncG type="discrete" tableValues="0 .45 .45 .45 .45 .45 .45 .45 .45 .45 .45 .45 .45 .45 .45 .45 .45 .45 .45 1"/>
+        <feFuncB type="discrete" tableValues="0 .45 .45 .45 .45 .45 .45 .45 .45 .45 .45 .45 .45 .45 .45 .45 .45 .45 .45 1"/>
+      </feComponentTransfer>
+    </filter>
+  </defs></svg>
   <header class="site-header"><span class="brand">Graph study</span></header>
   <main id="main" aria-live="polite"><p>Loading study…</p></main>
   <footer class="site-footer">
