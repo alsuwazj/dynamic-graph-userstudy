@@ -1,0 +1,206 @@
+{
+  "seed": "darcol-study-20261122-v2",
+  "rule": "Hash-ranked within size and AR-transition strata. Both methods must have complete valid recorded endpoints and spread AR error <=25%; no method advantage or displacement difference used.",
+  "graphs": [
+    {
+      "part": 1,
+      "graph": "grafo5199.42",
+      "nodes": 42,
+      "startTag": "AR0p56",
+      "endTag": "AR1p78",
+      "input": "C:\\Users\\alsuwazj\\PycharmProjects\\AnimateConvergance\\.venv\\Evaluation\\ARCOL\\Rome\\Rome_Output_Graphs_HOLA\\_AR\\grafo5199.42_AR.svg",
+      "inputSha256": "8836307f156e38a144b3b4ae08196a3699341f2ca0c3e3643b38be1060ff6aee",
+      "record": "C:\\Users\\alsuwazj\\PycharmProjects\\dynamicAR\\output\\rome_default_vs_arcol_20261119\\full\\graphs\\grafo5199.42\\metrics\\results.json"
+    },
+    {
+      "part": 1,
+      "graph": "grafo7366.35",
+      "nodes": 35,
+      "startTag": "AR1p00",
+      "endTag": "AR2p33",
+      "input": "C:\\Users\\alsuwazj\\PycharmProjects\\AnimateConvergance\\.venv\\Evaluation\\ARCOL\\Rome\\Rome_Output_Graphs_HOLA\\_AR\\grafo7366.35_AR.svg",
+      "inputSha256": "33ddde38806ffbbf3098903beed67b4bbc5cb377d9af7eddb58bd407a3694376",
+      "record": "C:\\Users\\alsuwazj\\PycharmProjects\\dynamicAR\\output\\rome_default_vs_arcol_20261119\\full\\graphs\\grafo7366.35\\metrics\\results.json"
+    },
+    {
+      "part": 1,
+      "graph": "grafo2735.36",
+      "nodes": 36,
+      "startTag": "AR1p33",
+      "endTag": "AR0p56",
+      "input": "C:\\Users\\alsuwazj\\PycharmProjects\\AnimateConvergance\\.venv\\Evaluation\\ARCOL\\Rome\\Rome_Output_Graphs_HOLA\\_AR\\grafo2735.36_AR.svg",
+      "inputSha256": "8cf30b6e0306a2f641b0adc65c2754ef299a5c1dc68779018d1ad8623a147fd6",
+      "record": "C:\\Users\\alsuwazj\\PycharmProjects\\dynamicAR\\output\\rome_default_vs_arcol_20261119\\full\\graphs\\grafo2735.36\\metrics\\results.json"
+    },
+    {
+      "part": 1,
+      "graph": "grafo3074.26",
+      "nodes": 26,
+      "startTag": "AR1p78",
+      "endTag": "AR1p00",
+      "input": "C:\\Users\\alsuwazj\\PycharmProjects\\AnimateConvergance\\.venv\\Evaluation\\ARCOL\\Rome\\Rome_Output_Graphs_HOLA\\_AR\\grafo3074.26_AR.svg",
+      "inputSha256": "3616707cf3ee58e44668ce5e7ab3790c120b23ce92f32e79d1fce712bbbf9e6f",
+      "record": "C:\\Users\\alsuwazj\\PycharmProjects\\dynamicAR\\output\\rome_default_vs_arcol_20261119\\full\\graphs\\grafo3074.26\\metrics\\results.json"
+    },
+    {
+      "part": 1,
+      "graph": "grafo5838.35",
+      "nodes": 35,
+      "startTag": "AR0p56",
+      "endTag": "AR1p78",
+      "input": "C:\\Users\\alsuwazj\\PycharmProjects\\AnimateConvergance\\.venv\\Evaluation\\ARCOL\\Rome\\Rome_Output_Graphs_HOLA\\_AR\\grafo5838.35_AR.svg",
+      "inputSha256": "dd8d4bb0a5a827a0de9b7b566b5c2addfe07f0e85a5b5fa74e2ecf0f1102b63a",
+      "record": "C:\\Users\\alsuwazj\\PycharmProjects\\dynamicAR\\output\\rome_default_vs_arcol_20261119\\full\\graphs\\grafo5838.35\\metrics\\results.json"
+    },
+    {
+      "part": 1,
+      "graph": "grafo1141.47",
+      "nodes": 47,
+      "startTag": "AR1p00",
+      "endTag": "AR2p33",
+      "input": "C:\\Users\\alsuwazj\\PycharmProjects\\AnimateConvergance\\.venv\\Evaluation\\ARCOL\\Rome\\Rome_Output_Graphs_HOLA\\_AR\\grafo1141.47_AR.svg",
+      "inputSha256": "63931d0005ca9d70ee1e784b3b893c84db8cff55c67a4ab241a1a59f9e62a06f",
+      "record": "C:\\Users\\alsuwazj\\PycharmProjects\\dynamicAR\\output\\rome_default_vs_arcol_20261119\\full\\graphs\\grafo1141.47\\metrics\\results.json"
+    },
+    {
+      "part": 1,
+      "graph": "grafo7183.53",
+      "nodes": 53,
+      "startTag": "AR1p33",
+      "endTag": "AR0p56",
+      "input": "C:\\Users\\alsuwazj\\PycharmProjects\\AnimateConvergance\\.venv\\Evaluation\\ARCOL\\Rome\\Rome_Output_Graphs_HOLA\\_AR\\grafo7183.53_AR.svg",
+      "inputSha256": "9d7aa095a015ce723efde9be9693cac805d8a10ca62f78b5c2f572df90e4bc8a",
+      "record": "C:\\Users\\alsuwazj\\PycharmProjects\\dynamicAR\\output\\rome_default_vs_arcol_20261119\\full\\graphs\\grafo7183.53\\metrics\\results.json"
+    },
+    {
+      "part": 1,
+      "graph": "grafo9786.77",
+      "nodes": 77,
+      "startTag": "AR1p78",
+      "endTag": "AR1p00",
+      "input": "C:\\Users\\alsuwazj\\PycharmProjects\\AnimateConvergance\\.venv\\Evaluation\\ARCOL\\Rome\\Rome_Output_Graphs_HOLA\\_AR\\grafo9786.77_AR.svg",
+      "inputSha256": "d5c20863108157c3252ca6e2bd8d02c94140ca1e0fa14ef885f3bc24b2b7fd40",
+      "record": "C:\\Users\\alsuwazj\\PycharmProjects\\dynamicAR\\output\\rome_default_vs_arcol_20261119\\full\\graphs\\grafo9786.77\\metrics\\results.json"
+    },
+    {
+      "part": 1,
+      "graph": "grafo3826.51",
+      "nodes": 51,
+      "startTag": "AR0p56",
+      "endTag": "AR1p78",
+      "input": "C:\\Users\\alsuwazj\\PycharmProjects\\AnimateConvergance\\.venv\\Evaluation\\ARCOL\\Rome\\Rome_Output_Graphs_HOLA\\_AR\\grafo3826.51_AR.svg",
+      "inputSha256": "9daf2924f9058c68bd1d2e1d502dae793f7878f05fde37854dc54a2b52d42295",
+      "record": "C:\\Users\\alsuwazj\\PycharmProjects\\dynamicAR\\output\\rome_default_vs_arcol_20261119\\full\\graphs\\grafo3826.51\\metrics\\results.json"
+    },
+    {
+      "part": 1,
+      "graph": "grafo1427.51",
+      "nodes": 51,
+      "startTag": "AR1p00",
+      "endTag": "AR2p33",
+      "input": "C:\\Users\\alsuwazj\\PycharmProjects\\AnimateConvergance\\.venv\\Evaluation\\ARCOL\\Rome\\Rome_Output_Graphs_HOLA\\_AR\\grafo1427.51_AR.svg",
+      "inputSha256": "8f8ace49ad7d879902defa432f6a8ccf66cfddd2c9c2139d50d4a839fcc062bc",
+      "record": "C:\\Users\\alsuwazj\\PycharmProjects\\dynamicAR\\output\\rome_default_vs_arcol_20261119\\full\\graphs\\grafo1427.51\\metrics\\results.json"
+    },
+    {
+      "part": 2,
+      "graph": "grafo7242.37",
+      "nodes": 37,
+      "startTag": "AR0p56",
+      "endTag": "AR1p78",
+      "input": "C:\\Users\\alsuwazj\\PycharmProjects\\AnimateConvergance\\.venv\\Evaluation\\ARCOL\\Rome\\Rome_Output_Graphs_HOLA\\_AR\\grafo7242.37_AR.svg",
+      "inputSha256": "3551f33ceea8289d5bb9ed9174805fa7213a27c3564b4174f05a524ffd1d0e65",
+      "record": "C:\\Users\\alsuwazj\\PycharmProjects\\dynamicAR\\output\\rome_default_vs_arcol_20261119\\full\\graphs\\grafo7242.37\\metrics\\results.json"
+    },
+    {
+      "part": 2,
+      "graph": "grafo5520.35",
+      "nodes": 35,
+      "startTag": "AR1p00",
+      "endTag": "AR2p33",
+      "input": "C:\\Users\\alsuwazj\\PycharmProjects\\AnimateConvergance\\.venv\\Evaluation\\ARCOL\\Rome\\Rome_Output_Graphs_HOLA\\_AR\\grafo5520.35_AR.svg",
+      "inputSha256": "19fd3ebfd41ec5e780bd16d956792767b7007fdd7af227bf92721863114ee179",
+      "record": "C:\\Users\\alsuwazj\\PycharmProjects\\dynamicAR\\output\\rome_default_vs_arcol_20261119\\full\\graphs\\grafo5520.35\\metrics\\results.json"
+    },
+    {
+      "part": 2,
+      "graph": "grafo7304.45",
+      "nodes": 45,
+      "startTag": "AR1p33",
+      "endTag": "AR0p56",
+      "input": "C:\\Users\\alsuwazj\\PycharmProjects\\AnimateConvergance\\.venv\\Evaluation\\ARCOL\\Rome\\Rome_Output_Graphs_HOLA\\_AR\\grafo7304.45_AR.svg",
+      "inputSha256": "5904334367894134bc5f242924b36deb28aca93772c11509365f953d00955a2f",
+      "record": "C:\\Users\\alsuwazj\\PycharmProjects\\dynamicAR\\output\\rome_default_vs_arcol_20261119\\full\\graphs\\grafo7304.45\\metrics\\results.json"
+    },
+    {
+      "part": 2,
+      "graph": "grafo6916.42",
+      "nodes": 42,
+      "startTag": "AR1p78",
+      "endTag": "AR1p00",
+      "input": "C:\\Users\\alsuwazj\\PycharmProjects\\AnimateConvergance\\.venv\\Evaluation\\ARCOL\\Rome\\Rome_Output_Graphs_HOLA\\_AR\\grafo6916.42_AR.svg",
+      "inputSha256": "86fac4e1c70d635599f0e580c54df4e1087a2526de29d49c286307fe08b615c8",
+      "record": "C:\\Users\\alsuwazj\\PycharmProjects\\dynamicAR\\output\\rome_default_vs_arcol_20261119\\full\\graphs\\grafo6916.42\\metrics\\results.json"
+    },
+    {
+      "part": 2,
+      "graph": "grafo11663.38",
+      "nodes": 38,
+      "startTag": "AR0p56",
+      "endTag": "AR1p78",
+      "input": "C:\\Users\\alsuwazj\\PycharmProjects\\AnimateConvergance\\.venv\\Evaluation\\ARCOL\\Rome\\Rome_Output_Graphs_HOLA\\_AR\\grafo11663.38_AR.svg",
+      "inputSha256": "b6c4b30ce2994f5ba33f348b20d1408260caa1a4c44b6a5bcd67329f5600ce8a",
+      "record": "C:\\Users\\alsuwazj\\PycharmProjects\\dynamicAR\\output\\rome_default_vs_arcol_20261119\\full\\graphs\\grafo11663.38\\metrics\\results.json"
+    },
+    {
+      "part": 2,
+      "graph": "grafo10562.33",
+      "nodes": 33,
+      "startTag": "AR1p00",
+      "endTag": "AR2p33",
+      "input": "C:\\Users\\alsuwazj\\PycharmProjects\\AnimateConvergance\\.venv\\Evaluation\\ARCOL\\Rome\\Rome_Output_Graphs_HOLA\\_AR\\grafo10562.33_AR.svg",
+      "inputSha256": "011123624417c39305ece23aac31e51abf24640121fb00998c4243157f91825c",
+      "record": "C:\\Users\\alsuwazj\\PycharmProjects\\dynamicAR\\output\\rome_default_vs_arcol_20261119\\full\\graphs\\grafo10562.33\\metrics\\results.json"
+    },
+    {
+      "part": 2,
+      "graph": "grafo7455.41",
+      "nodes": 41,
+      "startTag": "AR1p33",
+      "endTag": "AR0p56",
+      "input": "C:\\Users\\alsuwazj\\PycharmProjects\\AnimateConvergance\\.venv\\Evaluation\\ARCOL\\Rome\\Rome_Output_Graphs_HOLA\\_AR\\grafo7455.41_AR.svg",
+      "inputSha256": "fb87c562d1d7a3ead107a7c6c35ea18848e7e00e38109f4037f9fce3cfa3bd7b",
+      "record": "C:\\Users\\alsuwazj\\PycharmProjects\\dynamicAR\\output\\rome_default_vs_arcol_20261119\\full\\graphs\\grafo7455.41\\metrics\\results.json"
+    },
+    {
+      "part": 2,
+      "graph": "grafo1998.31",
+      "nodes": 31,
+      "startTag": "AR1p78",
+      "endTag": "AR1p00",
+      "input": "C:\\Users\\alsuwazj\\PycharmProjects\\AnimateConvergance\\.venv\\Evaluation\\ARCOL\\Rome\\Rome_Output_Graphs_HOLA\\_AR\\grafo1998.31_AR.svg",
+      "inputSha256": "5a0ff08dccd0747efed383e2212df0cb765bae39bad0fd26021fdc63862833d8",
+      "record": "C:\\Users\\alsuwazj\\PycharmProjects\\dynamicAR\\output\\rome_default_vs_arcol_20261119\\full\\graphs\\grafo1998.31\\metrics\\results.json"
+    },
+    {
+      "part": 2,
+      "graph": "grafo9849.35",
+      "nodes": 35,
+      "startTag": "AR0p56",
+      "endTag": "AR1p78",
+      "input": "C:\\Users\\alsuwazj\\PycharmProjects\\AnimateConvergance\\.venv\\Evaluation\\ARCOL\\Rome\\Rome_Output_Graphs_HOLA\\_AR\\grafo9849.35_AR.svg",
+      "inputSha256": "123b76fe562ebdd3ebe22097b1b1b4adf01e825da071e9d72c8f7dff3785775d",
+      "record": "C:\\Users\\alsuwazj\\PycharmProjects\\dynamicAR\\output\\rome_default_vs_arcol_20261119\\full\\graphs\\grafo9849.35\\metrics\\results.json"
+    },
+    {
+      "part": 2,
+      "graph": "grafo3277.42",
+      "nodes": 42,
+      "startTag": "AR1p00",
+      "endTag": "AR2p33",
+      "input": "C:\\Users\\alsuwazj\\PycharmProjects\\AnimateConvergance\\.venv\\Evaluation\\ARCOL\\Rome\\Rome_Output_Graphs_HOLA\\_AR\\grafo3277.42_AR.svg",
+      "inputSha256": "7c0545057a0f9f07876ecff77de2726923550351b9925906a035e867fa222c61",
+      "record": "C:\\Users\\alsuwazj\\PycharmProjects\\dynamicAR\\output\\rome_default_vs_arcol_20261119\\full\\graphs\\grafo3277.42\\metrics\\results.json"
+    }
+  ]
+}

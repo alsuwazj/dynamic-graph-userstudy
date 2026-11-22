@@ -24,13 +24,13 @@ export function shuffle(items, rng) {
  * graph that closed the previous block. Falls back to a plain shuffle if the
  * graph list makes that impossible.
  */
-function orderGraphs(config, rng, previous) {
+function orderGraphs(config, rng, previous, graphs = config.graphs) {
   const family = id => config.graphFamilies?.[id] ?? id;
   let order;
   for (let attempt = 0; attempt < 500; attempt++) {
-    order = shuffle(config.graphs, rng);
+    order = shuffle(graphs, rng);
     const clash = order.some((g, i) => i > 0 && family(g) === family(order[i - 1]));
-    if (!clash && order[0] !== previous) return order;
+    if (!clash && (!previous || family(order[0]) !== family(previous))) return order;
   }
   return order;
 }
@@ -45,22 +45,23 @@ export function buildScreens(config, seed) {
   const rng = random(seed);
   const screens = [{ type: 'part1-intro' }];
   let last = null;
-  const block = () => {
-    const order = orderGraphs(config, rng, last);
+  const block = graphs => {
+    const order = orderGraphs(config, rng, last, graphs);
     last = order[order.length - 1];
     return order;
   };
-  for (const method of config.part1.methodOrder) {
-    for (const graph of block()) {
+  const methodOrder = config.part1.counterbalanceMethods && seed % 2 ? [...config.part1.methodOrder].reverse() : config.part1.methodOrder;
+  for (const method of methodOrder) {
+    for (const graph of block(config.part1.graphs || config.graphs)) {
       screens.push({ type: 'part1', method, graph, target: config.part1.targets[graph] });
     }
   }
   screens.push({ type: 'part2-intro' });
   const conditions = Object.keys(config.part2.conditions);
-  const conditionOrder = seed % 2 ? [...conditions].reverse() : conditions;
+  const conditionOrder = (seed >>> 1) % 2 ? [...conditions].reverse() : conditions;
   for (const condition of conditionOrder) {
     screens.push({ type: 'condition-intro', condition });
-    for (const graph of block()) {
+    for (const graph of block(config.part2.graphs || config.graphs)) {
       screens.push({
         type: 'part2',
         method: config.part2.method,
@@ -71,7 +72,7 @@ export function buildScreens(config, seed) {
     }
   }
   screens.push({ type: 'finish' });
-  return { screens, conditionOrder };
+  return { screens, conditionOrder, methodOrder };
 }
 
 /** Exact-set correctness plus precision / recall / F1 against the target. */

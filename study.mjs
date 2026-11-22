@@ -9,7 +9,7 @@
 
 import { loadResponseService, allocateResponse, sendResponse } from './response-service.mjs';
 import { cropBox, drawingSvg, bindSelection, clearSelection, fitVideo } from './graph-view.mjs';
-import { buildScreens, score } from './plan.mjs';
+import { buildScreens, score } from './plan.mjs?v=two-part-rome-v2';
 
 const $ = selector => document.querySelector(selector);
 const main = $('#main');
@@ -91,6 +91,9 @@ async function boot() {
         targetAspect: item.targetAspect,
         edges: item.edges,
         initial: o.initial,
+        arcolInitial: o.initialA || o.initial,
+        darcolInitial: o.initialB || o.initial,
+        sourceAspectTag: item.sourceAspectTag,
         arcol: o.finalA,
         darcol: o.finalB,
         video: o.video,
@@ -124,8 +127,9 @@ function welcome() {
       <h1>Graph layout study</h1>
       ${config.placeholderNotice ? `<div class="notice">${escapeHtml(config.placeholderNotice)}</div>` : ''}
       <h2>What you’ll do</h2>
-      <p><strong>Part 1 · Match nodes.</strong> You’ll see two drawings of the same graph side by side, before and after it changes shape. Select the nodes on the right that match the highlighted nodes on the left.</p>
-      <p><strong>Part 2 · Track nodes.</strong> Memorize a few highlighted nodes, watch the graph change shape, then select the same nodes in the final drawing.</p>
+      <p><strong>Part 1 · Match a path (20 questions).</strong> Two drawings of the same graph, produced by the same method, appear at different aspect ratios. Select the four nodes on the right that match the highlighted path on the left.</p>
+      <p><strong>Part 2 · Track nodes (20 questions).</strong> Memorize four highlighted nodes for ${config.timing.part2MemorizeMs / 1000} seconds. The highlights disappear before the animation starts. Select the same nodes in the final drawing.</p>
+      <p><strong>Time:</strong> about 25–30 minutes, including instructions.</p>
       <h2>Good to know</h2>
       <ul>
         <li>Use a laptop or desktop and keep the browser window the same size throughout.</li>
@@ -190,6 +194,7 @@ async function startSession() {
     status: 'active',
     seed,
     conditionOrder: built.conditionOrder,
+    methodOrder: built.methodOrder,
     startedAt: nowIso(),
     consentAt: nowIso(),
     viewport: { width: innerWidth, height: innerHeight, pixelRatio: devicePixelRatio },
@@ -277,6 +282,7 @@ function describe(screen) {
     graph: screen.graph,
     graphName: graph.name,
     targetAspect: graph.targetAspect,
+    sourceAspectTag: graph.sourceAspectTag,
     target: [...screen.target],
   };
 }
@@ -366,6 +372,7 @@ function technicalProblem(screen, reason) {
 
 async function part1Question(screen) {
   const graph = graphs[screen.graph];
+  const before = screen.method === 'ARCOL' ? graph.arcolInitial : graph.darcolInitial;
   const after = screen.method === 'ARCOL' ? graph.arcol : graph.darcol;
   const { index, total } = questionNumber(1);
   const selected = new Set();
@@ -375,8 +382,8 @@ async function part1Question(screen) {
     <h2>${escapeHtml(config.part1.instruction)}</h2>
     <div id="stage-area">
       <div class="pair">
-        <section class="drawing-card"><header><span>Before</span></header><div class="stage" id="before"></div></section>
-        <section class="drawing-card"><header><span>After</span><span class="timer" id="clock"></span></header><div class="stage" id="after"></div></section>
+        <section class="drawing-card"><header><span>First aspect ratio</span></header><div class="stage" id="before"></div></section>
+        <section class="drawing-card"><header><span>Other aspect ratio</span><span class="timer" id="clock"></span></header><div class="stage" id="after"></div></section>
       </div>
       <div class="answer-bar">
         <p id="selection-label">Loading…</p>
@@ -385,12 +392,12 @@ async function part1Question(screen) {
     </div>`;
   const trial = watchTrial();
   try {
-    await withTimeout(preload([graph.initial.url, after.url]), 15000, 'The drawings did not load.');
+    await withTimeout(preload([before.url, after.url]), 15000, 'The drawings did not load.');
   } catch (error) {
     return technicalProblem(screen, error.message);
   }
   if (activeTrial !== trial) return;
-  $('#before').innerHTML = drawingSvg(graph.initial, { highlight: screen.target, label: 'Original drawing with highlighted nodes' });
+  $('#before').innerHTML = drawingSvg(before, { highlight: screen.target, label: 'Same method at the first aspect ratio, with a highlighted path' });
   $('#after').innerHTML = drawingSvg(after, { selectable: true, selected, label: 'Drawing after the change: select the matching nodes' });
   const label = $('#selection-label');
   label.textContent = selectionLabel(selected);

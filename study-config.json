@@ -1,51 +1,140 @@
 {
-  "version": "two-part-template-v1",
-  "placeholderNotice": "Template preview: graphs, animations and target nodes are placeholders from the earlier advisor demo.",
+  "version": "two-part-rome-v2",
+  "placeholderNotice": "",
   "minWindowWidth": 900,
   "timing": {
-    "part1ResponseMs": 60000,
+    "part1ResponseMs": 40000,
     "part2MemorizeMs": 6000,
-    "part2ResponseMs": 30000
+    "part2ResponseMs": 25000
   },
   "graphs": [
-    "small",
-    "wien",
-    "wien356"
+    "grafo5199.42",
+    "grafo7366.35",
+    "grafo2735.36",
+    "grafo3074.26",
+    "grafo5838.35",
+    "grafo1141.47",
+    "grafo7183.53",
+    "grafo9786.77",
+    "grafo3826.51",
+    "grafo1427.51",
+    "grafo7242.37",
+    "grafo5520.35",
+    "grafo7304.45",
+    "grafo6916.42",
+    "grafo11663.38",
+    "grafo10562.33",
+    "grafo7455.41",
+    "grafo1998.31",
+    "grafo9849.35",
+    "grafo3277.42"
   ],
   "graphFamilies": {
-    "small": "small",
-    "wien": "wien",
-    "wien356": "wien"
+    "grafo5199.42": "grafo5199.42",
+    "grafo7366.35": "grafo7366.35",
+    "grafo2735.36": "grafo2735.36",
+    "grafo3074.26": "grafo3074.26",
+    "grafo5838.35": "grafo5838.35",
+    "grafo1141.47": "grafo1141.47",
+    "grafo7183.53": "grafo7183.53",
+    "grafo9786.77": "grafo9786.77",
+    "grafo3826.51": "grafo3826.51",
+    "grafo1427.51": "grafo1427.51",
+    "grafo7242.37": "grafo7242.37",
+    "grafo5520.35": "grafo5520.35",
+    "grafo7304.45": "grafo7304.45",
+    "grafo6916.42": "grafo6916.42",
+    "grafo11663.38": "grafo11663.38",
+    "grafo10562.33": "grafo10562.33",
+    "grafo7455.41": "grafo7455.41",
+    "grafo1998.31": "grafo1998.31",
+    "grafo9849.35": "grafo9849.35",
+    "grafo3277.42": "grafo3277.42"
   },
   "graphFamiliesNote": "Graphs in the same family share a start drawing; they are never shown back to back within a section and never reuse target nodes.",
   "part1": {
     "title": "Part 1 \u00b7 Match nodes in static drawings",
-    "instruction": "Select the nodes in the right drawing that match the highlighted nodes in the left drawing.",
+    "instruction": "The highlighted nodes on the left form a path. Select the same nodes in the drawing on the right, shown at a different aspect ratio.",
     "methodOrder": [
       "ARCOL",
       "DARCOL"
     ],
     "targets": {
-      "small": [
-        3,
-        5,
+      "grafo5199.42": [
         7,
+        19,
+        3,
+        16
+      ],
+      "grafo7366.35": [
+        6,
+        5,
+        26,
+        21
+      ],
+      "grafo2735.36": [
+        9,
+        22,
+        23,
         27
       ],
-      "wien": [
-        3,
-        57,
-        64,
-        71
+      "grafo3074.26": [
+        1,
+        11,
+        2,
+        13
       ],
-      "wien356": [
-        46,
-        58,
-        76,
-        81
+      "grafo5838.35": [
+        26,
+        23,
+        29,
+        28
+      ],
+      "grafo1141.47": [
+        10,
+        45,
+        36,
+        13
+      ],
+      "grafo7183.53": [
+        12,
+        52,
+        17,
+        46
+      ],
+      "grafo9786.77": [
+        51,
+        13,
+        26,
+        52
+      ],
+      "grafo3826.51": [
+        30,
+        48,
+        27,
+        37
+      ],
+      "grafo1427.51": [
+        16,
+        23,
+        20,
+        19
       ]
     },
-    "targetsNote": "Placeholder: 4 nodes spread across the drawing, at least 3 edges apart. Same targets for ARCOL and DARCOL of a graph so the two methods are compared on identical tasks."
+    "targetsNote": "Four nodes on a shortest path; identical target IDs and AR transitions for both methods.",
+    "graphs": [
+      "grafo5199.42",
+      "grafo7366.35",
+      "grafo2735.36",
+      "grafo3074.26",
+      "grafo5838.35",
+      "grafo1141.47",
+      "grafo7183.53",
+      "grafo9786.77",
+      "grafo3826.51",
+      "grafo1427.51"
+    ],
+    "counterbalanceMethods": true
   },
   "part2": {
     "title": "Part 2 \u00b7 Track nodes through an animation",
@@ -56,52 +145,149 @@
         "label": "Highlighted graph region",
         "intro": "In this section, a group of nodes in one region of the graph is highlighted. Keep track of them while the graph changes.",
         "targets": {
-          "small": [
-            11,
-            16,
-            20,
-            30
+          "grafo7242.37": [
+            12,
+            4,
+            8,
+            5
           ],
-          "wien": [
-            9,
-            16,
-            29,
-            34
-          ],
-          "wien356": [
+          "grafo5520.35": [
             2,
+            25,
+            34,
+            6
+          ],
+          "grafo7304.45": [
+            42,
+            13,
+            31,
+            35
+          ],
+          "grafo6916.42": [
+            37,
+            32,
+            18,
+            14
+          ],
+          "grafo11663.38": [
+            29,
+            27,
+            26,
+            28
+          ],
+          "grafo10562.33": [
+            13,
+            25,
+            26,
+            14
+          ],
+          "grafo7455.41": [
+            12,
+            7,
+            25,
+            9
+          ],
+          "grafo1998.31": [
+            12,
             6,
-            45,
-            62
+            17,
+            18
+          ],
+          "grafo9849.35": [
+            0,
+            25,
+            26,
+            19
+          ],
+          "grafo3277.42": [
+            21,
+            5,
+            26,
+            8
           ]
         },
-        "targetsNote": "Placeholder: 4 nodes within one area of the drawing, at least 3 edges apart (no neighbours or siblings)."
+        "targetsNote": "Four spatially close nodes in the initial drawing."
       },
       "moved": {
         "label": "Nodes moved for the aspect-ratio change",
         "intro": "In this section, the highlighted nodes are ones the layout moves to fit the new shape. Keep track of them while the graph changes.",
-        "targetsNote": "Placeholder: 4 of the most-displaced nodes (start vs DARCOL drawing), at least 3 edges apart. Replace with the structures DARCOL actually moved.",
+        "targetsNote": "Four nodes with greatest centroid-aligned movement under DARCOL, excluding the region targets.",
         "targets": {
-          "small": [
-            4,
-            8,
-            19,
-            23
-          ],
-          "wien": [
-            10,
+          "grafo7242.37": [
+            34,
             25,
-            59,
-            61
-          ],
-          "wien356": [
-            0,
-            21,
             24,
+            9
+          ],
+          "grafo5520.35": [
+            22,
+            27,
+            11,
+            18
+          ],
+          "grafo7304.45": [
+            11,
+            24,
+            30,
+            10
+          ],
+          "grafo6916.42": [
+            41,
+            0,
+            36,
+            6
+          ],
+          "grafo11663.38": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "grafo10562.33": [
+            11,
+            3,
+            18,
+            22
+          ],
+          "grafo7455.41": [
+            23,
+            11,
+            15,
             33
+          ],
+          "grafo1998.31": [
+            28,
+            26,
+            22,
+            4
+          ],
+          "grafo9849.35": [
+            10,
+            11,
+            4,
+            30
+          ],
+          "grafo3277.42": [
+            7,
+            6,
+            34,
+            30
           ]
         }
       }
-    }
-  }
+    },
+    "graphs": [
+      "grafo7242.37",
+      "grafo5520.35",
+      "grafo7304.45",
+      "grafo6916.42",
+      "grafo11663.38",
+      "grafo10562.33",
+      "grafo7455.41",
+      "grafo1998.31",
+      "grafo9849.35",
+      "grafo3277.42"
+    ]
+  },
+  "maximumTaskMinutes": 25.7
 }

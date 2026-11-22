@@ -1,18 +1,22 @@
-# Dynamic Graph User Study (two-part template)
+# Dynamic Graph User Study
 
 Participant website for the DARCOL aspect-ratio study. It is a static site
 (GitHub Pages); no build step.
 
-- **Part 1 · Static node matching:** two drawings side by side, the original
-  with target nodes highlighted and the drawing after the aspect-ratio change.
-  Participants select the matching nodes. ARCOL block first, then DARCOL.
+- **Part 1 · Static path matching (20 questions):** ten graphs, each shown
+  once per method. Both drawings within a question use that method at two
+  different ARs. Four path nodes are highlighted. Method order varies across
+  participants and graph order is shuffled within blocks.
 - **Part 2 · Animated node tracking (DARCOL):** one panel at a time.
   Memorize the highlighted nodes (rest of the graph in light grey), watch the
   transition, then select the same nodes. Two conditions, *highlighted region*
   and *nodes moved for the aspect-ratio change*, in counterbalanced order.
 
-The graphs, videos and target nodes are **placeholders** from the earlier
-advisor demo and will be replaced by the final evaluation results.
+Part 2 has 20 questions: ten other Rome graphs, each appearing in both target
+conditions. Targets are memorized for six seconds, followed by a six-second
+GUI-rendered optimizer trajectory and a 25-second response window. There are
+20 distinct source graphs in total. See [STUDY-DESIGN.md](STUDY-DESIGN.md) for
+selection rules, provenance, timing definitions and remaining pilot checks.
 
 ## Files
 
