@@ -3,21 +3,23 @@
 Participant website for the DARCOL aspect-ratio study. It is a static site
 (GitHub Pages); no build step.
 
-- **Part 1 · Static path matching (20 questions):** ten graphs, each shown
-  once per method. Both drawings within a question use that method at two
-  different ARs. The same six path nodes are highlighted for both methods. Method order varies across
-  participants and graph order is shuffled within blocks.
-- **Part 2 · Animated node tracking (DARCOL):** one panel at a time.
-  Memorize the highlighted path (all node fills stay the same gray), watch the
-  transition, then select the same nodes. Two animation modes, *tree turns
-  and corner moves* and *landmarks, computed first*, in counterbalanced order.
+- **Part 1 · Static path matching:** 20 questions using ten graphs, once
+  per method, with 50 seconds to answer. Both methods use the same six path
+  nodes and nominal aspect-ratio transition.
+- **Part 2 · Animation recovery:** ten questions using the same five graphs
+  with both DARCOL modes: optimizer iterations and highlighted curved playback
+  after computation. Six seconds to memorize, six seconds of playback and
+  40 seconds to answer. Mode order is counterbalanced.
+- **Part 3 · Animation preferences:** five other graphs, each shown as two
+  looping videos side by side. ARCOL uses linear interpolation between its
+  computed endpoints; DARCOL uses the GUI highlighted curved trajectory.
+  Side assignment and comparison order vary. Three five-point ratings cover
+  pleasantness, tracking and overall preference.
 
-Part 2 has 20 questions: ten other Rome graphs, each appearing in both
-animation modes, with identical endpoints and target nodes in each pair.
-Targets are memorized for six seconds, followed by a six-second
-GUI-rendered animation and a 25-second response window. There are
-20 distinct source graphs in total. See [STUDY-DESIGN.md](STUDY-DESIGN.md) for
-selection rules, provenance, timing definitions and remaining pilot checks.
+The videos use each method's own starting layout at the same source aspect
+ratio, rather than identical starting geometry. Both methods share the same
+original HOLA input and destination aspect ratio. All ten preference videos
+last six seconds. See [STUDY-DESIGN.md](STUDY-DESIGN.md) for the full protocol.
 
 ## Files
 
@@ -50,3 +52,8 @@ Every answer is uploaded to the results service as soon as it is submitted
 (Part 2 also `memorizeMs`, `animationMs`, `totalMs`), `tabHidden`, `resized`,
 and `position` / `questionIndex` for presentation order. Participants never see
 their scores.
+
+Part 3 ratings are stored separately in `ratings`, including raw side-based
+responses, method-normalized values, side assignment, time and viewing flags.
+Positive normalized values prefer DARCOL. Earlier versions keep their own
+assignment and scoring.

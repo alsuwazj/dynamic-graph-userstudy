@@ -71,6 +71,14 @@ export function buildScreens(config, seed) {
       });
     }
   }
+  if (config.part3) {
+    screens.push({type:'part3-intro'});
+    const graphOrder=block(config.part3.graphs);
+    graphOrder.forEach((graph,i)=>{
+      const darcolLeft=((seed>>>2)+i)%2===0;
+      screens.push({type:'part3',graph,leftMethod:darcolLeft?'DARCOL':'ARCOL',rightMethod:darcolLeft?'ARCOL':'DARCOL'});
+    });
+  }
   screens.push({ type: 'finish' });
   return { screens, conditionOrder, methodOrder };
 }

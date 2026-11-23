@@ -1,9 +1,9 @@
 {
-  "version": "two-part-rome-timing-v6",
+  "version": "three-part-rome-v7",
   "placeholderNotice": "",
   "minWindowWidth": 900,
   "timing": {
-    "part1ResponseMs": 60000,
+    "part1ResponseMs": 50000,
     "part2MemorizeMs": 6000,
     "part2ResponseMs": 40000
   },
@@ -342,14 +342,34 @@
       "grafo5520.35",
       "grafo7304.45",
       "grafo6916.42",
-      "grafo11663.38",
+      "grafo11663.38"
+    ],
+    "targetCount": 6
+  },
+  "maximumTaskMinutes": 25.3,
+  "part3": {
+    "title": "Compare two animations",
+    "instruction": "Watch both animations of the same graph, then rate which animation you prefer. You can watch the pair as many times as you like.",
+    "graphs": [
       "grafo10562.33",
       "grafo7455.41",
       "grafo1998.31",
       "grafo9849.35",
       "grafo3277.42"
     ],
-    "targetCount": 6
-  },
-  "maximumTaskMinutes": 37.3
+    "questions": [
+      {
+        "key": "pleasant",
+        "text": "Which animation is more pleasant to watch?"
+      },
+      {
+        "key": "tracking",
+        "text": "Which animation makes the nodes easier to track and understand?"
+      },
+      {
+        "key": "preference",
+        "text": "Which animation do you prefer overall?"
+      }
+    ]
+  }
 }

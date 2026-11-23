@@ -9,7 +9,7 @@
 
 import { loadResponseService, allocateResponse, sendResponse } from './response-service.mjs';
 import { cropBox, drawingSvg, bindSelection, clearSelection, fitVideo } from './graph-view.mjs?v=connected-path-v6';
-import { buildScreens, score } from './plan.mjs?v=two-part-rome-v2';
+import { buildScreens, score } from './plan.mjs?v=three-part-v7';
 
 const $ = selector => document.querySelector(selector);
 const main = $('#main');
@@ -17,6 +17,7 @@ const STORAGE_KEY = 'darcol-two-part-session';
 const localMode = new URLSearchParams(location.search).has('local');
 
 let config;
+let comparisons = {};
 let graphs;            // graphId -> { name, targetAspect, edges, initial, arcol, darcol, video, videoDurationMs }
 let service = null;    // results service origin, or null when not uploading
 let session = null;
@@ -102,6 +103,7 @@ async function boot() {
         videos: o.videos || {},
       };
     }
+    comparisons=Object.fromEntries((stimuli.comparisons||[]).map(c=>[c.graphId,c]));
     const missing = config.graphs.filter(id => !graphs[id]);
     if (missing.length) throw Error(`Missing graph data for: ${missing.join(', ')}`);
     service = localMode ? null : await loadResponseService();
@@ -134,8 +136,9 @@ function welcome() {
       ${config.placeholderNotice ? `<div class="notice">${escapeHtml(config.placeholderNotice)}</div>` : ''}
       <h2>What you’ll do</h2>
       <p><strong>Part 1 · Match a path (20 questions).</strong> Two drawings of the same graph, produced by the same method, appear at different aspect ratios. Select the ${config.part1.targetCount || 6} nodes on the right that match the highlighted path on the left.</p>
-      <p><strong>Part 2 · Track nodes (20 questions).</strong> Each of ten graphs appears with two animation styles. Memorize ${config.part2.targetCount} highlighted nodes for ${config.timing.part2MemorizeMs / 1000} seconds. The highlights disappear before the animation starts. Select the same nodes in the final drawing.</p>
-      <p><strong>Time:</strong> allow about 40 minutes, including instructions.</p>
+      <p><strong>Part 2 · Track nodes (10 questions).</strong> Each of five graphs appears with two animation styles. Memorize ${config.part2.targetCount} highlighted nodes for ${config.timing.part2MemorizeMs / 1000} seconds. The highlights disappear before the animation starts. Select the same nodes in the final drawing.</p>
+      <p><strong>Part 3 · Compare animations (5 comparisons).</strong> Watch two looping animations side by side and rate pleasantness, ease of tracking, and overall preference.</p>
+      <p><strong>Time:</strong> about 30–35 minutes, including instructions.</p>
       <h2>Good to know</h2>
       <ul>
         <li>Use a laptop or desktop and keep the browser window the same size throughout.</li>
@@ -195,7 +198,7 @@ async function startSession() {
     ...(allocation || {}),
     id: allocation?.id || `local-${crypto.randomUUID()}`,
     version: config.version,
-    design: 'darcol-two-part',
+    design: 'darcol-three-part',
     test: localMode,
     status: 'active',
     seed,
@@ -206,6 +209,7 @@ async function startSession() {
     viewport: { width: innerWidth, height: innerHeight, pixelRatio: devicePixelRatio },
     position: -1,
     answers: [],
+    ratings: [],
     events: [],
   };
   logEvent('session_start');
@@ -236,6 +240,8 @@ function next() {
   switch (screen.type) {
     case 'part1-intro': return partIntro(1);
     case 'part2-intro': return partIntro(2);
+    case 'part3-intro': return partIntro(3);
+    case 'part3': return part3Question(screen);
     case 'condition-intro': return conditionIntro(screen);
     case 'part1': return part1Question(screen);
     case 'part2': return part2Question(screen);
@@ -250,14 +256,14 @@ function questionNumber(part) {
 }
 
 function partIntro(part) {
-  const text = part === 1 ? config.part1 : config.part2;
+  const text = config['part'+part];
   const total = questionNumber(part).total;
   main.innerHTML = `
     <div class="narrow">
-      <p class="eyebrow">PART ${part} OF 2</p>
+      <p class="eyebrow">PART ${part} OF 3</p>
       <h1>${escapeHtml(text.title.replace(/^Part \d · /, ''))}</h1>
       <p class="lead">${escapeHtml(text.instruction)}</p>
-      <p class="help">${total} questions${part === 1 ? `. You have ${config.timing.part1ResponseMs / 1000} seconds for each.` : `. You have ${config.timing.part2MemorizeMs / 1000} seconds to memorize and ${config.timing.part2ResponseMs / 1000} seconds to answer.`}</p>
+      <p class="help">${total} questions${part === 1 ? `. You have ${config.timing.part1ResponseMs / 1000} seconds for each.` : part===2 ? `. You have ${config.timing.part2MemorizeMs / 1000} seconds to memorize and ${config.timing.part2ResponseMs / 1000} seconds to answer.` : '. Watch both animations for at least one complete loop, then answer all three ratings.'}</p>
       <button class="primary" id="go">Start Part ${part}</button>
     </div>`;
   $('#go').onclick = next;
@@ -540,6 +546,39 @@ async function part2Question(screen) {
     $('#submit').onclick = () => submit(false);
     countdown(trial, $('#clock'), config.timing.part2ResponseMs, s => `${s}s left`, () => submit(true));
   }
+}
+
+async function part3Question(screen) {
+  const pair=comparisons[screen.graph], {index,total}=questionNumber(3), trial=watchTrial();
+  const values=new Map();let loops=0,playing=false,began=null;const ended=new Set();
+  const options=[[-2,'Strongly prefer A'],[-1,'Slightly prefer A'],[0,'About equal'],[1,'Slightly prefer B'],[2,'Strongly prefer B']];
+  main.innerHTML=`<div class="progress"><div style="width:${(index-1)/total*100}%"></div></div>
+    <p class="eyebrow">PART 3 · COMPARISON ${index} OF ${total}</p><h2>Which animation do you prefer?</h2>
+    <p>Watch the same graph change between the same aspect ratios in both animations.</p>
+    <div class="pair preference-pair" id="stage-area"><section class="drawing-card"><header>Animation A</header><video id="pref-a" class="preference-video ${screen.leftMethod==='DARCOL'?'landmark-motion':''}" muted playsinline preload="auto" disablepictureinpicture></video></section><section class="drawing-card"><header>Animation B</header><video id="pref-b" class="preference-video ${screen.rightMethod==='DARCOL'?'landmark-motion':''}" muted playsinline preload="auto" disablepictureinpicture></video></section></div>
+    <div class="action-row"><button class="secondary" id="pref-play" disabled>Pause both</button><button class="text-button" id="pref-restart" disabled>Restart both</button><span id="pref-status" class="help">Loading animations…</span></div>
+    <div class="preference-ratings">${config.part3.questions.map(q=>`<fieldset><legend>${escapeHtml(q.text)}</legend><div class="rating-options">${options.map(([value,label])=>`<label><input type="radio" name="${q.key}" value="${value}"><span>${label}</span></label>`).join('')}</div></fieldset>`).join('')}</div>
+    <div class="answer-bar"><p>Watch one complete loop and answer all three ratings.</p><button class="primary" id="pref-submit" disabled>Submit ratings</button></div>`;
+  const videos=[$('#pref-a'),$('#pref-b')];
+  const update=()=>{$('#pref-submit').disabled=loops<1||values.size!==config.part3.questions.length;};
+  const fail=reason=>{trial.cleanup();session.ratings.push({position:session.position,graphId:screen.graph,leftMethod:screen.leftMethod,rightMethod:screen.rightMethod,technicalInvalid:true,reason,durationMs:began===null?0:performance.now()-began});save();main.innerHTML=`<div class="narrow"><h2>This comparison could not be shown.</h2><p>${escapeHtml(reason)}</p><button class="primary" id="pref-skip">Continue</button></div>`;$('#pref-skip').onclick=next;};
+  const oldCleanup=trial.cleanup;trial.cleanup=()=>{for(const v of videos){v.onended=null;v.pause();}oldCleanup();};
+  async function playBoth(restart=false){if(activeTrial!==trial)return;if(restart){ended.clear();for(const v of videos)v.currentTime=0;}try{await Promise.all(videos.map(v=>v.play()));playing=true;$('#pref-play').textContent='Pause both';}catch{fail('The paired animations could not be played.');}}
+  try{
+    await withTimeout(Promise.all(videos.map((v,i)=>new Promise((resolve,reject)=>{v.muted=true;v.oncanplaythrough=resolve;v.onerror=()=>reject(Error('An animation could not be loaded.'));v.src=pair[i===0?screen.leftMethod:screen.rightMethod].url;v.load();}))),20000,'The comparison files did not load.');
+  }catch(error){return fail(error.message);}
+  if(activeTrial!==trial)return;began=performance.now();
+  videos.forEach(v=>{v.onended=()=>{ended.add(v);if(ended.size===2){loops++;$('#pref-status').textContent='You can now rate the animations. They will keep looping.';update();playBoth(true);}};});
+  $('#pref-play').disabled=false;$('#pref-restart').disabled=false;$('#pref-status').textContent='Watch one complete loop before submitting.';
+  $('#pref-play').onclick=()=>{if(playing){videos.forEach(v=>v.pause());playing=false;$('#pref-play').textContent='Play both';}else playBoth(false);};
+  $('#pref-restart').onclick=()=>playBoth(true);
+  for(const input of main.querySelectorAll('input[type=radio]'))input.onchange=()=>{values.set(input.name,Number(input.value));update();};
+  $('#pref-submit').onclick=()=>{
+    const raw=Object.fromEntries(values),sign=screen.rightMethod==='DARCOL'?1:-1;
+    session.ratings.push({position:session.position,graphId:screen.graph,leftMethod:screen.leftMethod,rightMethod:screen.rightMethod,rawResponses:raw,...Object.fromEntries(Object.entries(raw).map(([k,v])=>[k,v*sign])),ratingScale:'DARCOL-positive',durationMs:performance.now()-began,completedLoops:loops,...trial.flags});
+    logEvent('preference_rating',{position:session.position});save();next();
+  };
+  await playBoth(true);
 }
 
 // ---------------------------------------------------------------- end
