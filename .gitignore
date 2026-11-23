@@ -1,6 +1,7 @@
 media/study-v2/*-solver.log
 media/study-v2/*-record.json
 media/study-v2/*.png.json
+media/study-v2/*-repaired.asset.json
 node_modules/
 media/mode-pairs-v4/*-solver.log
 media/mode-pairs-v4/*-record.json
