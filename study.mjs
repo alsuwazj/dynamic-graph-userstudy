@@ -135,10 +135,10 @@ function welcome() {
       <h1>Graph layout study</h1>
       ${config.placeholderNotice ? `<div class="notice">${escapeHtml(config.placeholderNotice)}</div>` : ''}
       <h2>What you’ll do</h2>
-      <p><strong>Part 1 · Match a path (20 questions).</strong> Two drawings of the same graph, produced by the same method, appear at different aspect ratios. Select the ${config.part1.targetCount || 6} nodes on the right that match the highlighted path on the left.</p>
+      <p><strong>Part 1 · Match a path (16 questions).</strong> Two drawings of the same graph, produced by the same method, appear at different aspect ratios. Select the ${config.part1.targetCount || 4} nodes on the right that match the highlighted path on the left.</p>
       <p><strong>Part 2 · Track nodes (10 questions).</strong> Each of five graphs appears with two animation styles. Memorize ${config.part2.targetCount} highlighted nodes for ${config.timing.part2MemorizeMs / 1000} seconds. The highlights disappear before the animation starts. Select the same nodes in the final drawing.</p>
-      <p><strong>Part 3 · Compare animations (5 comparisons).</strong> Watch two looping animations side by side and rate pleasantness, ease of tracking, and overall preference.</p>
-      <p><strong>Time:</strong> about 30–35 minutes, including instructions.</p>
+      <p><strong>Part 3 · Compare animations (5 comparisons).</strong> Watch two looping animations side by side and give one overall preference rating.</p>
+      <p><strong>Time:</strong> about 25–30 minutes, including instructions.</p>
       <h2>Good to know</h2>
       <ul>
         <li>Use a laptop or desktop and keep the browser window the same size throughout.</li>
@@ -263,7 +263,7 @@ function partIntro(part) {
       <p class="eyebrow">PART ${part} OF 3</p>
       <h1>${escapeHtml(text.title.replace(/^Part \d · /, ''))}</h1>
       <p class="lead">${escapeHtml(text.instruction)}</p>
-      <p class="help">${total} questions${part === 1 ? `. You have ${config.timing.part1ResponseMs / 1000} seconds for each.` : part===2 ? `. You have ${config.timing.part2MemorizeMs / 1000} seconds to memorize and ${config.timing.part2ResponseMs / 1000} seconds to answer.` : '. Watch both animations for at least one complete loop, then answer all three ratings.'}</p>
+      <p class="help">${total} questions${part === 1 ? `. You have ${config.timing.part1ResponseMs / 1000} seconds for each.` : part===2 ? `. You have ${config.timing.part2MemorizeMs / 1000} seconds to memorize and ${config.timing.part2ResponseMs / 1000} seconds to answer.` : '. Watch both animations for at least one complete loop, then answer the preference question.'}</p>
       <button class="primary" id="go">Start Part ${part}</button>
     </div>`;
   $('#go').onclick = next;
@@ -558,7 +558,7 @@ async function part3Question(screen) {
     <div class="pair preference-pair" id="stage-area"><section class="drawing-card"><header>Animation A</header><video id="pref-a" class="preference-video ${screen.leftMethod==='DARCOL'?'landmark-motion':''}" muted playsinline preload="auto" disablepictureinpicture></video></section><section class="drawing-card"><header>Animation B</header><video id="pref-b" class="preference-video ${screen.rightMethod==='DARCOL'?'landmark-motion':''}" muted playsinline preload="auto" disablepictureinpicture></video></section></div>
     <div class="action-row"><button class="secondary" id="pref-play" disabled>Pause both</button><button class="text-button" id="pref-restart" disabled>Restart both</button><span id="pref-status" class="help">Loading animations…</span></div>
     <div class="preference-ratings">${config.part3.questions.map(q=>`<fieldset><legend>${escapeHtml(q.text)}</legend><div class="rating-options">${options.map(([value,label])=>`<label><input type="radio" name="${q.key}" value="${value}"><span>${label}</span></label>`).join('')}</div></fieldset>`).join('')}</div>
-    <div class="answer-bar"><p>Watch one complete loop and answer all three ratings.</p><button class="primary" id="pref-submit" disabled>Submit ratings</button></div>`;
+    <div class="answer-bar"><p>Watch one complete loop and answer the preference question.</p><button class="primary" id="pref-submit" disabled>Submit preference</button></div>`;
   const videos=[$('#pref-a'),$('#pref-b')];
   const update=()=>{$('#pref-submit').disabled=loops<1||values.size!==config.part3.questions.length;};
   const fail=reason=>{trial.cleanup();session.ratings.push({position:session.position,graphId:screen.graph,leftMethod:screen.leftMethod,rightMethod:screen.rightMethod,technicalInvalid:true,reason,durationMs:began===null?0:performance.now()-began});save();main.innerHTML=`<div class="narrow"><h2>This comparison could not be shown.</h2><p>${escapeHtml(reason)}</p><button class="primary" id="pref-skip">Continue</button></div>`;$('#pref-skip').onclick=next;};

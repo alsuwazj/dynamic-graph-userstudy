@@ -1,5 +1,5 @@
 {
-  "version": "three-part-rome-v7",
+  "version": "three-part-four-node-v8",
   "placeholderNotice": "",
   "minWindowWidth": 900,
   "timing": {
@@ -54,94 +54,74 @@
   "graphFamiliesNote": "Graphs in the same family share a start drawing; they are never shown back to back within a section and never reuse target nodes.",
   "part1": {
     "title": "Part 1 \u00b7 Match nodes in static drawings",
-    "instruction": "The six highlighted nodes on the left form a path. Select the same six nodes in the drawing on the right, shown at a different aspect ratio.",
+    "instruction": "The four highlighted nodes on the left form a path. Select the same four nodes in the drawing on the right, shown at a different aspect ratio.",
     "methodOrder": [
       "ARCOL",
       "DARCOL"
     ],
     "targets": {
       "grafo5199.42": [
-        6,
         17,
         5,
         16,
-        3,
-        18
+        3
       ],
       "grafo7366.35": [
-        15,
         34,
         20,
         16,
-        8,
-        31
+        8
       ],
       "grafo2735.36": [
-        4,
         5,
         2,
         32,
-        18,
-        26
+        18
       ],
       "grafo3074.26": [
-        3,
         19,
         10,
         1,
-        24,
-        17
+        24
       ],
       "grafo5838.35": [
-        2,
         24,
         20,
         27,
-        1,
-        9
+        1
       ],
       "grafo1141.47": [
-        34,
         1,
         42,
         30,
-        10,
-        43
+        10
       ],
       "grafo7183.53": [
-        16,
         21,
         30,
         43,
-        17,
-        27
+        17
       ],
       "grafo9786.77": [
-        26,
         52,
         14,
         58,
-        49,
-        75
+        49
       ],
       "grafo3826.51": [
-        0,
         47,
         45,
         23,
-        42,
-        40
+        42
       ],
       "grafo1427.51": [
-        32,
         38,
         19,
         20,
-        25,
-        44
+        25
       ]
     },
-    "targetsNote": "Six nodes on a shortest path (five edges); exactly the same node IDs and nominal AR transition for both methods. Path chosen by deterministic hash, without method-performance criteria.",
+    "targetsNote": "Four consecutive vertices of the previously frozen path, identical across methods; endpoints removed symmetrically without inspecting method differences.",
     "graphs": [
       "grafo5199.42",
       "grafo7366.35",
@@ -150,16 +130,14 @@
       "grafo5838.35",
       "grafo1141.47",
       "grafo7183.53",
-      "grafo9786.77",
-      "grafo3826.51",
-      "grafo1427.51"
+      "grafo9786.77"
     ],
     "counterbalanceMethods": true,
-    "targetCount": 6
+    "targetCount": 4
   },
   "part2": {
     "title": "Part 2 \u00b7 Track nodes through an animation",
-    "instruction": "Memorize the six highlighted nodes along the path, watch the graph change, then select the same six nodes in the final drawing.",
+    "instruction": "Memorize the four highlighted nodes along the path, watch the graph change, then select the same four nodes in the final drawing.",
     "method": "DARCOL",
     "conditions": {
       "rotation": {
@@ -168,84 +146,64 @@
         "animationMode": "rotation",
         "targets": {
           "grafo7242.37": [
-            30,
             21,
             23,
             20,
-            3,
-            33
+            3
           ],
           "grafo5520.35": [
-            9,
             14,
             15,
             1,
-            10,
-            26
+            10
           ],
           "grafo7304.45": [
-            7,
             6,
             9,
             12,
-            25,
-            13
+            25
           ],
           "grafo6916.42": [
-            8,
             27,
             26,
             17,
-            34,
-            36
+            34
           ],
           "grafo11663.38": [
-            1,
             8,
             18,
             16,
-            13,
-            12
+            13
           ],
           "grafo10562.33": [
-            14,
             13,
             25,
             32,
-            2,
-            16
+            2
           ],
           "grafo7455.41": [
-            18,
             27,
             36,
             0,
-            7,
-            25
+            7
           ],
           "grafo1998.31": [
-            12,
             18,
             13,
             16,
-            10,
-            15
+            10
           ],
           "grafo9849.35": [
-            6,
             20,
             8,
             27,
-            9,
-            28
+            9
           ],
           "grafo3277.42": [
-            11,
             21,
             26,
             3,
-            2,
-            40
+            2
           ]
         }
       },
@@ -255,84 +213,64 @@
         "animationMode": "landmarks_precomputed",
         "targets": {
           "grafo7242.37": [
-            30,
             21,
             23,
             20,
-            3,
-            33
+            3
           ],
           "grafo5520.35": [
-            9,
             14,
             15,
             1,
-            10,
-            26
+            10
           ],
           "grafo7304.45": [
-            7,
             6,
             9,
             12,
-            25,
-            13
+            25
           ],
           "grafo6916.42": [
-            8,
             27,
             26,
             17,
-            34,
-            36
+            34
           ],
           "grafo11663.38": [
-            1,
             8,
             18,
             16,
-            13,
-            12
+            13
           ],
           "grafo10562.33": [
-            14,
             13,
             25,
             32,
-            2,
-            16
+            2
           ],
           "grafo7455.41": [
-            18,
             27,
             36,
             0,
-            7,
-            25
+            7
           ],
           "grafo1998.31": [
-            12,
             18,
             13,
             16,
-            10,
-            15
+            10
           ],
           "grafo9849.35": [
-            6,
             20,
             8,
             27,
-            9,
-            28
+            9
           ],
           "grafo3277.42": [
-            11,
             21,
             26,
             3,
-            2,
-            40
+            2
           ]
         }
       }
@@ -344,9 +282,9 @@
       "grafo6916.42",
       "grafo11663.38"
     ],
-    "targetCount": 6
+    "targetCount": 4
   },
-  "maximumTaskMinutes": 25.3,
+  "maximumTaskMinutes": 22,
   "part3": {
     "title": "Compare two animations",
     "instruction": "Watch both animations of the same graph, then rate which animation you prefer. You can watch the pair as many times as you like.",
@@ -358,14 +296,6 @@
       "grafo3277.42"
     ],
     "questions": [
-      {
-        "key": "pleasant",
-        "text": "Which animation is more pleasant to watch?"
-      },
-      {
-        "key": "tracking",
-        "text": "Which animation makes the nodes easier to track and understand?"
-      },
       {
         "key": "preference",
         "text": "Which animation do you prefer overall?"

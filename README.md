@@ -3,8 +3,8 @@
 Participant website for the DARCOL aspect-ratio study. It is a static site
 (GitHub Pages); no build step.
 
-- **Part 1 · Static path matching:** 20 questions using ten graphs, once
-  per method, with 50 seconds to answer. Both methods use the same six path
+- **Part 1 · Static path matching:** 16 questions using eight graphs, once
+  per method, with 50 seconds to answer. Both methods use the same four path
   nodes and nominal aspect-ratio transition.
 - **Part 2 · Animation recovery:** ten questions using the same five graphs
   with both DARCOL modes: optimizer iterations and highlighted curved playback
@@ -13,8 +13,7 @@ Participant website for the DARCOL aspect-ratio study. It is a static site
 - **Part 3 · Animation preferences:** five other graphs, each shown as two
   looping videos side by side. ARCOL uses linear interpolation between its
   computed endpoints; DARCOL uses the GUI highlighted curved trajectory.
-  Side assignment and comparison order vary. Three five-point ratings cover
-  pleasantness, tracking and overall preference.
+  Side assignment and comparison order vary. One five-point rating asks for overall preference.
 
 The videos use each method's own starting layout at the same source aspect
 ratio, rather than identical starting geometry. Both methods share the same
@@ -57,3 +56,9 @@ Part 3 ratings are stored separately in `ratings`, including raw side-based
 responses, method-normalized values, side assignment, time and viewing flags.
 Positive normalized values prefer DARCOL. Earlier versions keep their own
 assignment and scoring.
+
+Revision v8 reduces Part 1 to eight graphs shown with both methods (16
+trials). Four consecutive vertices are taken from the middle of each
+previously frozen six-node path, identically in the paired conditions.
+Part 3 asks only one overall preference question per comparison. Earlier
+protocol data retain their original targets and questions.
