@@ -35,7 +35,7 @@ node-spread error (at most 25%).
 Ten different graphs each appear in two DARCOL-only animation conditions:
 `rotation` (tree turns and core corner moves) and `landmarks_precomputed`
 (the layout is computed first, then the GUI's curved landmark motion is
-played). The identical four-node path is targeted in both conditions. Both
+played). The identical six-node path is targeted in both conditions. Both
 movies share exactly the same starting and final drawing from one optimizer
 run with tree rotation and corner shift enabled. This is a comparison of
 DARCOL animation modes, not an animated ARCOL versus DARCOL comparison.
@@ -84,3 +84,8 @@ median threshold are unchanged. This is independent of the memorized targets.
 The initial and final response drawings remain dark gray, and the other
 animation condition remains dark gray. Both movies retain six-second duration.
 The landmark movie bypasses the website grayscale filter.
+
+All forty questions use exactly six distinct consecutive vertices on one
+shortest path. Part 2 uses identical six-node targets in both animation
+conditions. Protocol version two-part-rome-six-node-v5 separates these
+responses from earlier four-node animation trials.

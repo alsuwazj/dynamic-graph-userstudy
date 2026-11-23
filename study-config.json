@@ -1,5 +1,5 @@
 {
-  "version": "two-part-rome-modes-v4",
+  "version": "two-part-rome-six-node-v5",
   "placeholderNotice": "",
   "minWindowWidth": 900,
   "timing": {
@@ -159,7 +159,7 @@
   },
   "part2": {
     "title": "Part 2 \u00b7 Track nodes through an animation",
-    "instruction": "Memorize the four highlighted nodes along the path, watch the graph change, then select the same four nodes in the final drawing.",
+    "instruction": "Memorize the six highlighted nodes along the path, watch the graph change, then select the same six nodes in the final drawing.",
     "method": "DARCOL",
     "conditions": {
       "rotation": {
@@ -168,64 +168,84 @@
         "animationMode": "rotation",
         "targets": {
           "grafo7242.37": [
-            4,
-            7,
-            11,
-            13
-          ],
-          "grafo5520.35": [
-            10,
-            0,
-            23,
-            33
-          ],
-          "grafo7304.45": [
-            4,
-            0,
-            5,
-            33
-          ],
-          "grafo6916.42": [
-            16,
-            20,
-            24,
-            21
-          ],
-          "grafo11663.38": [
-            26,
             30,
             21,
-            34
-          ],
-          "grafo10562.33": [
-            11,
-            22,
-            6,
-            23
-          ],
-          "grafo7455.41": [
-            31,
-            38,
-            26,
+            23,
+            20,
+            3,
             33
           ],
-          "grafo1998.31": [
+          "grafo5520.35": [
+            9,
+            14,
+            15,
             1,
-            21,
+            10,
+            26
+          ],
+          "grafo7304.45": [
+            7,
+            6,
+            9,
+            12,
+            25,
+            13
+          ],
+          "grafo6916.42": [
+            8,
+            27,
+            26,
+            17,
+            34,
+            36
+          ],
+          "grafo11663.38": [
+            1,
+            8,
+            18,
+            16,
+            13,
+            12
+          ],
+          "grafo10562.33": [
+            14,
+            13,
+            25,
+            32,
             2,
-            22
+            16
+          ],
+          "grafo7455.41": [
+            18,
+            27,
+            36,
+            0,
+            7,
+            25
+          ],
+          "grafo1998.31": [
+            12,
+            18,
+            13,
+            16,
+            10,
+            15
           ],
           "grafo9849.35": [
             6,
             20,
             8,
-            32
+            27,
+            9,
+            28
           ],
           "grafo3277.42": [
+            11,
+            21,
             26,
             3,
-            16,
-            30
+            2,
+            40
           ]
         }
       },
@@ -235,64 +255,84 @@
         "animationMode": "landmarks_precomputed",
         "targets": {
           "grafo7242.37": [
-            4,
-            7,
-            11,
-            13
-          ],
-          "grafo5520.35": [
-            10,
-            0,
-            23,
-            33
-          ],
-          "grafo7304.45": [
-            4,
-            0,
-            5,
-            33
-          ],
-          "grafo6916.42": [
-            16,
-            20,
-            24,
-            21
-          ],
-          "grafo11663.38": [
-            26,
             30,
             21,
-            34
-          ],
-          "grafo10562.33": [
-            11,
-            22,
-            6,
-            23
-          ],
-          "grafo7455.41": [
-            31,
-            38,
-            26,
+            23,
+            20,
+            3,
             33
           ],
-          "grafo1998.31": [
+          "grafo5520.35": [
+            9,
+            14,
+            15,
             1,
-            21,
+            10,
+            26
+          ],
+          "grafo7304.45": [
+            7,
+            6,
+            9,
+            12,
+            25,
+            13
+          ],
+          "grafo6916.42": [
+            8,
+            27,
+            26,
+            17,
+            34,
+            36
+          ],
+          "grafo11663.38": [
+            1,
+            8,
+            18,
+            16,
+            13,
+            12
+          ],
+          "grafo10562.33": [
+            14,
+            13,
+            25,
+            32,
             2,
-            22
+            16
+          ],
+          "grafo7455.41": [
+            18,
+            27,
+            36,
+            0,
+            7,
+            25
+          ],
+          "grafo1998.31": [
+            12,
+            18,
+            13,
+            16,
+            10,
+            15
           ],
           "grafo9849.35": [
             6,
             20,
             8,
-            32
+            27,
+            9,
+            28
           ],
           "grafo3277.42": [
+            11,
+            21,
             26,
             3,
-            16,
-            30
+            2,
+            40
           ]
         }
       }
@@ -308,7 +348,8 @@
       "grafo1998.31",
       "grafo9849.35",
       "grafo3277.42"
-    ]
+    ],
+    "targetCount": 6
   },
   "maximumTaskMinutes": 25.7
 }
