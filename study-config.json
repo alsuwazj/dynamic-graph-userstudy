@@ -1,11 +1,11 @@
 {
-  "version": "two-part-rome-six-node-v5",
+  "version": "two-part-rome-timing-v6",
   "placeholderNotice": "",
   "minWindowWidth": 900,
   "timing": {
-    "part1ResponseMs": 40000,
+    "part1ResponseMs": 60000,
     "part2MemorizeMs": 6000,
-    "part2ResponseMs": 25000
+    "part2ResponseMs": 40000
   },
   "graphs": [
     "grafo5199.42",
@@ -351,5 +351,5 @@
     ],
     "targetCount": 6
   },
-  "maximumTaskMinutes": 25.7
+  "maximumTaskMinutes": 37.3
 }

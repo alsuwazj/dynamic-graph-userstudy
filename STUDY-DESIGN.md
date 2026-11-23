@@ -22,7 +22,7 @@ destination layouts need not have identical coordinates across methods.
 
 The method block order varies with the session seed. Graph order is shuffled
 within blocks, with no repeated graph at the block boundary. Matched repeats
-are separated by other questions. The answer deadline is 40 seconds.
+are separated by other questions. The answer deadline is 60 seconds.
 
 The archived layouts are rendered with the current GraphCanvas. Their saved
 positions and routes are retained; no new optimizer is substituted for these
@@ -42,7 +42,7 @@ DARCOL animation modes, not an animated ARCOL versus DARCOL comparison.
 
 For each question, targets are highlighted for six seconds, then removed
 before the animation. Both movies have a six-second presentation duration.
-Participants have 25 seconds after the movie to select the remembered nodes.
+Participants have 40 seconds after the movie to select the remembered nodes.
 The rotation movie contains accepted current-optimizer snapshots rendered
 through GraphCanvas, in order. The computed-first movie uses the GUI's
 EndpointMotion implementation between the same exact endpoints. Both are
@@ -63,9 +63,9 @@ starts only when the final selectable drawing is displayed; it excludes
 memorization, video playback and media loading. Technical failures are
 distinguished from incorrect answers.
 
-The maximum timed task duration is 25.7 minutes, excluding participant-paced
+The maximum timed task duration is 37.3 minutes, excluding participant-paced
 instructions and readiness screens. The intended session duration is about
-25–30 minutes; pilot timing and accuracy must validate this estimate.
+about 40 minutes; pilot timing and accuracy must validate this estimate.
 
 All Part 2 final GUI route skeletons are audited for complete coverage,
 node overlaps, edge–node conflicts and nonorthogonal segments. Input files
