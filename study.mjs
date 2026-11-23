@@ -452,7 +452,7 @@ async function part2Question(screen) {
 
   const video = document.createElement('video');
   Object.assign(video, { id: 'trial-video', muted: true, playsInline: true, preload: 'auto', controls: false, disablePictureInPicture: true });
-  video.className = 'stage-video';
+  video.className = screen.condition === 'landmarks_precomputed' ? 'stage-video landmark-motion' : 'stage-video';
   const videoReady = new Promise((resolve, reject) => {
     video.addEventListener('canplaythrough', resolve, { once: true });
     video.addEventListener('error', () => reject(Error('The animation could not be loaded.')), { once: true });

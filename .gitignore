@@ -6,3 +6,7 @@ node_modules/
 media/mode-pairs-v4/*-solver.log
 media/mode-pairs-v4/*-record.json
 media/mode-pairs-v4/*.png.json
+
+media/mode-pairs-v4-landmarks/*-solver.log
+media/mode-pairs-v4-landmarks/*-record.json
+media/mode-pairs-v4-landmarks/*.png.json

@@ -73,3 +73,14 @@ are read-only and their SHA-256 hashes are recorded. Selection criteria,
 paths and target sets should be frozen before confirmatory recruitment.
 The consent/contact/ethics page still requires the investigator's approved
 text before recruitment.
+
+## Landmark presentation correction (2026-11-23)
+
+Landmarks, layout computed first uses the native GUI MotionHighlight colors
+during playback: nodes with large motion unexplained by the overall resize
+are blue; remaining nodes and edges are pale gray. Hanging structures use
+the GUI grouped highlighting rule. The GUI movement threshold and relative
+median threshold are unchanged. This is independent of the memorized targets.
+The initial and final response drawings remain dark gray, and the other
+animation condition remains dark gray. Both movies retain six-second duration.
+The landmark movie bypasses the website grayscale filter.
