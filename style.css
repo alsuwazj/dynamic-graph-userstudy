@@ -144,3 +144,5 @@ main > h2 { font-size: 17px; font-weight: 500; margin-bottom: 18px; }
   main { padding: 24px 16px; }
   .site-header, .site-footer { padding-left: 16px; padding-right: 16px; }
 }
+
+.path-highlight { fill: none; stroke: var(--highlight); stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; pointer-events: none; }

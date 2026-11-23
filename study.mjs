@@ -8,7 +8,7 @@
 // responses can then be downloaded on the last page.
 
 import { loadResponseService, allocateResponse, sendResponse } from './response-service.mjs';
-import { cropBox, drawingSvg, bindSelection, clearSelection, fitVideo } from './graph-view.mjs';
+import { cropBox, drawingSvg, bindSelection, clearSelection, fitVideo } from './graph-view.mjs?v=connected-path-v6';
 import { buildScreens, score } from './plan.mjs?v=two-part-rome-v2';
 
 const $ = selector => document.querySelector(selector);

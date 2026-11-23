@@ -89,3 +89,10 @@ All forty questions use exactly six distinct consecutive vertices on one
 shortest path. Part 2 uses identical six-node targets in both animation
 conditions. Protocol version two-part-rome-six-node-v5 separates these
 responses from earlier four-node animation trials.
+
+The reference cue includes the five actual routed edges between the six
+target vertices, making the continuous path explicit through bends and
+crossings. The same cue rule applies to both methods and animation modes.
+These red edges appear only with the reference node outlines; they are
+absent during animation and from the selectable response drawing. Target
+IDs and scoring are unchanged.
