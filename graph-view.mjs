@@ -69,18 +69,10 @@ export function drawingSvg(asset, options = {}) {
     parts.push(image(''));
   }
 
-  // Show the five actual routed edges only with the reference path cue.
-  // Never draw these on the response graph or during video playback.
-  const path = asset.targetPath;
-  if (path && highlight.length === path.nodes.length && path.nodes.every(id => highlight.includes(id))) {
-    for (const segment of path.segments) {
-      const points = segment.points.map(p => p.join(',')).join(' ');
-      parts.push(`<polyline class="path-highlight" points="${points}" aria-hidden="true"/>`);
-    }
-  }
-
+  // Fill only node interiors; never cover adjacent bends with an outline.
   for (const b of targets) {
-    parts.push(`<rect class="node-highlight" x="${b.x - 4}" y="${b.y - 4}" width="${b.width + 8}" height="${b.height + 8}" rx="3"/>`);
+    const pad = Math.min(1, b.width / 4, b.height / 4);
+    parts.push(`<rect class="node-highlight" x="${b.x + pad}" y="${b.y + pad}" width="${b.width - 2 * pad}" height="${b.height - 2 * pad}"/>`);
   }
 
   if (selectable) {

@@ -1,5 +1,5 @@
 {
-  "version": "three-part-four-node-v8",
+  "version": "three-part-four-node-v9",
   "placeholderNotice": "",
   "minWindowWidth": 900,
   "timing": {
@@ -8,48 +8,46 @@
     "part2ResponseMs": 40000
   },
   "graphs": [
-    "grafo5199.42",
     "grafo7366.35",
     "grafo2735.36",
+    "grafo11348.35",
     "grafo3074.26",
+    "grafo4165.61",
+    "grafo3529.42",
     "grafo5838.35",
+    "grafo5559.61",
     "grafo1141.47",
-    "grafo7183.53",
-    "grafo9786.77",
-    "grafo3826.51",
-    "grafo1427.51",
-    "grafo7242.37",
-    "grafo5520.35",
-    "grafo7304.45",
-    "grafo6916.42",
-    "grafo11663.38",
-    "grafo10562.33",
-    "grafo7455.41",
-    "grafo1998.31",
-    "grafo9849.35",
-    "grafo3277.42"
+    "grafo445.22",
+    "grafo11548.35",
+    "grafo2519.37",
+    "grafo7570.40",
+    "grafo2869.37",
+    "grafo1244.26",
+    "grafo4085.35",
+    "grafo2708.39",
+    "grafo3181.55",
+    "grafo1529.73"
   ],
   "graphFamilies": {
-    "grafo5199.42": "grafo5199.42",
     "grafo7366.35": "grafo7366.35",
     "grafo2735.36": "grafo2735.36",
+    "grafo11348.35": "grafo11348.35",
     "grafo3074.26": "grafo3074.26",
+    "grafo4165.61": "grafo4165.61",
+    "grafo3529.42": "grafo3529.42",
     "grafo5838.35": "grafo5838.35",
+    "grafo5559.61": "grafo5559.61",
     "grafo1141.47": "grafo1141.47",
-    "grafo7183.53": "grafo7183.53",
-    "grafo9786.77": "grafo9786.77",
-    "grafo3826.51": "grafo3826.51",
-    "grafo1427.51": "grafo1427.51",
-    "grafo7242.37": "grafo7242.37",
-    "grafo5520.35": "grafo5520.35",
-    "grafo7304.45": "grafo7304.45",
-    "grafo6916.42": "grafo6916.42",
-    "grafo11663.38": "grafo11663.38",
-    "grafo10562.33": "grafo10562.33",
-    "grafo7455.41": "grafo7455.41",
-    "grafo1998.31": "grafo1998.31",
-    "grafo9849.35": "grafo9849.35",
-    "grafo3277.42": "grafo3277.42"
+    "grafo445.22": "grafo445.22",
+    "grafo11548.35": "grafo11548.35",
+    "grafo2519.37": "grafo2519.37",
+    "grafo7570.40": "grafo7570.40",
+    "grafo2869.37": "grafo2869.37",
+    "grafo1244.26": "grafo1244.26",
+    "grafo4085.35": "grafo4085.35",
+    "grafo2708.39": "grafo2708.39",
+    "grafo3181.55": "grafo3181.55",
+    "grafo1529.73": "grafo1529.73"
   },
   "graphFamiliesNote": "Graphs in the same family share a start drawing; they are never shown back to back within a section and never reuse target nodes.",
   "part1": {
@@ -60,12 +58,6 @@
       "DARCOL"
     ],
     "targets": {
-      "grafo5199.42": [
-        17,
-        5,
-        16,
-        3
-      ],
       "grafo7366.35": [
         34,
         20,
@@ -78,11 +70,29 @@
         32,
         18
       ],
+      "grafo11348.35": [
+        0,
+        1,
+        10,
+        6
+      ],
       "grafo3074.26": [
         19,
         10,
         1,
         24
+      ],
+      "grafo4165.61": [
+        0,
+        2,
+        5,
+        3
+      ],
+      "grafo3529.42": [
+        0,
+        17,
+        30,
+        13
       ],
       "grafo5838.35": [
         24,
@@ -90,47 +100,30 @@
         27,
         1
       ],
+      "grafo5559.61": [
+        0,
+        1,
+        6,
+        3
+      ],
       "grafo1141.47": [
         1,
         42,
         30,
         10
-      ],
-      "grafo7183.53": [
-        21,
-        30,
-        43,
-        17
-      ],
-      "grafo9786.77": [
-        52,
-        14,
-        58,
-        49
-      ],
-      "grafo3826.51": [
-        47,
-        45,
-        23,
-        42
-      ],
-      "grafo1427.51": [
-        38,
-        19,
-        20,
-        25
       ]
     },
-    "targetsNote": "Four consecutive vertices of the previously frozen path, identical across methods; endpoints removed symmetrically without inspecting method differences.",
+    "targetsNote": "Four consecutive path vertices, identical across methods. Curated review selection; see selection-provenance-v9.json.",
     "graphs": [
-      "grafo5199.42",
       "grafo7366.35",
       "grafo2735.36",
+      "grafo11348.35",
       "grafo3074.26",
+      "grafo4165.61",
+      "grafo3529.42",
       "grafo5838.35",
-      "grafo1141.47",
-      "grafo7183.53",
-      "grafo9786.77"
+      "grafo5559.61",
+      "grafo1141.47"
     ],
     "counterbalanceMethods": true,
     "targetCount": 4
@@ -145,65 +138,35 @@
         "intro": "Memorize the highlighted nodes, watch the animation, then select the same nodes in the final drawing.",
         "animationMode": "rotation",
         "targets": {
-          "grafo7242.37": [
-            21,
-            23,
-            20,
-            3
-          ],
-          "grafo5520.35": [
-            14,
-            15,
-            1,
-            10
-          ],
-          "grafo7304.45": [
-            6,
-            9,
-            12,
-            25
-          ],
-          "grafo6916.42": [
-            27,
-            26,
-            17,
-            34
-          ],
-          "grafo11663.38": [
-            8,
-            18,
-            16,
-            13
-          ],
-          "grafo10562.33": [
-            13,
-            25,
-            32,
-            2
-          ],
-          "grafo7455.41": [
-            27,
-            36,
+          "grafo445.22": [
             0,
-            7
+            11,
+            2,
+            21
           ],
-          "grafo1998.31": [
-            18,
-            13,
-            16,
-            10
+          "grafo11548.35": [
+            0,
+            1,
+            10,
+            6
           ],
-          "grafo9849.35": [
-            20,
+          "grafo2519.37": [
+            0,
+            1,
+            2,
+            30
+          ],
+          "grafo7570.40": [
+            0,
+            1,
+            10,
+            6
+          ],
+          "grafo2869.37": [
+            0,
+            1,
             8,
-            27,
-            9
-          ],
-          "grafo3277.42": [
-            21,
-            26,
-            3,
-            2
+            5
           ]
         }
       },
@@ -212,88 +175,58 @@
         "intro": "Memorize the highlighted nodes, watch the animation, then select the same nodes in the final drawing.",
         "animationMode": "landmarks_precomputed",
         "targets": {
-          "grafo7242.37": [
-            21,
-            23,
-            20,
-            3
-          ],
-          "grafo5520.35": [
-            14,
-            15,
-            1,
-            10
-          ],
-          "grafo7304.45": [
-            6,
-            9,
-            12,
-            25
-          ],
-          "grafo6916.42": [
-            27,
-            26,
-            17,
-            34
-          ],
-          "grafo11663.38": [
-            8,
-            18,
-            16,
-            13
-          ],
-          "grafo10562.33": [
-            13,
-            25,
-            32,
-            2
-          ],
-          "grafo7455.41": [
-            27,
-            36,
+          "grafo445.22": [
             0,
-            7
+            11,
+            2,
+            21
           ],
-          "grafo1998.31": [
-            18,
-            13,
-            16,
-            10
+          "grafo11548.35": [
+            0,
+            1,
+            10,
+            6
           ],
-          "grafo9849.35": [
-            20,
+          "grafo2519.37": [
+            0,
+            1,
+            2,
+            30
+          ],
+          "grafo7570.40": [
+            0,
+            1,
+            10,
+            6
+          ],
+          "grafo2869.37": [
+            0,
+            1,
             8,
-            27,
-            9
-          ],
-          "grafo3277.42": [
-            21,
-            26,
-            3,
-            2
+            5
           ]
         }
       }
     },
     "graphs": [
-      "grafo7242.37",
-      "grafo5520.35",
-      "grafo7304.45",
-      "grafo6916.42",
-      "grafo11663.38"
+      "grafo445.22",
+      "grafo11548.35",
+      "grafo2519.37",
+      "grafo7570.40",
+      "grafo2869.37"
     ],
     "targetCount": 4
   },
-  "maximumTaskMinutes": 22,
+  "maximumTaskMinutes": 24,
   "part3": {
     "title": "Compare two animations",
     "instruction": "Watch both animations of the same graph, then rate which animation you prefer. You can watch the pair as many times as you like.",
     "graphs": [
-      "grafo10562.33",
-      "grafo7455.41",
-      "grafo1998.31",
-      "grafo9849.35",
-      "grafo3277.42"
+      "grafo1244.26",
+      "grafo4085.35",
+      "grafo2708.39",
+      "grafo3181.55",
+      "grafo1529.73"
     ],
     "questions": [
       {

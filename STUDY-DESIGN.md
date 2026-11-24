@@ -62,3 +62,10 @@ trials). Four consecutive vertices are taken from the middle of each
 previously frozen six-node path, identically in the paired conditions.
 Part 3 asks only one overall preference question per comparison. Earlier
 protocol data retain their original targets and questions.
+
+
+## Version 9: PDF review allocation (24 November 2026)
+
+18 static matching trials (nine graphs x two methods), ten DARCOL recovery trials (five graphs x two existing animation modes), five blinded paired preferences. Part 1: 50 seconds; Part 2: six-second memory, six-second video, then 40 seconds response time. Response timing excludes memory and video. Targets are four consecutive vertices, identical across the paired methods/conditions, filled red inside their symbols without contours or edge overlays. Answer-key highlights from the review PDF are never displayed on participant response drawings.
+
+The pool combines curated favorable gallery cases and user-selected replacements. It is not an outcome-independent or representative sample. See selection-provenance-v9.json. Original inputs and their SHA256 hashes remain recorded. Existing results are preserved under their original protocol versions. Part 2 final drawings come from new actual GUI optimizer runs with tree-turn and corner-move options enabled; the PDF endpoint stills were provisional. Graph and method labels shown in the researcher PDF remain blinded in participant panels.

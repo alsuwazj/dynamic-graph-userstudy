@@ -133,7 +133,7 @@ main > h2 { font-size: 17px; font-weight: 500; margin-bottom: 18px; }
 
 /* Graph overlays (see graph-view.mjs) */
 .context-wash { fill: var(--wash); }
-.node-highlight { fill: none; stroke: var(--highlight); stroke-width: 3.5; vector-effect: non-scaling-stroke; pointer-events: none; }
+.node-highlight { fill: var(--highlight); stroke: none; stroke-width: 0; vector-effect: non-scaling-stroke; pointer-events: none; }
 .node-hit { fill: transparent; stroke: transparent; stroke-width: 2; vector-effect: non-scaling-stroke; }
 .node-choice { cursor: pointer; outline: none; }
 .node-choice:hover .node-hit, .node-choice:focus-visible .node-hit { stroke: var(--highlight); stroke-dasharray: 3 2; }
