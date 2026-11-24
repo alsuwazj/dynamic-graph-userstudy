@@ -76,3 +76,7 @@ The pool combines curated favorable gallery cases and user-selected replacements
 Part 2 compares structural landmarks (degree >=3 or core tree attachment) with GUI residual movement highlights. Both use the same two precomputed endpoint keyframes, linear screen-space interpolation, six-second duration, symbol sizes, edge presentation and four red memorization targets. Blue masks are fixed from the endpoints and faded in/out identically; context is pale gray in both. grafo11548.35 uses destination AR 9:16 because its prior mild resize produced no qualifying residual movement. All five graphs now have non-empty masks in both conditions; no threshold fallback was used.
 
 Each participant sees every graph/method or graph/condition pair. Seeded Fisher-Yates shuffles the graphs inside each block; method block order uses seed bit 0 and condition block order uses bit 1. Block boundaries reject adjacent repeated graph families. Part 3 graph order is shuffled, and left/right assignment is varied by seed bit 2 with a 2/3 within-participant split. The seed and order are recorded so sequences can be reconstructed. This is constrained seeded randomization, not a Latin square.
+
+
+## Version 11: faster Part 2 playback
+Both highlighting conditions play the same trajectories in three seconds (180 frames at 60 fps), replacing six-second playback. Memorization remains six seconds and the response limit remains 40 seconds. Part 3 is unchanged.

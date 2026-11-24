@@ -16,6 +16,6 @@ test('all participants see identical trials while graph, method and condition or
  assert.ok(orders.size>200);assert.equal(methods.size,2);assert.equal(conditions.size,2);
 });
 test('highlighting pairs share linear geometry, endpoint images, duration and target path',()=>{
- for(const graph of cfg.part2.graphs){const item=manifest.items.find(i=>i.graphId===graph);const p=item.highlightingProtocol;assert.equal(p.interpolation,'linear');assert.equal(p.durationMs,6000);assert.ok(p.highlightNodes.structural.length>0);assert.ok(p.highlightNodes.movement.length>0);assert.equal(p.keyframes,2);assert.equal(item.original.videos.structural.durationMs,item.original.videos.movement.durationMs);assert.ok(item.original.videos.structural.url!==item.original.videos.movement.url);}
+ for(const graph of cfg.part2.graphs){const item=manifest.items.find(i=>i.graphId===graph);const p=item.highlightingProtocol;assert.equal(p.interpolation,'linear');assert.equal(p.durationMs,3000);assert.ok(p.highlightNodes.structural.length>0);assert.ok(p.highlightNodes.movement.length>0);assert.equal(p.keyframes,2);assert.equal(item.original.videos.structural.durationMs,item.original.videos.movement.durationMs);assert.ok(item.original.videos.structural.url!==item.original.videos.movement.url);}
  const src=readFileSync(new URL('../study.mjs',import.meta.url),'utf8');assert.ok(src.includes("['structural', 'movement', 'landmarks_precomputed'].includes(screen.condition)"));
 });
