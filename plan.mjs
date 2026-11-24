@@ -18,6 +18,21 @@ export function shuffle(items, rng) {
   return out;
 }
 
+/** Alternate two equally represented source-graph families; shuffle cases within each. */
+function alternateFamilyShuffle(pool, config, rng) {
+  const groups = new Map();
+  for (const q of pool) {
+    const family = config.graphFamilies?.[q.graph] ?? q.graph;
+    if (!groups.has(family)) groups.set(family, []);
+    groups.get(family).push(q);
+  }
+  const entries = [...groups.values()];
+  if (entries.length !== 2 || entries[0].length !== entries[1].length) throw Error('Alternation needs two equally represented source graphs.');
+  const a = shuffle(entries[0], rng), b = shuffle(entries[1], rng);
+  const first = rng() < .5 ? [a, b] : [b, a];
+  return first[0].flatMap((q, i) => [q, first[1][i]]);
+}
+
 /**
  * Shuffle the graphs for one block so that graphs sharing a start drawing
  * (same family) are never back to back, and the block does not open with the
@@ -58,7 +73,7 @@ export function buildScreens(config, seed) {
     const family = graph => config.graphFamilies?.[graph] ?? graph;
     let mixed = null;
     for (let attempt = 0; attempt < 10000; attempt++) {
-      const candidate = shuffle(pool, rng);
+      const candidate = config.part1.alternateFamilies ? alternateFamilyShuffle(pool, config, rng) : shuffle(pool, rng);
       if (candidate[0].method !== methodOrder[0]) continue;
       const spaced = candidate.every((q, i) => i === 0 || family(q.graph) !== family(candidate[i - 1].graph));
       const varied = candidate.every((q, i) => i < 3 || !candidate.slice(i - 3, i + 1).every(p => p.method === q.method));
@@ -84,8 +99,9 @@ export function buildScreens(config, seed) {
     })));
     let mixed = null;
     for (let attempt = 0; attempt < 10000; attempt++) {
-      const candidate = shuffle(pool, rng);
+      const candidate = config.part2.alternateFamilies ? alternateFamilyShuffle(pool, config, rng) : shuffle(pool, rng);
       if (candidate[0].condition !== conditionOrder[0]) continue;
+      if (config.part2.alternateFamilies && last && config.graphFamilies[candidate[0].graph] === config.graphFamilies[last]) continue;
       const spaced = candidate.every((q, i) => candidate.slice(Math.max(0, i - 2), i).every(p => p.graph !== q.graph));
       const varied = candidate.every((q, i) => i < 3 || !candidate.slice(i - 3, i + 1).every(p => p.condition === q.condition));
       if (spaced && varied) { mixed = candidate; break; }

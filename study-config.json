@@ -1,5 +1,5 @@
 {
-  "version": "three-part-mixed-landmarks-v15",
+  "version": "two-real-graphs-mixed-v16",
   "placeholderNotice": "",
   "minWindowWidth": 900,
   "timing": {
@@ -8,48 +8,26 @@
     "part2ResponseMs": 40000
   },
   "graphs": [
-    "grafo7366.35",
-    "grafo2735.36",
-    "grafo11348.35",
-    "grafo3074.26",
-    "grafo4165.61",
-    "grafo3529.42",
-    "grafo5838.35",
-    "grafo5559.61",
-    "grafo1141.47",
-    "grafo445.22",
-    "grafo11548.35",
-    "grafo2519.37",
-    "grafo7570.40",
-    "grafo2869.37",
-    "grafo1244.26",
-    "grafo4085.35",
-    "grafo2708.39",
-    "grafo3181.55",
-    "grafo1529.73"
+    "wien-kurz-square-tall",
+    "wien-kurz-square-wide",
+    "wien-kurz-wide-tall",
+    "wien-kurz-tall-wide",
+    "sydney-square-tall",
+    "sydney-square-wide",
+    "sydney-wide-tall",
+    "sydney-tall-wide"
   ],
   "graphFamilies": {
-    "grafo7366.35": "grafo7366.35",
-    "grafo2735.36": "grafo2735.36",
-    "grafo11348.35": "grafo11348.35",
-    "grafo3074.26": "grafo3074.26",
-    "grafo4165.61": "grafo4165.61",
-    "grafo3529.42": "grafo3529.42",
-    "grafo5838.35": "grafo5838.35",
-    "grafo5559.61": "grafo5559.61",
-    "grafo1141.47": "grafo1141.47",
-    "grafo445.22": "grafo445.22",
-    "grafo11548.35": "grafo11548.35",
-    "grafo2519.37": "grafo2519.37",
-    "grafo7570.40": "grafo7570.40",
-    "grafo2869.37": "grafo2869.37",
-    "grafo1244.26": "grafo1244.26",
-    "grafo4085.35": "grafo4085.35",
-    "grafo2708.39": "grafo2708.39",
-    "grafo3181.55": "grafo3181.55",
-    "grafo1529.73": "grafo1529.73"
+    "wien-kurz-square-tall": "wien-kurz",
+    "wien-kurz-square-wide": "wien-kurz",
+    "wien-kurz-wide-tall": "wien-kurz",
+    "wien-kurz-tall-wide": "wien-kurz",
+    "sydney-square-tall": "sydney",
+    "sydney-square-wide": "sydney",
+    "sydney-wide-tall": "sydney",
+    "sydney-tall-wide": "sydney"
   },
-  "graphFamiliesNote": "Graphs in the same family share a start drawing; they are never shown back to back within a section and never reuse target nodes.",
+  "graphFamiliesNote": "Case IDs identify resize transformations of Wien or Sydney. The source graphs alternate; methods and highlighting styles are randomized within that constraint.",
   "part1": {
     "title": "Part 1 \u00b7 Match nodes in static drawings",
     "instruction": "The four highlighted nodes on the left form a path. Select the same four nodes in the drawing on the right, shown at a different aspect ratio.",
@@ -58,76 +36,70 @@
       "DARCOL"
     ],
     "targets": {
-      "grafo7366.35": [
-        34,
-        20,
-        16,
-        8
+      "wien-kurz-square-tall": [
+        67,
+        68,
+        69,
+        70
       ],
-      "grafo2735.36": [
-        5,
+      "wien-kurz-square-wide": [
+        70,
+        71,
+        72,
+        73
+      ],
+      "wien-kurz-wide-tall": [
+        55,
+        56,
+        57,
+        58
+      ],
+      "wien-kurz-tall-wide": [
         2,
-        32,
-        18
+        3,
+        4,
+        5
       ],
-      "grafo11348.35": [
-        0,
-        1,
-        10,
-        6
+      "sydney-square-tall": [
+        37,
+        71,
+        144,
+        76
       ],
-      "grafo3074.26": [
-        19,
-        10,
-        1,
-        24
+      "sydney-square-wide": [
+        113,
+        164,
+        161,
+        114
       ],
-      "grafo4165.61": [
-        0,
-        2,
-        5,
-        3
+      "sydney-wide-tall": [
+        116,
+        75,
+        162,
+        139
       ],
-      "grafo3529.42": [
-        0,
-        17,
-        30,
-        13
-      ],
-      "grafo5838.35": [
-        24,
-        20,
-        27,
-        1
-      ],
-      "grafo5559.61": [
-        0,
-        1,
-        6,
-        3
-      ],
-      "grafo1141.47": [
-        1,
-        42,
-        30,
-        10
+      "sydney-tall-wide": [
+        97,
+        61,
+        76,
+        144
       ]
     },
-    "targetsNote": "Four consecutive path vertices, identical across methods. Curated review selection; see selection-provenance-v9.json.",
+    "targetsNote": "Four consecutive vertices within attached trees, selected deterministically from original topology. The same target path is used for both methods.",
     "graphs": [
-      "grafo7366.35",
-      "grafo2735.36",
-      "grafo11348.35",
-      "grafo3074.26",
-      "grafo4165.61",
-      "grafo3529.42",
-      "grafo5838.35",
-      "grafo5559.61",
-      "grafo1141.47"
+      "wien-kurz-square-tall",
+      "wien-kurz-square-wide",
+      "wien-kurz-wide-tall",
+      "wien-kurz-tall-wide",
+      "sydney-square-tall",
+      "sydney-square-wide",
+      "sydney-wide-tall",
+      "sydney-tall-wide"
     ],
     "counterbalanceMethods": true,
     "targetCount": 4,
-    "mixMethods": true
+    "mixMethods": true,
+    "alternateFamilies": true
   },
   "part2": {
     "title": "Part 2 \u00b7 Track nodes through an animation",
@@ -138,35 +110,29 @@
         "label": "Structural landmarks",
         "animationMode": "structural",
         "targets": {
-          "grafo445.22": [
-            0,
-            11,
-            2,
-            21
+          "wien-kurz-square-tall": [
+            67,
+            68,
+            69,
+            70
           ],
-          "grafo11548.35": [
-            0,
-            1,
-            10,
-            6
+          "wien-kurz-wide-tall": [
+            55,
+            56,
+            57,
+            58
           ],
-          "grafo2519.37": [
-            0,
-            1,
-            2,
-            30
+          "sydney-square-wide": [
+            113,
+            164,
+            161,
+            114
           ],
-          "grafo7570.40": [
-            0,
-            1,
-            10,
-            6
-          ],
-          "grafo2869.37": [
-            0,
-            1,
-            8,
-            5
+          "sydney-wide-tall": [
+            116,
+            75,
+            162,
+            139
           ]
         },
         "intro": "Blue nodes mark structural landmarks: highly connected nodes and tree attachment nodes. Remember the four red target nodes before playback; the blue nodes are visual aids and may be different."
@@ -175,60 +141,53 @@
         "label": "Movement-based highlights",
         "animationMode": "movement",
         "targets": {
-          "grafo445.22": [
-            0,
-            11,
-            2,
-            21
+          "wien-kurz-square-tall": [
+            67,
+            68,
+            69,
+            70
           ],
-          "grafo11548.35": [
-            0,
-            1,
-            10,
-            6
+          "wien-kurz-wide-tall": [
+            55,
+            56,
+            57,
+            58
           ],
-          "grafo2519.37": [
-            0,
-            1,
-            2,
-            30
+          "sydney-square-wide": [
+            113,
+            164,
+            161,
+            114
           ],
-          "grafo7570.40": [
-            0,
-            1,
-            10,
-            6
-          ],
-          "grafo2869.37": [
-            0,
-            1,
-            8,
-            5
+          "sydney-wide-tall": [
+            116,
+            75,
+            162,
+            139
           ]
         },
         "intro": "Blue nodes mark nodes or attached structures with large movement beyond the overall resize. Remember the four red target nodes before playback; the blue nodes are visual aids and may be different."
       }
     },
     "graphs": [
-      "grafo445.22",
-      "grafo11548.35",
-      "grafo2519.37",
-      "grafo7570.40",
-      "grafo2869.37"
+      "wien-kurz-square-tall",
+      "wien-kurz-wide-tall",
+      "sydney-square-wide",
+      "sydney-wide-tall"
     ],
     "targetCount": 4,
-    "mixConditions": true
+    "mixConditions": true,
+    "alternateFamilies": true
   },
-  "maximumTaskMinutes": 24,
+  "maximumTaskMinutes": 21,
   "part3": {
     "title": "Compare two animations",
     "instruction": "Watch both animations of the same graph, then rate which animation you prefer. You can watch the pair as many times as you like.",
     "graphs": [
-      "grafo1244.26",
-      "grafo4085.35",
-      "grafo2708.39",
-      "grafo3181.55",
-      "grafo1529.73"
+      "wien-kurz-square-tall",
+      "wien-kurz-wide-tall",
+      "sydney-square-tall",
+      "sydney-wide-tall"
     ],
     "questions": [
       {

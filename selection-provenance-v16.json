@@ -1,0 +1,40 @@
+{
+  "sourceGraphs": [
+    {
+      "graph": "wien-kurz",
+      "input": "C:\\Users\\alsuwazj\\PycharmProjects\\dynamicAR\\Evaluation\\Real_HOLA\\wien-kurz_AR.svg",
+      "inputSha256": "9109fbdbaf8dd34a83278b6af583b0aa4b6b044c353ce9502e7846e64d9e7e2e",
+      "policy": "Original HOLA input; recorded real benchmark endpoint layouts; no source drawing modified."
+    },
+    {
+      "graph": "sydney",
+      "input": "C:\\Users\\alsuwazj\\PycharmProjects\\dynamicAR\\Evaluation\\Real_HOLA\\sydney_AR.svg",
+      "inputSha256": "a06bb75d4ae3501f951e4d067b7599a353fc28326fa3cb93aeafe5c7d342c240",
+      "policy": "Original HOLA input; recorded real benchmark endpoint layouts; no source drawing modified."
+    }
+  ],
+  "transitions": [
+    [
+      "square-tall",
+      "AR1p00",
+      "AR0p33"
+    ],
+    [
+      "square-wide",
+      "AR1p00",
+      "AR3p56"
+    ],
+    [
+      "wide-tall",
+      "AR3p56",
+      "AR0p33"
+    ],
+    [
+      "tall-wide",
+      "AR0p33",
+      "AR3p56"
+    ]
+  ],
+  "scope": "Only Wien and Sydney. Illustrative case study; not a representative graph sample.",
+  "targets": "Four consecutive vertices inside attached trees, hash-selected from original topology, identical across methods and highlight conditions."
+}

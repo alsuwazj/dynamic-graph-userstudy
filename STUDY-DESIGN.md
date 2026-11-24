@@ -98,3 +98,7 @@ All 18 Part 1 graph/method pairs are shuffled together using the participant see
 
 ## Version 15: structural landmarks in Part 3 DARCOL only
 DARCOL preference movies highlight fixed structural landmarks (degree >=3 or core tree attachment) in blue, with pale context during motion. ARCOL preference movies remain unhighlighted. This is a system-level preference comparison: animation and highlighting differ together. Both retain three-second duration and existing computed endpoints. Mixed Part 1 and Part 2 orders remain unchanged.
+
+
+## Version 16: Wien and Sydney throughout
+Only Evaluation/Real_HOLA/wien-kurz_AR.svg and sydney_AR.svg are used; preserve their recorded SHA256 hashes and all source drawings. Four resize cases per source graph support 16 static trials (eight cases x two methods). Four cases support eight animated recovery trials (four x two highlight styles); four paired preference comparisons complete the 28-trial flow. Source-graph families alternate across the entire study, while transformation cases and methods/conditions are shuffled within that constraint. This replaces the earlier 19-graph pool with a two-graph illustrative study. Each source graph appears repeatedly under different transformations. Targets are four consecutive vertices inside attached trees, frozen from topology and reused identically across matched conditions. All animations remain three seconds; memory six seconds; response caps 50/40 seconds.
