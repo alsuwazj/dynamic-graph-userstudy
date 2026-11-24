@@ -101,7 +101,7 @@ export function buildScreens(config, seed) {
     for (let attempt = 0; attempt < 10000; attempt++) {
       const candidate = config.part2.alternateFamilies ? alternateFamilyShuffle(pool, config, rng) : shuffle(pool, rng);
       if (candidate[0].condition !== conditionOrder[0]) continue;
-      if (config.part2.alternateFamilies && last && config.graphFamilies[candidate[0].graph] === config.graphFamilies[last]) continue;
+      if ((config.part2.alternateFamilies || config.part2.avoidBoundaryRepeat) && last && config.graphFamilies[candidate[0].graph] === config.graphFamilies[last]) continue;
       const spaced = candidate.every((q, i) => candidate.slice(Math.max(0, i - 2), i).every(p => p.graph !== q.graph));
       const varied = candidate.every((q, i) => i < 3 || !candidate.slice(i - 3, i + 1).every(p => p.condition === q.condition));
       if (spaced && varied) { mixed = candidate; break; }

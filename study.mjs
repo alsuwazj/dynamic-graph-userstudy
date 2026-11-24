@@ -9,7 +9,7 @@
 
 import { loadResponseService, allocateResponse, sendResponse } from './response-service.mjs';
 import { cropBox, drawingSvg, bindSelection, clearSelection, fitVideo } from './graph-view.mjs?v=filled-targets-v10';
-import { buildScreens, score } from './plan.mjs?v=two-real-graphs-v16';
+import { buildScreens, score } from './plan.mjs?v=restored-pool-plus-real-v17';
 
 const $ = selector => document.querySelector(selector);
 const main = $('#main');
@@ -136,9 +136,9 @@ function welcome() {
       ${config.placeholderNotice ? `<div class="notice">${escapeHtml(config.placeholderNotice)}</div>` : ''}
       <h2>What you’ll do</h2>
       <p><strong>Part 1 · Match a path (${config.part1.graphs.length * config.part1.methodOrder.length} questions).</strong> Two drawings of the same graph, produced by the same method, appear at different aspect ratios. Select the ${config.part1.targetCount || 4} nodes on the right that match the highlighted path on the left.</p>
-      <p><strong>Part 2 · Track nodes (${config.part2.graphs.length * Object.keys(config.part2.conditions).length} questions).</strong> Wien and Sydney appear under several resize transformations. Each transformation uses the same linear animation with two blue-highlighting styles, mixed in random order: structural landmarks or large-movement nodes. Memorize ${config.part2.targetCount} highlighted nodes for ${config.timing.part2MemorizeMs / 1000} seconds. The highlights disappear before the animation starts. Select the same nodes in the final drawing.</p>
+      <p><strong>Part 2 · Track nodes (${config.part2.graphs.length * Object.keys(config.part2.conditions).length} questions).</strong> The graph set includes the earlier examples plus Wien and Sydney. Each resize uses the same linear animation with two blue-highlighting styles, mixed in random order: structural landmarks or large-movement nodes. Memorize ${config.part2.targetCount} highlighted nodes for ${config.timing.part2MemorizeMs / 1000} seconds. The highlights disappear before the animation starts. Select the same nodes in the final drawing.</p>
       <p><strong>Part 3 · Compare animations (${config.part3.graphs.length} comparisons).</strong> Watch two looping animations side by side and give one overall preference rating.</p>
-      <p><strong>Time:</strong> about 20–25 minutes, including instructions.</p>
+      <p><strong>Time:</strong> allow about 30 minutes. Using the full response limits can take longer.</p>
       <h2>Good to know</h2>
       <ul>
         <li>Use a laptop or desktop and keep the browser window the same size throughout.</li>
