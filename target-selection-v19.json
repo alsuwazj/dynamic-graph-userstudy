@@ -1,0 +1,12 @@
+{
+  "case": "wien-kurz-square-tall",
+  "nodes": [
+    11,
+    51,
+    50,
+    49
+  ],
+  "rule": "Four consecutive core vertices minimizing normalized distance to the original core median, with a small preference for branch junctions. No method outcome or displacement comparison used.",
+  "sameAcrossMethods": true,
+  "onlyPartChanged": 1
+}

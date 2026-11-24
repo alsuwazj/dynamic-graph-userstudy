@@ -1,5 +1,5 @@
 {
-  "version": "restored-pool-split-real-v18",
+  "version": "restored-pool-central-wien-v19",
   "placeholderNotice": "",
   "minWindowWidth": 900,
   "timing": {
@@ -117,10 +117,10 @@
         10
       ],
       "wien-kurz-square-tall": [
-        67,
-        68,
-        69,
-        70
+        11,
+        51,
+        50,
+        49
       ]
     },
     "targetsNote": "Four consecutive path vertices, identical across methods. Curated review selection; see selection-provenance-v9.json.",

@@ -110,3 +110,7 @@ Restores every graph and assignment from version 15 (commit 8194ae9). Adds Wien 
 
 ## Version 18: split the real-graph additions
 All original version-15 graphs remain. Add Wien square-to-tall only to Part 1 and Sydney wide-to-tall only to Part 2. Part 3 keeps its original five comparisons unchanged. Counts are now 20 static trials, 12 animated recovery trials, and five preference comparisons (37 total). The real-graph additions are disjoint between parts. Mixed order, targets, highlights and timers otherwise remain unchanged.
+
+
+## Version 19: central Wien targets
+Wien Part 1 uses consecutive core nodes 11, 51, 50, 49 instead of the outer-tree target. The path is selected for centrality and junction context in the original HOLA topology, independently of method outcomes. ARCOL and DARCOL share the exact target IDs. All other cases, timing and order rules remain unchanged.

@@ -67,3 +67,9 @@ test('all previous graphs remain and Wien/Sydney are additions in every part',()
   for(let i=1;i<q.length;i++)assert.notEqual(cfg.graphFamilies[q[i].graph],cfg.graphFamilies[q[i-1].graph]);
  }
 });
+
+test('Wien targets form a connected four-node path in the central region of both references',()=>{
+ const target=cfg.part1.targets['wien-kurz-square-tall'];assert.deepEqual(target,[11,51,50,49]);const item=manifest.items.find(i=>i.graphId==='wien-kurz-square-tall');
+ for(let j=1;j<target.length;j++)assert.ok(item.edges.some(([u,v])=>(u===target[j-1]&&v===target[j])||(v===target[j-1]&&u===target[j])));
+ for(const key of ['initialA','initialB']){const a=item.original[key];for(const id of target){const b=a.hitboxes.find(b=>b.id===id);const x=(b.x+b.width/2)/a.viewBox[2],y=(b.y+b.height/2)/a.viewBox[3];assert.ok(x>.25&&x<.75&&y>.25&&y<.75);}}
+});
