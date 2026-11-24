@@ -1,5 +1,5 @@
 {
-  "version": "restored-pool-central-wien-v19",
+  "version": "restored-pool-wien-only-v20",
   "placeholderNotice": "",
   "minWindowWidth": 900,
   "timing": {
@@ -27,8 +27,7 @@
     "grafo2708.39",
     "grafo3181.55",
     "grafo1529.73",
-    "wien-kurz-square-tall",
-    "sydney-wide-tall"
+    "wien-kurz-square-tall"
   ],
   "graphFamilies": {
     "grafo7366.35": "grafo7366.35",
@@ -50,8 +49,7 @@
     "grafo2708.39": "grafo2708.39",
     "grafo3181.55": "grafo3181.55",
     "grafo1529.73": "grafo1529.73",
-    "wien-kurz-square-tall": "wien-kurz",
-    "sydney-wide-tall": "sydney"
+    "wien-kurz-square-tall": "wien-kurz"
   },
   "graphFamiliesNote": "Existing Rome graph pool retained. Wien and Sydney are added; source graph families prevent adjacent repeats.",
   "part1": {
@@ -178,12 +176,6 @@
             1,
             8,
             5
-          ],
-          "sydney-wide-tall": [
-            116,
-            75,
-            162,
-            139
           ]
         },
         "intro": "Blue nodes mark structural landmarks: highly connected nodes and tree attachment nodes. Remember the four red target nodes before playback; the blue nodes are visual aids and may be different."
@@ -221,12 +213,6 @@
             1,
             8,
             5
-          ],
-          "sydney-wide-tall": [
-            116,
-            75,
-            162,
-            139
           ]
         },
         "intro": "Blue nodes mark nodes or attached structures with large movement beyond the overall resize. Remember the four red target nodes before playback; the blue nodes are visual aids and may be different."
@@ -237,14 +223,13 @@
       "grafo11548.35",
       "grafo2519.37",
       "grafo7570.40",
-      "grafo2869.37",
-      "sydney-wide-tall"
+      "grafo2869.37"
     ],
     "targetCount": 4,
     "mixConditions": true,
     "avoidBoundaryRepeat": true
   },
-  "maximumTaskMinutes": 27,
+  "maximumTaskMinutes": 25,
   "part3": {
     "title": "Compare two animations",
     "instruction": "Watch both animations of the same graph, then rate which animation you prefer. You can watch the pair as many times as you like.",

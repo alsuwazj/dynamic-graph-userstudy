@@ -7,7 +7,7 @@ const manifest=JSON.parse(readFileSync(new URL('../stimuli.json',import.meta.url
 test('all participants see identical trials while graph, method and condition order vary',()=>{
  const orders=new Set(),methods=new Set(),conditions=new Set();
  for(let seed=0;seed<256;seed++){
-  const built=buildScreens(cfg,seed),qs=built.screens.filter(q=>/^part[123]$/.test(q.type));assert.equal(qs.length,37);
+  const built=buildScreens(cfg,seed),qs=built.screens.filter(q=>/^part[123]$/.test(q.type));assert.equal(qs.length,35);
   orders.add(qs.map(q=>q.graph).join(','));methods.add(built.methodOrder.join(','));conditions.add(built.conditionOrder.join(','));
   for(let i=1;i<qs.length;i++)assert.notEqual(qs[i-1].graph,qs[i].graph);
   for(const graph of cfg.part2.graphs){const pair=qs.filter(q=>q.type==='part2'&&q.graph===graph);assert.equal(pair.length,2);assert.deepEqual(new Set(pair.map(q=>q.condition)),new Set(['structural','movement']));assert.deepEqual(pair[0].target,pair[1].target);}
@@ -23,7 +23,7 @@ test('highlighting pairs share linear geometry, endpoint images, duration and ta
 test('Part 2 mixes the two styles without subsections and spaces repeats by two other trials',()=>{
  for(let seed=0;seed<512;seed++){
   const plan=buildScreens(cfg,seed).screens;assert.equal(plan.filter(q=>q.type==='condition-intro').length,0);
-  const trials=plan.filter(q=>q.type==='part2');assert.equal(trials.length,12);
+  const trials=plan.filter(q=>q.type==='part2');assert.equal(trials.length,10);
   for(let i=0;i<trials.length;i++){
    for(let j=Math.max(0,i-2);j<i;j++)assert.notEqual(trials[i].graph,trials[j].graph);
    if(i>=3)assert.ok(!trials.slice(i-3,i+1).every(q=>q.condition===trials[i].condition));
@@ -54,16 +54,16 @@ test('Part 3 highlights structural landmarks only in DARCOL, with equal paired t
  for(const pair of manifest.comparisons){assert.equal(pair.ARCOL.animation,'linear-screen-space');assert.ok(pair.DARCOL.highlightNodes.length>0);assert.equal(pair.DARCOL.highlighting,'structural');assert.equal(pair.DARCOL.durationMs,3000);assert.equal(pair.ARCOL.durationMs,3000);}
 });
 
-test('all previous graphs remain and Wien/Sydney are additions in every part',()=>{
- const provenance=JSON.parse(readFileSync(new URL('../selection-provenance-v18.json',import.meta.url)));
+test('all previous graphs remain with Wien only in Part 1',()=>{
+ const provenance=JSON.parse(readFileSync(new URL('../selection-provenance-v20.json',import.meta.url)));
  for(const part of ['part1','part2','part3']){
   for(const g of provenance.restoredOriginalGroups[part])assert.ok(cfg[part].graphs.includes(g));
   assert.equal(cfg[part].graphs.length,provenance.restoredOriginalGroups[part].length+provenance.additions[part].length);
   for(const g of provenance.additions[part])assert.ok(cfg[part].graphs.includes(g));
  }
- assert.equal(new Set(manifest.items.map(i=>i.sourceGraph)).size,21);
+ assert.equal(new Set(manifest.items.map(i=>i.sourceGraph)).size,20);
  for(let seed=0;seed<256;seed++){
-  const q=buildScreens(cfg,seed).screens.filter(q=>/^part[123]$/.test(q.type));assert.deepEqual([1,2,3].map(p=>q.filter(q=>q.type==='part'+p).length),[20,12,5]);
+  const q=buildScreens(cfg,seed).screens.filter(q=>/^part[123]$/.test(q.type));assert.deepEqual([1,2,3].map(p=>q.filter(q=>q.type==='part'+p).length),[20,10,5]);
   for(let i=1;i<q.length;i++)assert.notEqual(cfg.graphFamilies[q[i].graph],cfg.graphFamilies[q[i-1].graph]);
  }
 });
@@ -73,3 +73,5 @@ test('Wien targets form a connected four-node path in the central region of both
  for(let j=1;j<target.length;j++)assert.ok(item.edges.some(([u,v])=>(u===target[j-1]&&v===target[j])||(v===target[j-1]&&u===target[j])));
  for(const key of ['initialA','initialB']){const a=item.original[key];for(const id of target){const b=a.hitboxes.find(b=>b.id===id);const x=(b.x+b.width/2)/a.viewBox[2],y=(b.y+b.height/2)/a.viewBox[3];assert.ok(x>.25&&x<.75&&y>.25&&y<.75);}}
 });
+
+test('Sydney is absent from the active study',()=>{assert.ok(manifest.items.every(i=>i.sourceGraphId!=='sydney'&&!i.graphId.includes('sydney')));assert.equal(cfg.part2.graphs.length,5);assert.ok(cfg.part1.graphs.includes('wien-kurz-square-tall'));});

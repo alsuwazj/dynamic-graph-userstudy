@@ -114,3 +114,7 @@ All original version-15 graphs remain. Add Wien square-to-tall only to Part 1 an
 
 ## Version 19: central Wien targets
 Wien Part 1 uses consecutive core nodes 11, 51, 50, 49 instead of the outer-tree target. The path is selected for centrality and junction context in the original HOLA topology, independently of method outcomes. ARCOL and DARCOL share the exact target IDs. All other cases, timing and order rules remain unchanged.
+
+
+## Version 20: remove Sydney
+Sydney is removed from the active study due to graph size. All original graphs remain, and Wien stays only in Part 1 with central target nodes 11, 51, 50, 49. Counts: 20 static trials, ten animated recovery trials on five original graphs, five preference comparisons. Three-second clips, mixed order and response timers remain unchanged. Previous sessions retain their original version.
