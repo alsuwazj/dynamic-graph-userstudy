@@ -1,5 +1,5 @@
 {
-  "version": "restored-pool-wien-only-v20",
+  "version": "darcol-animation-vs-baseline-v21",
   "placeholderNotice": "",
   "minWindowWidth": 900,
   "timing": {
@@ -140,12 +140,12 @@
   },
   "part2": {
     "title": "Part 2 \u00b7 Track nodes through an animation",
-    "instruction": "Memorize the four red nodes along a path. Watch the graph change between square, very tall or very wide drawings. Blue nodes provide either structural or movement-based visual aids; these styles are mixed throughout this part. After playback, select the same four target nodes in the unmarked final drawing.",
+    "instruction": "Memorize the four red nodes along a path, watch the transition, then select the same four nodes in the final drawing. One version includes blue movement highlights; the other has no blue highlights. Both versions are mixed in random order.",
     "method": "DARCOL",
     "conditions": {
-      "structural": {
-        "label": "Structural landmarks",
-        "animationMode": "structural",
+      "animation": {
+        "label": "Animation: highlighted DARCOL keyframes",
+        "animationMode": "darcol-keyframes-highlighted",
         "targets": {
           "grafo445.22": [
             0,
@@ -178,11 +178,11 @@
             5
           ]
         },
-        "intro": "Blue nodes mark structural landmarks: highly connected nodes and tree attachment nodes. Remember the four red target nodes before playback; the blue nodes are visual aids and may be different."
+        "intro": "Memorize the four red target nodes. During playback, blue nodes provide movement-based visual aids. Select the target nodes afterward."
       },
-      "movement": {
-        "label": "Movement-based highlights",
-        "animationMode": "movement",
+      "baseline": {
+        "label": "Baseline: direct DARCOL interpolation",
+        "animationMode": "darcol-direct-linear",
         "targets": {
           "grafo445.22": [
             0,
@@ -215,7 +215,7 @@
             5
           ]
         },
-        "intro": "Blue nodes mark nodes or attached structures with large movement beyond the overall resize. Remember the four red target nodes before playback; the blue nodes are visual aids and may be different."
+        "intro": "Memorize the four red target nodes. Watch the direct transition without blue highlights, then select the target nodes afterward."
       }
     },
     "graphs": [

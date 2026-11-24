@@ -9,7 +9,7 @@
 
 import { loadResponseService, allocateResponse, sendResponse } from './response-service.mjs';
 import { cropBox, drawingSvg, bindSelection, clearSelection, fitVideo } from './graph-view.mjs?v=filled-targets-v10';
-import { buildScreens, score } from './plan.mjs?v=restored-pool-wien-only-v20';
+import { buildScreens, score } from './plan.mjs?v=darcol-animation-vs-baseline-v21';
 
 const $ = selector => document.querySelector(selector);
 const main = $('#main');
@@ -136,7 +136,7 @@ function welcome() {
       ${config.placeholderNotice ? `<div class="notice">${escapeHtml(config.placeholderNotice)}</div>` : ''}
       <h2>What you’ll do</h2>
       <p><strong>Part 1 · Match a path (${config.part1.graphs.length * config.part1.methodOrder.length} questions).</strong> Two drawings of the same graph, produced by the same method, appear at different aspect ratios. Select the ${config.part1.targetCount || 4} nodes on the right that match the highlighted path on the left.</p>
-      <p><strong>Part 2 · Track nodes (${config.part2.graphs.length * Object.keys(config.part2.conditions).length} questions).</strong> This part uses the original five graphs. Each resize uses the same linear animation with two blue-highlighting styles, mixed in random order: structural landmarks or large-movement nodes. Memorize ${config.part2.targetCount} highlighted nodes for ${config.timing.part2MemorizeMs / 1000} seconds. The highlights disappear before the animation starts. Select the same nodes in the final drawing.</p>
+      <p><strong>Part 2 · Track nodes (${config.part2.graphs.length * Object.keys(config.part2.conditions).length} questions).</strong> Each of five graphs appears twice: a transition through precomputed DARCOL layouts with blue movement highlights, and a direct transition between the same DARCOL endpoints without highlights. The versions are mixed in random order. Memorize ${config.part2.targetCount} highlighted nodes for ${config.timing.part2MemorizeMs / 1000} seconds. The red target marks disappear before playback; blue movement highlights may then appear. Select the same nodes in the final drawing.</p>
       <p><strong>Part 3 · Compare animations (${config.part3.graphs.length} comparisons).</strong> Watch two looping animations side by side and give one overall preference rating.</p>
       <p><strong>Time:</strong> about 25–30 minutes, including instructions.</p>
       <h2>Good to know</h2>
@@ -458,7 +458,7 @@ async function part2Question(screen) {
 
   const video = document.createElement('video');
   Object.assign(video, { id: 'trial-video', muted: true, playsInline: true, preload: 'auto', controls: false, disablePictureInPicture: true });
-  video.className = ['structural', 'movement', 'landmarks_precomputed'].includes(screen.condition) ? 'stage-video landmark-motion' : 'stage-video';
+  video.className = ['animation', 'structural', 'movement', 'landmarks_precomputed'].includes(screen.condition) ? 'stage-video landmark-motion' : 'stage-video';
   const videoReady = new Promise((resolve, reject) => {
     video.addEventListener('canplaythrough', resolve, { once: true });
     video.addEventListener('error', () => reject(Error('The animation could not be loaded.')), { once: true });

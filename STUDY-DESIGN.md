@@ -118,3 +118,7 @@ Wien Part 1 uses consecutive core nodes 11, 51, 50, 49 instead of the outer-tree
 
 ## Version 20: remove Sydney
 Sydney is removed from the active study due to graph size. All original graphs remain, and Wien stays only in Part 1 with central target nodes 11, 51, 50, 49. Counts: 20 static trials, ten animated recovery trials on five original graphs, five preference comparisons. Three-second clips, mixed order and response timers remain unchanged. Previous sessions retain their original version.
+
+
+## Version 21: Part 2 animation versus baseline (recording terminology)
+Both conditions use DARCOL endpoint layouts, with identical four-node memorization targets and three-second duration. Animation follows the fixed precomputed DARCOL aspect-ratio grid (1:3, 9:16, 1:1, 4:3, 16:9, 7:3, 32:9), restricted to each trial interval. It linearly interpolates between successive keyframes, with progress proportional to log target AR, and shows GUI residual-movement blue highlights over pale context. The highlight mask is the union over the keyframes, relative to the start, with attached-tree/chain grouping. Baseline directly linearly interpolates only the same two DARCOL endpoints, with no highlights, no separate tree-rotation treatment, and no optimizer playback. Neither condition runs optimization during participant playback. All layouts and clips are precomputed. This replaces the structural-versus-movement highlight comparison. Trial order remains mixed and spaced; response timing excludes memorization and video. Parts 1 and 3 retain their current stimuli.

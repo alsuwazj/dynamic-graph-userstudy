@@ -10,17 +10,25 @@ test('all participants see identical trials while graph, method and condition or
   const built=buildScreens(cfg,seed),qs=built.screens.filter(q=>/^part[123]$/.test(q.type));assert.equal(qs.length,35);
   orders.add(qs.map(q=>q.graph).join(','));methods.add(built.methodOrder.join(','));conditions.add(built.conditionOrder.join(','));
   for(let i=1;i<qs.length;i++)assert.notEqual(qs[i-1].graph,qs[i].graph);
-  for(const graph of cfg.part2.graphs){const pair=qs.filter(q=>q.type==='part2'&&q.graph===graph);assert.equal(pair.length,2);assert.deepEqual(new Set(pair.map(q=>q.condition)),new Set(['structural','movement']));assert.deepEqual(pair[0].target,pair[1].target);}
+  for(const graph of cfg.part2.graphs){const pair=qs.filter(q=>q.type==='part2'&&q.graph===graph);assert.equal(pair.length,2);assert.deepEqual(new Set(pair.map(q=>q.condition)),new Set(['animation','baseline']));assert.deepEqual(pair[0].target,pair[1].target);}
   const left=qs.filter(q=>q.type==='part3'&&q.leftMethod==='DARCOL').length;assert.ok(left===2||left===3);
  }
  assert.ok(orders.size>200);assert.equal(methods.size,2);assert.equal(conditions.size,2);
 });
-test('highlighting pairs share linear geometry, endpoint images, duration and target path',()=>{
- for(const graph of cfg.part2.graphs){const item=manifest.items.find(i=>i.graphId===graph);const p=item.highlightingProtocol;assert.equal(p.interpolation,'linear');assert.equal(p.durationMs,3000);assert.ok(p.highlightNodes.structural.length>0);assert.ok(p.highlightNodes.movement.length>0);assert.equal(p.keyframes,2);assert.equal(item.original.videos.structural.durationMs,item.original.videos.movement.durationMs);assert.ok(item.original.videos.structural.url!==item.original.videos.movement.url);}
- const src=readFileSync(new URL('../study.mjs',import.meta.url),'utf8');assert.ok(src.includes("['structural', 'movement', 'landmarks_precomputed'].includes(screen.condition)"));
+test('Part 2 uses DARCOL keyframe animation versus a plain direct DARCOL baseline',()=>{
+ assert.deepEqual(Object.keys(cfg.part2.conditions),['animation','baseline']);
+ for(const graph of cfg.part2.graphs){
+  const item=manifest.items.find(i=>i.graphId===graph),p=item.part2Protocol;
+  assert.equal(p.endpointMethod,'DARCOL');assert.equal(p.durationMs,3000);assert.equal(p.interpolation,'piecewise-linear');assert.equal(p.baselineInterpolation,'direct-linear');assert.equal(p.optimizationDuringPlayback,false);assert.equal(p.separateTreeRotation,false);assert.equal(p.keyframes.length>=3,true);assert.equal(p.fixedAspectRatioGrid.length,7);assert.ok(p.highlightNodes.length>0);assert.deepEqual(p.baselineHighlightNodes,[]);
+  assert.equal(p.keyframeTimes[0],0);assert.equal(p.keyframeTimes.at(-1),1);
+  assert.equal(item.original.initial.url,p.keyframes[0].url);assert.equal(item.original.finalB.url,p.keyframes.at(-1).url);
+  for(const k of p.keyframes){assert.ok(k.source.replaceAll('\\','/').includes('/darcol/layouts/'));assert.ok(k.layoutSha256);}
+  assert.equal(item.original.videos.animation.durationMs,3000);assert.equal(item.original.videos.baseline.durationMs,3000);
+  assert.deepEqual(cfg.part2.conditions.animation.targets[graph],cfg.part2.conditions.baseline.targets[graph]);
+ }
+ const src=readFileSync(new URL('../study.mjs',import.meta.url),'utf8');assert.ok(src.includes("['animation', 'structural', 'movement', 'landmarks_precomputed'].includes(screen.condition)"));
 });
-
-test('Part 2 mixes the two styles without subsections and spaces repeats by two other trials',()=>{
+test('Part 2 mixes animation and baseline without subsections and spaces repeats by two other trials',()=>{
  for(let seed=0;seed<512;seed++){
   const plan=buildScreens(cfg,seed).screens;assert.equal(plan.filter(q=>q.type==='condition-intro').length,0);
   const trials=plan.filter(q=>q.type==='part2');assert.equal(trials.length,10);
