@@ -106,3 +106,7 @@ Only Evaluation/Real_HOLA/wien-kurz_AR.svg and sydney_AR.svg are used; preserve 
 
 ## Version 17: restore the previous pool and ADD Wien/Sydney
 Restores every graph and assignment from version 15 (commit 8194ae9). Adds Wien and Sydney to each part, using the captured original-HOLA real-benchmark endpoints and clips. Part 1: 11 cases x two methods = 22 trials; Part 2: seven cases x two styles = 14 trials; Part 3: seven comparisons. Total 43 trials; all 19 earlier source graphs remain, plus two real graphs. Mixed methods/highlighting order remains; source families never appear consecutively. Three-second animations and 50/40-second response caps remain. Full timeout use can exceed 30 minutes, so the welcome page no longer promises an upper bound of 25 minutes. Version 16 is preserved only as history, not the current pool.
+
+
+## Version 18: split the real-graph additions
+All original version-15 graphs remain. Add Wien square-to-tall only to Part 1 and Sydney wide-to-tall only to Part 2. Part 3 keeps its original five comparisons unchanged. Counts are now 20 static trials, 12 animated recovery trials, and five preference comparisons (37 total). The real-graph additions are disjoint between parts. Mixed order, targets, highlights and timers otherwise remain unchanged.

@@ -7,11 +7,11 @@ const manifest=JSON.parse(readFileSync(new URL('../stimuli.json',import.meta.url
 test('all participants see identical trials while graph, method and condition order vary',()=>{
  const orders=new Set(),methods=new Set(),conditions=new Set();
  for(let seed=0;seed<256;seed++){
-  const built=buildScreens(cfg,seed),qs=built.screens.filter(q=>/^part[123]$/.test(q.type));assert.equal(qs.length,43);
+  const built=buildScreens(cfg,seed),qs=built.screens.filter(q=>/^part[123]$/.test(q.type));assert.equal(qs.length,37);
   orders.add(qs.map(q=>q.graph).join(','));methods.add(built.methodOrder.join(','));conditions.add(built.conditionOrder.join(','));
   for(let i=1;i<qs.length;i++)assert.notEqual(qs[i-1].graph,qs[i].graph);
   for(const graph of cfg.part2.graphs){const pair=qs.filter(q=>q.type==='part2'&&q.graph===graph);assert.equal(pair.length,2);assert.deepEqual(new Set(pair.map(q=>q.condition)),new Set(['structural','movement']));assert.deepEqual(pair[0].target,pair[1].target);}
-  const left=qs.filter(q=>q.type==='part3'&&q.leftMethod==='DARCOL').length;assert.ok(left===3||left===4);
+  const left=qs.filter(q=>q.type==='part3'&&q.leftMethod==='DARCOL').length;assert.ok(left===2||left===3);
  }
  assert.ok(orders.size>200);assert.equal(methods.size,2);assert.equal(conditions.size,2);
 });
@@ -23,7 +23,7 @@ test('highlighting pairs share linear geometry, endpoint images, duration and ta
 test('Part 2 mixes the two styles without subsections and spaces repeats by two other trials',()=>{
  for(let seed=0;seed<512;seed++){
   const plan=buildScreens(cfg,seed).screens;assert.equal(plan.filter(q=>q.type==='condition-intro').length,0);
-  const trials=plan.filter(q=>q.type==='part2');assert.equal(trials.length,14);
+  const trials=plan.filter(q=>q.type==='part2');assert.equal(trials.length,12);
   for(let i=0;i<trials.length;i++){
    for(let j=Math.max(0,i-2);j<i;j++)assert.notEqual(trials[i].graph,trials[j].graph);
    if(i>=3)assert.ok(!trials.slice(i-3,i+1).every(q=>q.condition===trials[i].condition));
@@ -37,11 +37,11 @@ test('Part 2 includes strong tall/wide transitions rather than mild aspect-ratio
  assert.ok(opposite>=2);
 });
 
-test('Part 1 mixes eleven ARCOL and eleven DARCOL trials without adjacent repeated graphs',()=>{
+test('Part 1 mixes ten ARCOL and ten DARCOL trials without adjacent repeated graphs',()=>{
  const sequences=new Set(),first={ARCOL:0,DARCOL:0};
  for(let seed=0;seed<1024;seed++){
-  const q=buildScreens(cfg,seed).screens.filter(q=>q.type==='part1');assert.equal(q.length,22);first[q[0].method]++;sequences.add(q.map(q=>q.graph+':'+q.method).join(','));
-  for(const method of ['ARCOL','DARCOL'])assert.equal(q.filter(q=>q.method===method).length,11);
+  const q=buildScreens(cfg,seed).screens.filter(q=>q.type==='part1');assert.equal(q.length,20);first[q[0].method]++;sequences.add(q.map(q=>q.graph+':'+q.method).join(','));
+  for(const method of ['ARCOL','DARCOL'])assert.equal(q.filter(q=>q.method===method).length,10);
   for(let i=1;i<q.length;i++)assert.notEqual(q[i].graph,q[i-1].graph);
   for(let i=3;i<q.length;i++)assert.ok(!q.slice(i-3,i+1).every(p=>p.method===q[i].method));
   for(const graph of cfg.part1.graphs){const pair=q.filter(q=>q.graph===graph);assert.equal(pair.length,2);assert.notEqual(pair[0].method,pair[1].method);assert.deepEqual(pair[0].target,pair[1].target);}
@@ -55,15 +55,15 @@ test('Part 3 highlights structural landmarks only in DARCOL, with equal paired t
 });
 
 test('all previous graphs remain and Wien/Sydney are additions in every part',()=>{
- const provenance=JSON.parse(readFileSync(new URL('../selection-provenance-v17.json',import.meta.url)));
+ const provenance=JSON.parse(readFileSync(new URL('../selection-provenance-v18.json',import.meta.url)));
  for(const part of ['part1','part2','part3']){
   for(const g of provenance.restoredOriginalGroups[part])assert.ok(cfg[part].graphs.includes(g));
-  assert.equal(cfg[part].graphs.length,provenance.restoredOriginalGroups[part].length+2);
-  for(const family of ['wien-kurz','sydney'])assert.ok(cfg[part].graphs.some(g=>cfg.graphFamilies[g]===family));
+  assert.equal(cfg[part].graphs.length,provenance.restoredOriginalGroups[part].length+provenance.additions[part].length);
+  for(const g of provenance.additions[part])assert.ok(cfg[part].graphs.includes(g));
  }
  assert.equal(new Set(manifest.items.map(i=>i.sourceGraph)).size,21);
  for(let seed=0;seed<256;seed++){
-  const q=buildScreens(cfg,seed).screens.filter(q=>/^part[123]$/.test(q.type));assert.deepEqual([1,2,3].map(p=>q.filter(q=>q.type==='part'+p).length),[22,14,7]);
+  const q=buildScreens(cfg,seed).screens.filter(q=>/^part[123]$/.test(q.type));assert.deepEqual([1,2,3].map(p=>q.filter(q=>q.type==='part'+p).length),[20,12,5]);
   for(let i=1;i<q.length;i++)assert.notEqual(cfg.graphFamilies[q[i].graph],cfg.graphFamilies[q[i-1].graph]);
  }
 });
