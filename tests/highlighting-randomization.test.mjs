@@ -19,3 +19,20 @@ test('highlighting pairs share linear geometry, endpoint images, duration and ta
  for(const graph of cfg.part2.graphs){const item=manifest.items.find(i=>i.graphId===graph);const p=item.highlightingProtocol;assert.equal(p.interpolation,'linear');assert.equal(p.durationMs,3000);assert.ok(p.highlightNodes.structural.length>0);assert.ok(p.highlightNodes.movement.length>0);assert.equal(p.keyframes,2);assert.equal(item.original.videos.structural.durationMs,item.original.videos.movement.durationMs);assert.ok(item.original.videos.structural.url!==item.original.videos.movement.url);}
  const src=readFileSync(new URL('../study.mjs',import.meta.url),'utf8');assert.ok(src.includes("['structural', 'movement', 'landmarks_precomputed'].includes(screen.condition)"));
 });
+
+test('Part 2 mixes the two styles without subsections and spaces repeats by two other trials',()=>{
+ for(let seed=0;seed<512;seed++){
+  const plan=buildScreens(cfg,seed).screens;assert.equal(plan.filter(q=>q.type==='condition-intro').length,0);
+  const trials=plan.filter(q=>q.type==='part2');assert.equal(trials.length,10);
+  for(let i=0;i<trials.length;i++){
+   for(let j=Math.max(0,i-2);j<i;j++)assert.notEqual(trials[i].graph,trials[j].graph);
+   if(i>=3)assert.ok(!trials.slice(i-3,i+1).every(q=>q.condition===trials[i].condition));
+  }
+ }
+});
+test('Part 2 includes strong tall/wide transitions rather than mild aspect-ratio steps',()=>{
+ let opposite=0;
+ const ratio=tag=>Number(tag.slice(2).replace('p','.'));
+ for(const g of cfg.part2.graphs){const item=manifest.items.find(i=>i.graphId===g);const a=ratio(item.sourceAspectTag),b=ratio(item.destinationAspectTag);assert.ok(Math.max(a/b,b/a)>=3-0.01);if((a>2&&b<.5)||(b>2&&a<.5))opposite++;}
+ assert.ok(opposite>=2);
+});

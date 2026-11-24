@@ -59,6 +59,23 @@ export function buildScreens(config, seed) {
   screens.push({ type: 'part2-intro' });
   const conditions = Object.keys(config.part2.conditions);
   const conditionOrder = (seed >>> 1) % 2 ? [...conditions].reverse() : conditions;
+  if (config.part2.mixConditions) {
+    const pool = conditions.flatMap(condition => config.part2.graphs.map(graph => ({
+      type: 'part2', method: config.part2.method, condition, graph,
+      target: config.part2.conditions[condition].targets[graph],
+    })));
+    let mixed = null;
+    for (let attempt = 0; attempt < 10000; attempt++) {
+      const candidate = shuffle(pool, rng);
+      if (candidate[0].condition !== conditionOrder[0]) continue;
+      const spaced = candidate.every((q, i) => candidate.slice(Math.max(0, i - 2), i).every(p => p.graph !== q.graph));
+      const varied = candidate.every((q, i) => i < 3 || !candidate.slice(i - 3, i + 1).every(p => p.condition === q.condition));
+      if (spaced && varied) { mixed = candidate; break; }
+    }
+    if (!mixed) throw Error('Cannot construct a spaced mixed Part 2 order.');
+    screens.push(...mixed);
+    last = mixed[mixed.length - 1].graph;
+  } else {
   for (const condition of conditionOrder) {
     screens.push({ type: 'condition-intro', condition });
     for (const graph of block(config.part2.graphs || config.graphs)) {
@@ -70,6 +87,7 @@ export function buildScreens(config, seed) {
         target: config.part2.conditions[condition].targets[graph],
       });
     }
+  }
   }
   if (config.part3) {
     screens.push({type:'part3-intro'});

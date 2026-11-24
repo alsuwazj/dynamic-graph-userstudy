@@ -84,3 +84,9 @@ Both highlighting conditions play the same trajectories in three seconds (180 fr
 
 ## Version 12: faster Part 3 playback
 Both ARCOL and DARCOL preference movies now last three seconds (180 frames at 60 fps), matching the faster three-second Part 2 playback. Their paired durations remain equal. All task timers and order rules are unchanged.
+
+
+## Version 13: strong Part 2 resizes and mixed highlighting trials
+Five fixed transitions from recorded DARCOL endpoint layouts: grafo445.22 1:1 to 1:3; grafo11548.35 1:1 to 32:9; grafo2519.37 32:9 to 1:3; grafo7570.40 1:3 to 32:9; grafo2869.37 1:1 to 1:3. These are nominal target ARs; realized geometry may differ. Both styles share exact endpoint images, linear motion, three-second duration and target nodes. Endpoint source paths/hashes are recorded with assets.
+
+Part 2 has one ten-trial mixed sequence, no condition-intro screens. Seeded constrained Fisher-Yates shuffles all graph/condition pairs together. Reject orders with fewer than two intervening trials between the same graph or four consecutive trials of one condition. The first condition varies with seed bit 1. Each graph appears once per style; condition remains stored with each answer, without identifying subsections to the participant. Legacy configurations retain their original blocked order for resume/upload compatibility.

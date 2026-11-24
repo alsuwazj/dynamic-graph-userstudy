@@ -1,5 +1,5 @@
 {
-  "version": "three-part-fast-animations-v12",
+  "version": "three-part-strong-resize-mixed-v13",
   "placeholderNotice": "",
   "minWindowWidth": 900,
   "timing": {
@@ -130,7 +130,7 @@
   },
   "part2": {
     "title": "Part 2 \u00b7 Track nodes through an animation",
-    "instruction": "Memorize the four red nodes along a path. During the animation, blue nodes are visual aids. After playback, select the same four target nodes in the unmarked final drawing.",
+    "instruction": "Memorize the four red nodes along a path. Watch the graph change between square, very tall or very wide drawings. Blue nodes provide either structural or movement-based visual aids; these styles are mixed throughout this part. After playback, select the same four target nodes in the unmarked final drawing.",
     "method": "DARCOL",
     "conditions": {
       "structural": {
@@ -215,7 +215,8 @@
       "grafo7570.40",
       "grafo2869.37"
     ],
-    "targetCount": 4
+    "targetCount": 4,
+    "mixConditions": true
   },
   "maximumTaskMinutes": 24,
   "part3": {
