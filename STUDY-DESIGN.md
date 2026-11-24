@@ -80,3 +80,7 @@ Each participant sees every graph/method or graph/condition pair. Seeded Fisher-
 
 ## Version 11: faster Part 2 playback
 Both highlighting conditions play the same trajectories in three seconds (180 frames at 60 fps), replacing six-second playback. Memorization remains six seconds and the response limit remains 40 seconds. Part 3 is unchanged.
+
+
+## Version 12: faster Part 3 playback
+Both ARCOL and DARCOL preference movies now last three seconds (180 frames at 60 fps), matching the faster three-second Part 2 playback. Their paired durations remain equal. All task timers and order rules are unchanged.
