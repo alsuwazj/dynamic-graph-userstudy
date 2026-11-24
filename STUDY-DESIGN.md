@@ -94,3 +94,7 @@ Part 2 has one ten-trial mixed sequence, no condition-intro screens. Seeded cons
 
 ## Version 14: mixed Part 1 methods
 All 18 Part 1 graph/method pairs are shuffled together using the participant seed, with nine trials per method. Reject adjacent repeated graph families and runs of four identical methods. The first method varies with seed parity. Each of the nine graphs still appears once per method, with identical paired target nodes and endpoints. Earlier protocol versions retain their original order for resume/upload compatibility. Parts 2 and 3 are unchanged.
+
+
+## Version 15: structural landmarks in Part 3 DARCOL only
+DARCOL preference movies highlight fixed structural landmarks (degree >=3 or core tree attachment) in blue, with pale context during motion. ARCOL preference movies remain unhighlighted. This is a system-level preference comparison: animation and highlighting differ together. Both retain three-second duration and existing computed endpoints. Mixed Part 1 and Part 2 orders remain unchanged.

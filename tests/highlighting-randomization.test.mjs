@@ -48,3 +48,8 @@ test('Part 1 mixes nine ARCOL and nine DARCOL trials without adjacent repeated g
  }
  assert.equal(first.ARCOL,512);assert.equal(first.DARCOL,512);assert.equal(sequences.size,1024);
 });
+
+test('Part 3 highlights structural landmarks only in DARCOL, with equal paired timing',()=>{
+ assert.equal(cfg.part3.highlightingPolicy,'DARCOL-structural-only');
+ for(const pair of manifest.comparisons){assert.equal(pair.ARCOL.animation,'linear-screen-space');assert.ok(pair.DARCOL.highlightNodes.length>0);assert.equal(pair.DARCOL.highlighting,'structural');assert.equal(pair.DARCOL.durationMs,3000);assert.equal(pair.ARCOL.durationMs,3000);}
+});

@@ -1,5 +1,5 @@
 {
-  "version": "three-part-both-parts-mixed-v14",
+  "version": "three-part-mixed-landmarks-v15",
   "placeholderNotice": "",
   "minWindowWidth": 900,
   "timing": {
@@ -235,6 +235,7 @@
         "key": "preference",
         "text": "Which animation do you prefer overall?"
       }
-    ]
+    ],
+    "highlightingPolicy": "DARCOL-structural-only"
   }
 }
