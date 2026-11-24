@@ -1,5 +1,5 @@
 {
-  "version": "three-part-strong-resize-mixed-v13",
+  "version": "three-part-both-parts-mixed-v14",
   "placeholderNotice": "",
   "minWindowWidth": 900,
   "timing": {
@@ -126,7 +126,8 @@
       "grafo1141.47"
     ],
     "counterbalanceMethods": true,
-    "targetCount": 4
+    "targetCount": 4,
+    "mixMethods": true
   },
   "part2": {
     "title": "Part 2 \u00b7 Track nodes through an animation",

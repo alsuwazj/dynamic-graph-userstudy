@@ -90,3 +90,7 @@ Both ARCOL and DARCOL preference movies now last three seconds (180 frames at 60
 Five fixed transitions from recorded DARCOL endpoint layouts: grafo445.22 1:1 to 1:3; grafo11548.35 1:1 to 32:9; grafo2519.37 32:9 to 1:3; grafo7570.40 1:3 to 32:9; grafo2869.37 1:1 to 1:3. These are nominal target ARs; realized geometry may differ. Both styles share exact endpoint images, linear motion, three-second duration and target nodes. Endpoint source paths/hashes are recorded with assets.
 
 Part 2 has one ten-trial mixed sequence, no condition-intro screens. Seeded constrained Fisher-Yates shuffles all graph/condition pairs together. Reject orders with fewer than two intervening trials between the same graph or four consecutive trials of one condition. The first condition varies with seed bit 1. Each graph appears once per style; condition remains stored with each answer, without identifying subsections to the participant. Legacy configurations retain their original blocked order for resume/upload compatibility.
+
+
+## Version 14: mixed Part 1 methods
+All 18 Part 1 graph/method pairs are shuffled together using the participant seed, with nine trials per method. Reject adjacent repeated graph families and runs of four identical methods. The first method varies with seed parity. Each of the nine graphs still appears once per method, with identical paired target nodes and endpoints. Earlier protocol versions retain their original order for resume/upload compatibility. Parts 2 and 3 are unchanged.

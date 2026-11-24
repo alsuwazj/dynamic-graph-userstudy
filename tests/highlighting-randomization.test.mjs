@@ -36,3 +36,15 @@ test('Part 2 includes strong tall/wide transitions rather than mild aspect-ratio
  for(const g of cfg.part2.graphs){const item=manifest.items.find(i=>i.graphId===g);const a=ratio(item.sourceAspectTag),b=ratio(item.destinationAspectTag);assert.ok(Math.max(a/b,b/a)>=3-0.01);if((a>2&&b<.5)||(b>2&&a<.5))opposite++;}
  assert.ok(opposite>=2);
 });
+
+test('Part 1 mixes nine ARCOL and nine DARCOL trials without adjacent repeated graphs',()=>{
+ const sequences=new Set(),first={ARCOL:0,DARCOL:0};
+ for(let seed=0;seed<1024;seed++){
+  const q=buildScreens(cfg,seed).screens.filter(q=>q.type==='part1');assert.equal(q.length,18);first[q[0].method]++;sequences.add(q.map(q=>q.graph+':'+q.method).join(','));
+  for(const method of ['ARCOL','DARCOL'])assert.equal(q.filter(q=>q.method===method).length,9);
+  for(let i=1;i<q.length;i++)assert.notEqual(q[i].graph,q[i-1].graph);
+  for(let i=3;i<q.length;i++)assert.ok(!q.slice(i-3,i+1).every(p=>p.method===q[i].method));
+  for(const graph of cfg.part1.graphs){const pair=q.filter(q=>q.graph===graph);assert.equal(pair.length,2);assert.notEqual(pair[0].method,pair[1].method);assert.deepEqual(pair[0].target,pair[1].target);}
+ }
+ assert.equal(first.ARCOL,512);assert.equal(first.DARCOL,512);assert.equal(sequences.size,1024);
+});

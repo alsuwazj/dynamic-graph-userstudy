@@ -36,7 +36,7 @@ function orderGraphs(config, rng, previous, graphs = config.graphs) {
 }
 
 /**
- * Part 1: one block per method, with the method order varied by seed.
+ * Part 1: mixed graph/method pairs when enabled; legacy versions retain method blocks.
  * Part 2: the two conditions as blocks, their order alternating by seed
  * parity (counterbalanced across participants).
  * Inside every block the graph order is shuffled (see orderGraphs).
@@ -51,10 +51,28 @@ export function buildScreens(config, seed) {
     return order;
   };
   const methodOrder = config.part1.counterbalanceMethods && seed % 2 ? [...config.part1.methodOrder].reverse() : config.part1.methodOrder;
+  if (config.part1.mixMethods) {
+    const pool = methodOrder.flatMap(method => (config.part1.graphs || config.graphs).map(graph => ({
+      type: 'part1', method, graph, target: config.part1.targets[graph],
+    })));
+    const family = graph => config.graphFamilies?.[graph] ?? graph;
+    let mixed = null;
+    for (let attempt = 0; attempt < 10000; attempt++) {
+      const candidate = shuffle(pool, rng);
+      if (candidate[0].method !== methodOrder[0]) continue;
+      const spaced = candidate.every((q, i) => i === 0 || family(q.graph) !== family(candidate[i - 1].graph));
+      const varied = candidate.every((q, i) => i < 3 || !candidate.slice(i - 3, i + 1).every(p => p.method === q.method));
+      if (spaced && varied) { mixed = candidate; break; }
+    }
+    if (!mixed) throw Error('Cannot construct a mixed Part 1 order without adjacent repeated graphs.');
+    screens.push(...mixed);
+    last = mixed[mixed.length - 1].graph;
+  } else {
   for (const method of methodOrder) {
     for (const graph of block(config.part1.graphs || config.graphs)) {
       screens.push({ type: 'part1', method, graph, target: config.part1.targets[graph] });
     }
+  }
   }
   screens.push({ type: 'part2-intro' });
   const conditions = Object.keys(config.part2.conditions);

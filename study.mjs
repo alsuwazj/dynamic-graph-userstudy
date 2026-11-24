@@ -9,7 +9,7 @@
 
 import { loadResponseService, allocateResponse, sendResponse } from './response-service.mjs';
 import { cropBox, drawingSvg, bindSelection, clearSelection, fitVideo } from './graph-view.mjs?v=filled-targets-v10';
-import { buildScreens, score } from './plan.mjs?v=mixed-part2-v13';
+import { buildScreens, score } from './plan.mjs?v=both-parts-mixed-v14';
 
 const $ = selector => document.querySelector(selector);
 const main = $('#main');
