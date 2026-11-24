@@ -10,7 +10,7 @@ test('all 19 graphs have matching assets, four connected targets and no response
  for(const [part,graphs] of groups.entries())for(const graph of graphs){
   const i=manifest.items.find(x=>x.graphId===graph);assert.ok(i);
   if(part===2)continue;
-  const target=part===0?config.part1.targets[graph]:config.part2.conditions.rotation.targets[graph];assert.equal(new Set(target).size,4);
+  const target=part===0?config.part1.targets[graph]:config.part2.conditions.structural.targets[graph];assert.equal(new Set(target).size,4);
   for(let j=1;j<target.length;j++)assert.ok(i.edges.some(([u,v])=>(u===target[j-1]&&v===target[j])||(v===target[j-1]&&u===target[j])));
   const asset=i.original[part===0?'initialA':'initial'];
   const svg=drawingSvg(asset,{highlight:target});assert.equal((svg.match(/class="node-highlight"/g)||[]).length,4);assert.ok(!svg.includes('path-highlight'));

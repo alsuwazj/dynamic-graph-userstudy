@@ -36,7 +36,7 @@ function orderGraphs(config, rng, previous, graphs = config.graphs) {
 }
 
 /**
- * Part 1: one block per method in config order (ARCOL, then DARCOL).
+ * Part 1: one block per method, with the method order varied by seed.
  * Part 2: the two conditions as blocks, their order alternating by seed
  * parity (counterbalanced across participants).
  * Inside every block the graph order is shuffled (see orderGraphs).

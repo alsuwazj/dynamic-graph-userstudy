@@ -1,5 +1,5 @@
 {
-  "version": "three-part-four-node-v9",
+  "version": "three-part-linear-highlights-v10",
   "placeholderNotice": "",
   "minWindowWidth": 900,
   "timing": {
@@ -130,13 +130,12 @@
   },
   "part2": {
     "title": "Part 2 \u00b7 Track nodes through an animation",
-    "instruction": "Memorize the four highlighted nodes along the path, watch the graph change, then select the same four nodes in the final drawing.",
+    "instruction": "Memorize the four red nodes along a path. During the animation, blue nodes are visual aids. After playback, select the same four target nodes in the unmarked final drawing.",
     "method": "DARCOL",
     "conditions": {
-      "rotation": {
-        "label": "Tree turns and corner moves",
-        "intro": "Memorize the highlighted nodes, watch the animation, then select the same nodes in the final drawing.",
-        "animationMode": "rotation",
+      "structural": {
+        "label": "Structural landmarks",
+        "animationMode": "structural",
         "targets": {
           "grafo445.22": [
             0,
@@ -168,12 +167,12 @@
             8,
             5
           ]
-        }
+        },
+        "intro": "Blue nodes mark structural landmarks: highly connected nodes and tree attachment nodes. Remember the four red target nodes before playback; the blue nodes are visual aids and may be different."
       },
-      "landmarks_precomputed": {
-        "label": "Landmarks, layout computed first",
-        "intro": "Memorize the highlighted nodes, watch the animation, then select the same nodes in the final drawing.",
-        "animationMode": "landmarks_precomputed",
+      "movement": {
+        "label": "Movement-based highlights",
+        "animationMode": "movement",
         "targets": {
           "grafo445.22": [
             0,
@@ -205,7 +204,8 @@
             8,
             5
           ]
-        }
+        },
+        "intro": "Blue nodes mark nodes or attached structures with large movement beyond the overall resize. Remember the four red target nodes before playback; the blue nodes are visual aids and may be different."
       }
     },
     "graphs": [
