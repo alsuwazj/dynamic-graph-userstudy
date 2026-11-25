@@ -8,8 +8,8 @@
 // responses can then be downloaded on the last page.
 
 import { loadResponseService, allocateResponse, sendResponse } from './response-service.mjs';
-import { cropBox, drawingSvg, bindSelection, clearSelection, fitVideo } from './graph-view.mjs?v=filled-targets-v10';
-import { buildScreens, score } from './plan.mjs?v=uniform-routing-v24';
+import { cropBox, drawingSvg, bindSelection, clearSelection, fitVideo } from './graph-view.mjs?v=tree-direction-v25';
+import { buildScreens, score } from './plan.mjs?v=tree-direction-v25';
 
 const $ = selector => document.querySelector(selector);
 const main = $('#main');
@@ -136,7 +136,7 @@ function welcome() {
       ${config.placeholderNotice ? `<div class="notice">${escapeHtml(config.placeholderNotice)}</div>` : ''}
       <h2>What you’ll do</h2>
       <p><strong>Part 1 · Match a path (${config.part1.graphs.length * config.part1.methodOrder.length} questions).</strong> Two drawings of the same graph, produced by the same method, appear at different aspect ratios. Select the ${config.part1.targetCount || 4} nodes on the right that match the highlighted path on the left.</p>
-      <p><strong>Part 2 · Track nodes (${config.part2.graphs.length * Object.keys(config.part2.conditions).length} questions).</strong> Each of five graphs appears twice: a transition through precomputed DARCOL layouts with blue movement highlights, and a direct transition between the same DARCOL endpoints without highlights. The versions are mixed in random order. Memorize ${config.part2.targetCount} highlighted nodes for ${config.timing.part2MemorizeMs / 1000} seconds. The red target marks disappear before playback; blue movement highlights may then appear. Select the same nodes in the final drawing.</p>
+      <p><strong>Part 2 · Remember a tree’s direction (${config.part2.graphs.length * Object.keys(config.part2.conditions).length} questions).</strong> Look at an unmarked graph for six seconds, then watch a two-second animation. A tree is marked in red only after playback. Choose whether it pointed left, right, up, or down before the animation. You have up to 40 seconds to answer. Each of five graphs appears with both animation types, mixed in random order.</p>
       <p><strong>Part 3 · Compare animations (${config.part3.graphs.length} comparisons).</strong> Watch two looping animations side by side and give one overall preference rating.</p>
       <p><strong>Time:</strong> about 25–30 minutes, including instructions.</p>
       <h2>Good to know</h2>
@@ -263,7 +263,7 @@ function partIntro(part) {
       <p class="eyebrow">PART ${part} OF 3</p>
       <h1>${escapeHtml(text.title.replace(/^Part \d · /, ''))}</h1>
       <p class="lead">${escapeHtml(text.instruction)}</p>
-      <p class="help">${total} questions${part === 1 ? `. You have ${config.timing.part1ResponseMs / 1000} seconds for each.` : part===2 ? `. You have ${config.timing.part2MemorizeMs / 1000} seconds to memorize and ${config.timing.part2ResponseMs / 1000} seconds to answer.` : '. Watch both animations for at least one complete loop, then answer the preference question.'}</p>
+      <p class="help">${total} questions${part === 1 ? `. You have ${config.timing.part1ResponseMs / 1000} seconds for each.` : part===2 ? `. You have ${config.timing.part2MemorizeMs / 1000} seconds to look at the graph and ${config.timing.part2ResponseMs / 1000} seconds to answer.` : '. Watch both animations for at least one complete loop, then answer the preference question.'}</p>
       <button class="primary" id="go">Start Part ${part}</button>
     </div>`;
   $('#go').onclick = next;
@@ -434,117 +434,58 @@ async function part1Question(screen) {
 // ---------------------------------------------------------------- Part 2
 
 async function part2Question(screen) {
-  const graph = graphs[screen.graph];
-  const movie = graph.videos[screen.condition] || {url:graph.video,durationMs:graph.videoDurationMs};
-  const { index, total } = questionNumber(2);
-  const box = cropBox([graph.initial, graph.darcol]);
-  const selected = new Set();
-  main.innerHTML = `
-    <div class="progress"><div style="width:${((index - 1) / total) * 100}%"></div></div>
+  const graph = graphs[screen.graph], tree = config.part2.trees[screen.graph];
+  const movie = graph.videos[screen.condition];
+  const {index,total} = questionNumber(2), box = cropBox([graph.initial,graph.darcol]);
+  main.innerHTML = `<div class="progress"><div style="width:${(index-1)/total*100}%"></div></div>
     <p class="eyebrow">PART 2 · QUESTION ${index} OF ${total}</p>
-    <h2>${escapeHtml(config.part2.instruction)}</h2>
-    <div id="stage-area">
-      <section class="drawing-card single">
-        <header><span id="phase">Get ready</span><span class="timer" id="clock"></span></header>
-        <div class="stage tall" id="stage"><div class="stage-message"><p>Loading…</p></div></div>
-      </section>
-      <div class="answer-bar">
-        <p id="selection-label"></p>
-        <div class="answer-actions"><button class="text-button" id="clear" hidden>Clear selection</button><button class="primary" id="submit" disabled>Start</button></div>
-      </div>
-    </div>`;
-  const trial = watchTrial();
-  const stage = $('#stage');
-
-  const video = document.createElement('video');
-  Object.assign(video, { id: 'trial-video', muted: true, playsInline: true, preload: 'auto', controls: false, disablePictureInPicture: true });
-  video.className = ['animation', 'structural', 'movement', 'landmarks_precomputed'].includes(screen.condition) ? 'stage-video landmark-motion' : 'stage-video';
-  const videoReady = new Promise((resolve, reject) => {
-    video.addEventListener('canplaythrough', resolve, { once: true });
-    video.addEventListener('error', () => reject(Error('The animation could not be loaded.')), { once: true });
-  });
-  video.src = movie.url;
-  video.load();
-
-  try {
-    await withTimeout(Promise.all([preload([graph.initial.url, graph.darcol.url]), videoReady]), 20000, 'The question files did not load.');
-  } catch (error) {
-    return technicalProblem(screen, error.message);
+    <h2 id="direction-prompt">Look at the graph before it changes.</h2>
+    <section class="drawing-card single direction-card"><header><span id="phase">Loading</span><span class="timer" id="clock"></span></header>
+      <div class="stage tall" id="stage"><div class="stage-message">Loading…</div></div></section>
+    <div id="direction-options" hidden></div>
+    <div class="answer-bar"><p id="direction-help">The animation starts automatically after six seconds.</p><button class="primary" id="submit" disabled hidden>Submit answer</button></div>`;
+  const trial=watchTrial(),stage=$('#stage'),video=document.createElement('video');
+  Object.assign(video,{muted:true,playsInline:true,preload:'auto',controls:false,disablePictureInPicture:true});
+  video.className=screen.condition==='animation'?'stage-video landmark-motion':'stage-video';
+  const ready=new Promise((resolve,reject)=>{video.oncanplaythrough=resolve;video.onerror=()=>reject(Error('The animation could not be loaded.'));});
+  video.src=movie.url;video.load();
+  const cleanup=trial.cleanup;trial.cleanup=()=>{video.pause();video.onended=null;cleanup();};
+  try {await withTimeout(Promise.all([preload([graph.initial.url,graph.darcol.url]),ready]),20000,'The question files did not load.');}
+  catch(error){return technicalProblem(screen,error.message);}
+  if(activeTrial!==trial)return;
+  const times={memorizeStart:performance.now(),startedAt:nowIso()};
+  $('#phase').textContent='Look at the whole graph';
+  stage.innerHTML=drawingSvg(graph.initial,{box,label:'Unmarked graph before the animation'});
+  countdown(trial,$('#clock'),config.timing.part2MemorizeMs,s=>`${s}s`,animate);
+  function animate(){
+    $('#phase').textContent='Watch the transition';$('#clock').textContent='';$('#direction-help').textContent='Watch the graph change.';
+    stage.innerHTML='';stage.append(video);const place=()=>fitVideo(stage,video,graph.initial.viewBox,box);place();
+    const observer=new ResizeObserver(place);observer.observe(stage);const old=trial.cleanup;trial.cleanup=()=>{observer.disconnect();old();};
+    times.animationStart=performance.now();let finished=false;
+    video.onended=()=>{if(finished||activeTrial!==trial)return;finished=true;times.animationEnd=performance.now();observer.disconnect();respond();};
+    trial.timers.add(setTimeout(()=>{if(!finished&&activeTrial===trial)technicalProblem(screen,'The animation did not finish playing.');},movie.durationMs+8000));
+    video.currentTime=0;video.play().catch(()=>technicalProblem(screen,'The animation could not be played.'));
   }
-  if (activeTrial !== trial) return;
-
-  // Ready step: participant starts the question when they are ready.
-  stage.innerHTML = `<div class="stage-message"><p>Press <strong>Start</strong> when you are ready. The highlighted nodes will be shown for ${config.timing.part2MemorizeMs / 1000} seconds.</p></div>`;
-  $('#submit').disabled = false;
-  $('#submit').onclick = memorize;
-
-  const times = {};
-
-  function memorize() {
-    $('#submit').disabled = true;
-    $('#submit').textContent = 'Submit answer';
-    $('#phase').textContent = 'Memorize the highlighted nodes';
-    stage.innerHTML = drawingSvg(graph.initial, { box, highlight: screen.target, edges: graph.edges, label: 'Graph with highlighted nodes to memorize' });
-    times.memorizeStart = performance.now();
-    times.startedAt = nowIso();
-    countdown(trial, $('#clock'), config.timing.part2MemorizeMs, s => `${s}s`, animate);
-  }
-
-  function animate() {
-    $('#phase').textContent = 'Watch the transition';
-    $('#clock').textContent = '';
-    stage.innerHTML = '';
-    stage.append(video);
-    const place = () => fitVideo(stage, video, graph.initial.viewBox, box);
-    place();
-    const observer = new ResizeObserver(place);
-    observer.observe(stage);
-    const previousCleanup = trial.cleanup;
-    trial.cleanup = () => { observer.disconnect(); previousCleanup(); };
-
-    times.animationStart = performance.now();
-    let finished = false;
-    const end = () => {
-      if (finished) return;
-      finished = true;
-      times.animationEnd = performance.now();
-      observer.disconnect();
-      respond();
+  function respond(){
+    $('#phase').textContent='Remember its earlier direction';$('#direction-prompt').textContent='Which direction did the red tree point before the animation?';
+    stage.innerHTML=drawingSvg(graph.darcol,{box,highlight:tree.nodes,highlightTree:true,treeAttachment:tree.attachment,label:'Final drawing with the question tree marked in red'});
+    $('#direction-help').textContent='Choose its original direction, pointing away from where it joins the rest of the graph.';
+    const options=$('#direction-options');options.hidden=false;
+    options.innerHTML=`<fieldset class="direction-fieldset"><legend>Direction before the animation</legend><div class="direction-choices">${[['left','← Left'],['right','Right →'],['up','↑ Up (top)'],['down','↓ Down']].map(([v,label])=>`<label><input type="radio" name="tree-direction" value="${v}"><span>${label}</span></label>`).join('')}</div></fieldset>`;
+    let selectedDirection=null,done=false;times.responseStart=performance.now();$('#submit').hidden=false;
+    for(const input of options.querySelectorAll('input'))input.onchange=()=>{selectedDirection=input.value;$('#submit').disabled=false;};
+    const submit=timeout=>{
+      if(done)return;done=true;const t=performance.now();
+      session.answers.push({...describe(screen),position:session.position,questionIndex:index,taskType:'tree-direction',
+        treeNodes:[...tree.nodes],treeAttachment:tree.attachment,selected:[],selectedDirection,
+        correctDirection:tree.correctDirection,finalDirection:tree.finalDirection,correct:!timeout&&selectedDirection===tree.correctDirection,f1:null,
+        timeout,responseMs:t-times.responseStart,memorizeMs:times.animationStart-times.memorizeStart,
+        animationMs:times.animationEnd-times.animationStart,totalMs:t-times.memorizeStart,
+        shownAt:times.startedAt,answeredAt:nowIso(),...trial.flags});
+      logEvent('answer',{position:session.position,taskType:'tree-direction'});save();next();
     };
-    video.onended = end;
-    // Safety net in case `ended` never fires.
-    trial.timers.add(setTimeout(end, (movie.durationMs || 1500) + 3000));
-    video.currentTime = 0;
-    video.play().catch(() => technicalProblem(screen, 'The animation could not be played.'));
-  }
-
-  function respond() {
-    $('#phase').textContent = 'Select the same nodes';
-    stage.innerHTML = drawingSvg(graph.darcol, { box, selectable: true, selected, label: 'Final drawing: select the nodes you memorized' });
-    const label = $('#selection-label');
-    label.textContent = selectionLabel(selected);
-    bindSelection(stage, selected, () => { label.textContent = selectionLabel(selected); });
-    $('#clear').hidden = false;
-    $('#clear').onclick = () => { clearSelection(stage, selected); label.textContent = selectionLabel(selected); };
-    times.responseStart = performance.now();
-    let done = false;
-    const submit = timeout => {
-      if (done) return;
-      done = true;
-      const t = performance.now();
-      recordAnswer(screen, selected, {
-        timeout,
-        responseMs: t - times.responseStart,
-        memorizeMs: times.animationStart - times.memorizeStart,
-        animationMs: times.animationEnd - times.animationStart,
-        totalMs: t - times.memorizeStart,
-        shownAt: times.startedAt,
-      });
-      next();
-    };
-    $('#submit').disabled = false;
-    $('#submit').onclick = () => submit(false);
-    countdown(trial, $('#clock'), config.timing.part2ResponseMs, s => `${s}s left`, () => submit(true));
+    $('#submit').onclick=()=>submit(false);
+    countdown(trial,$('#clock'),config.timing.part2ResponseMs,s=>`${s}s left`,()=>submit(true));
   }
 }
 

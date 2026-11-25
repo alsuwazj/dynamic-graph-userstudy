@@ -33,6 +33,8 @@ export function drawingSvg(asset, options = {}) {
   const {
     box = cropBox([asset]),
     highlight = [],
+    highlightTree = false,
+    treeAttachment = null,
     fadeContext = false,
     edges = [],
     selectable = false,
@@ -67,6 +69,16 @@ export function drawingSvg(asset, options = {}) {
     );
   } else {
     parts.push(image(''));
+  }
+
+  if (highlightTree) {
+    const members = new Set(highlight);
+    const branch = new Set([...highlight, treeAttachment]);
+    for (const edge of asset.routes || []) {
+      if (branch.has(edge.u) && branch.has(edge.v) && (members.has(edge.u) || members.has(edge.v))) {
+        parts.push(`<polyline class="tree-highlight" points="${edge.points.map(p => p.join(',')).join(' ')}"/>`);
+      }
+    }
   }
 
   // Fill only node interiors; never cover adjacent bends with an outline.

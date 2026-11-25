@@ -5,11 +5,11 @@ import {drawingSvg} from '../graph-view.mjs';
 import {buildScreens} from '../plan.mjs';
 const config=JSON.parse(readFileSync(new URL('../study-config.json',import.meta.url)));
 const manifest=JSON.parse(readFileSync(new URL('../stimuli.json',import.meta.url)));
-test('all restored graphs and real-graph additions have matching assets, four connected targets and no response cue leakage',()=>{
+test('Part 1 retains matching assets, four connected targets and no response cue leakage',()=>{
  const groups=[config.part1.graphs,config.part2.graphs,config.part3.graphs];assert.deepEqual(groups.map(g=>g.length),[9,5,5]);assert.equal(new Set(groups.flat()).size,19);
  for(const [part,graphs] of groups.entries())for(const graph of graphs){
   const i=manifest.items.find(x=>x.graphId===graph);assert.ok(i);
-  if(part===2)continue;
+  if(part!==0)continue;
   const target=part===0?config.part1.targets[graph]:config.part2.conditions.animation.targets[graph];assert.equal(new Set(target).size,4);
   for(let j=1;j<target.length;j++)assert.ok(i.edges.some(([u,v])=>(u===target[j-1]&&v===target[j])||(v===target[j-1]&&u===target[j])));
   const asset=i.original[part===0?'initialA':'initial'];

@@ -134,3 +134,7 @@ Wien is removed from the active study. The original nine Rome cases remain in Pa
 
 ## Presentation revision 24
 All active stills and animation endpoints recaptured in GraphCanvas with common presentation-only routing. Single ports centered, shared sides offset, safe chain shortcuts and consistent 1px ink/10 SVG-unit rounded corners. Both methods receive identical cleanup rules. Node geometry, target IDs, graph pools, ordering rules, timers and animation definitions are unchanged. Archived source SVG/NPZ files are not modified. Earlier protocol scoring remains available.
+
+
+## Part 2 revision 25: tree-direction recall
+Five small graphs with branched attached trees and unambiguous direction changes between AR 1:3 and 32:9. Each appears once per condition, using identical DARCOL endpoints and target tree. Six-second unmarked observation; two-second playback; target tree revealed only in the final drawing. Four direction choices: left, right, up, down. Forty-second response cap; response time starts after playback and target reveal. Keyframe animation retains movement highlights; baseline directly interpolates the same endpoints without highlights. No optimization during playback. Parts 1 and 3 and all timing/order rules remain unchanged. Earlier node-recovery scores are not pooled with direction accuracy.

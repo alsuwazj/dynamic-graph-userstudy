@@ -26,7 +26,7 @@ test('Part 2 uses DARCOL keyframe animation versus a plain direct DARCOL baselin
   assert.equal(item.original.videos.animation.durationMs,2000);assert.equal(item.original.videos.baseline.durationMs,2000);
   assert.deepEqual(cfg.part2.conditions.animation.targets[graph],cfg.part2.conditions.baseline.targets[graph]);
  }
- const src=readFileSync(new URL('../study.mjs',import.meta.url),'utf8');assert.ok(src.includes("['animation', 'structural', 'movement', 'landmarks_precomputed'].includes(screen.condition)"));
+ const src=readFileSync(new URL('../study.mjs',import.meta.url),'utf8');assert.ok(src.includes("screen.condition==='animation'?'stage-video landmark-motion'"));
 });
 test('Part 2 mixes animation and baseline without subsections and spaces repeats by two other trials',()=>{
  for(let seed=0;seed<512;seed++){
@@ -62,9 +62,9 @@ test('Part 3 highlights structural landmarks only in DARCOL, with equal paired t
  for(const pair of manifest.comparisons){assert.equal(pair.ARCOL.animation,'linear-screen-space');assert.ok(pair.DARCOL.highlightNodes.length>0);assert.equal(pair.DARCOL.highlighting,'structural');assert.equal(pair.DARCOL.durationMs,2000);assert.equal(pair.ARCOL.durationMs,2000);}
 });
 
-test('all original Rome graphs remain without the real-graph additions',()=>{
+test('Parts 1 and 3 retain their graph pools while all trial counts stay fixed',()=>{
  const provenance=JSON.parse(readFileSync(new URL('../selection-provenance-v23.json',import.meta.url)));
- for(const part of ['part1','part2','part3']){
+ for(const part of ['part1','part3']){
   for(const g of provenance.restoredOriginalGroups[part])assert.ok(cfg[part].graphs.includes(g));
   assert.equal(cfg[part].graphs.length,provenance.restoredOriginalGroups[part].length+provenance.additions[part].length);
   for(const g of provenance.additions[part])assert.ok(cfg[part].graphs.includes(g));

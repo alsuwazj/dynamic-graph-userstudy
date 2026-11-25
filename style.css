@@ -154,3 +154,12 @@ main > h2 { font-size: 17px; font-weight: 500; margin-bottom: 18px; }
 .rating-options {display:grid; grid-template-columns:repeat(5,minmax(0,1fr)); gap:12px;}
 .rating-options label {display:flex; align-items:center; gap:8px; padding:12px 8px; border:1px solid var(--line,#dbe2e8); border-radius:8px; cursor:pointer; font-size:14px;}
 .rating-options label:has(input:checked) {border-color:#176f63; background:#ecf8f3;}
+
+.tree-highlight {fill:none;stroke:#f00;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round;vector-effect:non-scaling-stroke;pointer-events:none;}
+.direction-fieldset {border:0;padding:0;margin:20px 0;}
+.direction-fieldset legend {font-weight:600;margin-bottom:12px;}
+.direction-choices {display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;}
+.direction-choices label {display:flex;align-items:center;justify-content:center;gap:10px;padding:18px;border:1px solid var(--line);border-radius:8px;cursor:pointer;}
+.direction-choices label:has(input:checked) {border-color:#176f63;background:#ecf8f3;}
+
+.direction-card .stage.tall {height:min(40vh,360px);}

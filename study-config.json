@@ -1,5 +1,5 @@
 {
-  "version": "uniform-routing-v24",
+  "version": "tree-direction-v25",
   "placeholderNotice": "",
   "minWindowWidth": 900,
   "timing": {
@@ -17,16 +17,16 @@
     "grafo5838.35",
     "grafo5559.61",
     "grafo1141.47",
-    "grafo445.22",
-    "grafo11548.35",
-    "grafo2519.37",
-    "grafo7570.40",
-    "grafo2869.37",
     "grafo1244.26",
     "grafo4085.35",
     "grafo2708.39",
     "grafo3181.55",
-    "grafo1529.73"
+    "grafo1529.73",
+    "grafo1479.48",
+    "grafo10940.39",
+    "grafo11512.38",
+    "grafo11660.34",
+    "grafo1952.26"
   ],
   "graphFamilies": {
     "grafo7366.35": "grafo7366.35",
@@ -38,16 +38,16 @@
     "grafo5838.35": "grafo5838.35",
     "grafo5559.61": "grafo5559.61",
     "grafo1141.47": "grafo1141.47",
-    "grafo445.22": "grafo445.22",
-    "grafo11548.35": "grafo11548.35",
-    "grafo2519.37": "grafo2519.37",
-    "grafo7570.40": "grafo7570.40",
-    "grafo2869.37": "grafo2869.37",
     "grafo1244.26": "grafo1244.26",
     "grafo4085.35": "grafo4085.35",
     "grafo2708.39": "grafo2708.39",
     "grafo3181.55": "grafo3181.55",
-    "grafo1529.73": "grafo1529.73"
+    "grafo1529.73": "grafo1529.73",
+    "grafo1479.48": "grafo1479.48",
+    "grafo10940.39": "grafo10940.39",
+    "grafo11512.38": "grafo11512.38",
+    "grafo11660.34": "grafo11660.34",
+    "grafo1952.26": "grafo1952.26"
   },
   "graphFamiliesNote": "The original Rome graph pool is retained; graph families prevent adjacent repeats. Wien and Sydney are excluded.",
   "part1": {
@@ -130,95 +130,158 @@
     "mixMethods": true
   },
   "part2": {
-    "title": "Part 2 \u00b7 Track nodes through an animation",
-    "instruction": "Memorize the four red nodes along a path, watch the transition, then select the same four nodes in the final drawing. One version includes blue movement highlights; the other has no blue highlights. Both versions are mixed in random order.",
+    "title": "Part 2 \u00b7 Remember a tree\u2019s direction",
+    "instruction": "Look at the unmarked graph for six seconds, then watch the animation. A tree will be marked in red only after playback. Which direction did that tree point before the animation: left, right, up, or down? Judge the direction away from where the tree joins the rest of the graph.",
     "method": "DARCOL",
     "conditions": {
       "animation": {
         "label": "Animation: highlighted DARCOL keyframes",
         "animationMode": "darcol-keyframes-highlighted",
         "targets": {
-          "grafo445.22": [
-            0,
-            11,
-            2,
-            21
-          ],
-          "grafo11548.35": [
-            0,
-            1,
-            10,
-            6
-          ],
-          "grafo2519.37": [
-            0,
-            1,
-            2,
+          "grafo1479.48": [
+            16,
+            20,
             30
           ],
-          "grafo7570.40": [
-            0,
+          "grafo10940.39": [
             1,
-            10,
-            6
+            4,
+            34
           ],
-          "grafo2869.37": [
-            0,
+          "grafo11512.38": [
+            13,
+            14,
+            21
+          ],
+          "grafo11660.34": [
+            5,
+            6,
+            9,
+            19,
+            20,
+            21
+          ],
+          "grafo1952.26": [
             1,
-            8,
-            5
+            6,
+            11,
+            12,
+            23
           ]
         },
-        "intro": "Memorize the four red target nodes. During playback, blue nodes provide movement-based visual aids. Select the target nodes afterward."
+        "intro": "Look at the unmarked graph for six seconds, then watch the animation. A tree will be marked in red only after playback. Which direction did that tree point before the animation: left, right, up, or down? Judge the direction away from where the tree joins the rest of the graph."
       },
       "baseline": {
         "label": "Baseline: direct DARCOL interpolation",
         "animationMode": "darcol-direct-linear",
         "targets": {
-          "grafo445.22": [
-            0,
-            11,
-            2,
-            21
-          ],
-          "grafo11548.35": [
-            0,
-            1,
-            10,
-            6
-          ],
-          "grafo2519.37": [
-            0,
-            1,
-            2,
+          "grafo1479.48": [
+            16,
+            20,
             30
           ],
-          "grafo7570.40": [
-            0,
+          "grafo10940.39": [
             1,
-            10,
-            6
+            4,
+            34
           ],
-          "grafo2869.37": [
-            0,
+          "grafo11512.38": [
+            13,
+            14,
+            21
+          ],
+          "grafo11660.34": [
+            5,
+            6,
+            9,
+            19,
+            20,
+            21
+          ],
+          "grafo1952.26": [
             1,
-            8,
-            5
+            6,
+            11,
+            12,
+            23
           ]
         },
-        "intro": "Memorize the four red target nodes. Watch the direct transition without blue highlights, then select the target nodes afterward."
+        "intro": "Look at the unmarked graph for six seconds, then watch the animation. A tree will be marked in red only after playback. Which direction did that tree point before the animation: left, right, up, or down? Judge the direction away from where the tree joins the rest of the graph."
       }
     },
     "graphs": [
-      "grafo445.22",
-      "grafo11548.35",
-      "grafo2519.37",
-      "grafo7570.40",
-      "grafo2869.37"
+      "grafo1479.48",
+      "grafo10940.39",
+      "grafo11512.38",
+      "grafo11660.34",
+      "grafo1952.26"
     ],
-    "targetCount": 4,
     "mixConditions": true,
-    "avoidBoundaryRepeat": true
+    "avoidBoundaryRepeat": true,
+    "taskType": "tree-direction",
+    "trees": {
+      "grafo1479.48": {
+        "nodes": [
+          16,
+          20,
+          30
+        ],
+        "attachment": 21,
+        "correctDirection": "up",
+        "finalDirection": "right",
+        "definition": "Direction away from the attachment into the tree; dominant screen axis of its centroid. Attachment-to-first-child direction agrees."
+      },
+      "grafo10940.39": {
+        "nodes": [
+          1,
+          4,
+          34
+        ],
+        "attachment": 7,
+        "correctDirection": "right",
+        "finalDirection": "down",
+        "definition": "Direction away from the attachment into the tree; dominant screen axis of its centroid. Attachment-to-first-child direction agrees."
+      },
+      "grafo11512.38": {
+        "nodes": [
+          13,
+          14,
+          21
+        ],
+        "attachment": 17,
+        "correctDirection": "left",
+        "finalDirection": "down",
+        "definition": "Direction away from the attachment into the tree; dominant screen axis of its centroid. Attachment-to-first-child direction agrees."
+      },
+      "grafo11660.34": {
+        "nodes": [
+          5,
+          6,
+          9,
+          19,
+          20,
+          21
+        ],
+        "attachment": 0,
+        "correctDirection": "down",
+        "finalDirection": "right",
+        "definition": "Direction away from the attachment into the tree; dominant screen axis of its centroid. Attachment-to-first-child direction agrees."
+      },
+      "grafo1952.26": {
+        "nodes": [
+          1,
+          6,
+          11,
+          12,
+          23
+        ],
+        "attachment": 5,
+        "correctDirection": "down",
+        "finalDirection": "left",
+        "definition": "Direction away from the attachment into the tree; dominant screen axis of its centroid. Attachment-to-first-child direction agrees."
+      }
+    },
+    "targetsNote": "The complete attached tree, identical across paired conditions. Marked only after playback."
   },
   "maximumTaskMinutes": 25,
   "part3": {
