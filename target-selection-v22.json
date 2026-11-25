@@ -1,0 +1,11 @@
+{
+  "case": "wien-kurz-square-tall",
+  "nodes": [
+    33,
+    34,
+    35,
+    36
+  ],
+  "selection": "Connected four-node core path ranked by fewest direction changes and low branching across BOTH methods\u2019 source and destination drawings; no participant-performance or method-advantage criterion.",
+  "sameAcrossMethods": true
+}

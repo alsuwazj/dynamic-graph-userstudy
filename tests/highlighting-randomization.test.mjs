@@ -19,11 +19,11 @@ test('Part 2 uses DARCOL keyframe animation versus a plain direct DARCOL baselin
  assert.deepEqual(Object.keys(cfg.part2.conditions),['animation','baseline']);
  for(const graph of cfg.part2.graphs){
   const item=manifest.items.find(i=>i.graphId===graph),p=item.part2Protocol;
-  assert.equal(p.endpointMethod,'DARCOL');assert.equal(p.durationMs,3000);assert.equal(p.interpolation,'piecewise-linear');assert.equal(p.baselineInterpolation,'direct-linear');assert.equal(p.optimizationDuringPlayback,false);assert.equal(p.separateTreeRotation,false);assert.equal(p.keyframes.length>=3,true);assert.equal(p.fixedAspectRatioGrid.length,7);assert.ok(p.highlightNodes.length>0);assert.deepEqual(p.baselineHighlightNodes,[]);
+  assert.equal(p.endpointMethod,'DARCOL');assert.equal(p.durationMs,2000);assert.equal(p.interpolation,'piecewise-linear');assert.equal(p.baselineInterpolation,'direct-linear');assert.equal(p.optimizationDuringPlayback,false);assert.equal(p.separateTreeRotation,false);assert.equal(p.keyframes.length>=3,true);assert.equal(p.fixedAspectRatioGrid.length,7);assert.ok(p.highlightNodes.length>0);assert.deepEqual(p.baselineHighlightNodes,[]);
   assert.equal(p.keyframeTimes[0],0);assert.equal(p.keyframeTimes.at(-1),1);
   assert.equal(item.original.initial.url,p.keyframes[0].url);assert.equal(item.original.finalB.url,p.keyframes.at(-1).url);
   for(const k of p.keyframes){assert.ok(k.source.replaceAll('\\','/').includes('/darcol/layouts/'));assert.ok(k.layoutSha256);}
-  assert.equal(item.original.videos.animation.durationMs,3000);assert.equal(item.original.videos.baseline.durationMs,3000);
+  assert.equal(item.original.videos.animation.durationMs,2000);assert.equal(item.original.videos.baseline.durationMs,2000);
   assert.deepEqual(cfg.part2.conditions.animation.targets[graph],cfg.part2.conditions.baseline.targets[graph]);
  }
  const src=readFileSync(new URL('../study.mjs',import.meta.url),'utf8');assert.ok(src.includes("['animation', 'structural', 'movement', 'landmarks_precomputed'].includes(screen.condition)"));
@@ -59,7 +59,7 @@ test('Part 1 mixes ten ARCOL and ten DARCOL trials without adjacent repeated gra
 
 test('Part 3 highlights structural landmarks only in DARCOL, with equal paired timing',()=>{
  assert.equal(cfg.part3.highlightingPolicy,'DARCOL-structural-only');
- for(const pair of manifest.comparisons){assert.equal(pair.ARCOL.animation,'linear-screen-space');assert.ok(pair.DARCOL.highlightNodes.length>0);assert.equal(pair.DARCOL.highlighting,'structural');assert.equal(pair.DARCOL.durationMs,3000);assert.equal(pair.ARCOL.durationMs,3000);}
+ for(const pair of manifest.comparisons){assert.equal(pair.ARCOL.animation,'linear-screen-space');assert.ok(pair.DARCOL.highlightNodes.length>0);assert.equal(pair.DARCOL.highlighting,'structural');assert.equal(pair.DARCOL.durationMs,2000);assert.equal(pair.ARCOL.durationMs,2000);}
 });
 
 test('all previous graphs remain with Wien only in Part 1',()=>{
@@ -76,10 +76,10 @@ test('all previous graphs remain with Wien only in Part 1',()=>{
  }
 });
 
-test('Wien targets form a connected four-node path in the central region of both references',()=>{
- const target=cfg.part1.targets['wien-kurz-square-tall'];assert.deepEqual(target,[11,51,50,49]);const item=manifest.items.find(i=>i.graphId==='wien-kurz-square-tall');
+test('Wien uses a straight connected four-node core path in both methods',()=>{
+ const target=cfg.part1.targets['wien-kurz-square-tall'];assert.deepEqual(target,[33,34,35,36]);const item=manifest.items.find(i=>i.graphId==='wien-kurz-square-tall');
  for(let j=1;j<target.length;j++)assert.ok(item.edges.some(([u,v])=>(u===target[j-1]&&v===target[j])||(v===target[j-1]&&u===target[j])));
- for(const key of ['initialA','initialB']){const a=item.original[key];for(const id of target){const b=a.hitboxes.find(b=>b.id===id);const x=(b.x+b.width/2)/a.viewBox[2],y=(b.y+b.height/2)/a.viewBox[3];assert.ok(x>.25&&x<.75&&y>.25&&y<.75);}}
+ for(const key of ['initialA','initialB','finalA','finalB']){const a=item.original[key];const points=target.map(id=>{const b=a.hitboxes.find(b=>b.id===id);return [b.x+b.width/2,b.y+b.height/2];});const xs=points.map(p=>p[0]),ys=points.map(p=>p[1]);assert.ok(Math.max(...xs)-Math.min(...xs)<2||Math.max(...ys)-Math.min(...ys)<2);}
 });
 
 test('Sydney is absent from the active study',()=>{assert.ok(manifest.items.every(i=>i.sourceGraphId!=='sydney'&&!i.graphId.includes('sydney')));assert.equal(cfg.part2.graphs.length,5);assert.ok(cfg.part1.graphs.includes('wien-kurz-square-tall'));});

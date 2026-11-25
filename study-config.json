@@ -1,5 +1,5 @@
 {
-  "version": "darcol-animation-vs-baseline-v21",
+  "version": "clear-wien-two-second-v22",
   "placeholderNotice": "",
   "minWindowWidth": 900,
   "timing": {
@@ -115,10 +115,10 @@
         10
       ],
       "wien-kurz-square-tall": [
-        11,
-        51,
-        50,
-        49
+        33,
+        34,
+        35,
+        36
       ]
     },
     "targetsNote": "Four consecutive path vertices, identical across methods. Curated review selection; see selection-provenance-v9.json.",
