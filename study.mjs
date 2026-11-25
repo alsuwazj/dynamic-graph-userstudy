@@ -8,8 +8,8 @@
 // responses can then be downloaded on the last page.
 
 import { loadResponseService, allocateResponse, sendResponse } from './response-service.mjs';
-import { cropBox, drawingSvg, bindSelection, clearSelection, fitVideo } from './graph-view.mjs?v=animated-tree-direction-v35';
-import { buildScreens, score } from './plan.mjs?v=animated-tree-direction-v35';
+import { cropBox, drawingSvg, bindSelection, clearSelection, fitVideo } from './graph-view.mjs?v=direction-cross-v36';
+import { buildScreens, score } from './plan.mjs?v=direction-cross-v36';
 
 const $ = selector => document.querySelector(selector);
 const main = $('#main');
@@ -445,8 +445,8 @@ async function part2Question(screen) {
   const {index,total}=questionNumber(2),box=cropBox([layouts.initial,layouts.final]);
   main.innerHTML=`<div class="progress"><div style="width:${(index-1)/total*100}%"></div></div><p class="eyebrow">PART 2 · QUESTION ${index} OF ${total}</p>
     <h2 id="direction-prompt">Look at the graph before it changes.</h2>
-    <section class="drawing-card single direction-card"><header><span id="phase">Loading</span><span class="timer" id="clock"></span></header><div class="stage tall" id="stage"></div></section>
-    <div id="direction-options" hidden></div><div class="answer-bar"><p id="direction-help">Look at the whole graph for six seconds, then watch its animation.</p><button class="primary" id="submit" disabled hidden>Submit answer</button></div>`;
+    <div class="direction-task-layout"><section class="drawing-card single direction-card"><header><span id="phase">Loading</span><span class="timer" id="clock"></span></header><div class="stage tall" id="stage"></div></section>
+    <div id="direction-options" hidden></div></div><div class="answer-bar"><p id="direction-help">Look at the whole graph for six seconds, then watch its animation.</p><button class="primary" id="submit" disabled hidden>Submit answer</button></div>`;
   const trial=watchTrial(),stage=$('#stage'),video=document.createElement('video');video.className='stage-video';video.muted=true;video.playsInline=true;video.disablePictureInPicture=true;video.preload='auto';
   const priorCleanup=trial.cleanup;trial.cleanup=()=>{video.onended=null;video.pause();priorCleanup();};
   try{await withTimeout(Promise.all([preload([layouts.initial.url,layouts.final.url]),new Promise((resolve,reject)=>{video.oncanplaythrough=resolve;video.onerror=()=>reject(Error('Animation could not load.'));video.src=clip.url;video.load();})]),20000,'The question files did not load.');}
@@ -462,12 +462,13 @@ async function part2Question(screen) {
   function respond(){
     if(activeTrial!==trial)return;$('#phase').textContent='Remember its earlier direction';$('#direction-prompt').textContent='Which direction did the red tree point in the first drawing?';
     stage.innerHTML=drawingSvg(layouts.final,{box,highlight:tree.nodes,highlightTree:true,treeAttachment:tree.attachment,label:'Final drawing with the target tree marked red'});
-    $('#direction-help').textContent='Choose its direction before the animation, pointing away from its attachment.';
-    const options=$('#direction-options');options.hidden=false;options.innerHTML=`<fieldset class="direction-fieldset"><legend>Direction in the first drawing</legend><div class="direction-choices">${[['left','Left'],['right','Right'],['up','Up (top)'],['down','Down']].map(([v,label])=>`<label><input type="radio" name="tree-direction" value="${v}"><span>${label}</span></label>`).join('')}</div></fieldset>`;
-    let selectedDirection=null,done=false;times.responseStart=performance.now();$('#submit').hidden=false;
-    for(const input of options.querySelectorAll('input'))input.onchange=()=>{selectedDirection=input.value;$('#submit').disabled=false;};
-    const submit=timeout=>{if(done)return;done=true;const t=performance.now();session.answers.push({...describe(screen),position:session.position,questionIndex:index,taskType:'tree-direction',treeNodes:[...tree.nodes],treeAttachment:tree.attachment,selected:[],selectedDirection,correctDirection:tree.correctDirection,finalDirection:tree.finalDirection,correct:!timeout&&selectedDirection===tree.correctDirection,f1:null,timeout,responseMs:t-times.responseStart,memorizeMs:times.animationStart-times.memorizeStart,animationMs:times.animationEnd-times.animationStart,finalHoldMs:times.responseStart-times.animationEnd,presentationMode:'animated',animationMode:'direct-linear',totalMs:t-times.memorizeStart,shownAt:times.startedAt,answeredAt:nowIso(),...trial.flags});logEvent('answer',{position:session.position,taskType:'tree-direction'});save();next();};
-    $('#submit').onclick=()=>submit(false);countdown(trial,$('#clock'),config.timing.part2ResponseMs,s=>`${s}s left`,()=>submit(true));
+    $('#direction-help').textContent='Click an arrow for its direction before the animation, or choose Give up.';
+    const options=$('#direction-options');options.hidden=false;options.innerHTML=`<div class="direction-cross" role="group" aria-label="Direction in the first drawing"><button type="button" data-direction="up" class="direction-arrow direction-up" aria-label="Up" title="Up">↑</button><button type="button" data-direction="left" class="direction-arrow direction-left" aria-label="Left" title="Left">←</button><button type="button" class="direction-give-up" id="give-up">Give up</button><button type="button" data-direction="right" class="direction-arrow direction-right" aria-label="Right" title="Right">→</button><button type="button" data-direction="down" class="direction-arrow direction-down" aria-label="Down" title="Down">↓</button></div>`;
+    let selectedDirection=null,done=false;times.responseStart=performance.now();
+    const submit=(timeout,choice=null,gaveUp=false)=>{if(done)return;done=true;selectedDirection=choice;const t=performance.now();session.answers.push({...describe(screen),position:session.position,questionIndex:index,taskType:'tree-direction',treeNodes:[...tree.nodes],treeAttachment:tree.attachment,selected:[],selectedDirection,correctDirection:tree.correctDirection,finalDirection:tree.finalDirection,correct:!timeout&&selectedDirection===tree.correctDirection,f1:null,timeout,gaveUp,outcome:timeout?'timeout':gaveUp?'give-up':'answered',responseMs:t-times.responseStart,memorizeMs:times.animationStart-times.memorizeStart,animationMs:times.animationEnd-times.animationStart,finalHoldMs:times.responseStart-times.animationEnd,presentationMode:'animated',responseMode:'immediate-direction-cross',animationMode:'direct-linear',totalMs:t-times.memorizeStart,shownAt:times.startedAt,answeredAt:nowIso(),...trial.flags});logEvent('answer',{position:session.position,taskType:'tree-direction'});save();next();};
+    for(const button of options.querySelectorAll('[data-direction]'))button.onclick=()=>submit(false,button.dataset.direction,false);
+    $('#give-up').onclick=()=>submit(false,null,true);
+    countdown(trial,$('#clock'),config.timing.part2ResponseMs,s=>`${s}s left`,()=>submit(true));
   }
 }
 
