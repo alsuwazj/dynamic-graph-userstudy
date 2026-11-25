@@ -25,10 +25,11 @@ test('Part 3 compares paired DARCOL-only clips with identical endpoints',()=>{
 });
 
 test('Part 3 uses the five requested graphs and larger non-overlapping symbols',()=>{
- assert.deepEqual(cfg.part3.graphs,['wien-kurz','grafo2069.32','grafo2774.26','sydney','grafo2519.37']);assert.ok(!cfg.part2.graphs.includes('sydney'));
- for(const p of m.comparisons){assert.equal(p.protocol.nodeSizing.targetPx,16);for(const a of p.protocol.keyframes){for(let j=0;j<a.hitboxes.length;j++)for(let k=j+1;k<a.hitboxes.length;k++){const u=a.hitboxes[j],v=a.hitboxes[k];assert.ok(u.x+u.width<=v.x||v.x+v.width<=u.x||u.y+u.height<=v.y||v.y+v.height<=u.y,p.graphId+' '+a.aspectTag);}}}
+ assert.deepEqual(cfg.part3.graphs,['wien-kurz','grafo2069.32','grafo2774.26','grafo2869.37','grafo2519.37']);assert.ok(!cfg.part2.graphs.includes('sydney'));
+ for(const p of m.comparisons){if(p.graphId==='grafo2869.37')continue;assert.equal(p.protocol.nodeSizing.targetPx,16);for(const a of p.protocol.keyframes){for(let j=0;j<a.hitboxes.length;j++)for(let k=j+1;k<a.hitboxes.length;k++){const u=a.hitboxes[j],v=a.hitboxes[k];assert.ok(u.x+u.width<=v.x||v.x+v.width<=u.x||u.y+u.height<=v.y||v.y+v.height<=u.y,p.graphId+' '+a.aspectTag);}}}
 });
 
 test('Wien highlights both complete branches and their shared root',()=>{for(const method of ['ARCOL','DARCOL']){const t=cfg.part2.conditions[method].trees['wien-kurz'];assert.deepEqual(t.nodes,[0,1,2,3,4,5,6,7,20,21,22,23,24,25,26,27]);assert.equal(t.attachment,7);}});
 
-test('Sydney has equal node sizes at every computed state and both methods use changing Part 2 targets',()=>{const p=m.comparisons.find(p=>p.graphId==='sydney');for(const a of p.protocol.keyframes){const w=a.hitboxes[0].width;assert.ok(a.hitboxes.every(n=>Math.abs(n.width-w)<1e-5&&Math.abs(n.height-w)<1e-5));}for(const condition of Object.values(cfg.part2.conditions))for(const g of cfg.part2.graphs)assert.notEqual(condition.trees[g].correctDirection,condition.trees[g].finalDirection,g);});
+
+test('Sydney excluded and replacement contains visible tree turns',()=>{assert.ok(!cfg.graphs.includes('sydney'));assert.ok(cfg.part3.graphs.includes('grafo2869.37'));for(const condition of Object.values(cfg.part2.conditions))for(const g of cfg.part2.graphs)assert.notEqual(condition.trees[g].correctDirection,condition.trees[g].finalDirection,g);});

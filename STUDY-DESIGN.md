@@ -174,3 +174,7 @@ Part 3 uses Wien, grafo2069.32, grafo2774.26, Sydney and grafo2519.37. Parts 1 a
 
 ## Revision 33: equal Sydney symbols
 Sydney uses one symbol size per frame, shared by both paired animations, limited by the smallest inter-node spacing. It no longer shrinks individual nodes differently. Wien and all other graphs unchanged. Part 2 audit: all ten selected targets change cardinal direction; correct earlier direction never equals visible final direction. Additional test enforces that target-selection rule for both methods.
+
+
+## Revision 34: replace Sydney
+Replace only Part 3 Sydney with grafo2869.37 from the selected gallery, reusing its validated GUI captures and two-second paired clips with 28 genuine 0.1-AR layouts. Other four comparisons and Parts 1/2 unchanged. Sydney excluded from all active parts. Historical responses retained.

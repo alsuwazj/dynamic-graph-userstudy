@@ -8,8 +8,8 @@
 // responses can then be downloaded on the last page.
 
 import { loadResponseService, allocateResponse, sendResponse } from './response-service.mjs';
-import { cropBox, drawingSvg, bindSelection, clearSelection, fitVideo } from './graph-view.mjs?v=uniform-sydney-v33';
-import { buildScreens, score } from './plan.mjs?v=uniform-sydney-v33';
+import { cropBox, drawingSvg, bindSelection, clearSelection, fitVideo } from './graph-view.mjs?v=replace-sydney-v34';
+import { buildScreens, score } from './plan.mjs?v=replace-sydney-v34';
 
 const $ = selector => document.querySelector(selector);
 const main = $('#main');
