@@ -1,5 +1,5 @@
 {
-  "version": "structural-motion-preference-v28",
+  "version": "gallery-real-trees-v29",
   "placeholderNotice": "",
   "minWindowWidth": 900,
   "timing": {
@@ -18,16 +18,16 @@
     "grafo5838.35",
     "grafo5559.61",
     "grafo1141.47",
-    "grafo1479.48",
-    "grafo10940.39",
     "grafo11512.38",
     "grafo11660.34",
     "grafo1952.26",
-    "grafo2774.26",
-    "grafo1671.17",
-    "grafo1787.16",
-    "grafo675.11",
-    "grafo2953.11"
+    "sydney",
+    "wien-kurz",
+    "grafo2069.32",
+    "grafo2519.37",
+    "grafo2869.37",
+    "grafo4085.35",
+    "grafo5399.35"
   ],
   "graphFamilies": {
     "grafo7366.35": "grafo7366.35",
@@ -39,18 +39,18 @@
     "grafo5838.35": "grafo5838.35",
     "grafo5559.61": "grafo5559.61",
     "grafo1141.47": "grafo1141.47",
-    "grafo1479.48": "grafo1479.48",
-    "grafo10940.39": "grafo10940.39",
     "grafo11512.38": "grafo11512.38",
     "grafo11660.34": "grafo11660.34",
     "grafo1952.26": "grafo1952.26",
-    "grafo2774.26": "grafo2774.26",
-    "grafo1671.17": "grafo1671.17",
-    "grafo1787.16": "grafo1787.16",
-    "grafo675.11": "grafo675.11",
-    "grafo2953.11": "grafo2953.11"
+    "sydney": "sydney",
+    "wien-kurz": "wien-kurz",
+    "grafo2069.32": "grafo2069.32",
+    "grafo2519.37": "grafo2519.37",
+    "grafo4085.35": "grafo4085.35",
+    "grafo5399.35": "grafo5399.35",
+    "grafo2869.37": "grafo2869.37"
   },
-  "graphFamiliesNote": "The original Rome graph pool is retained; graph families prevent adjacent repeats. Wien and Sydney are excluded.",
+  "graphFamiliesNote": "Part 3 uses the selected comparison gallery. Part 2 includes original Sydney and Wien HOLA inputs; repeat families remain separated.",
   "part1": {
     "title": "Part 1 \u00b7 Match nodes in static drawings",
     "instruction": "The four highlighted nodes on the left form a path. Select the same four nodes in the drawing on the right, shown at a different aspect ratio.",
@@ -138,16 +138,6 @@
         "method": "ARCOL",
         "label": "ARCOL static",
         "targets": {
-          "grafo1479.48": [
-            16,
-            20,
-            30
-          ],
-          "grafo10940.39": [
-            1,
-            4,
-            34
-          ],
           "grafo11512.38": [
             4,
             5,
@@ -169,31 +159,24 @@
             11,
             12,
             23
+          ],
+          "sydney": [
+            4,
+            12,
+            99,
+            101
+          ],
+          "wien-kurz": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
           ]
         },
         "trees": {
-          "grafo1479.48": {
-            "nodes": [
-              16,
-              20,
-              30
-            ],
-            "attachment": 21,
-            "correctDirection": "left",
-            "finalDirection": "down",
-            "definition": "Direction away from the attachment into the tree; dominant screen axis of its centroid. Attachment-to-first-child direction agrees."
-          },
-          "grafo10940.39": {
-            "nodes": [
-              1,
-              4,
-              34
-            ],
-            "attachment": 7,
-            "correctDirection": "right",
-            "finalDirection": "down",
-            "definition": "Direction away from the attachment into the tree; dominant screen axis of its centroid. Attachment-to-first-child direction agrees."
-          },
           "grafo11512.38": {
             "nodes": [
               4,
@@ -231,6 +214,33 @@
             ],
             "attachment": 5,
             "correctDirection": "up",
+            "finalDirection": "right",
+            "definition": "Direction away from the attachment into the tree; dominant screen axis of its centroid. Attachment-to-first-child direction agrees."
+          },
+          "sydney": {
+            "nodes": [
+              4,
+              12,
+              99,
+              101
+            ],
+            "attachment": 66,
+            "correctDirection": "up",
+            "finalDirection": "down",
+            "definition": "Direction away from the attachment into the tree; dominant screen axis of its centroid. Attachment-to-first-child direction agrees."
+          },
+          "wien-kurz": {
+            "nodes": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6
+            ],
+            "attachment": 7,
+            "correctDirection": "down",
             "finalDirection": "right",
             "definition": "Direction away from the attachment into the tree; dominant screen axis of its centroid. Attachment-to-first-child direction agrees."
           }
@@ -240,16 +250,6 @@
         "method": "DARCOL",
         "label": "DARCOL static",
         "targets": {
-          "grafo1479.48": [
-            16,
-            20,
-            30
-          ],
-          "grafo10940.39": [
-            1,
-            4,
-            34
-          ],
           "grafo11512.38": [
             4,
             5,
@@ -271,31 +271,24 @@
             11,
             12,
             23
+          ],
+          "sydney": [
+            4,
+            12,
+            99,
+            101
+          ],
+          "wien-kurz": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
           ]
         },
         "trees": {
-          "grafo1479.48": {
-            "nodes": [
-              16,
-              20,
-              30
-            ],
-            "attachment": 21,
-            "correctDirection": "up",
-            "finalDirection": "right",
-            "definition": "Direction away from the attachment into the tree; dominant screen axis of its centroid. Attachment-to-first-child direction agrees."
-          },
-          "grafo10940.39": {
-            "nodes": [
-              1,
-              4,
-              34
-            ],
-            "attachment": 7,
-            "correctDirection": "right",
-            "finalDirection": "down",
-            "definition": "Direction away from the attachment into the tree; dominant screen axis of its centroid. Attachment-to-first-child direction agrees."
-          },
           "grafo11512.38": {
             "nodes": [
               4,
@@ -335,43 +328,48 @@
             "correctDirection": "down",
             "finalDirection": "left",
             "definition": "Direction away from the attachment into the tree; dominant screen axis of its centroid. Attachment-to-first-child direction agrees."
+          },
+          "sydney": {
+            "nodes": [
+              4,
+              12,
+              99,
+              101
+            ],
+            "attachment": 66,
+            "correctDirection": "up",
+            "finalDirection": "left",
+            "definition": "Direction away from the attachment into the tree; dominant screen axis of its centroid. Attachment-to-first-child direction agrees."
+          },
+          "wien-kurz": {
+            "nodes": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6
+            ],
+            "attachment": 7,
+            "correctDirection": "up",
+            "finalDirection": "left",
+            "definition": "Direction away from the attachment into the tree; dominant screen axis of its centroid. Attachment-to-first-child direction agrees."
           }
         }
       }
     },
     "graphs": [
-      "grafo1479.48",
-      "grafo10940.39",
       "grafo11512.38",
       "grafo11660.34",
-      "grafo1952.26"
+      "grafo1952.26",
+      "sydney",
+      "wien-kurz"
     ],
     "mixConditions": true,
     "avoidBoundaryRepeat": true,
     "taskType": "tree-direction",
     "trees": {
-      "grafo1479.48": {
-        "nodes": [
-          16,
-          20,
-          30
-        ],
-        "attachment": 21,
-        "correctDirection": "up",
-        "finalDirection": "right",
-        "definition": "Direction away from the attachment into the tree; dominant screen axis of its centroid. Attachment-to-first-child direction agrees."
-      },
-      "grafo10940.39": {
-        "nodes": [
-          1,
-          4,
-          34
-        ],
-        "attachment": 7,
-        "correctDirection": "right",
-        "finalDirection": "down",
-        "definition": "Direction away from the attachment into the tree; dominant screen axis of its centroid. Attachment-to-first-child direction agrees."
-      },
       "grafo11512.38": {
         "nodes": [
           4,
@@ -411,6 +409,33 @@
         "correctDirection": "down",
         "finalDirection": "left",
         "definition": "Direction away from the attachment into the tree; dominant screen axis of its centroid. Attachment-to-first-child direction agrees."
+      },
+      "sydney": {
+        "nodes": [
+          4,
+          12,
+          99,
+          101
+        ],
+        "attachment": 66,
+        "correctDirection": "up",
+        "finalDirection": "left",
+        "definition": "Direction away from the attachment into the tree; dominant screen axis of its centroid. Attachment-to-first-child direction agrees."
+      },
+      "wien-kurz": {
+        "nodes": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6
+        ],
+        "attachment": 7,
+        "correctDirection": "up",
+        "finalDirection": "left",
+        "definition": "Direction away from the attachment into the tree; dominant screen axis of its centroid. Attachment-to-first-child direction agrees."
       }
     },
     "targetsNote": "Same attached tree and AR pair across methods. Correct original direction is scored separately from each method\u2019s initial layout.",
@@ -421,11 +446,11 @@
     "title": "Compare two animations",
     "instruction": "Watch two DARCOL animations of the same graph with identical starting and final drawings, then rate which animation you prefer overall. One interpolates precomputed intermediate layouts with movement highlights; the other interpolates directly between the endpoints.",
     "graphs": [
-      "grafo2774.26",
-      "grafo1671.17",
-      "grafo1787.16",
-      "grafo675.11",
-      "grafo2953.11"
+      "grafo2069.32",
+      "grafo2519.37",
+      "grafo2869.37",
+      "grafo4085.35",
+      "grafo5399.35"
     ],
     "questions": [
       {

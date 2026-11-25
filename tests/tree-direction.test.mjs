@@ -24,10 +24,9 @@ test('Part 3 compares paired DARCOL-only clips with identical endpoints',()=>{
  for(const pair of m.comparisons){assert.equal(pair.animation.durationMs,2000);assert.equal(pair.baseline.durationMs,2000);assert.equal(pair.protocol.endpointMethod,'DARCOL');assert.equal(pair.protocol.keyframes.length,28);assert.equal(pair.protocol.aspectRatioStep,.1);for(let j=1;j<28;j++)assert.ok(Math.abs(Math.abs(pair.protocol.keyframes[j].targetAspect-pair.protocol.keyframes[j-1].targetAspect)-.1)<1e-9);assert.deepEqual(pair.protocol.baselineHighlightNodes,[]);assert.ok(pair.protocol.highlightNodes.length);assert.equal(pair.ARCOL,undefined);}
 });
 
-test('every Part 3 example has a visible tree direction change beyond stretching',()=>{
- for(const entry of m.part3Selection.measuredTreeDirectionChanges){
-  const i=m.items.find(i=>i.graphId===entry.graph);
-  const vector=(asset,tree)=>{const map=new Map(asset.hitboxes.map(n=>[n.id,[n.x+n.width/2,n.y+n.height/2]]));const p=map.get(tree.pivot);return [0,1].map(axis=>tree.treeNodes.reduce((n,id)=>n+map.get(id)[axis],0)/tree.treeNodes.length-p[axis]);};
-  assert.ok(entry.trees.some(tree=>{const a=vector(i.original.initial,tree),b=vector(i.original.finalB,tree);return Math.abs(Math.atan2(a[0]*b[1]-a[1]*b[0],a[0]*b[0]+a[1]*b[1])*180/Math.PI)>=80;}),entry.graph);
- }
+test('Part 3 uses branching medium-sized examples from the selected gallery',()=>{
+ const gallery=JSON.parse(readFileSync(new URL('../selection-gallery-v29.json',import.meta.url)));
+ assert.equal(cfg.part3.graphs.length,5);
+ for(const g of cfg.part3.graphs){assert.ok(gallery.graphs.includes(g));const i=m.items.find(i=>i.graphId===g);assert.ok(i.original.initial.hitboxes.length>=30);assert.ok(i.original.initial.hitboxes.length<=50);const degree=new Map();for(const [u,v] of i.edges){degree.set(u,(degree.get(u)||0)+1);degree.set(v,(degree.get(v)||0)+1);}assert.ok([...degree.values()].filter(n=>n>=3).length>=3,g);}
+ assert.ok(cfg.part2.graphs.includes('sydney'));assert.ok(cfg.part2.graphs.includes('wien-kurz'));
 });

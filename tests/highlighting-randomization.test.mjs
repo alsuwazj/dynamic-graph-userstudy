@@ -58,7 +58,7 @@ test('Part 1 retains its graph pool while all trial counts stay fixed',()=>{
  }
 });
 
-test('Wien and Sydney are absent from the active pool',()=>{
- assert.ok(manifest.items.every(i=>!['sydney','wien-kurz'].includes(i.sourceGraphId)&&!i.graphId.includes('sydney')&&!i.graphId.includes('wien')));
+test('Wien and Sydney appear in Part 2 only',()=>{
+ for(const g of ['sydney','wien-kurz']){assert.ok(cfg.part2.graphs.includes(g));assert.ok(!cfg.part1.graphs.includes(g));assert.ok(!cfg.part3.graphs.includes(g));}
  assert.deepEqual([cfg.part1.graphs.length,cfg.part2.graphs.length,cfg.part3.graphs.length],[9,5,5]);
 });
