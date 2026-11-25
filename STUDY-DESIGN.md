@@ -150,3 +150,7 @@ Part 1 task, graphs, targets and timing unchanged. Part 2: five graphs once per 
 
 ## Revision 27: static direction recall and DARCOL animation preference
 Part 1 task, graphs, targets and timing unchanged. Part 2: five graphs once per method (ARCOL/DARCOL), matched AR pair and tree. Six-second unmarked reference, 250ms blank, then the other static AR with red tree and four direction choices; 40s cap; no video. Correct original directions derived separately per method. Part 3: five paired DARCOL-only comparisons, 28 precomputed AR keyframes at 0.1 target-AR spacing with movement highlights versus direct endpoint interpolation, identical endpoints and 2s duration. Side order counterbalanced. Ordinary node interiors #848482; black borders and edges; blue movement highlights retained. No website grayscale filter. Old protocols remain readable but are not pooled with the new tasks/preferences.
+
+
+## Revision 28: visible structural-motion examples in Part 3
+Replace only the five preference graphs with small, valid dense sequences containing measured attached-tree turns of at least 80 degrees between endpoints. Selection uses graph geometry, not participant outcomes. Maintain 28 actual precomputed 0.1-AR keyframes, identical endpoints per animation pair, 2-second clips, original inputs and hashes, movement highlights and the established palette. Parts 1 and 2 are unchanged. Recorded web-demo generation profiles are retained per graph. The dashboard shows preferences for the current graph set; historical data remains in exports.

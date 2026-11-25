@@ -44,9 +44,9 @@ test('Part 1 mixes nine ARCOL and nine DARCOL trials without adjacent repeated g
  assert.equal(first.ARCOL,512);assert.equal(first.DARCOL,512);assert.equal(sequences.size,1024);
 });
 
-test('Parts 1 and 3 retain their graph pools while all trial counts stay fixed',()=>{
+test('Part 1 retains its graph pool while all trial counts stay fixed',()=>{
  const provenance=JSON.parse(readFileSync(new URL('../selection-provenance-v23.json',import.meta.url)));
- for(const part of ['part1','part3']){
+ for(const part of ['part1']){
   for(const g of provenance.restoredOriginalGroups[part])assert.ok(cfg[part].graphs.includes(g));
   assert.equal(cfg[part].graphs.length,provenance.restoredOriginalGroups[part].length+provenance.additions[part].length);
   for(const g of provenance.additions[part])assert.ok(cfg[part].graphs.includes(g));
