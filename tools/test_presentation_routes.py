@@ -27,5 +27,17 @@ class StudyPresentationTests(unittest.TestCase):
         self.assertEqual(audit['sharedPortDuplicates'],[])
         self.assertEqual(audit['nonorthogonalSegments'],0)
 
+    def test_tree_siblings_retain_a_common_branch_lane(self):
+        positions=[[0,0],[-100,0],[-100,-100],[0,-100],[100,0],[200,-40],[200,40]]
+        pairs=[(0,1),(1,2),(2,3),(3,0),(0,4),(4,5),(4,6)]
+        routes,audit=clean_routes(positions,[[30,30]]*7,pairs,
+            [[positions[u],positions[v]] for u,v in pairs],tree_structure=True)
+        self.assertEqual(audit['treeFanEdges'],2)
+        a,b=routes[-2:]
+        self.assertEqual(a[0][0],115)
+        self.assertEqual(b[0][0],115)
+        self.assertEqual(a[1][0],b[1][0])
+        self.assertNotEqual(a[0][1],b[0][1])
+
 
 if __name__=='__main__':unittest.main()

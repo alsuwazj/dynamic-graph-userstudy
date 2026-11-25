@@ -138,3 +138,7 @@ All active stills and animation endpoints recaptured in GraphCanvas with common 
 
 ## Part 2 revision 25: tree-direction recall
 Five small graphs with branched attached trees and unambiguous direction changes between AR 1:3 and 32:9. Each appears once per condition, using identical DARCOL endpoints and target tree. Six-second unmarked observation; two-second playback; target tree revealed only in the final drawing. Four direction choices: left, right, up, down. Forty-second response cap; response time starts after playback and target reveal. Keyframe animation retains movement highlights; baseline directly interpolates the same endpoints without highlights. No optimization during playback. Parts 1 and 3 and all timing/order rules remain unchanged. Earlier node-recovery scores are not pooled with direction accuracy.
+
+
+## Presentation revision 26
+Part 2 tree fans use rooted 2-core/tree decomposition rather than independent per-edge routing. The keyframe condition also interpolates actual GUI edge polylines between computed keyframes; the direct baseline keeps straight edge chords. Target trees appear only after the video ended event and a 350ms unmarked final hold. Answer timing starts at target reveal. All 120 frames of each clip checked: no encoded red target marks. Node geometry, tree targets, paired graph assignments, two-second playback and Parts 1/3 remain unchanged. Results hide legacy summaries while retaining stored data and exports; report correct/total and Part 3 preference counts and percentages.

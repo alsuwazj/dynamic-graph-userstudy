@@ -1,11 +1,12 @@
 {
-  "version": "tree-direction-v25",
+  "version": "tree-fans-reveal-v26",
   "placeholderNotice": "",
   "minWindowWidth": 900,
   "timing": {
     "part1ResponseMs": 50000,
     "part2MemorizeMs": 6000,
-    "part2ResponseMs": 40000
+    "part2ResponseMs": 40000,
+    "part2RevealDelayMs": 350
   },
   "graphs": [
     "grafo7366.35",

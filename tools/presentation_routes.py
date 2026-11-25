@@ -11,16 +11,33 @@ from darcol.routing.orthogonal_router import (
 )
 
 
-def clean_routes(positions, sizes, pairs, routes):
+def clean_routes(positions, sizes, pairs, routes, *, tree_structure=False):
     positions = np.asarray(positions, float)
     sizes = np.asarray(sizes, float)
     rects = [Rect(*p, *s, 0.) for p, s in zip(positions, sizes)]
     degree = np.bincount(np.asarray(pairs).ravel(), minlength=len(positions))
+    core = set(range(len(positions)))
+    if tree_structure:
+        adjacency = [set() for _ in positions]
+        for u,v in pairs:adjacency[u].add(v);adjacency[v].add(u)
+        queue = [n for n in core if len(adjacency[n]) < 2]
+        for n in queue:
+            if n not in core:continue
+            core.remove(n)
+            for v in adjacency[n]:
+                adjacency[v].discard(n)
+                if v in core and len(adjacency[v]) == 1:queue.append(v)
+    tree_flags = [tree_structure and (u not in core or v not in core) for u,v in pairs]
     records, _ = route_orthogonal_layout(
         positions, sizes, pairs, previous_routes=[np.asarray(r).tolist() for r in routes],
+        core_set=core if tree_structure else None,
         clearance=0.5, port_separation=6., separate_lines=True)
     removed = 0
     for rec in records:
+        # Tree siblings must share the router's parent/spawn-axis decision.
+        # Independent shortest-route choices destroy the visual branching fan.
+        if tree_flags[rec.edge_index]:
+            continue
         old = _compress(rec.points)
         # Preserve the chosen side for core edges. Degree-two chains and their
         # pivot connections may use a simpler, unobstructed side pair.
@@ -102,10 +119,11 @@ def clean_routes(positions, sizes, pairs, routes):
             shared_duplicates.append({'node': int(node), 'side': side})
     return [rec.points for rec in records], {'removedChainBends': removed, 'edges': len(records),
         'offCenterSingletons': off_center, 'sharedPortDuplicates': shared_duplicates,
-        'nodeIntersections': 0, 'nonorthogonalSegments': 0}
+        'nodeIntersections': 0, 'nonorthogonalSegments': 0,
+        'treeAware': tree_structure, 'treeFanEdges':sum(bool(r.fan) for r in records)}
 
 
-def install(canvas, path=None):
+def install(canvas, path=None, *, tree_structure=False):
     """Install derived sharp routes; GraphCanvas supplies the rounded ink."""
     from types import SimpleNamespace
     if path is not None:
@@ -120,7 +138,7 @@ def install(canvas, path=None):
         sizes = np.array([(n.w, n.h) for n in canvas.core_nodes])
         pairs = [(e.u, e.v) for e in canvas.core_edges]
         routes = [e.route for e in canvas.core_edges]
-    routes, audit = clean_routes(positions, sizes, pairs, routes)
+    routes, audit = clean_routes(positions, sizes, pairs, routes, tree_structure=tree_structure)
     for edge, route in zip(canvas.core_edges, routes):
         edge.route = route
         edge._darcol_explicit_route = route

@@ -1,0 +1,82 @@
+[
+  {
+    "graph": "grafo1479.48",
+    "condition": "animation",
+    "frames": 120,
+    "redTargetPixels": 0,
+    "peakBluePixels": 10344,
+    "durationMs": 2000
+  },
+  {
+    "graph": "grafo1479.48",
+    "condition": "baseline",
+    "frames": 120,
+    "redTargetPixels": 0,
+    "peakBluePixels": 0,
+    "durationMs": 2000
+  },
+  {
+    "graph": "grafo10940.39",
+    "condition": "animation",
+    "frames": 120,
+    "redTargetPixels": 0,
+    "peakBluePixels": 10784,
+    "durationMs": 2000
+  },
+  {
+    "graph": "grafo10940.39",
+    "condition": "baseline",
+    "frames": 120,
+    "redTargetPixels": 0,
+    "peakBluePixels": 0,
+    "durationMs": 2000
+  },
+  {
+    "graph": "grafo11512.38",
+    "condition": "animation",
+    "frames": 120,
+    "redTargetPixels": 0,
+    "peakBluePixels": 12276,
+    "durationMs": 2000
+  },
+  {
+    "graph": "grafo11512.38",
+    "condition": "baseline",
+    "frames": 120,
+    "redTargetPixels": 0,
+    "peakBluePixels": 0,
+    "durationMs": 2000
+  },
+  {
+    "graph": "grafo11660.34",
+    "condition": "animation",
+    "frames": 120,
+    "redTargetPixels": 0,
+    "peakBluePixels": 13080,
+    "durationMs": 2000
+  },
+  {
+    "graph": "grafo11660.34",
+    "condition": "baseline",
+    "frames": 120,
+    "redTargetPixels": 0,
+    "peakBluePixels": 0,
+    "durationMs": 2000
+  },
+  {
+    "graph": "grafo1952.26",
+    "condition": "animation",
+    "frames": 120,
+    "redTargetPixels": 0,
+    "peakBluePixels": 11660,
+    "durationMs": 2000
+  },
+  {
+    "graph": "grafo1952.26",
+    "condition": "baseline",
+    "frames": 120,
+    "redTargetPixels": 0,
+    "peakBluePixels": 0,
+    "durationMs": 2000
+  }
+]

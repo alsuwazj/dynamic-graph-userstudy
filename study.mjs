@@ -8,8 +8,8 @@
 // responses can then be downloaded on the last page.
 
 import { loadResponseService, allocateResponse, sendResponse } from './response-service.mjs';
-import { cropBox, drawingSvg, bindSelection, clearSelection, fitVideo } from './graph-view.mjs?v=tree-direction-v25';
-import { buildScreens, score } from './plan.mjs?v=tree-direction-v25';
+import { cropBox, drawingSvg, bindSelection, clearSelection, fitVideo } from './graph-view.mjs?v=tree-fans-reveal-v26';
+import { buildScreens, score } from './plan.mjs?v=tree-fans-reveal-v26';
 
 const $ = selector => document.querySelector(selector);
 const main = $('#main');
@@ -462,7 +462,13 @@ async function part2Question(screen) {
     stage.innerHTML='';stage.append(video);const place=()=>fitVideo(stage,video,graph.initial.viewBox,box);place();
     const observer=new ResizeObserver(place);observer.observe(stage);const old=trial.cleanup;trial.cleanup=()=>{observer.disconnect();old();};
     times.animationStart=performance.now();let finished=false;
-    video.onended=()=>{if(finished||activeTrial!==trial)return;finished=true;times.animationEnd=performance.now();observer.disconnect();respond();};
+    video.onended=()=>{
+      if(finished||activeTrial!==trial)return;finished=true;times.animationEnd=performance.now();observer.disconnect();video.pause();
+      $('#phase').textContent='Transition finished';$('#direction-prompt').textContent='The transition has finished.';
+      stage.innerHTML=drawingSvg(graph.darcol,{box,label:'Unmarked final drawing after playback'});
+      $('#direction-help').textContent='The question tree will appear next.';
+      trial.timers.add(setTimeout(()=>{if(activeTrial===trial)respond();},config.timing.part2RevealDelayMs));
+    };
     trial.timers.add(setTimeout(()=>{if(!finished&&activeTrial===trial)technicalProblem(screen,'The animation did not finish playing.');},movie.durationMs+8000));
     video.currentTime=0;video.play().catch(()=>technicalProblem(screen,'The animation could not be played.'));
   }
@@ -480,7 +486,7 @@ async function part2Question(screen) {
         treeNodes:[...tree.nodes],treeAttachment:tree.attachment,selected:[],selectedDirection,
         correctDirection:tree.correctDirection,finalDirection:tree.finalDirection,correct:!timeout&&selectedDirection===tree.correctDirection,f1:null,
         timeout,responseMs:t-times.responseStart,memorizeMs:times.animationStart-times.memorizeStart,
-        animationMs:times.animationEnd-times.animationStart,totalMs:t-times.memorizeStart,
+        animationMs:times.animationEnd-times.animationStart,finalHoldMs:times.responseStart-times.animationEnd,totalMs:t-times.memorizeStart,
         shownAt:times.startedAt,answeredAt:nowIso(),...trial.flags});
       logEvent('answer',{position:session.position,taskType:'tree-direction'});save();next();
     };
