@@ -170,3 +170,7 @@ Wien highlights both complete pendant chains incident to shared core root 7, plu
 
 ## Revision 32: requested preference examples and larger symbols
 Part 3 uses Wien, grafo2069.32, grafo2774.26, Sydney and grafo2519.37. Parts 1 and 2 unchanged; Sydney is not in Part 2. Larger node symbols target 16 native pixels, limited to 82% of the closest center spacing to avoid merging neighboring symbols. Identical rule in paired conditions; actual DARCOL positions and routes unchanged. Paired videos use more available page width (up to 1700px). Keep 28 actual AR keyframes and two-second clips. Old versions remain supported.
+
+
+## Revision 33: equal Sydney symbols
+Sydney uses one symbol size per frame, shared by both paired animations, limited by the smallest inter-node spacing. It no longer shrinks individual nodes differently. Wien and all other graphs unchanged. Part 2 audit: all ten selected targets change cardinal direction; correct earlier direction never equals visible final direction. Additional test enforces that target-selection rule for both methods.
