@@ -1,0 +1,41 @@
+{
+  "restoredFromCommit": "8194ae9",
+  "restoredOriginalGroups": {
+    "part1": [
+      "grafo7366.35",
+      "grafo2735.36",
+      "grafo11348.35",
+      "grafo3074.26",
+      "grafo4165.61",
+      "grafo3529.42",
+      "grafo5838.35",
+      "grafo5559.61",
+      "grafo1141.47"
+    ],
+    "part2": [
+      "grafo445.22",
+      "grafo11548.35",
+      "grafo2519.37",
+      "grafo7570.40",
+      "grafo2869.37"
+    ],
+    "part3": [
+      "grafo1244.26",
+      "grafo4085.35",
+      "grafo2708.39",
+      "grafo3181.55",
+      "grafo1529.73"
+    ]
+  },
+  "additions": {
+    "part1": [],
+    "part2": [],
+    "part3": []
+  },
+  "counts": [
+    18,
+    10,
+    5
+  ],
+  "note": "Only the original Rome graph pool is active. Wien and Sydney are excluded. All earlier sessions retain their original protocol."
+}

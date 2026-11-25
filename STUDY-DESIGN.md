@@ -126,3 +126,7 @@ Both conditions use DARCOL endpoint layouts, with identical four-node memorizati
 
 ## Version 22: clearer Wien targets and two-second playback
 Wien Part 1 targets 33,34,35,36 form a straight, low-branching four-node core path in both methods, replacing the difficult central junction target. The IDs are identical across ARCOL and DARCOL. All Part 2 and Part 3 clips are shortened equally to two seconds, with 120 uniformly selected frames at 60 fps, preserving the first and last frames. Memorization remains six seconds; response caps remain 50/40 seconds. The Part 2 keyframe-animation versus plain-baseline comparison is unchanged apart from playback speed. Previous sessions retain their original scoring/version.
+
+
+## Version 23: remove Wien
+Wien is removed from the active study. The original nine Rome cases remain in Part 1 (18 mixed trials). Part 2 keeps five Rome graphs, ten mixed DARCOL animation/baseline trials; Part 3 keeps five preference comparisons. Total 33 trials. All clips remain two seconds, memory six seconds, response caps 50/40 seconds. No previous results or historical stimulus files are deleted.

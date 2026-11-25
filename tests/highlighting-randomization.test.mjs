@@ -7,7 +7,7 @@ const manifest=JSON.parse(readFileSync(new URL('../stimuli.json',import.meta.url
 test('all participants see identical trials while graph, method and condition order vary',()=>{
  const orders=new Set(),methods=new Set(),conditions=new Set();
  for(let seed=0;seed<256;seed++){
-  const built=buildScreens(cfg,seed),qs=built.screens.filter(q=>/^part[123]$/.test(q.type));assert.equal(qs.length,35);
+  const built=buildScreens(cfg,seed),qs=built.screens.filter(q=>/^part[123]$/.test(q.type));assert.equal(qs.length,33);
   orders.add(qs.map(q=>q.graph).join(','));methods.add(built.methodOrder.join(','));conditions.add(built.conditionOrder.join(','));
   for(let i=1;i<qs.length;i++)assert.notEqual(qs[i-1].graph,qs[i].graph);
   for(const graph of cfg.part2.graphs){const pair=qs.filter(q=>q.type==='part2'&&q.graph===graph);assert.equal(pair.length,2);assert.deepEqual(new Set(pair.map(q=>q.condition)),new Set(['animation','baseline']));assert.deepEqual(pair[0].target,pair[1].target);}
@@ -45,11 +45,11 @@ test('Part 2 includes strong tall/wide transitions rather than mild aspect-ratio
  assert.ok(opposite>=2);
 });
 
-test('Part 1 mixes ten ARCOL and ten DARCOL trials without adjacent repeated graphs',()=>{
+test('Part 1 mixes nine ARCOL and nine DARCOL trials without adjacent repeated graphs',()=>{
  const sequences=new Set(),first={ARCOL:0,DARCOL:0};
  for(let seed=0;seed<1024;seed++){
-  const q=buildScreens(cfg,seed).screens.filter(q=>q.type==='part1');assert.equal(q.length,20);first[q[0].method]++;sequences.add(q.map(q=>q.graph+':'+q.method).join(','));
-  for(const method of ['ARCOL','DARCOL'])assert.equal(q.filter(q=>q.method===method).length,10);
+  const q=buildScreens(cfg,seed).screens.filter(q=>q.type==='part1');assert.equal(q.length,18);first[q[0].method]++;sequences.add(q.map(q=>q.graph+':'+q.method).join(','));
+  for(const method of ['ARCOL','DARCOL'])assert.equal(q.filter(q=>q.method===method).length,9);
   for(let i=1;i<q.length;i++)assert.notEqual(q[i].graph,q[i-1].graph);
   for(let i=3;i<q.length;i++)assert.ok(!q.slice(i-3,i+1).every(p=>p.method===q[i].method));
   for(const graph of cfg.part1.graphs){const pair=q.filter(q=>q.graph===graph);assert.equal(pair.length,2);assert.notEqual(pair[0].method,pair[1].method);assert.deepEqual(pair[0].target,pair[1].target);}
@@ -62,24 +62,21 @@ test('Part 3 highlights structural landmarks only in DARCOL, with equal paired t
  for(const pair of manifest.comparisons){assert.equal(pair.ARCOL.animation,'linear-screen-space');assert.ok(pair.DARCOL.highlightNodes.length>0);assert.equal(pair.DARCOL.highlighting,'structural');assert.equal(pair.DARCOL.durationMs,2000);assert.equal(pair.ARCOL.durationMs,2000);}
 });
 
-test('all previous graphs remain with Wien only in Part 1',()=>{
- const provenance=JSON.parse(readFileSync(new URL('../selection-provenance-v20.json',import.meta.url)));
+test('all original Rome graphs remain without the real-graph additions',()=>{
+ const provenance=JSON.parse(readFileSync(new URL('../selection-provenance-v23.json',import.meta.url)));
  for(const part of ['part1','part2','part3']){
   for(const g of provenance.restoredOriginalGroups[part])assert.ok(cfg[part].graphs.includes(g));
   assert.equal(cfg[part].graphs.length,provenance.restoredOriginalGroups[part].length+provenance.additions[part].length);
   for(const g of provenance.additions[part])assert.ok(cfg[part].graphs.includes(g));
  }
- assert.equal(new Set(manifest.items.map(i=>i.sourceGraph)).size,20);
+ assert.equal(new Set(manifest.items.map(i=>i.sourceGraph)).size,19);
  for(let seed=0;seed<256;seed++){
-  const q=buildScreens(cfg,seed).screens.filter(q=>/^part[123]$/.test(q.type));assert.deepEqual([1,2,3].map(p=>q.filter(q=>q.type==='part'+p).length),[20,10,5]);
+  const q=buildScreens(cfg,seed).screens.filter(q=>/^part[123]$/.test(q.type));assert.deepEqual([1,2,3].map(p=>q.filter(q=>q.type==='part'+p).length),[18,10,5]);
   for(let i=1;i<q.length;i++)assert.notEqual(cfg.graphFamilies[q[i].graph],cfg.graphFamilies[q[i-1].graph]);
  }
 });
 
-test('Wien uses a straight connected four-node core path in both methods',()=>{
- const target=cfg.part1.targets['wien-kurz-square-tall'];assert.deepEqual(target,[33,34,35,36]);const item=manifest.items.find(i=>i.graphId==='wien-kurz-square-tall');
- for(let j=1;j<target.length;j++)assert.ok(item.edges.some(([u,v])=>(u===target[j-1]&&v===target[j])||(v===target[j-1]&&u===target[j])));
- for(const key of ['initialA','initialB','finalA','finalB']){const a=item.original[key];const points=target.map(id=>{const b=a.hitboxes.find(b=>b.id===id);return [b.x+b.width/2,b.y+b.height/2];});const xs=points.map(p=>p[0]),ys=points.map(p=>p[1]);assert.ok(Math.max(...xs)-Math.min(...xs)<2||Math.max(...ys)-Math.min(...ys)<2);}
+test('Wien and Sydney are absent from the active pool',()=>{
+ assert.ok(manifest.items.every(i=>!['sydney','wien-kurz'].includes(i.sourceGraphId)&&!i.graphId.includes('sydney')&&!i.graphId.includes('wien')));
+ assert.deepEqual([cfg.part1.graphs.length,cfg.part2.graphs.length,cfg.part3.graphs.length],[9,5,5]);
 });
-
-test('Sydney is absent from the active study',()=>{assert.ok(manifest.items.every(i=>i.sourceGraphId!=='sydney'&&!i.graphId.includes('sydney')));assert.equal(cfg.part2.graphs.length,5);assert.ok(cfg.part1.graphs.includes('wien-kurz-square-tall'));});
