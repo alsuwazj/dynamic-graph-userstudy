@@ -58,7 +58,7 @@ test('Part 1 retains its graph pool while all trial counts stay fixed',()=>{
  }
 });
 
-test('Wien and Sydney appear in Part 2 only',()=>{
- for(const g of ['sydney','wien-kurz']){assert.ok(cfg.part2.graphs.includes(g));assert.ok(!cfg.part1.graphs.includes(g));assert.ok(!cfg.part3.graphs.includes(g));}
+test('Wien remains in Part 2 and Sydney is excluded',()=>{
+ assert.ok(!cfg.graphs.includes('sydney'));for(const g of ['wien-kurz']){assert.ok(cfg.part2.graphs.includes(g));assert.ok(!cfg.part1.graphs.includes(g));assert.ok(!cfg.part3.graphs.includes(g));}
  assert.deepEqual([cfg.part1.graphs.length,cfg.part2.graphs.length,cfg.part3.graphs.length],[9,5,5]);
 });

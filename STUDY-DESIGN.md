@@ -158,3 +158,7 @@ Replace only the five preference graphs with small, valid dense sequences contai
 
 ## Revision 29: gallery preference examples and two real tree examples
 Part 1 unchanged. Part 2 replaces grafo1479.48 and grafo10940.39 with Sydney and Wien from the original Real_HOLA sources; retain five graphs, ten static trials and timing. Trees matched across methods with independently checked directions. Part 3 uses five selected-gallery graphs with 32–37 nodes rather than the small chain examples. Keep 28 computed AR keyframes at 0.1 steps, paired DARCOL endpoints and two-second clips. Source geometry preserved, no exaggerated motion. Selection is curated, not based on participant responses; historical protocol versions remain readable.
+
+
+## Revision 30: remove Sydney
+Restore the previously validated grafo10940.39 in Part 2 because Sydney appears too small. Retain Wien, five Part 2 graphs, ten trials, matched tree targets and existing timing. Parts 1 and 3 unchanged. Historical results remain readable.

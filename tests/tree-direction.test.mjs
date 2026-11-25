@@ -28,5 +28,5 @@ test('Part 3 uses branching medium-sized examples from the selected gallery',()=
  const gallery=JSON.parse(readFileSync(new URL('../selection-gallery-v29.json',import.meta.url)));
  assert.equal(cfg.part3.graphs.length,5);
  for(const g of cfg.part3.graphs){assert.ok(gallery.graphs.includes(g));const i=m.items.find(i=>i.graphId===g);assert.ok(i.original.initial.hitboxes.length>=30);assert.ok(i.original.initial.hitboxes.length<=50);const degree=new Map();for(const [u,v] of i.edges){degree.set(u,(degree.get(u)||0)+1);degree.set(v,(degree.get(v)||0)+1);}assert.ok([...degree.values()].filter(n=>n>=3).length>=3,g);}
- assert.ok(cfg.part2.graphs.includes('sydney'));assert.ok(cfg.part2.graphs.includes('wien-kurz'));
+ assert.ok(!cfg.graphs.includes('sydney'));assert.ok(cfg.part2.graphs.includes('grafo10940.39'));assert.ok(cfg.part2.graphs.includes('wien-kurz'));
 });
