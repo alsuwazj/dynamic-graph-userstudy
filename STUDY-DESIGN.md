@@ -130,3 +130,7 @@ Wien Part 1 targets 33,34,35,36 form a straight, low-branching four-node core pa
 
 ## Version 23: remove Wien
 Wien is removed from the active study. The original nine Rome cases remain in Part 1 (18 mixed trials). Part 2 keeps five Rome graphs, ten mixed DARCOL animation/baseline trials; Part 3 keeps five preference comparisons. Total 33 trials. All clips remain two seconds, memory six seconds, response caps 50/40 seconds. No previous results or historical stimulus files are deleted.
+
+
+## Presentation revision 24
+All active stills and animation endpoints recaptured in GraphCanvas with common presentation-only routing. Single ports centered, shared sides offset, safe chain shortcuts and consistent 1px ink/10 SVG-unit rounded corners. Both methods receive identical cleanup rules. Node geometry, target IDs, graph pools, ordering rules, timers and animation definitions are unchanged. Archived source SVG/NPZ files are not modified. Earlier protocol scoring remains available.

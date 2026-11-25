@@ -1,0 +1,16 @@
+{
+  "ARCOL": {
+    "url": "media/routes-v24/grafo2708.39-arcol.mp4",
+    "durationMs": 2000,
+    "videoSha256": "31f9643c130fa0af1a294d1001228bc8a118089a28aa0d1d4ab294c5cf58ad7c",
+    "sha256": "31f9643c130fa0af1a294d1001228bc8a118089a28aa0d1d4ab294c5cf58ad7c",
+    "presentationRevision": 24
+  },
+  "DARCOL": {
+    "url": "media/routes-v24/grafo2708.39-darcol.mp4",
+    "durationMs": 2000,
+    "videoSha256": "20db61f6f2a85888cc2ead319291fe8746998fb9ce53383d192874d7769c5e95",
+    "sha256": "20db61f6f2a85888cc2ead319291fe8746998fb9ce53383d192874d7769c5e95",
+    "presentationRevision": 24
+  }
+}

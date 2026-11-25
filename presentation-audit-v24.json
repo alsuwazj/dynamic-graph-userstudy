@@ -1,0 +1,659 @@
+[
+  {
+    "path": "C:\\Users\\alsuwazj\\PycharmProjects\\dynamicAR\\output\\rome_default_vs_arcol_20261119\\full\\graphs\\grafo11348.35\\arcol\\layouts\\AR1p33.npz",
+    "removedChainBends": 0,
+    "edges": 46,
+    "offCenterSingletons": [],
+    "sharedPortDuplicates": [],
+    "nodeIntersections": 0,
+    "nonorthogonalSegments": 0
+  },
+  {
+    "path": "C:\\Users\\alsuwazj\\PycharmProjects\\dynamicAR\\output\\rome_default_vs_arcol_20261119\\full\\graphs\\grafo11348.35\\darcol\\layouts\\AR1p33.npz",
+    "removedChainBends": 2,
+    "edges": 46,
+    "offCenterSingletons": [],
+    "sharedPortDuplicates": [],
+    "nodeIntersections": 0,
+    "nonorthogonalSegments": 0
+  },
+  {
+    "path": "C:\\Users\\alsuwazj\\PycharmProjects\\dynamicAR\\output\\rome_default_vs_arcol_20261119\\full\\graphs\\grafo1141.47\\arcol\\layouts\\AR1p00.npz",
+    "removedChainBends": 2,
+    "edges": 59,
+    "offCenterSingletons": [],
+    "sharedPortDuplicates": [],
+    "nodeIntersections": 0,
+    "nonorthogonalSegments": 0
+  },
+  {
+    "path": "C:\\Users\\alsuwazj\\PycharmProjects\\dynamicAR\\output\\rome_default_vs_arcol_20261119\\full\\graphs\\grafo1141.47\\arcol\\layouts\\AR2p33.npz",
+    "removedChainBends": 2,
+    "edges": 59,
+    "offCenterSingletons": [],
+    "sharedPortDuplicates": [],
+    "nodeIntersections": 0,
+    "nonorthogonalSegments": 0
+  },
+  {
+    "path": "C:\\Users\\alsuwazj\\PycharmProjects\\dynamicAR\\output\\rome_default_vs_arcol_20261119\\full\\graphs\\grafo1141.47\\darcol\\layouts\\AR1p00.npz",
+    "removedChainBends": 3,
+    "edges": 59,
+    "offCenterSingletons": [],
+    "sharedPortDuplicates": [],
+    "nodeIntersections": 0,
+    "nonorthogonalSegments": 0
+  },
+  {
+    "path": "C:\\Users\\alsuwazj\\PycharmProjects\\dynamicAR\\output\\rome_default_vs_arcol_20261119\\full\\graphs\\grafo1141.47\\darcol\\layouts\\AR2p33.npz",
+    "removedChainBends": 1,
+    "edges": 59,
+    "offCenterSingletons": [],
+    "sharedPortDuplicates": [],
+    "nodeIntersections": 0,
+    "nonorthogonalSegments": 0
+  },
+  {
+    "path": "C:\\Users\\alsuwazj\\PycharmProjects\\dynamicAR\\output\\rome_default_vs_arcol_20261119\\full\\graphs\\grafo11548.35\\darcol\\layouts\\AR1p00.npz",
+    "removedChainBends": 0,
+    "edges": 46,
+    "offCenterSingletons": [],
+    "sharedPortDuplicates": [],
+    "nodeIntersections": 0,
+    "nonorthogonalSegments": 0
+  },
+  {
+    "path": "C:\\Users\\alsuwazj\\PycharmProjects\\dynamicAR\\output\\rome_default_vs_arcol_20261119\\full\\graphs\\grafo11548.35\\darcol\\layouts\\AR1p33.npz",
+    "removedChainBends": 2,
+    "edges": 46,
+    "offCenterSingletons": [],
+    "sharedPortDuplicates": [],
+    "nodeIntersections": 0,
+    "nonorthogonalSegments": 0
+  },
+  {
+    "path": "C:\\Users\\alsuwazj\\PycharmProjects\\dynamicAR\\output\\rome_default_vs_arcol_20261119\\full\\graphs\\grafo11548.35\\darcol\\layouts\\AR1p78.npz",
+    "removedChainBends": 2,
+    "edges": 46,
+    "offCenterSingletons": [],
+    "sharedPortDuplicates": [],
+    "nodeIntersections": 0,
+    "nonorthogonalSegments": 0
+  },
+  {
+    "path": "C:\\Users\\alsuwazj\\PycharmProjects\\dynamicAR\\output\\rome_default_vs_arcol_20261119\\full\\graphs\\grafo11548.35\\darcol\\layouts\\AR2p33.npz",
+    "removedChainBends": 2,
+    "edges": 46,
+    "offCenterSingletons": [],
+    "sharedPortDuplicates": [],
+    "nodeIntersections": 0,
+    "nonorthogonalSegments": 0
+  },
+  {
+    "path": "C:\\Users\\alsuwazj\\PycharmProjects\\dynamicAR\\output\\rome_default_vs_arcol_20261119\\full\\graphs\\grafo11548.35\\darcol\\layouts\\AR3p56.npz",
+    "removedChainBends": 2,
+    "edges": 46,
+    "offCenterSingletons": [],
+    "sharedPortDuplicates": [],
+    "nodeIntersections": 0,
+    "nonorthogonalSegments": 0
+  },
+  {
+    "path": "C:\\Users\\alsuwazj\\PycharmProjects\\dynamicAR\\output\\rome_default_vs_arcol_20261119\\full\\graphs\\grafo1244.26\\arcol\\layouts\\AR0p56.npz",
+    "removedChainBends": 1,
+    "edges": 28,
+    "offCenterSingletons": [],
+    "sharedPortDuplicates": [],
+    "nodeIntersections": 0,
+    "nonorthogonalSegments": 0
+  },
+  {
+    "path": "C:\\Users\\alsuwazj\\PycharmProjects\\dynamicAR\\output\\rome_default_vs_arcol_20261119\\full\\graphs\\grafo1244.26\\arcol\\layouts\\AR1p00.npz",
+    "removedChainBends": 0,
+    "edges": 28,
+    "offCenterSingletons": [],
+    "sharedPortDuplicates": [],
+    "nodeIntersections": 0,
+    "nonorthogonalSegments": 0
+  },
+  {
+    "path": "C:\\Users\\alsuwazj\\PycharmProjects\\dynamicAR\\output\\rome_default_vs_arcol_20261119\\full\\graphs\\grafo1244.26\\darcol\\layouts\\AR0p56.npz",
+    "removedChainBends": 1,
+    "edges": 28,
+    "offCenterSingletons": [],
+    "sharedPortDuplicates": [],
+    "nodeIntersections": 0,
+    "nonorthogonalSegments": 0
+  },
+  {
+    "path": "C:\\Users\\alsuwazj\\PycharmProjects\\dynamicAR\\output\\rome_default_vs_arcol_20261119\\full\\graphs\\grafo1244.26\\darcol\\layouts\\AR1p00.npz",
+    "removedChainBends": 1,
+    "edges": 28,
+    "offCenterSingletons": [],
+    "sharedPortDuplicates": [],
+    "nodeIntersections": 0,
+    "nonorthogonalSegments": 0
+  },
+  {
+    "path": "C:\\Users\\alsuwazj\\PycharmProjects\\dynamicAR\\output\\rome_default_vs_arcol_20261119\\full\\graphs\\grafo1529.73\\arcol\\layouts\\AR0p56.npz",
+    "removedChainBends": 3,
+    "edges": 90,
+    "offCenterSingletons": [],
+    "sharedPortDuplicates": [],
+    "nodeIntersections": 0,
+    "nonorthogonalSegments": 0
+  },
+  {
+    "path": "C:\\Users\\alsuwazj\\PycharmProjects\\dynamicAR\\output\\rome_default_vs_arcol_20261119\\full\\graphs\\grafo1529.73\\arcol\\layouts\\AR1p00.npz",
+    "removedChainBends": 0,
+    "edges": 90,
+    "offCenterSingletons": [],
+    "sharedPortDuplicates": [],
+    "nodeIntersections": 0,
+    "nonorthogonalSegments": 0
+  },
+  {
+    "path": "C:\\Users\\alsuwazj\\PycharmProjects\\dynamicAR\\output\\rome_default_vs_arcol_20261119\\full\\graphs\\grafo1529.73\\darcol\\layouts\\AR0p56.npz",
+    "removedChainBends": 7,
+    "edges": 90,
+    "offCenterSingletons": [],
+    "sharedPortDuplicates": [],
+    "nodeIntersections": 0,
+    "nonorthogonalSegments": 0
+  },
+  {
+    "path": "C:\\Users\\alsuwazj\\PycharmProjects\\dynamicAR\\output\\rome_default_vs_arcol_20261119\\full\\graphs\\grafo1529.73\\darcol\\layouts\\AR1p00.npz",
+    "removedChainBends": 7,
+    "edges": 90,
+    "offCenterSingletons": [],
+    "sharedPortDuplicates": [],
+    "nodeIntersections": 0,
+    "nonorthogonalSegments": 0
+  },
+  {
+    "path": "C:\\Users\\alsuwazj\\PycharmProjects\\dynamicAR\\output\\rome_default_vs_arcol_20261119\\full\\graphs\\grafo2519.37\\darcol\\layouts\\AR0p33.npz",
+    "removedChainBends": 3,
+    "edges": 40,
+    "offCenterSingletons": [],
+    "sharedPortDuplicates": [],
+    "nodeIntersections": 0,
+    "nonorthogonalSegments": 0
+  },
+  {
+    "path": "C:\\Users\\alsuwazj\\PycharmProjects\\dynamicAR\\output\\rome_default_vs_arcol_20261119\\full\\graphs\\grafo2519.37\\darcol\\layouts\\AR0p56.npz",
+    "removedChainBends": 4,
+    "edges": 40,
+    "offCenterSingletons": [],
+    "sharedPortDuplicates": [],
+    "nodeIntersections": 0,
+    "nonorthogonalSegments": 0
+  },
+  {
+    "path": "C:\\Users\\alsuwazj\\PycharmProjects\\dynamicAR\\output\\rome_default_vs_arcol_20261119\\full\\graphs\\grafo2519.37\\darcol\\layouts\\AR1p00.npz",
+    "removedChainBends": 4,
+    "edges": 40,
+    "offCenterSingletons": [],
+    "sharedPortDuplicates": [],
+    "nodeIntersections": 0,
+    "nonorthogonalSegments": 0
+  },
+  {
+    "path": "C:\\Users\\alsuwazj\\PycharmProjects\\dynamicAR\\output\\rome_default_vs_arcol_20261119\\full\\graphs\\grafo2519.37\\darcol\\layouts\\AR1p33.npz",
+    "removedChainBends": 4,
+    "edges": 40,
+    "offCenterSingletons": [],
+    "sharedPortDuplicates": [],
+    "nodeIntersections": 0,
+    "nonorthogonalSegments": 0
+  },
+  {
+    "path": "C:\\Users\\alsuwazj\\PycharmProjects\\dynamicAR\\output\\rome_default_vs_arcol_20261119\\full\\graphs\\grafo2519.37\\darcol\\layouts\\AR1p78.npz",
+    "removedChainBends": 4,
+    "edges": 40,
+    "offCenterSingletons": [],
+    "sharedPortDuplicates": [],
+    "nodeIntersections": 0,
+    "nonorthogonalSegments": 0
+  },
+  {
+    "path": "C:\\Users\\alsuwazj\\PycharmProjects\\dynamicAR\\output\\rome_default_vs_arcol_20261119\\full\\graphs\\grafo2519.37\\darcol\\layouts\\AR2p33.npz",
+    "removedChainBends": 4,
+    "edges": 40,
+    "offCenterSingletons": [],
+    "sharedPortDuplicates": [],
+    "nodeIntersections": 0,
+    "nonorthogonalSegments": 0
+  },
+  {
+    "path": "C:\\Users\\alsuwazj\\PycharmProjects\\dynamicAR\\output\\rome_default_vs_arcol_20261119\\full\\graphs\\grafo2519.37\\darcol\\layouts\\AR3p56.npz",
+    "removedChainBends": 4,
+    "edges": 40,
+    "offCenterSingletons": [],
+    "sharedPortDuplicates": [],
+    "nodeIntersections": 0,
+    "nonorthogonalSegments": 0
+  },
+  {
+    "path": "C:\\Users\\alsuwazj\\PycharmProjects\\dynamicAR\\output\\rome_default_vs_arcol_20261119\\full\\graphs\\grafo2708.39\\arcol\\layouts\\AR1p00.npz",
+    "removedChainBends": 0,
+    "edges": 48,
+    "offCenterSingletons": [],
+    "sharedPortDuplicates": [],
+    "nodeIntersections": 0,
+    "nonorthogonalSegments": 0
+  },
+  {
+    "path": "C:\\Users\\alsuwazj\\PycharmProjects\\dynamicAR\\output\\rome_default_vs_arcol_20261119\\full\\graphs\\grafo2708.39\\arcol\\layouts\\AR1p33.npz",
+    "removedChainBends": 0,
+    "edges": 48,
+    "offCenterSingletons": [],
+    "sharedPortDuplicates": [],
+    "nodeIntersections": 0,
+    "nonorthogonalSegments": 0
+  },
+  {
+    "path": "C:\\Users\\alsuwazj\\PycharmProjects\\dynamicAR\\output\\rome_default_vs_arcol_20261119\\full\\graphs\\grafo2708.39\\darcol\\layouts\\AR1p00.npz",
+    "removedChainBends": 6,
+    "edges": 48,
+    "offCenterSingletons": [],
+    "sharedPortDuplicates": [],
+    "nodeIntersections": 0,
+    "nonorthogonalSegments": 0
+  },
+  {
+    "path": "C:\\Users\\alsuwazj\\PycharmProjects\\dynamicAR\\output\\rome_default_vs_arcol_20261119\\full\\graphs\\grafo2708.39\\darcol\\layouts\\AR1p33.npz",
+    "removedChainBends": 8,
+    "edges": 48,
+    "offCenterSingletons": [],
+    "sharedPortDuplicates": [],
+    "nodeIntersections": 0,
+    "nonorthogonalSegments": 0
+  },
+  {
+    "path": "C:\\Users\\alsuwazj\\PycharmProjects\\dynamicAR\\output\\rome_default_vs_arcol_20261119\\full\\graphs\\grafo2735.36\\arcol\\layouts\\AR0p56.npz",
+    "removedChainBends": 0,
+    "edges": 45,
+    "offCenterSingletons": [],
+    "sharedPortDuplicates": [],
+    "nodeIntersections": 0,
+    "nonorthogonalSegments": 0
+  },
+  {
+    "path": "C:\\Users\\alsuwazj\\PycharmProjects\\dynamicAR\\output\\rome_default_vs_arcol_20261119\\full\\graphs\\grafo2735.36\\arcol\\layouts\\AR1p33.npz",
+    "removedChainBends": 1,
+    "edges": 45,
+    "offCenterSingletons": [],
+    "sharedPortDuplicates": [],
+    "nodeIntersections": 0,
+    "nonorthogonalSegments": 0
+  },
+  {
+    "path": "C:\\Users\\alsuwazj\\PycharmProjects\\dynamicAR\\output\\rome_default_vs_arcol_20261119\\full\\graphs\\grafo2735.36\\darcol\\layouts\\AR0p56.npz",
+    "removedChainBends": 8,
+    "edges": 45,
+    "offCenterSingletons": [],
+    "sharedPortDuplicates": [],
+    "nodeIntersections": 0,
+    "nonorthogonalSegments": 0
+  },
+  {
+    "path": "C:\\Users\\alsuwazj\\PycharmProjects\\dynamicAR\\output\\rome_default_vs_arcol_20261119\\full\\graphs\\grafo2735.36\\darcol\\layouts\\AR1p33.npz",
+    "removedChainBends": 2,
+    "edges": 45,
+    "offCenterSingletons": [],
+    "sharedPortDuplicates": [],
+    "nodeIntersections": 0,
+    "nonorthogonalSegments": 0
+  },
+  {
+    "path": "C:\\Users\\alsuwazj\\PycharmProjects\\dynamicAR\\output\\rome_default_vs_arcol_20261119\\full\\graphs\\grafo2869.37\\darcol\\layouts\\AR0p33.npz",
+    "removedChainBends": 5,
+    "edges": 41,
+    "offCenterSingletons": [],
+    "sharedPortDuplicates": [],
+    "nodeIntersections": 0,
+    "nonorthogonalSegments": 0
+  },
+  {
+    "path": "C:\\Users\\alsuwazj\\PycharmProjects\\dynamicAR\\output\\rome_default_vs_arcol_20261119\\full\\graphs\\grafo2869.37\\darcol\\layouts\\AR0p56.npz",
+    "removedChainBends": 2,
+    "edges": 41,
+    "offCenterSingletons": [],
+    "sharedPortDuplicates": [],
+    "nodeIntersections": 0,
+    "nonorthogonalSegments": 0
+  },
+  {
+    "path": "C:\\Users\\alsuwazj\\PycharmProjects\\dynamicAR\\output\\rome_default_vs_arcol_20261119\\full\\graphs\\grafo2869.37\\darcol\\layouts\\AR1p00.npz",
+    "removedChainBends": 2,
+    "edges": 41,
+    "offCenterSingletons": [],
+    "sharedPortDuplicates": [],
+    "nodeIntersections": 0,
+    "nonorthogonalSegments": 0
+  },
+  {
+    "path": "C:\\Users\\alsuwazj\\PycharmProjects\\dynamicAR\\output\\rome_default_vs_arcol_20261119\\full\\graphs\\grafo3074.26\\arcol\\layouts\\AR1p00.npz",
+    "removedChainBends": 1,
+    "edges": 37,
+    "offCenterSingletons": [],
+    "sharedPortDuplicates": [],
+    "nodeIntersections": 0,
+    "nonorthogonalSegments": 0
+  },
+  {
+    "path": "C:\\Users\\alsuwazj\\PycharmProjects\\dynamicAR\\output\\rome_default_vs_arcol_20261119\\full\\graphs\\grafo3074.26\\arcol\\layouts\\AR1p78.npz",
+    "removedChainBends": 0,
+    "edges": 37,
+    "offCenterSingletons": [],
+    "sharedPortDuplicates": [],
+    "nodeIntersections": 0,
+    "nonorthogonalSegments": 0
+  },
+  {
+    "path": "C:\\Users\\alsuwazj\\PycharmProjects\\dynamicAR\\output\\rome_default_vs_arcol_20261119\\full\\graphs\\grafo3074.26\\darcol\\layouts\\AR1p00.npz",
+    "removedChainBends": 0,
+    "edges": 37,
+    "offCenterSingletons": [],
+    "sharedPortDuplicates": [],
+    "nodeIntersections": 0,
+    "nonorthogonalSegments": 0
+  },
+  {
+    "path": "C:\\Users\\alsuwazj\\PycharmProjects\\dynamicAR\\output\\rome_default_vs_arcol_20261119\\full\\graphs\\grafo3074.26\\darcol\\layouts\\AR1p78.npz",
+    "removedChainBends": 4,
+    "edges": 37,
+    "offCenterSingletons": [],
+    "sharedPortDuplicates": [],
+    "nodeIntersections": 0,
+    "nonorthogonalSegments": 0
+  },
+  {
+    "path": "C:\\Users\\alsuwazj\\PycharmProjects\\dynamicAR\\output\\rome_default_vs_arcol_20261119\\full\\graphs\\grafo3181.55\\arcol\\layouts\\AR1p00.npz",
+    "removedChainBends": 5,
+    "edges": 77,
+    "offCenterSingletons": [],
+    "sharedPortDuplicates": [],
+    "nodeIntersections": 0,
+    "nonorthogonalSegments": 0
+  },
+  {
+    "path": "C:\\Users\\alsuwazj\\PycharmProjects\\dynamicAR\\output\\rome_default_vs_arcol_20261119\\full\\graphs\\grafo3181.55\\arcol\\layouts\\AR1p33.npz",
+    "removedChainBends": 5,
+    "edges": 77,
+    "offCenterSingletons": [],
+    "sharedPortDuplicates": [],
+    "nodeIntersections": 0,
+    "nonorthogonalSegments": 0
+  },
+  {
+    "path": "C:\\Users\\alsuwazj\\PycharmProjects\\dynamicAR\\output\\rome_default_vs_arcol_20261119\\full\\graphs\\grafo3181.55\\darcol\\layouts\\AR1p00.npz",
+    "removedChainBends": 13,
+    "edges": 77,
+    "offCenterSingletons": [],
+    "sharedPortDuplicates": [],
+    "nodeIntersections": 0,
+    "nonorthogonalSegments": 0
+  },
+  {
+    "path": "C:\\Users\\alsuwazj\\PycharmProjects\\dynamicAR\\output\\rome_default_vs_arcol_20261119\\full\\graphs\\grafo3181.55\\darcol\\layouts\\AR1p33.npz",
+    "removedChainBends": 11,
+    "edges": 77,
+    "offCenterSingletons": [],
+    "sharedPortDuplicates": [],
+    "nodeIntersections": 0,
+    "nonorthogonalSegments": 0
+  },
+  {
+    "path": "C:\\Users\\alsuwazj\\PycharmProjects\\dynamicAR\\output\\rome_default_vs_arcol_20261119\\full\\graphs\\grafo3529.42\\arcol\\layouts\\AR0p56.npz",
+    "removedChainBends": 1,
+    "edges": 54,
+    "offCenterSingletons": [],
+    "sharedPortDuplicates": [],
+    "nodeIntersections": 0,
+    "nonorthogonalSegments": 0
+  },
+  {
+    "path": "C:\\Users\\alsuwazj\\PycharmProjects\\dynamicAR\\output\\rome_default_vs_arcol_20261119\\full\\graphs\\grafo3529.42\\darcol\\layouts\\AR0p56.npz",
+    "removedChainBends": 3,
+    "edges": 54,
+    "offCenterSingletons": [],
+    "sharedPortDuplicates": [],
+    "nodeIntersections": 0,
+    "nonorthogonalSegments": 0
+  },
+  {
+    "path": "C:\\Users\\alsuwazj\\PycharmProjects\\dynamicAR\\output\\rome_default_vs_arcol_20261119\\full\\graphs\\grafo4085.35\\arcol\\layouts\\AR1p00.npz",
+    "removedChainBends": 2,
+    "edges": 51,
+    "offCenterSingletons": [],
+    "sharedPortDuplicates": [],
+    "nodeIntersections": 0,
+    "nonorthogonalSegments": 0
+  },
+  {
+    "path": "C:\\Users\\alsuwazj\\PycharmProjects\\dynamicAR\\output\\rome_default_vs_arcol_20261119\\full\\graphs\\grafo4085.35\\arcol\\layouts\\AR1p33.npz",
+    "removedChainBends": 3,
+    "edges": 51,
+    "offCenterSingletons": [],
+    "sharedPortDuplicates": [],
+    "nodeIntersections": 0,
+    "nonorthogonalSegments": 0
+  },
+  {
+    "path": "C:\\Users\\alsuwazj\\PycharmProjects\\dynamicAR\\output\\rome_default_vs_arcol_20261119\\full\\graphs\\grafo4085.35\\darcol\\layouts\\AR1p00.npz",
+    "removedChainBends": 3,
+    "edges": 51,
+    "offCenterSingletons": [],
+    "sharedPortDuplicates": [],
+    "nodeIntersections": 0,
+    "nonorthogonalSegments": 0
+  },
+  {
+    "path": "C:\\Users\\alsuwazj\\PycharmProjects\\dynamicAR\\output\\rome_default_vs_arcol_20261119\\full\\graphs\\grafo4085.35\\darcol\\layouts\\AR1p33.npz",
+    "removedChainBends": 10,
+    "edges": 51,
+    "offCenterSingletons": [],
+    "sharedPortDuplicates": [],
+    "nodeIntersections": 0,
+    "nonorthogonalSegments": 0
+  },
+  {
+    "path": "C:\\Users\\alsuwazj\\PycharmProjects\\dynamicAR\\output\\rome_default_vs_arcol_20261119\\full\\graphs\\grafo4165.61\\arcol\\layouts\\AR1p78.npz",
+    "removedChainBends": 2,
+    "edges": 82,
+    "offCenterSingletons": [],
+    "sharedPortDuplicates": [],
+    "nodeIntersections": 0,
+    "nonorthogonalSegments": 0
+  },
+  {
+    "path": "C:\\Users\\alsuwazj\\PycharmProjects\\dynamicAR\\output\\rome_default_vs_arcol_20261119\\full\\graphs\\grafo4165.61\\darcol\\layouts\\AR1p78.npz",
+    "removedChainBends": 8,
+    "edges": 82,
+    "offCenterSingletons": [],
+    "sharedPortDuplicates": [],
+    "nodeIntersections": 0,
+    "nonorthogonalSegments": 0
+  },
+  {
+    "path": "C:\\Users\\alsuwazj\\PycharmProjects\\dynamicAR\\output\\rome_default_vs_arcol_20261119\\full\\graphs\\grafo445.22\\darcol\\layouts\\AR0p33.npz",
+    "removedChainBends": 1,
+    "edges": 25,
+    "offCenterSingletons": [],
+    "sharedPortDuplicates": [],
+    "nodeIntersections": 0,
+    "nonorthogonalSegments": 0
+  },
+  {
+    "path": "C:\\Users\\alsuwazj\\PycharmProjects\\dynamicAR\\output\\rome_default_vs_arcol_20261119\\full\\graphs\\grafo445.22\\darcol\\layouts\\AR0p56.npz",
+    "removedChainBends": 1,
+    "edges": 25,
+    "offCenterSingletons": [],
+    "sharedPortDuplicates": [],
+    "nodeIntersections": 0,
+    "nonorthogonalSegments": 0
+  },
+  {
+    "path": "C:\\Users\\alsuwazj\\PycharmProjects\\dynamicAR\\output\\rome_default_vs_arcol_20261119\\full\\graphs\\grafo445.22\\darcol\\layouts\\AR1p00.npz",
+    "removedChainBends": 3,
+    "edges": 25,
+    "offCenterSingletons": [],
+    "sharedPortDuplicates": [],
+    "nodeIntersections": 0,
+    "nonorthogonalSegments": 0
+  },
+  {
+    "path": "C:\\Users\\alsuwazj\\PycharmProjects\\dynamicAR\\output\\rome_default_vs_arcol_20261119\\full\\graphs\\grafo5559.61\\arcol\\layouts\\AR1p78.npz",
+    "removedChainBends": 2,
+    "edges": 75,
+    "offCenterSingletons": [],
+    "sharedPortDuplicates": [],
+    "nodeIntersections": 0,
+    "nonorthogonalSegments": 0
+  },
+  {
+    "path": "C:\\Users\\alsuwazj\\PycharmProjects\\dynamicAR\\output\\rome_default_vs_arcol_20261119\\full\\graphs\\grafo5559.61\\darcol\\layouts\\AR1p78.npz",
+    "removedChainBends": 11,
+    "edges": 75,
+    "offCenterSingletons": [],
+    "sharedPortDuplicates": [],
+    "nodeIntersections": 0,
+    "nonorthogonalSegments": 0
+  },
+  {
+    "path": "C:\\Users\\alsuwazj\\PycharmProjects\\dynamicAR\\output\\rome_default_vs_arcol_20261119\\full\\graphs\\grafo5838.35\\arcol\\layouts\\AR0p56.npz",
+    "removedChainBends": 1,
+    "edges": 41,
+    "offCenterSingletons": [],
+    "sharedPortDuplicates": [],
+    "nodeIntersections": 0,
+    "nonorthogonalSegments": 0
+  },
+  {
+    "path": "C:\\Users\\alsuwazj\\PycharmProjects\\dynamicAR\\output\\rome_default_vs_arcol_20261119\\full\\graphs\\grafo5838.35\\arcol\\layouts\\AR1p78.npz",
+    "removedChainBends": 3,
+    "edges": 41,
+    "offCenterSingletons": [],
+    "sharedPortDuplicates": [],
+    "nodeIntersections": 0,
+    "nonorthogonalSegments": 0
+  },
+  {
+    "path": "C:\\Users\\alsuwazj\\PycharmProjects\\dynamicAR\\output\\rome_default_vs_arcol_20261119\\full\\graphs\\grafo5838.35\\darcol\\layouts\\AR0p56.npz",
+    "removedChainBends": 0,
+    "edges": 41,
+    "offCenterSingletons": [],
+    "sharedPortDuplicates": [],
+    "nodeIntersections": 0,
+    "nonorthogonalSegments": 0
+  },
+  {
+    "path": "C:\\Users\\alsuwazj\\PycharmProjects\\dynamicAR\\output\\rome_default_vs_arcol_20261119\\full\\graphs\\grafo5838.35\\darcol\\layouts\\AR1p78.npz",
+    "removedChainBends": 0,
+    "edges": 41,
+    "offCenterSingletons": [],
+    "sharedPortDuplicates": [],
+    "nodeIntersections": 0,
+    "nonorthogonalSegments": 0
+  },
+  {
+    "path": "C:\\Users\\alsuwazj\\PycharmProjects\\dynamicAR\\output\\rome_default_vs_arcol_20261119\\full\\graphs\\grafo7366.35\\arcol\\layouts\\AR1p00.npz",
+    "removedChainBends": 1,
+    "edges": 43,
+    "offCenterSingletons": [],
+    "sharedPortDuplicates": [],
+    "nodeIntersections": 0,
+    "nonorthogonalSegments": 0
+  },
+  {
+    "path": "C:\\Users\\alsuwazj\\PycharmProjects\\dynamicAR\\output\\rome_default_vs_arcol_20261119\\full\\graphs\\grafo7366.35\\arcol\\layouts\\AR2p33.npz",
+    "removedChainBends": 1,
+    "edges": 43,
+    "offCenterSingletons": [],
+    "sharedPortDuplicates": [],
+    "nodeIntersections": 0,
+    "nonorthogonalSegments": 0
+  },
+  {
+    "path": "C:\\Users\\alsuwazj\\PycharmProjects\\dynamicAR\\output\\rome_default_vs_arcol_20261119\\full\\graphs\\grafo7366.35\\darcol\\layouts\\AR1p00.npz",
+    "removedChainBends": 8,
+    "edges": 43,
+    "offCenterSingletons": [],
+    "sharedPortDuplicates": [],
+    "nodeIntersections": 0,
+    "nonorthogonalSegments": 0
+  },
+  {
+    "path": "C:\\Users\\alsuwazj\\PycharmProjects\\dynamicAR\\output\\rome_default_vs_arcol_20261119\\full\\graphs\\grafo7366.35\\darcol\\layouts\\AR2p33.npz",
+    "removedChainBends": 5,
+    "edges": 43,
+    "offCenterSingletons": [],
+    "sharedPortDuplicates": [],
+    "nodeIntersections": 0,
+    "nonorthogonalSegments": 0
+  },
+  {
+    "path": "C:\\Users\\alsuwazj\\PycharmProjects\\dynamicAR\\output\\rome_default_vs_arcol_20261119\\full\\graphs\\grafo7570.40\\darcol\\layouts\\AR0p33.npz",
+    "removedChainBends": 2,
+    "edges": 52,
+    "offCenterSingletons": [],
+    "sharedPortDuplicates": [],
+    "nodeIntersections": 0,
+    "nonorthogonalSegments": 0
+  },
+  {
+    "path": "C:\\Users\\alsuwazj\\PycharmProjects\\dynamicAR\\output\\rome_default_vs_arcol_20261119\\full\\graphs\\grafo7570.40\\darcol\\layouts\\AR0p56.npz",
+    "removedChainBends": 0,
+    "edges": 52,
+    "offCenterSingletons": [],
+    "sharedPortDuplicates": [],
+    "nodeIntersections": 0,
+    "nonorthogonalSegments": 0
+  },
+  {
+    "path": "C:\\Users\\alsuwazj\\PycharmProjects\\dynamicAR\\output\\rome_default_vs_arcol_20261119\\full\\graphs\\grafo7570.40\\darcol\\layouts\\AR1p00.npz",
+    "removedChainBends": 2,
+    "edges": 52,
+    "offCenterSingletons": [],
+    "sharedPortDuplicates": [],
+    "nodeIntersections": 0,
+    "nonorthogonalSegments": 0
+  },
+  {
+    "path": "C:\\Users\\alsuwazj\\PycharmProjects\\dynamicAR\\output\\rome_default_vs_arcol_20261119\\full\\graphs\\grafo7570.40\\darcol\\layouts\\AR1p33.npz",
+    "removedChainBends": 3,
+    "edges": 52,
+    "offCenterSingletons": [],
+    "sharedPortDuplicates": [],
+    "nodeIntersections": 0,
+    "nonorthogonalSegments": 0
+  },
+  {
+    "path": "C:\\Users\\alsuwazj\\PycharmProjects\\dynamicAR\\output\\rome_default_vs_arcol_20261119\\full\\graphs\\grafo7570.40\\darcol\\layouts\\AR1p78.npz",
+    "removedChainBends": 1,
+    "edges": 52,
+    "offCenterSingletons": [],
+    "sharedPortDuplicates": [],
+    "nodeIntersections": 0,
+    "nonorthogonalSegments": 0
+  },
+  {
+    "path": "C:\\Users\\alsuwazj\\PycharmProjects\\dynamicAR\\output\\rome_default_vs_arcol_20261119\\full\\graphs\\grafo7570.40\\darcol\\layouts\\AR2p33.npz",
+    "removedChainBends": 2,
+    "edges": 52,
+    "offCenterSingletons": [],
+    "sharedPortDuplicates": [],
+    "nodeIntersections": 0,
+    "nonorthogonalSegments": 0
+  },
+  {
+    "path": "C:\\Users\\alsuwazj\\PycharmProjects\\dynamicAR\\output\\rome_default_vs_arcol_20261119\\full\\graphs\\grafo7570.40\\darcol\\layouts\\AR3p56.npz",
+    "removedChainBends": 0,
+    "edges": 52,
+    "offCenterSingletons": [],
+    "sharedPortDuplicates": [],
+    "nodeIntersections": 0,
+    "nonorthogonalSegments": 0
+  }
+]
