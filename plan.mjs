@@ -94,7 +94,7 @@ export function buildScreens(config, seed) {
   const conditionOrder = (seed >>> 1) % 2 ? [...conditions].reverse() : conditions;
   if (config.part2.mixConditions) {
     const pool = conditions.flatMap(condition => config.part2.graphs.map(graph => ({
-      type: 'part2', method: config.part2.method, condition, graph,
+      type: 'part2', method: config.part2.conditions[condition].method || config.part2.method, condition, graph,
       target: config.part2.conditions[condition].targets[graph],
     })));
     let mixed = null;
@@ -115,7 +115,7 @@ export function buildScreens(config, seed) {
     for (const graph of block(config.part2.graphs || config.graphs)) {
       screens.push({
         type: 'part2',
-        method: config.part2.method,
+        method: config.part2.conditions[condition].method || config.part2.method,
         condition,
         graph,
         target: config.part2.conditions[condition].targets[graph],
@@ -127,8 +127,9 @@ export function buildScreens(config, seed) {
     screens.push({type:'part3-intro'});
     const graphOrder=block(config.part3.graphs);
     graphOrder.forEach((graph,i)=>{
-      const darcolLeft=((seed>>>2)+i)%2===0;
-      screens.push({type:'part3',graph,leftMethod:darcolLeft?'DARCOL':'ARCOL',rightMethod:darcolLeft?'ARCOL':'DARCOL'});
+      const primaryLeft=((seed>>>2)+i)%2===0;
+      const [primary,secondary]=config.part3.methods || ['DARCOL','ARCOL'];
+      screens.push({type:'part3',graph,leftMethod:primaryLeft?primary:secondary,rightMethod:primaryLeft?secondary:primary});
     });
   }
   screens.push({ type: 'finish' });

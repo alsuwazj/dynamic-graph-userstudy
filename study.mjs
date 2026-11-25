@@ -8,8 +8,8 @@
 // responses can then be downloaded on the last page.
 
 import { loadResponseService, allocateResponse, sendResponse } from './response-service.mjs';
-import { cropBox, drawingSvg, bindSelection, clearSelection, fitVideo } from './graph-view.mjs?v=tree-fans-reveal-v26';
-import { buildScreens, score } from './plan.mjs?v=tree-fans-reveal-v26';
+import { cropBox, drawingSvg, bindSelection, clearSelection, fitVideo } from './graph-view.mjs?v=static-direction-animation-preference-v27';
+import { buildScreens, score } from './plan.mjs?v=static-direction-animation-preference-v27';
 
 const $ = selector => document.querySelector(selector);
 const main = $('#main');
@@ -101,6 +101,7 @@ async function boot() {
         video: o.video,
         videoDurationMs: o.videoDurationMs,
         videos: o.videos || {},
+        staticLayouts:o.staticLayouts || {},
       };
     }
     comparisons=Object.fromEntries((stimuli.comparisons||[]).map(c=>[c.graphId,c]));
@@ -136,8 +137,8 @@ function welcome() {
       ${config.placeholderNotice ? `<div class="notice">${escapeHtml(config.placeholderNotice)}</div>` : ''}
       <h2>What you’ll do</h2>
       <p><strong>Part 1 · Match a path (${config.part1.graphs.length * config.part1.methodOrder.length} questions).</strong> Two drawings of the same graph, produced by the same method, appear at different aspect ratios. Select the ${config.part1.targetCount || 4} nodes on the right that match the highlighted path on the left.</p>
-      <p><strong>Part 2 · Remember a tree’s direction (${config.part2.graphs.length * Object.keys(config.part2.conditions).length} questions).</strong> Look at an unmarked graph for six seconds, then watch a two-second animation. A tree is marked in red only after playback. Choose whether it pointed left, right, up, or down before the animation. You have up to 40 seconds to answer. Each of five graphs appears with both animation types, mixed in random order.</p>
-      <p><strong>Part 3 · Compare animations (${config.part3.graphs.length} comparisons).</strong> Watch two looping animations side by side and give one overall preference rating.</p>
+      <p><strong>Part 2 · Remember a tree’s direction (${config.part2.graphs.length * Object.keys(config.part2.conditions).length} questions).</strong> Look at an unmarked drawing for six seconds. It disappears briefly, then a static drawing of the same graph appears at a very different aspect ratio with a tree marked red. Choose the tree’s direction in the previous drawing. There is no animation. Each of five graphs appears once with ARCOL and once with DARCOL, mixed in random order. You have up to 40 seconds to answer.</p>
+      <p><strong>Part 3 · Compare animations (${config.part3.graphs.length} comparisons).</strong> Watch two DARCOL animations of the same resize side by side: intermediate computed layouts with movement highlights, and direct interpolation between identical endpoints. Give one overall preference rating.</p>
       <p><strong>Time:</strong> about 25–30 minutes, including instructions.</p>
       <h2>Good to know</h2>
       <ul>
@@ -434,8 +435,9 @@ async function part1Question(screen) {
 // ---------------------------------------------------------------- Part 2
 
 async function part2Question(screen) {
-  const graph = graphs[screen.graph], tree = config.part2.trees[screen.graph];
-  const movie = graph.videos[screen.condition];
+  const layouts=graphs[screen.graph].staticLayouts[screen.method];
+  const graph={initial:layouts.initial,darcol:layouts.final};
+  const tree=config.part2.conditions[screen.condition].trees[screen.graph];
   const {index,total} = questionNumber(2), box = cropBox([graph.initial,graph.darcol]);
   main.innerHTML = `<div class="progress"><div style="width:${(index-1)/total*100}%"></div></div>
     <p class="eyebrow">PART 2 · QUESTION ${index} OF ${total}</p>
@@ -443,41 +445,26 @@ async function part2Question(screen) {
     <section class="drawing-card single direction-card"><header><span id="phase">Loading</span><span class="timer" id="clock"></span></header>
       <div class="stage tall" id="stage"><div class="stage-message">Loading…</div></div></section>
     <div id="direction-options" hidden></div>
-    <div class="answer-bar"><p id="direction-help">The animation starts automatically after six seconds.</p><button class="primary" id="submit" disabled hidden>Submit answer</button></div>`;
-  const trial=watchTrial(),stage=$('#stage'),video=document.createElement('video');
-  Object.assign(video,{muted:true,playsInline:true,preload:'auto',controls:false,disablePictureInPicture:true});
-  video.className=screen.condition==='animation'?'stage-video landmark-motion':'stage-video';
-  const ready=new Promise((resolve,reject)=>{video.oncanplaythrough=resolve;video.onerror=()=>reject(Error('The animation could not be loaded.'));});
-  video.src=movie.url;video.load();
-  const cleanup=trial.cleanup;trial.cleanup=()=>{video.pause();video.onended=null;cleanup();};
-  try {await withTimeout(Promise.all([preload([graph.initial.url,graph.darcol.url]),ready]),20000,'The question files did not load.');}
+    <div class="answer-bar"><p id="direction-help">The first drawing disappears automatically after six seconds.</p><button class="primary" id="submit" disabled hidden>Submit answer</button></div>`;
+  const trial=watchTrial(),stage=$('#stage');
+  try {await withTimeout(preload([graph.initial.url,graph.darcol.url]),20000,'The question files did not load.');}
   catch(error){return technicalProblem(screen,error.message);}
   if(activeTrial!==trial)return;
   const times={memorizeStart:performance.now(),startedAt:nowIso()};
   $('#phase').textContent='Look at the whole graph';
-  stage.innerHTML=drawingSvg(graph.initial,{box,label:'Unmarked graph before the animation'});
-  countdown(trial,$('#clock'),config.timing.part2MemorizeMs,s=>`${s}s`,animate);
-  function animate(){
-    $('#phase').textContent='Watch the transition';$('#clock').textContent='';$('#direction-help').textContent='Watch the graph change.';
-    stage.innerHTML='';stage.append(video);const place=()=>fitVideo(stage,video,graph.initial.viewBox,box);place();
-    const observer=new ResizeObserver(place);observer.observe(stage);const old=trial.cleanup;trial.cleanup=()=>{observer.disconnect();old();};
-    times.animationStart=performance.now();let finished=false;
-    video.onended=()=>{
-      if(finished||activeTrial!==trial)return;finished=true;times.animationEnd=performance.now();observer.disconnect();video.pause();
-      $('#phase').textContent='Transition finished';$('#direction-prompt').textContent='The transition has finished.';
-      stage.innerHTML=drawingSvg(graph.darcol,{box,label:'Unmarked final drawing after playback'});
-      $('#direction-help').textContent='The question tree will appear next.';
-      trial.timers.add(setTimeout(()=>{if(activeTrial===trial)respond();},config.timing.part2RevealDelayMs));
-    };
-    trial.timers.add(setTimeout(()=>{if(!finished&&activeTrial===trial)technicalProblem(screen,'The animation did not finish playing.');},movie.durationMs+8000));
-    video.currentTime=0;video.play().catch(()=>technicalProblem(screen,'The animation could not be played.'));
+  stage.innerHTML=drawingSvg(graph.initial,{box,label:'Unmarked first drawing'});
+  countdown(trial,$('#clock'),config.timing.part2MemorizeMs,s=>`${s}s`,changeLayout);
+  function changeLayout(){
+    times.blankStart=performance.now();$('#phase').textContent='The drawing is changing';$('#clock').textContent='';
+    stage.innerHTML='';$('#direction-help').textContent='';
+    trial.timers.add(setTimeout(()=>{if(activeTrial===trial)respond();},config.timing.part2BlankMs));
   }
   function respond(){
-    $('#phase').textContent='Remember its earlier direction';$('#direction-prompt').textContent='Which direction did the red tree point before the animation?';
+    $('#phase').textContent='Remember its earlier direction';$('#direction-prompt').textContent='Which direction did the red tree point in the previous drawing?';
     stage.innerHTML=drawingSvg(graph.darcol,{box,highlight:tree.nodes,highlightTree:true,treeAttachment:tree.attachment,label:'Final drawing with the question tree marked in red'});
     $('#direction-help').textContent='Choose its original direction, pointing away from where it joins the rest of the graph.';
     const options=$('#direction-options');options.hidden=false;
-    options.innerHTML=`<fieldset class="direction-fieldset"><legend>Direction before the animation</legend><div class="direction-choices">${[['left','← Left'],['right','Right →'],['up','↑ Up (top)'],['down','↓ Down']].map(([v,label])=>`<label><input type="radio" name="tree-direction" value="${v}"><span>${label}</span></label>`).join('')}</div></fieldset>`;
+    options.innerHTML=`<fieldset class="direction-fieldset"><legend>Direction in the previous drawing</legend><div class="direction-choices">${[['left','← Left'],['right','Right →'],['up','↑ Up (top)'],['down','↓ Down']].map(([v,label])=>`<label><input type="radio" name="tree-direction" value="${v}"><span>${label}</span></label>`).join('')}</div></fieldset>`;
     let selectedDirection=null,done=false;times.responseStart=performance.now();$('#submit').hidden=false;
     for(const input of options.querySelectorAll('input'))input.onchange=()=>{selectedDirection=input.value;$('#submit').disabled=false;};
     const submit=timeout=>{
@@ -485,8 +472,8 @@ async function part2Question(screen) {
       session.answers.push({...describe(screen),position:session.position,questionIndex:index,taskType:'tree-direction',
         treeNodes:[...tree.nodes],treeAttachment:tree.attachment,selected:[],selectedDirection,
         correctDirection:tree.correctDirection,finalDirection:tree.finalDirection,correct:!timeout&&selectedDirection===tree.correctDirection,f1:null,
-        timeout,responseMs:t-times.responseStart,memorizeMs:times.animationStart-times.memorizeStart,
-        animationMs:times.animationEnd-times.animationStart,finalHoldMs:times.responseStart-times.animationEnd,totalMs:t-times.memorizeStart,
+        timeout,responseMs:t-times.responseStart,memorizeMs:times.blankStart-times.memorizeStart,
+        animationMs:0,blankMs:times.responseStart-times.blankStart,presentationMode:'static',totalMs:t-times.memorizeStart,
         shownAt:times.startedAt,answeredAt:nowIso(),...trial.flags});
       logEvent('answer',{position:session.position,taskType:'tree-direction'});save();next();
     };
@@ -502,7 +489,7 @@ async function part3Question(screen) {
   main.innerHTML=`<div class="progress"><div style="width:${(index-1)/total*100}%"></div></div>
     <p class="eyebrow">PART 3 · COMPARISON ${index} OF ${total}</p><h2>Which animation do you prefer?</h2>
     <p>Watch the same graph change between the same aspect ratios in both animations.</p>
-    <div class="pair preference-pair" id="stage-area"><section class="drawing-card"><header>Animation A</header><video id="pref-a" class="preference-video ${screen.leftMethod==='DARCOL'?'landmark-motion':''}" muted playsinline preload="auto" disablepictureinpicture></video></section><section class="drawing-card"><header>Animation B</header><video id="pref-b" class="preference-video ${screen.rightMethod==='DARCOL'?'landmark-motion':''}" muted playsinline preload="auto" disablepictureinpicture></video></section></div>
+    <div class="pair preference-pair" id="stage-area"><section class="drawing-card"><header>Animation A</header><video id="pref-a" class="preference-video ${screen.leftMethod==='animation'?'landmark-motion':''}" muted playsinline preload="auto" disablepictureinpicture></video></section><section class="drawing-card"><header>Animation B</header><video id="pref-b" class="preference-video ${screen.rightMethod==='animation'?'landmark-motion':''}" muted playsinline preload="auto" disablepictureinpicture></video></section></div>
     <div class="action-row"><button class="secondary" id="pref-play" disabled>Pause both</button><button class="text-button" id="pref-restart" disabled>Restart both</button><span id="pref-status" class="help">Loading animations…</span></div>
     <div class="preference-ratings">${config.part3.questions.map(q=>`<fieldset><legend>${escapeHtml(q.text)}</legend><div class="rating-options">${options.map(([value,label])=>`<label><input type="radio" name="${q.key}" value="${value}"><span>${label}</span></label>`).join('')}</div></fieldset>`).join('')}</div>
     <div class="answer-bar"><p>Watch one complete loop and answer the preference question.</p><button class="primary" id="pref-submit" disabled>Submit preference</button></div>`;
@@ -521,8 +508,8 @@ async function part3Question(screen) {
   $('#pref-restart').onclick=()=>playBoth(true);
   for(const input of main.querySelectorAll('input[type=radio]'))input.onchange=()=>{values.set(input.name,Number(input.value));update();};
   $('#pref-submit').onclick=()=>{
-    const raw=Object.fromEntries(values),sign=screen.rightMethod==='DARCOL'?1:-1;
-    session.ratings.push({position:session.position,graphId:screen.graph,leftMethod:screen.leftMethod,rightMethod:screen.rightMethod,rawResponses:raw,...Object.fromEntries(Object.entries(raw).map(([k,v])=>[k,v*sign])),ratingScale:'DARCOL-positive',durationMs:performance.now()-began,completedLoops:loops,...trial.flags});
+    const raw=Object.fromEntries(values),sign=screen.rightMethod==='animation'?1:-1;
+    session.ratings.push({position:session.position,graphId:screen.graph,leftMethod:screen.leftMethod,rightMethod:screen.rightMethod,rawResponses:raw,...Object.fromEntries(Object.entries(raw).map(([k,v])=>[k,v*sign])),ratingScale:config.part3.ratingScale,comparisonType:config.part3.comparisonType,leftCondition:screen.leftMethod,rightCondition:screen.rightMethod,durationMs:performance.now()-began,completedLoops:loops,...trial.flags});
     logEvent('preference_rating',{position:session.position});save();next();
   };
   await playBoth(true);

@@ -10,25 +10,12 @@ test('all participants see identical trials while graph, method and condition or
   const built=buildScreens(cfg,seed),qs=built.screens.filter(q=>/^part[123]$/.test(q.type));assert.equal(qs.length,33);
   orders.add(qs.map(q=>q.graph).join(','));methods.add(built.methodOrder.join(','));conditions.add(built.conditionOrder.join(','));
   for(let i=1;i<qs.length;i++)assert.notEqual(qs[i-1].graph,qs[i].graph);
-  for(const graph of cfg.part2.graphs){const pair=qs.filter(q=>q.type==='part2'&&q.graph===graph);assert.equal(pair.length,2);assert.deepEqual(new Set(pair.map(q=>q.condition)),new Set(['animation','baseline']));assert.deepEqual(pair[0].target,pair[1].target);}
-  const left=qs.filter(q=>q.type==='part3'&&q.leftMethod==='DARCOL').length;assert.ok(left===2||left===3);
+  for(const graph of cfg.part2.graphs){const pair=qs.filter(q=>q.type==='part2'&&q.graph===graph);assert.equal(pair.length,2);assert.deepEqual(new Set(pair.map(q=>q.condition)),new Set(['ARCOL','DARCOL']));assert.deepEqual(pair[0].target,pair[1].target);}
+  const left=qs.filter(q=>q.type==='part3'&&q.leftMethod==='animation').length;assert.ok(left===2||left===3);
  }
  assert.ok(orders.size>200);assert.equal(methods.size,2);assert.equal(conditions.size,2);
 });
-test('Part 2 uses DARCOL keyframe animation versus a plain direct DARCOL baseline',()=>{
- assert.deepEqual(Object.keys(cfg.part2.conditions),['animation','baseline']);
- for(const graph of cfg.part2.graphs){
-  const item=manifest.items.find(i=>i.graphId===graph),p=item.part2Protocol;
-  assert.equal(p.endpointMethod,'DARCOL');assert.equal(p.durationMs,2000);assert.equal(p.interpolation,'piecewise-linear');assert.equal(p.baselineInterpolation,'direct-linear');assert.equal(p.optimizationDuringPlayback,false);assert.equal(p.separateTreeRotation,false);assert.equal(p.keyframes.length>=3,true);assert.equal(p.fixedAspectRatioGrid.length,7);assert.ok(p.highlightNodes.length>0);assert.deepEqual(p.baselineHighlightNodes,[]);
-  assert.equal(p.keyframeTimes[0],0);assert.equal(p.keyframeTimes.at(-1),1);
-  assert.equal(item.original.initial.url,p.keyframes[0].url);assert.equal(item.original.finalB.url,p.keyframes.at(-1).url);
-  for(const k of p.keyframes){assert.ok(k.source.replaceAll('\\','/').includes('/darcol/layouts/'));assert.ok(k.layoutSha256);}
-  assert.equal(item.original.videos.animation.durationMs,2000);assert.equal(item.original.videos.baseline.durationMs,2000);
-  assert.deepEqual(cfg.part2.conditions.animation.targets[graph],cfg.part2.conditions.baseline.targets[graph]);
- }
- const src=readFileSync(new URL('../study.mjs',import.meta.url),'utf8');assert.ok(src.includes("screen.condition==='animation'?'stage-video landmark-motion'"));
-});
-test('Part 2 mixes animation and baseline without subsections and spaces repeats by two other trials',()=>{
+test('Part 2 mixes ARCOL and DARCOL static trials without subsections and spaces repeats by two other trials',()=>{
  for(let seed=0;seed<512;seed++){
   const plan=buildScreens(cfg,seed).screens;assert.equal(plan.filter(q=>q.type==='condition-intro').length,0);
   const trials=plan.filter(q=>q.type==='part2');assert.equal(trials.length,10);
@@ -55,11 +42,6 @@ test('Part 1 mixes nine ARCOL and nine DARCOL trials without adjacent repeated g
   for(const graph of cfg.part1.graphs){const pair=q.filter(q=>q.graph===graph);assert.equal(pair.length,2);assert.notEqual(pair[0].method,pair[1].method);assert.deepEqual(pair[0].target,pair[1].target);}
  }
  assert.equal(first.ARCOL,512);assert.equal(first.DARCOL,512);assert.equal(sequences.size,1024);
-});
-
-test('Part 3 highlights structural landmarks only in DARCOL, with equal paired timing',()=>{
- assert.equal(cfg.part3.highlightingPolicy,'DARCOL-structural-only');
- for(const pair of manifest.comparisons){assert.equal(pair.ARCOL.animation,'linear-screen-space');assert.ok(pair.DARCOL.highlightNodes.length>0);assert.equal(pair.DARCOL.highlighting,'structural');assert.equal(pair.DARCOL.durationMs,2000);assert.equal(pair.ARCOL.durationMs,2000);}
 });
 
 test('Parts 1 and 3 retain their graph pools while all trial counts stay fixed',()=>{

@@ -1,0 +1,862 @@
+{
+  "media/black-ink-v27/grafo3074.26-still-0.png": {
+    "url": "media/black-ink-v27/grafo3074.26-still-0.png",
+    "viewBox": [
+      0,
+      0,
+      960,
+      540
+    ],
+    "hitboxes": [
+      {
+        "id": 0,
+        "x": 120.4351921081543,
+        "y": 18.88300907611847,
+        "width": 41,
+        "height": 41
+      },
+      {
+        "id": 1,
+        "x": 234.0226812362671,
+        "y": 246.05795545317233,
+        "width": 41,
+        "height": 41
+      },
+      {
+        "id": 2,
+        "x": 234.0226812362671,
+        "y": 473.23289227485657,
+        "width": 41,
+        "height": 41
+      },
+      {
+        "id": 3,
+        "x": 500.8279414176941,
+        "y": 132.47048389911652,
+        "width": 41,
+        "height": 41
+      },
+      {
+        "id": 4,
+        "x": 500.8279414176941,
+        "y": 18.88300907611847,
+        "width": 41,
+        "height": 41
+      },
+      {
+        "id": 5,
+        "x": 500.8279414176941,
+        "y": 480.11699092388153,
+        "width": 41,
+        "height": 41
+      },
+      {
+        "id": 6,
+        "x": 891.4999885559082,
+        "y": 18.88300907611847,
+        "width": 41,
+        "height": 41
+      },
+      {
+        "id": 7,
+        "x": 419.0559751987457,
+        "y": 122.14435201883316,
+        "width": 41,
+        "height": 41
+      },
+      {
+        "id": 8,
+        "x": 337.28400897979736,
+        "y": 473.23289227485657,
+        "width": 41,
+        "height": 41
+      },
+      {
+        "id": 9,
+        "x": 891.4999885559082,
+        "y": 132.47048389911652,
+        "width": 41,
+        "height": 41
+      },
+      {
+        "id": 10,
+        "x": 543.8534994125366,
+        "y": 246.05795545317233,
+        "width": 41,
+        "height": 41
+      },
+      {
+        "id": 11,
+        "x": 234.0226812362671,
+        "y": 359.64542549848557,
+        "width": 41,
+        "height": 41
+      },
+      {
+        "id": 12,
+        "x": 120.4351921081543,
+        "y": 246.05795545317233,
+        "width": 41,
+        "height": 41
+      },
+      {
+        "id": 13,
+        "x": 120.4351921081543,
+        "y": 473.23289227485657,
+        "width": 41,
+        "height": 41
+      },
+      {
+        "id": 14,
+        "x": 657.4409742355347,
+        "y": 18.88300907611847,
+        "width": 41,
+        "height": 41
+      },
+      {
+        "id": 15,
+        "x": 234.0226812362671,
+        "y": 132.47048389911652,
+        "width": 41,
+        "height": 41
+      },
+      {
+        "id": 16,
+        "x": 777.9125423431396,
+        "y": 246.05795545317233,
+        "width": 41,
+        "height": 41
+      },
+      {
+        "id": 17,
+        "x": 27.500011444091797,
+        "y": 327.8299231529236,
+        "width": 41,
+        "height": 41
+      },
+      {
+        "id": 18,
+        "x": 500.8279414176941,
+        "y": 359.64542549848557,
+        "width": 41,
+        "height": 41
+      },
+      {
+        "id": 19,
+        "x": 657.4409742355347,
+        "y": 246.05795545317233,
+        "width": 41,
+        "height": 41
+      },
+      {
+        "id": 20,
+        "x": 657.4409742355347,
+        "y": 359.64542549848557,
+        "width": 41,
+        "height": 41
+      },
+      {
+        "id": 21,
+        "x": 745.3329010009766,
+        "y": 132.47048389911652,
+        "width": 41,
+        "height": 41
+      },
+      {
+        "id": 22,
+        "x": 315.7946367263794,
+        "y": 122.14435201883316,
+        "width": 41,
+        "height": 41
+      },
+      {
+        "id": 23,
+        "x": 891.4999885559082,
+        "y": 246.05795545317233,
+        "width": 41,
+        "height": 41
+      },
+      {
+        "id": 24,
+        "x": 130.76133918762207,
+        "y": 327.8299231529236,
+        "width": 41,
+        "height": 41
+      },
+      {
+        "id": 25,
+        "x": 234.0226812362671,
+        "y": 18.88300907611847,
+        "width": 41,
+        "height": 41
+      }
+    ],
+    "source": "C:\\Users\\alsuwazj\\PycharmProjects\\dynamicAR\\output\\rome_default_vs_arcol_20261119\\full\\graphs\\grafo3074.26\\arcol\\layouts\\AR1p78.npz",
+    "renderer": "darcol.render.canvas.GraphCanvas",
+    "capture": "Qt QWidget.grab",
+    "sha256": "aecc80f0b9e99ca1bf842f7493b827fd3c0f79d2d8e5598b44b9f32ff91168cd",
+    "presentation": {
+      "revision": 24,
+      "nodePositionsChanged": false,
+      "portRule": "Single connection per side centered; shared sides offset in neighbor order",
+      "lineWidthPx": 1,
+      "cornerRadiusSvg": 10,
+      "audit": {
+        "removedChainBends": 0,
+        "edges": 37,
+        "offCenterSingletons": [],
+        "sharedPortDuplicates": [],
+        "nodeIntersections": 0,
+        "nonorthogonalSegments": 0,
+        "treeAware": false,
+        "treeFanEdges": 0
+      },
+      "layoutSha256": "6f41b3224f4fd411a82556eb44231cefba41de82415332b24622aac2c6fce75f"
+    }
+  },
+  "media/black-ink-v27/grafo3074.26-still-1.png": {
+    "url": "media/black-ink-v27/grafo3074.26-still-1.png",
+    "viewBox": [
+      0,
+      0,
+      960,
+      540
+    ],
+    "hitboxes": [
+      {
+        "id": 0,
+        "x": 242.42278575897217,
+        "y": 184.79279279708862,
+        "width": 30,
+        "height": 30
+      },
+      {
+        "id": 1,
+        "x": 382.78682470321655,
+        "y": 351.48458629846573,
+        "width": 30,
+        "height": 30
+      },
+      {
+        "id": 2,
+        "x": 547.2121667861938,
+        "y": 409.4973796606064,
+        "width": 30,
+        "height": 30
+      },
+      {
+        "id": 3,
+        "x": 547.2121667861938,
+        "y": 184.79279279708862,
+        "width": 30,
+        "height": 30
+      },
+      {
+        "id": 4,
+        "x": 448.97357046604156,
+        "y": 184.79279279708862,
+        "width": 30,
+        "height": 30
+      },
+      {
+        "id": 5,
+        "x": 632.9907989501953,
+        "y": 459.5569270849228,
+        "width": 30,
+        "height": 30
+      },
+      {
+        "id": 6,
+        "x": 448.97357046604156,
+        "y": 12.000006437301636,
+        "width": 30,
+        "height": 30
+      },
+      {
+        "id": 7,
+        "x": 370.9939956665039,
+        "y": 126.77999138832092,
+        "width": 30,
+        "height": 30
+      },
+      {
+        "id": 8,
+        "x": 469.23259779810905,
+        "y": 409.4973796606064,
+        "width": 30,
+        "height": 30
+      },
+      {
+        "id": 9,
+        "x": 547.2121667861938,
+        "y": 12.000006437301636,
+        "width": 30,
+        "height": 30
+      },
+      {
+        "id": 10,
+        "x": 382.78682470321655,
+        "y": 270.9009638428688,
+        "width": 30,
+        "height": 30
+      },
+      {
+        "id": 11,
+        "x": 486.90974056720734,
+        "y": 351.48458629846573,
+        "width": 30,
+        "height": 30
+      },
+      {
+        "id": 12,
+        "x": 242.42278575897217,
+        "y": 351.48458629846573,
+        "width": 30,
+        "height": 30
+      },
+      {
+        "id": 13,
+        "x": 687.5772142410278,
+        "y": 409.4973796606064,
+        "width": 30,
+        "height": 30
+      },
+      {
+        "id": 14,
+        "x": 448.97357046604156,
+        "y": 92.58362889289856,
+        "width": 30,
+        "height": 30
+      },
+      {
+        "id": 15,
+        "x": 328.2004165649414,
+        "y": 270.9009638428688,
+        "width": 30,
+        "height": 30
+      },
+      {
+        "id": 16,
+        "x": 632.9907989501953,
+        "y": 184.79279279708862,
+        "width": 30,
+        "height": 30
+      },
+      {
+        "id": 17,
+        "x": 353.7995767593384,
+        "y": 497.99999356269836,
+        "width": 30,
+        "height": 30
+      },
+      {
+        "id": 18,
+        "x": 632.9907989501953,
+        "y": 351.48458629846573,
+        "width": 30,
+        "height": 30
+      },
+      {
+        "id": 19,
+        "x": 547.2121667861938,
+        "y": 270.9009638428688,
+        "width": 30,
+        "height": 30
+      },
+      {
+        "id": 20,
+        "x": 665.4820346832275,
+        "y": 270.9009638428688,
+        "width": 30,
+        "height": 30
+      },
+      {
+        "id": 21,
+        "x": 547.2121667861938,
+        "y": 92.58362889289856,
+        "width": 30,
+        "height": 30
+      },
+      {
+        "id": 22,
+        "x": 370.9939956665039,
+        "y": 53.52179288864136,
+        "width": 30,
+        "height": 30
+      },
+      {
+        "id": 23,
+        "x": 632.9907989501953,
+        "y": 12.000006437301636,
+        "width": 30,
+        "height": 30
+      },
+      {
+        "id": 24,
+        "x": 353.7995767593384,
+        "y": 424.74279284477234,
+        "width": 30,
+        "height": 30
+      },
+      {
+        "id": 25,
+        "x": 328.2004165649414,
+        "y": 184.79279279708862,
+        "width": 30,
+        "height": 30
+      }
+    ],
+    "source": "C:\\Users\\alsuwazj\\PycharmProjects\\dynamicAR\\output\\rome_default_vs_arcol_20261119\\full\\graphs\\grafo3074.26\\arcol\\layouts\\AR1p00.npz",
+    "renderer": "darcol.render.canvas.GraphCanvas",
+    "capture": "Qt QWidget.grab",
+    "sha256": "6b1f0b07c2d11aa6013a5f1a63f3c83260b662205bd2d5f3ab68916c4c551e1c",
+    "presentation": {
+      "revision": 24,
+      "nodePositionsChanged": false,
+      "portRule": "Single connection per side centered; shared sides offset in neighbor order",
+      "lineWidthPx": 1,
+      "cornerRadiusSvg": 10,
+      "audit": {
+        "removedChainBends": 1,
+        "edges": 37,
+        "offCenterSingletons": [],
+        "sharedPortDuplicates": [],
+        "nodeIntersections": 0,
+        "nonorthogonalSegments": 0,
+        "treeAware": false,
+        "treeFanEdges": 0
+      },
+      "layoutSha256": "277d42ed02757fc95955d6e5bcd0bdadc9b9f03a3bad9bb781af4bde10919094"
+    }
+  },
+  "media/black-ink-v27/grafo3074.26-still-2.png": {
+    "url": "media/black-ink-v27/grafo3074.26-still-2.png",
+    "viewBox": [
+      0,
+      0,
+      960,
+      540
+    ],
+    "hitboxes": [
+      {
+        "id": 0,
+        "x": 387.3566312789917,
+        "y": 492.49999356269836,
+        "width": 41,
+        "height": 41
+      },
+      {
+        "id": 1,
+        "x": 638.2872552871704,
+        "y": 324.6551103591919,
+        "width": 41,
+        "height": 41
+      },
+      {
+        "id": 2,
+        "x": 766.1467571258545,
+        "y": 179.10438907146454,
+        "width": 41,
+        "height": 41
+      },
+      {
+        "id": 3,
+        "x": 387.3566312789917,
+        "y": 179.10438907146454,
+        "width": 41,
+        "height": 41
+      },
+      {
+        "id": 4,
+        "x": 387.3566312789917,
+        "y": 269.72511661052704,
+        "width": 41,
+        "height": 41
+      },
+      {
+        "id": 5,
+        "x": 793.9012832641602,
+        "y": 121.44846361875534,
+        "width": 41,
+        "height": 41
+      },
+      {
+        "id": 6,
+        "x": 96.44571495056152,
+        "y": 269.72511661052704,
+        "width": 41,
+        "height": 41
+      },
+      {
+        "id": 7,
+        "x": 449.1310493350029,
+        "y": 250.84966477751732,
+        "width": 41,
+        "height": 41
+      },
+      {
+        "id": 8,
+        "x": 752.7182598114014,
+        "y": 277.9812657535076,
+        "width": 41,
+        "height": 41
+      },
+      {
+        "id": 9,
+        "x": 96.44571495056152,
+        "y": 179.10438907146454,
+        "width": 41,
+        "height": 41
+      },
+      {
+        "id": 10,
+        "x": 528.1438727378845,
+        "y": 324.6551103591919,
+        "width": 41,
+        "height": 41
+      },
+      {
+        "id": 11,
+        "x": 638.2872552871704,
+        "y": 227.78986629843712,
+        "width": 41,
+        "height": 41
+      },
+      {
+        "id": 12,
+        "x": 638.2872552871704,
+        "y": 492.49999356269836,
+        "width": 41,
+        "height": 41
+      },
+      {
+        "id": 13,
+        "x": 766.1467571258545,
+        "y": 6.500006437301636,
+        "width": 41,
+        "height": 41
+      },
+      {
+        "id": 14,
+        "x": 242.7362699508667,
+        "y": 269.72511661052704,
+        "width": 41,
+        "height": 41
+      },
+      {
+        "id": 15,
+        "x": 631.0303707122803,
+        "y": 421.76355969905853,
+        "width": 41,
+        "height": 41
+      },
+      {
+        "id": 16,
+        "x": 342.2186441421509,
+        "y": 121.44846361875534,
+        "width": 41,
+        "height": 41
+      },
+      {
+        "id": 17,
+        "x": 822.5542850494385,
+        "y": 339.7556762099266,
+        "width": 41,
+        "height": 41
+      },
+      {
+        "id": 18,
+        "x": 638.2872552871704,
+        "y": 121.44846361875534,
+        "width": 41,
+        "height": 41
+      },
+      {
+        "id": 19,
+        "x": 528.1438727378845,
+        "y": 179.10438907146454,
+        "width": 41,
+        "height": 41
+      },
+      {
+        "id": 20,
+        "x": 528.1438727378845,
+        "y": 93.64344847202301,
+        "width": 41,
+        "height": 41
+      },
+      {
+        "id": 21,
+        "x": 271.50268268585205,
+        "y": 179.10438907146454,
+        "width": 41,
+        "height": 41
+      },
+      {
+        "id": 22,
+        "x": 449.1310493350029,
+        "y": 353.8067607283592,
+        "width": 41,
+        "height": 41
+      },
+      {
+        "id": 23,
+        "x": 96.44571495056152,
+        "y": 121.44846361875534,
+        "width": 41,
+        "height": 41
+      },
+      {
+        "id": 24,
+        "x": 719.5972843170166,
+        "y": 339.7556762099266,
+        "width": 41,
+        "height": 41
+      },
+      {
+        "id": 25,
+        "x": 387.3566312789917,
+        "y": 421.76355969905853,
+        "width": 41,
+        "height": 41
+      }
+    ],
+    "source": "C:\\Users\\alsuwazj\\PycharmProjects\\dynamicAR\\output\\rome_default_vs_arcol_20261119\\full\\graphs\\grafo3074.26\\darcol\\layouts\\AR1p78.npz",
+    "renderer": "darcol.render.canvas.GraphCanvas",
+    "capture": "Qt QWidget.grab",
+    "sha256": "935cf66e39a629ef23d86c9ee129c73a7f7ed7d1dede9e7dd6d79496a4ac0c61",
+    "presentation": {
+      "revision": 24,
+      "nodePositionsChanged": false,
+      "portRule": "Single connection per side centered; shared sides offset in neighbor order",
+      "lineWidthPx": 1,
+      "cornerRadiusSvg": 10,
+      "audit": {
+        "removedChainBends": 4,
+        "edges": 37,
+        "offCenterSingletons": [],
+        "sharedPortDuplicates": [],
+        "nodeIntersections": 0,
+        "nonorthogonalSegments": 0,
+        "treeAware": false,
+        "treeFanEdges": 0
+      },
+      "layoutSha256": "50e2ca0c61bb50ef5a0a4244142ebfddd408365dcb3f986166fa6b2ab2980cb2"
+    }
+  },
+  "media/black-ink-v27/grafo3074.26-still-3.png": {
+    "url": "media/black-ink-v27/grafo3074.26-still-3.png",
+    "viewBox": [
+      0,
+      0,
+      960,
+      540
+    ],
+    "hitboxes": [
+      {
+        "id": 0,
+        "x": 409.5949800014496,
+        "y": 499.99999356269836,
+        "width": 26,
+        "height": 26
+      },
+      {
+        "id": 1,
+        "x": 556.7949934005737,
+        "y": 328.56603306531906,
+        "width": 26,
+        "height": 26
+      },
+      {
+        "id": 2,
+        "x": 604.1325349807739,
+        "y": 185.67151141166687,
+        "width": 26,
+        "height": 26
+      },
+      {
+        "id": 3,
+        "x": 409.5949800014496,
+        "y": 185.67151141166687,
+        "width": 26,
+        "height": 26
+      },
+      {
+        "id": 4,
+        "x": 409.5949800014496,
+        "y": 272.7580788806081,
+        "width": 26,
+        "height": 26
+      },
+      {
+        "id": 5,
+        "x": 635.0129861831665,
+        "y": 133.19172364473343,
+        "width": 26,
+        "height": 26
+      },
+      {
+        "id": 6,
+        "x": 259.70907402038574,
+        "y": 272.7580788806081,
+        "width": 26,
+        "height": 26
+      },
+      {
+        "id": 7,
+        "x": 475.2444193959236,
+        "y": 260.722346033901,
+        "width": 26,
+        "height": 26
+      },
+      {
+        "id": 8,
+        "x": 596.1847991943359,
+        "y": 251.32096572592854,
+        "width": 26,
+        "height": 26
+      },
+      {
+        "id": 9,
+        "x": 259.70907402038574,
+        "y": 185.67151141166687,
+        "width": 26,
+        "height": 26
+      },
+      {
+        "id": 10,
+        "x": 512.0720226764679,
+        "y": 328.56603306531906,
+        "width": 26,
+        "height": 26
+      },
+      {
+        "id": 11,
+        "x": 556.7949934005737,
+        "y": 216.68949243426323,
+        "width": 26,
+        "height": 26
+      },
+      {
+        "id": 12,
+        "x": 556.7949934005737,
+        "y": 499.99999356269836,
+        "width": 26,
+        "height": 26
+      },
+      {
+        "id": 13,
+        "x": 604.1325349807739,
+        "y": 14.000006437301636,
+        "width": 26,
+        "height": 26
+      },
+      {
+        "id": 14,
+        "x": 354.9014587402344,
+        "y": 272.7580788806081,
+        "width": 26,
+        "height": 26
+      },
+      {
+        "id": 15,
+        "x": 551.8733401298523,
+        "y": 427.8592462539673,
+        "width": 26,
+        "height": 26
+      },
+      {
+        "id": 16,
+        "x": 393.71614170074463,
+        "y": 133.19172364473343,
+        "width": 26,
+        "height": 26
+      },
+      {
+        "id": 17,
+        "x": 674.2909259796143,
+        "y": 338.1947476863861,
+        "width": 26,
+        "height": 26
+      },
+      {
+        "id": 18,
+        "x": 556.7949934005737,
+        "y": 133.19172364473343,
+        "width": 26,
+        "height": 26
+      },
+      {
+        "id": 19,
+        "x": 512.0720226764679,
+        "y": 185.67151141166687,
+        "width": 26,
+        "height": 26
+      },
+      {
+        "id": 20,
+        "x": 512.0720226764679,
+        "y": 119.03060150146484,
+        "width": 26,
+        "height": 26
+      },
+      {
+        "id": 21,
+        "x": 296.50740814208984,
+        "y": 185.67151141166687,
+        "width": 26,
+        "height": 26
+      },
+      {
+        "id": 22,
+        "x": 475.2444193959236,
+        "y": 326.3718385696411,
+        "width": 26,
+        "height": 26
+      },
+      {
+        "id": 23,
+        "x": 259.70907402038574,
+        "y": 133.19172364473343,
+        "width": 26,
+        "height": 26
+      },
+      {
+        "id": 24,
+        "x": 608.6414642333984,
+        "y": 338.1947476863861,
+        "width": 26,
+        "height": 26
+      },
+      {
+        "id": 25,
+        "x": 409.5949800014496,
+        "y": 427.8592462539673,
+        "width": 26,
+        "height": 26
+      }
+    ],
+    "source": "C:\\Users\\alsuwazj\\PycharmProjects\\dynamicAR\\output\\rome_default_vs_arcol_20261119\\full\\graphs\\grafo3074.26\\darcol\\layouts\\AR1p00.npz",
+    "renderer": "darcol.render.canvas.GraphCanvas",
+    "capture": "Qt QWidget.grab",
+    "sha256": "233533639de55eddca1ccfd0d8e1548a15bf55eb31e6799439149f381bc5354b",
+    "presentation": {
+      "revision": 24,
+      "nodePositionsChanged": false,
+      "portRule": "Single connection per side centered; shared sides offset in neighbor order",
+      "lineWidthPx": 1,
+      "cornerRadiusSvg": 10,
+      "audit": {
+        "removedChainBends": 0,
+        "edges": 37,
+        "offCenterSingletons": [],
+        "sharedPortDuplicates": [],
+        "nodeIntersections": 0,
+        "nonorthogonalSegments": 0,
+        "treeAware": false,
+        "treeFanEdges": 0
+      },
+      "layoutSha256": "ea021c067d2186bb590ece4805f851c6098bffca6b0b74a0810ef79ff40575e7"
+    }
+  }
+}

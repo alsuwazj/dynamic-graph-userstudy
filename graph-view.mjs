@@ -83,7 +83,7 @@ export function drawingSvg(asset, options = {}) {
 
   // Fill only node interiors; never cover adjacent bends with an outline.
   for (const b of targets) {
-    const pad = Math.min(1, b.width / 4, b.height / 4);
+    const pad = Math.min(2, b.width / 4, b.height / 4);
     parts.push(`<rect class="node-highlight" x="${b.x + pad}" y="${b.y + pad}" width="${b.width - 2 * pad}" height="${b.height - 2 * pad}"/>`);
   }
 
