@@ -162,3 +162,7 @@ Part 1 unchanged. Part 2 replaces grafo1479.48 and grafo10940.39 with Sydney and
 
 ## Revision 30: remove Sydney
 Restore the previously validated grafo10940.39 in Part 2 because Sydney appears too small. Retain Wien, five Part 2 graphs, ten trials, matched tree targets and existing timing. Parts 1 and 3 unchanged. Historical results remain readable.
+
+
+## Revision 31: whole Wien rooted tree
+Wien highlights both complete pendant chains incident to shared core root 7, plus root 7 itself (16 nodes). Earlier selection marked only one branch. Both methods use identical target IDs. Initial and final dominant directions remain independently verified per method. The root is a core vertex with external core edges, which are not part of the red tree. Sydney remains excluded; counts, timings and other graphs unchanged.

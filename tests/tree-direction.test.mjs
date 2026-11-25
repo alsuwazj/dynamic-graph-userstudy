@@ -12,7 +12,7 @@ test('static methods use the same attached tree but method-specific direction an
   for(const method of ['ARCOL','DARCOL']){const tree=cfg.part2.conditions[method].trees[g],ns=new Set(tree.nodes),o=i.original.staticLayouts[method];
    const links=i.edges.filter(([u,v])=>ns.has(u)&&ns.has(v));assert.equal(links.length,ns.size-1);
    const seen=new Set([tree.nodes[0]]);for(let k=0;k<ns.size;k++)for(const [u,v] of links)if(seen.has(u)||seen.has(v)){seen.add(u);seen.add(v);}assert.equal(seen.size,ns.size);
-   const external=i.edges.filter(([u,v])=>ns.has(u)!==ns.has(v));assert.equal(external.length,1);assert.ok(external[0].includes(tree.attachment));
+   const external=i.edges.filter(([u,v])=>ns.has(u)!==ns.has(v));if(tree.groupMode==='shared-core-root'){assert.ok(ns.has(tree.attachment));assert.ok(external.every(e=>e.includes(tree.attachment)));const outside=new Set(external.flat().filter(n=>!ns.has(n)));assert.ok(outside.size>=1);}else{assert.equal(external.length,1);assert.ok(external[0].includes(tree.attachment));}
    assert.equal(direction(o.initial,tree),tree.correctDirection);assert.equal(direction(o.final,tree),tree.finalDirection);
    assert.ok(!drawingSvg(o.initial).includes('node-highlight'));
    assert.ok(drawingSvg(o.final,{highlight:tree.nodes,highlightTree:true,treeAttachment:tree.attachment}).includes('tree-highlight'));
@@ -30,3 +30,5 @@ test('Part 3 uses branching medium-sized examples from the selected gallery',()=
  for(const g of cfg.part3.graphs){assert.ok(gallery.graphs.includes(g));const i=m.items.find(i=>i.graphId===g);assert.ok(i.original.initial.hitboxes.length>=30);assert.ok(i.original.initial.hitboxes.length<=50);const degree=new Map();for(const [u,v] of i.edges){degree.set(u,(degree.get(u)||0)+1);degree.set(v,(degree.get(v)||0)+1);}assert.ok([...degree.values()].filter(n=>n>=3).length>=3,g);}
  assert.ok(!cfg.graphs.includes('sydney'));assert.ok(cfg.part2.graphs.includes('grafo10940.39'));assert.ok(cfg.part2.graphs.includes('wien-kurz'));
 });
+
+test('Wien highlights both complete branches and their shared root',()=>{for(const method of ['ARCOL','DARCOL']){const t=cfg.part2.conditions[method].trees['wien-kurz'];assert.deepEqual(t.nodes,[0,1,2,3,4,5,6,7,20,21,22,23,24,25,26,27]);assert.equal(t.attachment,7);}});
