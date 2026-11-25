@@ -8,8 +8,8 @@
 // responses can then be downloaded on the last page.
 
 import { loadResponseService, allocateResponse, sendResponse } from './response-service.mjs';
-import { cropBox, drawingSvg, bindSelection, clearSelection, fitVideo } from './graph-view.mjs?v=replace-sydney-v34';
-import { buildScreens, score } from './plan.mjs?v=replace-sydney-v34';
+import { cropBox, drawingSvg, bindSelection, clearSelection, fitVideo } from './graph-view.mjs?v=animated-tree-direction-v35';
+import { buildScreens, score } from './plan.mjs?v=animated-tree-direction-v35';
 
 const $ = selector => document.querySelector(selector);
 const main = $('#main');
@@ -102,6 +102,8 @@ async function boot() {
         videoDurationMs: o.videoDurationMs,
         videos: o.videos || {},
         staticLayouts:o.staticLayouts || {},
+        directionLayouts:o.directionLayouts || o.staticLayouts || {},
+        directionVideos:o.directionVideos || {},
       };
     }
     comparisons=Object.fromEntries((stimuli.comparisons||[]).map(c=>[c.graphId,c]));
@@ -137,8 +139,8 @@ function welcome() {
       ${config.placeholderNotice ? `<div class="notice">${escapeHtml(config.placeholderNotice)}</div>` : ''}
       <h2>What you’ll do</h2>
       <p><strong>Part 1 · Match a path (${config.part1.graphs.length * config.part1.methodOrder.length} questions).</strong> Two drawings of the same graph, produced by the same method, appear at different aspect ratios. Select the ${config.part1.targetCount || 4} nodes on the right that match the highlighted path on the left.</p>
-      <p><strong>Part 2 · Remember a tree’s direction (${config.part2.graphs.length * Object.keys(config.part2.conditions).length} questions).</strong> Look at an unmarked drawing for six seconds. It disappears briefly, then a static drawing of the same graph appears at a very different aspect ratio with a tree marked red. Choose the tree’s direction in the previous drawing. There is no animation. Each of five graphs appears once with ARCOL and once with DARCOL, mixed in random order. You have up to 40 seconds to answer.</p>
-      <p><strong>Part 3 · Compare animations (${config.part3.graphs.length} comparisons).</strong> Watch two DARCOL animations of the same resize side by side: intermediate computed layouts with movement highlights, and direct interpolation between identical endpoints. Give one overall preference rating.</p>
+      <p><strong>Part 2 · Remember a tree’s direction (${config.part2.graphs.length * Object.keys(config.part2.conditions).length} questions).</strong> Look at an unmarked drawing for six seconds. Watch a two-second animation to a different aspect ratio. After playback, a tree is marked red. Choose the tree’s direction in the previous drawing. The target is not highlighted during playback. Each of nine graphs appears once with ARCOL and once with DARCOL, mixed in random order. You have up to 40 seconds to answer.</p>
+      <p><strong>Part 3 · Compare animations (${config.part3.graphs.length} comparisons).</strong> Watch two DARCOL animations of the same resize side by side: smooth tree turns with movement highlights, and plain direct interpolation between identical endpoints. Give one overall preference rating.</p>
       <p><strong>Time:</strong> about 25–30 minutes, including instructions.</p>
       <h2>Good to know</h2>
       <ul>
@@ -415,8 +417,10 @@ async function part1Question(screen) {
   $('#after').innerHTML = drawingSvg(after, { selectable: true, selected, label: 'Drawing after the change: select the matching nodes' });
   const label = $('#selection-label');
   label.textContent = selectionLabel(selected);
-  bindSelection($('#after'), selected, () => { label.textContent = selectionLabel(selected); });
-  $('#clear').onclick = () => { clearSelection($('#after'), selected); label.textContent = selectionLabel(selected); };
+  const clickEvents=[];
+  const interaction=event=>{const elapsedMs=performance.now()-shown;clickEvents.push({...event,elapsedMs,intervalMs:elapsedMs-(clickEvents.at(-1)?.elapsedMs||0),selectedAfter:[...selected]});};
+  bindSelection($('#after'), selected, event => { label.textContent = selectionLabel(selected);interaction({action:event.selected?'select':'deselect',nodeId:event.nodeId,inputType:event.inputType}); });
+  $('#clear').onclick = () => { clearSelection($('#after'), selected);label.textContent = selectionLabel(selected);interaction({action:'clear',nodeId:null,inputType:'pointer'}); };
 
   const shown = performance.now();
   const shownAt = nowIso();
@@ -424,7 +428,8 @@ async function part1Question(screen) {
   const submit = timeout => {
     if (done) return;
     done = true;
-    recordAnswer(screen, selected, { timeout, responseMs: performance.now() - shown, shownAt });
+    if(!timeout)interaction({action:'submit',nodeId:null,inputType:'pointer'});
+    recordAnswer(screen, selected, { timeout, responseMs: performance.now() - shown, shownAt, clickEvents, clickCount:clickEvents.filter(e=>e.action==='select'||e.action==='deselect').length });
     next();
   };
   $('#submit').disabled = false;
@@ -435,50 +440,34 @@ async function part1Question(screen) {
 // ---------------------------------------------------------------- Part 2
 
 async function part2Question(screen) {
-  const layouts=graphs[screen.graph].staticLayouts[screen.method];
-  const graph={initial:layouts.initial,darcol:layouts.final};
+  const graph=graphs[screen.graph],layouts=graph.directionLayouts[screen.method],clip=graph.directionVideos[screen.method];
   const tree=config.part2.conditions[screen.condition].trees[screen.graph];
-  const {index,total} = questionNumber(2), box = cropBox([graph.initial,graph.darcol]);
-  main.innerHTML = `<div class="progress"><div style="width:${(index-1)/total*100}%"></div></div>
-    <p class="eyebrow">PART 2 · QUESTION ${index} OF ${total}</p>
+  const {index,total}=questionNumber(2),box=cropBox([layouts.initial,layouts.final]);
+  main.innerHTML=`<div class="progress"><div style="width:${(index-1)/total*100}%"></div></div><p class="eyebrow">PART 2 · QUESTION ${index} OF ${total}</p>
     <h2 id="direction-prompt">Look at the graph before it changes.</h2>
-    <section class="drawing-card single direction-card"><header><span id="phase">Loading</span><span class="timer" id="clock"></span></header>
-      <div class="stage tall" id="stage"><div class="stage-message">Loading…</div></div></section>
-    <div id="direction-options" hidden></div>
-    <div class="answer-bar"><p id="direction-help">The first drawing disappears automatically after six seconds.</p><button class="primary" id="submit" disabled hidden>Submit answer</button></div>`;
-  const trial=watchTrial(),stage=$('#stage');
-  try {await withTimeout(preload([graph.initial.url,graph.darcol.url]),20000,'The question files did not load.');}
+    <section class="drawing-card single direction-card"><header><span id="phase">Loading</span><span class="timer" id="clock"></span></header><div class="stage tall" id="stage"></div></section>
+    <div id="direction-options" hidden></div><div class="answer-bar"><p id="direction-help">Look at the whole graph for six seconds, then watch its animation.</p><button class="primary" id="submit" disabled hidden>Submit answer</button></div>`;
+  const trial=watchTrial(),stage=$('#stage'),video=document.createElement('video');video.className='stage-video';video.muted=true;video.playsInline=true;video.disablePictureInPicture=true;video.preload='auto';
+  const priorCleanup=trial.cleanup;trial.cleanup=()=>{video.onended=null;video.pause();priorCleanup();};
+  try{await withTimeout(Promise.all([preload([layouts.initial.url,layouts.final.url]),new Promise((resolve,reject)=>{video.oncanplaythrough=resolve;video.onerror=()=>reject(Error('Animation could not load.'));video.src=clip.url;video.load();})]),20000,'The question files did not load.');}
   catch(error){return technicalProblem(screen,error.message);}
   if(activeTrial!==trial)return;
-  const times={memorizeStart:performance.now(),startedAt:nowIso()};
-  $('#phase').textContent='Look at the whole graph';
-  stage.innerHTML=drawingSvg(graph.initial,{box,label:'Unmarked first drawing'});
-  countdown(trial,$('#clock'),config.timing.part2MemorizeMs,s=>`${s}s`,changeLayout);
-  function changeLayout(){
-    times.blankStart=performance.now();$('#phase').textContent='The drawing is changing';$('#clock').textContent='';
-    stage.innerHTML='';$('#direction-help').textContent='';
-    trial.timers.add(setTimeout(()=>{if(activeTrial===trial)respond();},config.timing.part2BlankMs));
+  const times={memorizeStart:performance.now(),startedAt:nowIso()};$('#phase').textContent='Look at the whole graph';stage.innerHTML=drawingSvg(layouts.initial,{box,label:'Unmarked first drawing'});
+  countdown(trial,$('#clock'),config.timing.part2MemorizeMs,s=>`${s}s`,animate);
+  async function animate(){
+    if(activeTrial!==trial)return;times.animationStart=performance.now();$('#phase').textContent='Watch the animation';$('#clock').textContent='';$('#direction-help').textContent='';stage.innerHTML='';stage.append(video);fitVideo(stage,video,[0,0,960,540],box);
+    video.onended=()=>{if(activeTrial!==trial)return;times.animationEnd=performance.now();stage.innerHTML=drawingSvg(layouts.final,{box,label:'Unmarked final drawing'});trial.timers.add(setTimeout(respond,config.timing.part2RevealDelayMs));};
+    try{await video.play();}catch(error){technicalProblem(screen,'The animation could not play.');}
   }
   function respond(){
-    $('#phase').textContent='Remember its earlier direction';$('#direction-prompt').textContent='Which direction did the red tree point in the previous drawing?';
-    stage.innerHTML=drawingSvg(graph.darcol,{box,highlight:tree.nodes,highlightTree:true,treeAttachment:tree.attachment,label:'Final drawing with the question tree marked in red'});
-    $('#direction-help').textContent='Choose its original direction, pointing away from where it joins the rest of the graph.';
-    const options=$('#direction-options');options.hidden=false;
-    options.innerHTML=`<fieldset class="direction-fieldset"><legend>Direction in the previous drawing</legend><div class="direction-choices">${[['left','← Left'],['right','Right →'],['up','↑ Up (top)'],['down','↓ Down']].map(([v,label])=>`<label><input type="radio" name="tree-direction" value="${v}"><span>${label}</span></label>`).join('')}</div></fieldset>`;
+    if(activeTrial!==trial)return;$('#phase').textContent='Remember its earlier direction';$('#direction-prompt').textContent='Which direction did the red tree point in the first drawing?';
+    stage.innerHTML=drawingSvg(layouts.final,{box,highlight:tree.nodes,highlightTree:true,treeAttachment:tree.attachment,label:'Final drawing with the target tree marked red'});
+    $('#direction-help').textContent='Choose its direction before the animation, pointing away from its attachment.';
+    const options=$('#direction-options');options.hidden=false;options.innerHTML=`<fieldset class="direction-fieldset"><legend>Direction in the first drawing</legend><div class="direction-choices">${[['left','Left'],['right','Right'],['up','Up (top)'],['down','Down']].map(([v,label])=>`<label><input type="radio" name="tree-direction" value="${v}"><span>${label}</span></label>`).join('')}</div></fieldset>`;
     let selectedDirection=null,done=false;times.responseStart=performance.now();$('#submit').hidden=false;
     for(const input of options.querySelectorAll('input'))input.onchange=()=>{selectedDirection=input.value;$('#submit').disabled=false;};
-    const submit=timeout=>{
-      if(done)return;done=true;const t=performance.now();
-      session.answers.push({...describe(screen),position:session.position,questionIndex:index,taskType:'tree-direction',
-        treeNodes:[...tree.nodes],treeAttachment:tree.attachment,selected:[],selectedDirection,
-        correctDirection:tree.correctDirection,finalDirection:tree.finalDirection,correct:!timeout&&selectedDirection===tree.correctDirection,f1:null,
-        timeout,responseMs:t-times.responseStart,memorizeMs:times.blankStart-times.memorizeStart,
-        animationMs:0,blankMs:times.responseStart-times.blankStart,presentationMode:'static',totalMs:t-times.memorizeStart,
-        shownAt:times.startedAt,answeredAt:nowIso(),...trial.flags});
-      logEvent('answer',{position:session.position,taskType:'tree-direction'});save();next();
-    };
-    $('#submit').onclick=()=>submit(false);
-    countdown(trial,$('#clock'),config.timing.part2ResponseMs,s=>`${s}s left`,()=>submit(true));
+    const submit=timeout=>{if(done)return;done=true;const t=performance.now();session.answers.push({...describe(screen),position:session.position,questionIndex:index,taskType:'tree-direction',treeNodes:[...tree.nodes],treeAttachment:tree.attachment,selected:[],selectedDirection,correctDirection:tree.correctDirection,finalDirection:tree.finalDirection,correct:!timeout&&selectedDirection===tree.correctDirection,f1:null,timeout,responseMs:t-times.responseStart,memorizeMs:times.animationStart-times.memorizeStart,animationMs:times.animationEnd-times.animationStart,finalHoldMs:times.responseStart-times.animationEnd,presentationMode:'animated',animationMode:'direct-linear',totalMs:t-times.memorizeStart,shownAt:times.startedAt,answeredAt:nowIso(),...trial.flags});logEvent('answer',{position:session.position,taskType:'tree-direction'});save();next();};
+    $('#submit').onclick=()=>submit(false);countdown(trial,$('#clock'),config.timing.part2ResponseMs,s=>`${s}s left`,()=>submit(true));
   }
 }
 

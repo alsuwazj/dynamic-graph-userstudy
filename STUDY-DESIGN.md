@@ -178,3 +178,7 @@ Sydney uses one symbol size per frame, shared by both paired animations, limited
 
 ## Revision 34: replace Sydney
 Replace only Part 3 Sydney with grafo2869.37 from the selected gallery, reusing its validated GUI captures and two-second paired clips with 28 genuine 0.1-AR layouts. Other four comparisons and Parts 1/2 unchanged. Sydney excluded from all active parts. Historical responses retained.
+
+
+## Revision 35: animated direction recall, smooth endpoint turns and click timing
+Part 1 retains 18 trials and 50s answer cap; every node selection/deselection, clear and submit action carries elapsed and inter-action timing in milliseconds. Part 2: nine fixed graphs once per method, 18 mixed trials; 6s unmarked reference, 2s plain linear interpolation of each method’s endpoints, 150ms unmarked final hold, then red tree and up to 40s to recall its initial direction. All selected targets change direction in both methods. Add grafo1031.16, grafo445.22, grafo675.11, grafo5399.35 from the selected gallery after checking both-method direction changes and valid endpoint geometry. Part 3: same five graphs, same paired DARCOL endpoints; plain direct interpolation versus GUI EndpointMotion (curved core residual motion, smooth attached-tree swings, blue endpoint-movement highlights). Exactly two computed endpoint layouts, no intermediate optimizer snapshots. Both clips 2s. Historical protocols retained, new summaries kept separate.

@@ -7,7 +7,7 @@ const manifest=JSON.parse(readFileSync(new URL('../stimuli.json',import.meta.url
 test('all participants see identical trials while graph, method and condition order vary',()=>{
  const orders=new Set(),methods=new Set(),conditions=new Set();
  for(let seed=0;seed<256;seed++){
-  const built=buildScreens(cfg,seed),qs=built.screens.filter(q=>/^part[123]$/.test(q.type));assert.equal(qs.length,33);
+  const built=buildScreens(cfg,seed),qs=built.screens.filter(q=>/^part[123]$/.test(q.type));assert.equal(qs.length,41);
   orders.add(qs.map(q=>q.graph).join(','));methods.add(built.methodOrder.join(','));conditions.add(built.conditionOrder.join(','));
   for(let i=1;i<qs.length;i++)assert.notEqual(qs[i-1].graph,qs[i].graph);
   for(const graph of cfg.part2.graphs){const pair=qs.filter(q=>q.type==='part2'&&q.graph===graph);assert.equal(pair.length,2);assert.deepEqual(new Set(pair.map(q=>q.condition)),new Set(['ARCOL','DARCOL']));assert.deepEqual(pair[0].target,pair[1].target);}
@@ -15,10 +15,10 @@ test('all participants see identical trials while graph, method and condition or
  }
  assert.ok(orders.size>200);assert.equal(methods.size,2);assert.equal(conditions.size,2);
 });
-test('Part 2 mixes ARCOL and DARCOL static trials without subsections and spaces repeats by two other trials',()=>{
+test('Part 2 mixes ARCOL and DARCOL animated trials without subsections and spaces repeats by two other trials',()=>{
  for(let seed=0;seed<512;seed++){
   const plan=buildScreens(cfg,seed).screens;assert.equal(plan.filter(q=>q.type==='condition-intro').length,0);
-  const trials=plan.filter(q=>q.type==='part2');assert.equal(trials.length,10);
+  const trials=plan.filter(q=>q.type==='part2');assert.equal(trials.length,18);
   for(let i=0;i<trials.length;i++){
    for(let j=Math.max(0,i-2);j<i;j++)assert.notEqual(trials[i].graph,trials[j].graph);
    if(i>=3)assert.ok(!trials.slice(i-3,i+1).every(q=>q.condition===trials[i].condition));
@@ -51,14 +51,14 @@ test('Part 1 retains its graph pool while all trial counts stay fixed',()=>{
   assert.equal(cfg[part].graphs.length,provenance.restoredOriginalGroups[part].length+provenance.additions[part].length);
   for(const g of provenance.additions[part])assert.ok(cfg[part].graphs.includes(g));
  }
- assert.equal(new Set(manifest.items.map(i=>i.sourceGraph)).size,18);
+ assert.equal(new Set(manifest.items.map(i=>i.sourceGraph)).size,22);
  for(let seed=0;seed<256;seed++){
-  const q=buildScreens(cfg,seed).screens.filter(q=>/^part[123]$/.test(q.type));assert.deepEqual([1,2,3].map(p=>q.filter(q=>q.type==='part'+p).length),[18,10,5]);
+  const q=buildScreens(cfg,seed).screens.filter(q=>/^part[123]$/.test(q.type));assert.deepEqual([1,2,3].map(p=>q.filter(q=>q.type==='part'+p).length),[18,18,5]);
   for(let i=1;i<q.length;i++)assert.notEqual(cfg.graphFamilies[q[i].graph],cfg.graphFamilies[q[i-1].graph]);
  }
 });
 
 test('Wien remains in Part 2 and Sydney is excluded',()=>{
  assert.ok(!cfg.part2.graphs.includes('sydney'));assert.ok(!cfg.graphs.includes('sydney'));assert.ok(cfg.part3.graphs.includes('grafo2869.37'));assert.ok(cfg.part2.graphs.includes('wien-kurz'));assert.ok(cfg.part3.graphs.includes('wien-kurz'));
- assert.deepEqual([cfg.part1.graphs.length,cfg.part2.graphs.length,cfg.part3.graphs.length],[9,5,5]);
+ assert.deepEqual([cfg.part1.graphs.length,cfg.part2.graphs.length,cfg.part3.graphs.length],[9,9,5]);
 });

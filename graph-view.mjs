@@ -103,17 +103,17 @@ export function drawingSvg(asset, options = {}) {
 /** Wire click/keyboard toggling for a selectable drawing inside `root`. */
 export function bindSelection(root, selected, onChange) {
   for (const el of root.querySelectorAll('.node-choice')) {
-    const toggle = () => {
+    const toggle = event => {
       const id = Number(el.dataset.id);
       if (selected.has(id)) selected.delete(id); else selected.add(id);
       const on = selected.has(id);
       el.classList.toggle('selected', on);
       el.setAttribute('aria-checked', on);
-      onChange();
+      onChange({nodeId:id, selected:on, inputType:event?.type==='keydown'?'keyboard':'pointer'});
     };
     el.addEventListener('click', toggle);
     el.addEventListener('keydown', e => {
-      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggle(); }
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggle(e); }
     });
   }
 }

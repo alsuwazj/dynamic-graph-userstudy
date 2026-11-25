@@ -1,0 +1,92 @@
+{
+  "url": "media/gui/grafo675.11-arcol-AR0p33.png",
+  "viewBox": [
+    0,
+    0,
+    960,
+    540
+  ],
+  "hitboxes": [
+    {
+      "id": 0,
+      "x": 542.4679179191589,
+      "y": 419.53208816051483,
+      "width": 31,
+      "height": 31
+    },
+    {
+      "id": 1,
+      "x": 386.53208208084106,
+      "y": 349.3609620332718,
+      "width": 31,
+      "height": 31
+    },
+    {
+      "id": 2,
+      "x": 542.4679179191589,
+      "y": 349.3609620332718,
+      "width": 31,
+      "height": 31
+    },
+    {
+      "id": 3,
+      "x": 542.4679179191589,
+      "y": 167.43582528829575,
+      "width": 31,
+      "height": 31
+    },
+    {
+      "id": 4,
+      "x": 542.4679179191589,
+      "y": 11.500006437301636,
+      "width": 31,
+      "height": 31
+    },
+    {
+      "id": 5,
+      "x": 542.4679179191589,
+      "y": 245.40374376624823,
+      "width": 31,
+      "height": 31
+    },
+    {
+      "id": 6,
+      "x": 464.5,
+      "y": 297.3823544085026,
+      "width": 31,
+      "height": 31
+    },
+    {
+      "id": 7,
+      "x": 464.5,
+      "y": 419.53208816051483,
+      "width": 31,
+      "height": 31
+    },
+    {
+      "id": 8,
+      "x": 542.4679179191589,
+      "y": 89.46791183948517,
+      "width": 31,
+      "height": 31
+    },
+    {
+      "id": 9,
+      "x": 386.53208208084106,
+      "y": 245.40374376624823,
+      "width": 31,
+      "height": 31
+    },
+    {
+      "id": 10,
+      "x": 542.4679179191589,
+      "y": 497.49999356269836,
+      "width": 31,
+      "height": 31
+    }
+  ],
+  "source": "C:\\Users\\alsuwazj\\PycharmProjects\\dynamicAR\\output\\rome_default_vs_arcol_20261119\\full\\graphs\\grafo675.11\\arcol\\layouts\\AR0p33.npz",
+  "renderer": "darcol.render.canvas.GraphCanvas",
+  "capture": "Qt QWidget.grab",
+  "sha256": "539fdff06e89e3b0629d15e3ee7a1d96e9268bde92e2740bee4842db3ecad28d"
+}
