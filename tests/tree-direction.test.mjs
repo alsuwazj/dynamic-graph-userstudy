@@ -24,11 +24,9 @@ test('Part 3 compares paired DARCOL-only clips with identical endpoints',()=>{
  for(const pair of m.comparisons){assert.equal(pair.animation.durationMs,2000);assert.equal(pair.baseline.durationMs,2000);assert.equal(pair.protocol.endpointMethod,'DARCOL');assert.equal(pair.protocol.keyframes.length,28);assert.equal(pair.protocol.aspectRatioStep,.1);for(let j=1;j<28;j++)assert.ok(Math.abs(Math.abs(pair.protocol.keyframes[j].targetAspect-pair.protocol.keyframes[j-1].targetAspect)-.1)<1e-9);assert.deepEqual(pair.protocol.baselineHighlightNodes,[]);assert.ok(pair.protocol.highlightNodes.length);assert.equal(pair.ARCOL,undefined);}
 });
 
-test('Part 3 uses branching medium-sized examples from the selected gallery',()=>{
- const gallery=JSON.parse(readFileSync(new URL('../selection-gallery-v29.json',import.meta.url)));
- assert.equal(cfg.part3.graphs.length,5);
- for(const g of cfg.part3.graphs){assert.ok(gallery.graphs.includes(g));const i=m.items.find(i=>i.graphId===g);assert.ok(i.original.initial.hitboxes.length>=30);assert.ok(i.original.initial.hitboxes.length<=50);const degree=new Map();for(const [u,v] of i.edges){degree.set(u,(degree.get(u)||0)+1);degree.set(v,(degree.get(v)||0)+1);}assert.ok([...degree.values()].filter(n=>n>=3).length>=3,g);}
- assert.ok(!cfg.graphs.includes('sydney'));assert.ok(cfg.part2.graphs.includes('grafo10940.39'));assert.ok(cfg.part2.graphs.includes('wien-kurz'));
+test('Part 3 uses the five requested graphs and larger non-overlapping symbols',()=>{
+ assert.deepEqual(cfg.part3.graphs,['wien-kurz','grafo2069.32','grafo2774.26','sydney','grafo2519.37']);assert.ok(!cfg.part2.graphs.includes('sydney'));
+ for(const p of m.comparisons){assert.equal(p.protocol.nodeSizing.targetPx,16);for(const a of p.protocol.keyframes){for(let j=0;j<a.hitboxes.length;j++)for(let k=j+1;k<a.hitboxes.length;k++){const u=a.hitboxes[j],v=a.hitboxes[k];assert.ok(u.x+u.width<=v.x||v.x+v.width<=u.x||u.y+u.height<=v.y||v.y+v.height<=u.y,p.graphId+' '+a.aspectTag);}}}
 });
 
 test('Wien highlights both complete branches and their shared root',()=>{for(const method of ['ARCOL','DARCOL']){const t=cfg.part2.conditions[method].trees['wien-kurz'];assert.deepEqual(t.nodes,[0,1,2,3,4,5,6,7,20,21,22,23,24,25,26,27]);assert.equal(t.attachment,7);}});

@@ -51,7 +51,7 @@ test('Part 1 retains its graph pool while all trial counts stay fixed',()=>{
   assert.equal(cfg[part].graphs.length,provenance.restoredOriginalGroups[part].length+provenance.additions[part].length);
   for(const g of provenance.additions[part])assert.ok(cfg[part].graphs.includes(g));
  }
- assert.equal(new Set(manifest.items.map(i=>i.sourceGraph)).size,19);
+ assert.equal(new Set(manifest.items.map(i=>i.sourceGraph)).size,18);
  for(let seed=0;seed<256;seed++){
   const q=buildScreens(cfg,seed).screens.filter(q=>/^part[123]$/.test(q.type));assert.deepEqual([1,2,3].map(p=>q.filter(q=>q.type==='part'+p).length),[18,10,5]);
   for(let i=1;i<q.length;i++)assert.notEqual(cfg.graphFamilies[q[i].graph],cfg.graphFamilies[q[i-1].graph]);
@@ -59,6 +59,6 @@ test('Part 1 retains its graph pool while all trial counts stay fixed',()=>{
 });
 
 test('Wien remains in Part 2 and Sydney is excluded',()=>{
- assert.ok(!cfg.graphs.includes('sydney'));for(const g of ['wien-kurz']){assert.ok(cfg.part2.graphs.includes(g));assert.ok(!cfg.part1.graphs.includes(g));assert.ok(!cfg.part3.graphs.includes(g));}
+ assert.ok(!cfg.part2.graphs.includes('sydney'));assert.ok(cfg.part3.graphs.includes('sydney'));assert.ok(cfg.part2.graphs.includes('wien-kurz'));assert.ok(cfg.part3.graphs.includes('wien-kurz'));
  assert.deepEqual([cfg.part1.graphs.length,cfg.part2.graphs.length,cfg.part3.graphs.length],[9,5,5]);
 });

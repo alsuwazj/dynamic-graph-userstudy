@@ -166,3 +166,7 @@ Restore the previously validated grafo10940.39 in Part 2 because Sydney appears 
 
 ## Revision 31: whole Wien rooted tree
 Wien highlights both complete pendant chains incident to shared core root 7, plus root 7 itself (16 nodes). Earlier selection marked only one branch. Both methods use identical target IDs. Initial and final dominant directions remain independently verified per method. The root is a core vertex with external core edges, which are not part of the red tree. Sydney remains excluded; counts, timings and other graphs unchanged.
+
+
+## Revision 32: requested preference examples and larger symbols
+Part 3 uses Wien, grafo2069.32, grafo2774.26, Sydney and grafo2519.37. Parts 1 and 2 unchanged; Sydney is not in Part 2. Larger node symbols target 16 native pixels, limited to 82% of the closest center spacing to avoid merging neighboring symbols. Identical rule in paired conditions; actual DARCOL positions and routes unchanged. Paired videos use more available page width (up to 1700px). Keep 28 actual AR keyframes and two-second clips. Old versions remain supported.

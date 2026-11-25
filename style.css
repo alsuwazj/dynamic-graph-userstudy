@@ -163,3 +163,6 @@ main > h2 { font-size: 17px; font-weight: 500; margin-bottom: 18px; }
 .direction-choices label:has(input:checked) {border-color:#176f63;background:#ecf8f3;}
 
 .direction-card .stage.tall {height:min(40vh,360px);}
+
+/* Use the available screen width for paired animation viewing. */
+.preference-pair {width:min(1700px,calc(100vw - 48px));position:relative;left:50%;transform:translateX(-50%);}
