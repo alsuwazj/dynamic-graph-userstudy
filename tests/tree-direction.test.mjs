@@ -50,7 +50,7 @@ test('Wien highlights both complete branches and their shared root',()=>{for(con
 
 test('reviewed set excludes rejected graphs and records preservation cases honestly',()=>{
  for(const g of ['sydney','grafo1529.73','grafo2869.37','grafo5399.35','grafo2519.37','grafo1244.26'])assert.ok(!cfg.graphs.includes(g));
- assert.ok(cfg.part3.graphs.includes('grafo5838.35'));
+ assert.ok(cfg.part3.graphs.includes('grafo4085.35'));
  for(const condition of Object.values(cfg.part2.conditions))for(const t of Object.values(condition.trees))assert.equal(t.directionChanged,t.correctDirection!==t.finalDirection);
 });
 test('the 2069 target is a complete branching tree that turns under both methods',()=>{

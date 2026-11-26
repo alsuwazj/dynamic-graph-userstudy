@@ -1,6 +1,6 @@
 # Graph layout study
 
-Protocol: neutral-playback-v51. The site is published through GitHub Pages; response collection uses the separate results service.
+Protocol: gallery-replacements-v52. The site is published through GitHub Pages; response collection uses the separate results service.
 
 Part 1: 18 static path-matching questions, nine graphs once per method, four consecutive target nodes and a 50-second deadline. Method trials are interleaved; the same graph never immediately repeats.
 
@@ -17,6 +17,8 @@ Edge attachments preserve offset route lines and add only short connectors to gl
 Parts 1 and 2 retain the v44 layouts, target IDs, timing and randomization unchanged. Historical session versions remain supported by the service. Current Part 3 summaries exclude the retired within-DARCOL animation-style comparison.
 
 All source layout paths and original HOLA hashes are recorded in stimuli.json. The fixed demonstration set is selected rather than a representative random graph sample.
+
+Five Part 3 replacements are documented in part3-gallery-selection-v52.json. Each uses a selected gallery row and its listed destination AR. Sources and layout hashes, endpoint audits, retained comparisons and the replacement mapping are recorded. The set is curated, not randomly sampled.
 
 ---
 

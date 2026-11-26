@@ -1,0 +1,266 @@
+{
+  "gallery": "C:\\Users\\alsuwazj\\PycharmProjects\\dynamicAR\\docs\\figures\\darcol_arcol_gallery_selected.json",
+  "gallerySha256": "1f0f1272da78b8ca674ab1859c0d42e75566804295a72a95f3c01765f72f9ca5",
+  "representativeSample": false,
+  "selection": "Curated gallery examples with visible tree turns, matching gallery destination AR, and no recorded overlap/edge-through-node/nonorthogonal defects at displayed endpoints.",
+  "replacements": [
+    {
+      "graphId": "grafo4085.35",
+      "galleryRow": 13,
+      "sourceGraph": "C:\\Users\\alsuwazj\\PycharmProjects\\AnimateConvergance\\.venv\\Evaluation\\ARCOL\\Rome\\Rome_Output_Graphs_HOLA\\_AR\\grafo4085.35_AR.svg",
+      "inputSha256": "0e0752e82630b4be4683d17435264e2b7142ffab599e8caa7341a3e988bd827b",
+      "sourceAspectTag": "AR0p33",
+      "destinationAspectTag": "AR1p33",
+      "galleryDestinationMatched": true,
+      "layouts": {
+        "initial": {
+          "path": "C:\\Users\\alsuwazj\\PycharmProjects\\dynamicAR\\output\\rome_default_vs_arcol_20261119\\full\\graphs\\grafo4085.35\\darcol\\layouts\\AR0p33.npz",
+          "sha256": "1f5b819f3d9c6970fd9b4d07009c3b33fca7d4d2d4e67a5b8d59dd5244603927"
+        },
+        "DARCOL": {
+          "path": "C:\\Users\\alsuwazj\\PycharmProjects\\dynamicAR\\output\\rome_default_vs_arcol_20261119\\full\\graphs\\grafo4085.35\\darcol\\layouts\\AR1p33.npz",
+          "sha256": "9dcc639980d9e51c0da42b634c87004c3ba224da829446ddcc009f3ef3575631"
+        },
+        "ARCOL": {
+          "path": "C:\\Users\\alsuwazj\\PycharmProjects\\dynamicAR\\output\\rome_default_vs_arcol_20261119\\full\\graphs\\grafo4085.35\\arcol\\layouts\\AR1p33.npz",
+          "sha256": "1978e10279332a451372682ca84a18b36222039c2b846f322dfeea10d326270f"
+        }
+      },
+      "endpointAudits": [
+        {
+          "method": "DARCOL",
+          "tag": "AR0p33",
+          "node_overlaps": 0,
+          "edge_through_node": 0,
+          "nonorthogonal_segments": 0,
+          "crossings": 22
+        },
+        {
+          "method": "DARCOL",
+          "tag": "AR1p33",
+          "node_overlaps": 0,
+          "edge_through_node": 0,
+          "nonorthogonal_segments": 0,
+          "crossings": 21
+        },
+        {
+          "method": "ARCOL",
+          "tag": "AR1p33",
+          "node_overlaps": 0,
+          "edge_through_node": 0,
+          "nonorthogonal_segments": 0,
+          "crossings": 24
+        }
+      ]
+    },
+    {
+      "graphId": "grafo7570.40",
+      "galleryRow": 14,
+      "sourceGraph": "C:\\Users\\alsuwazj\\PycharmProjects\\AnimateConvergance\\.venv\\Evaluation\\ARCOL\\Rome\\Rome_Output_Graphs_HOLA\\_AR\\grafo7570.40_AR.svg",
+      "inputSha256": "fa8ec42553c7516adefcf89fb8ecf7c5ffa4b2f49f12ab777d3806b2cf37a5c0",
+      "sourceAspectTag": "AR3p56",
+      "destinationAspectTag": "AR1p33",
+      "galleryDestinationMatched": true,
+      "layouts": {
+        "initial": {
+          "path": "C:\\Users\\alsuwazj\\PycharmProjects\\dynamicAR\\output\\rome_default_vs_arcol_20261119\\full\\graphs\\grafo7570.40\\darcol\\layouts\\AR3p56.npz",
+          "sha256": "7529c833e15b77a993f5f742692391ce298421916655479f3237b172bdf2e5f5"
+        },
+        "DARCOL": {
+          "path": "C:\\Users\\alsuwazj\\PycharmProjects\\dynamicAR\\output\\rome_default_vs_arcol_20261119\\full\\graphs\\grafo7570.40\\darcol\\layouts\\AR1p33.npz",
+          "sha256": "0ff6eeede6b249edf1e402dd352eb7a0ded526586008451353a10d1b907a997b"
+        },
+        "ARCOL": {
+          "path": "C:\\Users\\alsuwazj\\PycharmProjects\\dynamicAR\\output\\rome_default_vs_arcol_20261119\\full\\graphs\\grafo7570.40\\arcol\\layouts\\AR1p33.npz",
+          "sha256": "ff2471f681e954e783cd7b4a5e8fc0570fcf5493839f71b4f4c5d98469887ddc"
+        }
+      },
+      "endpointAudits": [
+        {
+          "method": "DARCOL",
+          "tag": "AR3p56",
+          "node_overlaps": 0,
+          "edge_through_node": 0,
+          "nonorthogonal_segments": 0,
+          "crossings": 9
+        },
+        {
+          "method": "DARCOL",
+          "tag": "AR1p33",
+          "node_overlaps": 0,
+          "edge_through_node": 0,
+          "nonorthogonal_segments": 0,
+          "crossings": 9
+        },
+        {
+          "method": "ARCOL",
+          "tag": "AR1p33",
+          "node_overlaps": 0,
+          "edge_through_node": 0,
+          "nonorthogonal_segments": 0,
+          "crossings": 9
+        }
+      ]
+    },
+    {
+      "graphId": "grafo3529.42",
+      "galleryRow": 15,
+      "sourceGraph": "C:\\Users\\alsuwazj\\PycharmProjects\\AnimateConvergance\\.venv\\Evaluation\\ARCOL\\Rome\\Rome_Output_Graphs_HOLA\\_AR\\grafo3529.42_AR.svg",
+      "inputSha256": "9798b83ac04e300d380d2671debd5fb89d562799db6794993fac944b60580eb7",
+      "sourceAspectTag": "AR3p56",
+      "destinationAspectTag": "AR0p56",
+      "galleryDestinationMatched": true,
+      "layouts": {
+        "initial": {
+          "path": "C:\\Users\\alsuwazj\\PycharmProjects\\dynamicAR\\output\\rome_default_vs_arcol_20261119\\full\\graphs\\grafo3529.42\\darcol\\layouts\\AR3p56.npz",
+          "sha256": "d6de31e86b888753591c9cdb77b8e2acc07320fd81dbeb52f9c77eea3b0c45fb"
+        },
+        "DARCOL": {
+          "path": "C:\\Users\\alsuwazj\\PycharmProjects\\dynamicAR\\output\\rome_default_vs_arcol_20261119\\full\\graphs\\grafo3529.42\\darcol\\layouts\\AR0p56.npz",
+          "sha256": "32720cb8a23f0d4c0e015b102bc2b0e2d2f9075100f49b4a13fa2f1e30ef2093"
+        },
+        "ARCOL": {
+          "path": "C:\\Users\\alsuwazj\\PycharmProjects\\dynamicAR\\output\\rome_default_vs_arcol_20261119\\full\\graphs\\grafo3529.42\\arcol\\layouts\\AR0p56.npz",
+          "sha256": "9c5ab1e1ffde8acbbde2a677368dfe8e14578bd8e32c4967afb23c3e824630bb"
+        }
+      },
+      "endpointAudits": [
+        {
+          "method": "DARCOL",
+          "tag": "AR3p56",
+          "node_overlaps": 0,
+          "edge_through_node": 0,
+          "nonorthogonal_segments": 0,
+          "crossings": 11
+        },
+        {
+          "method": "DARCOL",
+          "tag": "AR0p56",
+          "node_overlaps": 0,
+          "edge_through_node": 0,
+          "nonorthogonal_segments": 0,
+          "crossings": 8
+        },
+        {
+          "method": "ARCOL",
+          "tag": "AR0p56",
+          "node_overlaps": 0,
+          "edge_through_node": 0,
+          "nonorthogonal_segments": 0,
+          "crossings": 12
+        }
+      ]
+    },
+    {
+      "graphId": "grafo3181.55",
+      "galleryRow": 35,
+      "sourceGraph": "C:\\Users\\alsuwazj\\PycharmProjects\\AnimateConvergance\\.venv\\Evaluation\\ARCOL\\Rome\\Rome_Output_Graphs_HOLA\\_AR\\grafo3181.55_AR.svg",
+      "inputSha256": "5acad1a1031606ad8e905c5b77de0fed90484182ba4f9c319efb9f85c01bffcd",
+      "sourceAspectTag": "AR0p33",
+      "destinationAspectTag": "AR1p00",
+      "galleryDestinationMatched": true,
+      "layouts": {
+        "initial": {
+          "path": "C:\\Users\\alsuwazj\\PycharmProjects\\dynamicAR\\output\\rome_default_vs_arcol_20261119\\full\\graphs\\grafo3181.55\\darcol\\layouts\\AR0p33.npz",
+          "sha256": "a6d4d76409df100fd32b4ff1d66b30600a4acd571c51b3eee8ebf425f6f0f62d"
+        },
+        "DARCOL": {
+          "path": "C:\\Users\\alsuwazj\\PycharmProjects\\dynamicAR\\output\\rome_default_vs_arcol_20261119\\full\\graphs\\grafo3181.55\\darcol\\layouts\\AR1p00.npz",
+          "sha256": "37223287c71ea8fa459616b4d080aee54556cec1b01a366777b58e0c8eae89a0"
+        },
+        "ARCOL": {
+          "path": "C:\\Users\\alsuwazj\\PycharmProjects\\dynamicAR\\output\\rome_default_vs_arcol_20261119\\full\\graphs\\grafo3181.55\\arcol\\layouts\\AR1p00.npz",
+          "sha256": "64b10f4457370246a6b1d8eda159a94988be0b0c8e73916e47e2d18f95cc7786"
+        }
+      },
+      "endpointAudits": [
+        {
+          "method": "DARCOL",
+          "tag": "AR0p33",
+          "node_overlaps": 0,
+          "edge_through_node": 0,
+          "nonorthogonal_segments": 0,
+          "crossings": 28
+        },
+        {
+          "method": "DARCOL",
+          "tag": "AR1p00",
+          "node_overlaps": 0,
+          "edge_through_node": 0,
+          "nonorthogonal_segments": 0,
+          "crossings": 27
+        },
+        {
+          "method": "ARCOL",
+          "tag": "AR1p00",
+          "node_overlaps": 0,
+          "edge_through_node": 0,
+          "nonorthogonal_segments": 0,
+          "crossings": 35
+        }
+      ]
+    },
+    {
+      "graphId": "grafo11348.35",
+      "galleryRow": 24,
+      "sourceGraph": "C:\\Users\\alsuwazj\\PycharmProjects\\AnimateConvergance\\.venv\\Evaluation\\ARCOL\\Rome\\Rome_Output_Graphs_HOLA\\_AR\\grafo11348.35_AR.svg",
+      "inputSha256": "b18823d19c21cfe41a377cdb51f836339f5e366de24deeceee7fb9bd14408466",
+      "sourceAspectTag": "AR3p56",
+      "destinationAspectTag": "AR1p33",
+      "galleryDestinationMatched": true,
+      "layouts": {
+        "initial": {
+          "path": "C:\\Users\\alsuwazj\\PycharmProjects\\dynamicAR\\output\\rome_default_vs_arcol_20261119\\full\\graphs\\grafo11348.35\\darcol\\layouts\\AR3p56.npz",
+          "sha256": "c592f956f5ad0d7fe60149a6df8daf1c3db7e051cae592ad266b1c0733272a6a"
+        },
+        "DARCOL": {
+          "path": "C:\\Users\\alsuwazj\\PycharmProjects\\dynamicAR\\output\\rome_default_vs_arcol_20261119\\full\\graphs\\grafo11348.35\\darcol\\layouts\\AR1p33.npz",
+          "sha256": "13fa53114d5f603accfdd2cfd9e7c99d59ae57009431aefa07d004266a2b4045"
+        },
+        "ARCOL": {
+          "path": "C:\\Users\\alsuwazj\\PycharmProjects\\dynamicAR\\output\\rome_default_vs_arcol_20261119\\full\\graphs\\grafo11348.35\\arcol\\layouts\\AR1p33.npz",
+          "sha256": "3f30549a842b1b1fe5f2583367fe063868b7c4f04fa34cfd42de9595659312ee"
+        }
+      },
+      "endpointAudits": [
+        {
+          "method": "DARCOL",
+          "tag": "AR3p56",
+          "node_overlaps": 0,
+          "edge_through_node": 0,
+          "nonorthogonal_segments": 0,
+          "crossings": 7
+        },
+        {
+          "method": "DARCOL",
+          "tag": "AR1p33",
+          "node_overlaps": 0,
+          "edge_through_node": 0,
+          "nonorthogonal_segments": 0,
+          "crossings": 7
+        },
+        {
+          "method": "ARCOL",
+          "tag": "AR1p33",
+          "node_overlaps": 0,
+          "edge_through_node": 0,
+          "nonorthogonal_segments": 0,
+          "crossings": 8
+        }
+      ]
+    }
+  ],
+  "replacementMap": {
+    "grafo5838.35": "grafo4085.35",
+    "grafo10562.33": "grafo7570.40",
+    "grafo7455.41": "grafo3529.42",
+    "grafo1998.31": "grafo3181.55",
+    "grafo9849.35": "grafo11348.35"
+  },
+  "retainedComparisons": [
+    "wien-kurz",
+    "grafo2774.26",
+    "grafo3043.36",
+    "grafo2069.32"
+  ]
+}
