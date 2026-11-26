@@ -1,0 +1,16 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Clear saved study responses</title><link rel="stylesheet" href="style.css"></head>
+<body><main class="narrow" style="margin:60px auto;padding:24px"><h1>Clear saved study responses</h1><p>This clears saved study responses in this browser tab and older demo results on this device. Graph files and study settings are kept.</p><button class="primary" id="clear">Clear saved responses</button><p role="status" id="status"></p><p><a href="./">Open the study</a></p></main>
+<script>
+const matches=key=>['darcol-two-part-session','darcol-part3-preview','graph-recovery-originals-v2','advisor-results-latest'].includes(key)||key.startsWith('advisor-results:');
+document.getElementById('clear').onclick=()=>{
+ let count=0;
+ try{
+  for(const storage of [sessionStorage,localStorage])for(const key of Object.keys(storage))if(matches(key)){storage.removeItem(key);count++;}
+  const remaining=[sessionStorage,localStorage].flatMap(storage=>Object.keys(storage)).filter(matches).length;
+  if(remaining)throw Error('Some saved responses remain.');
+  document.getElementById('status').textContent=`Saved study responses cleared. ${count} saved record(s) removed; 0 remain in this tab.`;
+  document.getElementById('clear').disabled=true;
+ }catch(error){document.getElementById('status').textContent='Could not clear saved responses: '+error.message;}
+};
+</script></body></html>
