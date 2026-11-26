@@ -35,6 +35,8 @@ test('Part 3 compares ARCOL and DARCOL from a shared start for one second',()=>{
 test('Part 3 endpoint exports preserve orthogonal long edge segments and offset ports',()=>{
  for(const pair of m.comparisons)for(const method of ['ARCOL','DARCOL']){
   assert.match(pair.protocol[method].ink.portAttachment,/preserve supporting/);
+  assert.equal(pair.protocol[method].ink.playbackEdgeGeometry,'straight');
+  assert.equal(pair.protocol[method].ink.maxPlaybackBendCount,0);
   for(const asset of [pair.initial,pair.endpointLayouts[method]])for(const edge of asset.routes){
    for(let k=1;k<edge.points.length;k++){
     const dx=Math.abs(edge.points[k][0]-edge.points[k-1][0]),dy=Math.abs(edge.points[k][1]-edge.points[k-1][1]);
