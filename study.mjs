@@ -14,8 +14,9 @@ import { buildScreens, score } from './plan.mjs?v=clean-animation-ink-v42';
 
 const $ = selector => document.querySelector(selector);
 const main = $('#main');
-const STORAGE_KEY = 'darcol-two-part-session';
-const localMode = new URLSearchParams(location.search).has('local');
+const part3Preview = new URLSearchParams(location.search).get('part') === '3';
+const STORAGE_KEY = part3Preview ? 'darcol-part3-preview' : 'darcol-two-part-session';
+const localMode = part3Preview || new URLSearchParams(location.search).has('local');
 
 let config;
 let comparisons = {};
@@ -113,6 +114,13 @@ async function boot() {
     if (missing.length) throw Error(`Missing graph data for: ${missing.join(', ')}`);
     service = localMode ? null : await loadResponseService();
     if (localMode) document.body.classList.add('test-mode');
+
+    if (part3Preview) {
+      await startSession();
+      screens = screens.filter(screen => screen.type === 'part3' || screen.type === 'finish');
+      next();
+      return;
+    }
 
     const saved = JSON.parse(sessionStorage.getItem(STORAGE_KEY) || 'null');
     if (saved && saved.version === config.version && saved.status === 'active') {
