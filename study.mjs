@@ -447,7 +447,7 @@ async function part2Question(screen) {
     <h2 id="direction-prompt">Look at the graph before it changes.</h2>
     <div class="direction-task-layout"><section class="drawing-card single direction-card"><header><span id="phase">Loading</span><span class="timer" id="clock"></span></header><div class="stage tall" id="stage"></div></section>
     <div id="direction-options" hidden></div></div><div class="answer-bar"><p id="direction-help">Look at the whole graph for six seconds, then watch its animation.</p><button class="primary" id="submit" disabled hidden>Submit answer</button></div>`;
-  const trial=watchTrial(),stage=$('#stage'),video=document.createElement('video');video.className='stage-video';video.muted=true;video.playsInline=true;video.disablePictureInPicture=true;video.preload='auto';
+  const trial=watchTrial(),stage=$('#stage'),video=document.createElement('video');video.className='stage-video';video.muted=true;video.playsInline=true;video.disablePictureInPicture=true;video.preload='auto';video.loop=false;
   const priorCleanup=trial.cleanup;trial.cleanup=()=>{video.onended=null;video.pause();priorCleanup();};
   try{await withTimeout(Promise.all([preload([layouts.initial.url,layouts.final.url]),new Promise((resolve,reject)=>{video.oncanplaythrough=resolve;video.onerror=()=>reject(Error('Animation could not load.'));video.src=clip.url;video.load();})]),20000,'The question files did not load.');}
   catch(error){return technicalProblem(screen,error.message);}
@@ -456,11 +456,17 @@ async function part2Question(screen) {
   countdown(trial,$('#clock'),config.timing.part2MemorizeMs,s=>`${s}s`,animate);
   async function animate(){
     if(activeTrial!==trial)return;times.animationStart=performance.now();$('#phase').textContent='Watch the animation';$('#clock').textContent='';$('#direction-help').textContent='';stage.innerHTML='';stage.append(video);fitVideo(stage,video,[0,0,960,540],box);
-    video.onended=()=>{if(activeTrial!==trial)return;times.animationEnd=performance.now();stage.innerHTML=drawingSvg(layouts.final,{box,label:'Unmarked final drawing'});trial.timers.add(setTimeout(respond,config.timing.part2RevealDelayMs));};
+    video.onended=()=>{
+      // Reveal from the media's actual stopped state, never from a duration estimate.
+      if(activeTrial!==trial||!video.ended||times.animationEnd!==undefined)return;
+      video.pause();times.animationEnd=performance.now();
+      stage.innerHTML=drawingSvg(layouts.final,{box,label:'Unmarked final drawing'});
+      trial.timers.add(setTimeout(respond,config.timing.part2RevealDelayMs));
+    };
     try{await video.play();}catch(error){technicalProblem(screen,'The animation could not play.');}
   }
   function respond(){
-    if(activeTrial!==trial)return;$('#phase').textContent='Remember its earlier direction';$('#direction-prompt').textContent='Which direction did the red tree point in the first drawing?';
+    if(activeTrial!==trial||times.animationEnd===undefined||!video.ended||!video.paused)return;$('#phase').textContent='Remember its earlier direction';$('#direction-prompt').textContent='Which direction did the red tree point in the first drawing?';
     stage.innerHTML=drawingSvg(layouts.final,{box,highlight:tree.nodes,highlightTree:true,treeAttachment:tree.attachment,label:'Final drawing with the target tree marked red'});
     $('#direction-help').textContent='Click an arrow for its direction before the animation, or choose Give up.';
     const options=$('#direction-options');options.hidden=false;options.innerHTML=`<div class="direction-cross" role="group" aria-label="Direction in the first drawing"><button type="button" data-direction="up" class="direction-arrow direction-up" aria-label="Up" title="Up">↑</button><button type="button" data-direction="left" class="direction-arrow direction-left" aria-label="Left" title="Left">←</button><button type="button" class="direction-give-up" id="give-up">Give up</button><button type="button" data-direction="right" class="direction-arrow direction-right" aria-label="Right" title="Right">→</button><button type="button" data-direction="down" class="direction-arrow direction-down" aria-label="Down" title="Down">↓</button></div>`;
