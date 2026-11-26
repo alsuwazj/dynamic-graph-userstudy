@@ -119,6 +119,9 @@ async function boot() {
       document.body.classList.remove('welcome-only');
       await startSession();
       screens = screens.filter(screen => screen.type === 'part3' || screen.type === 'finish');
+      const requestedGraph = new URLSearchParams(location.search).get('graph');
+      const requestedIndex = screens.findIndex(screen => screen.type === 'part3' && screen.graph === requestedGraph);
+      if (requestedIndex > 0) screens.unshift(screens.splice(requestedIndex, 1)[0]);
       next();
       return;
     }

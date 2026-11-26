@@ -36,3 +36,22 @@ def attach(points,first,last,side):
  if len(p)<2:return p
  p=clip_start(p[::-1],last,side/2)[::-1]
  return simplify(p) if len(p)>=2 else p
+
+def attach_ports(points,first,last,side):
+ """Attach glyphs without dragging an offset route's long end segments.
+
+ Keep the first/last segment's supporting line. A short perpendicular
+ connector reaches that line from the node, then clipping trims it to the
+ actual square. Orthogonal saved routes therefore stay orthogonal.
+ """
+ points=simplify(points);first=np.asarray(first,float);last=np.asarray(last,float)
+ if len(points)<2 or np.max(np.abs(first-last))<side-1e-6:return np.empty((0,2))
+ def projection(center,a,b):
+  d=b-a;length=float(d@d)
+  return a+d*float((center-a)@d)/length if length>1e-12 else center.copy()
+ start=projection(first,points[0],points[1]);end=projection(last,points[-1],points[-2])
+ p=simplify(np.vstack([first,start,points[1:-1],end,last]))
+ p=clip_start(p,first,side/2)
+ if len(p)<2:return p
+ p=clip_start(p[::-1],last,side/2)[::-1]
+ return simplify(p) if len(p)>=2 else p

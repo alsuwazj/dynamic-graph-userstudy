@@ -1,6 +1,6 @@
 # Graph layout study
 
-Protocol: matched-graph-style-v48. The site is published through GitHub Pages; response collection uses the separate results service.
+Protocol: port-preserving-v49. The site is published through GitHub Pages; response collection uses the separate results service.
 
 Part 1: 18 static path-matching questions, nine graphs once per method, four consecutive target nodes and a 50-second deadline. Method trials are interleaved; the same graph never immediately repeats.
 
@@ -9,6 +9,8 @@ Part 2: 18 tree-direction questions, nine graphs once per method. The unmarked s
 Part 3: nine side-by-side ARCOL-versus-DARCOL comparisons. Both start from the same DARCOL drawing and use the same destination aspect-ratio target. ARCOL linearly interpolates to an independently computed ARCOL final drawing without highlights. DARCOL uses endpoint interpolation with smooth tree/chain turns, blue movement highlights and pale context nodes. Both clips last one second and replay after a two-second pause. Participants give one overall five-point preference rating. Graph order and left/right method placement vary by seed; positive normalized scores favor DARCOL. This is a comparison of the two presentation systems, including their different endpoints and highlighting.
 
 Part 3 uses the same arc-length edge interpolation rule as Part 2; rounded endpoint paths are matched by distance along each edge, rather than by bend index. Square fills are #848482, black edges and borders are 2px, and corner radius is 4px. DARCOL tree rotation and blue/pale highlighting remain.
+
+Edge attachments preserve offset route lines and add only short connectors to glyph borders. The long original segments are never dragged toward node centers. All exported endpoints are checked for introduced long diagonals.
 
 Parts 1 and 2 retain the v44 layouts, target IDs, timing and randomization unchanged. Historical session versions remain supported by the service. Current Part 3 summaries exclude the retired within-DARCOL animation-style comparison.
 

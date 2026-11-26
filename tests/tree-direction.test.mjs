@@ -31,6 +31,18 @@ test('Part 3 compares ARCOL and DARCOL from a shared start for one second',()=>{
   assert.deepEqual(p.protocol.ARCOL.camera,p.protocol.DARCOL.camera);
  }
 });
+
+test('Part 3 endpoint exports preserve orthogonal long edge segments and offset ports',()=>{
+ for(const pair of m.comparisons)for(const method of ['ARCOL','DARCOL']){
+  assert.match(pair.protocol[method].ink.portAttachment,/preserve supporting/);
+  for(const asset of [pair.initial,pair.endpointLayouts[method]])for(const edge of asset.routes){
+   for(let k=1;k<edge.points.length;k++){
+    const dx=Math.abs(edge.points[k][0]-edge.points[k-1][0]),dy=Math.abs(edge.points[k][1]-edge.points[k-1][1]);
+    assert.ok(Math.hypot(dx,dy)<=15||Math.min(dx,dy)<1e-5,`${pair.graphId} ${method} edge ${edge.u}-${edge.v}`);
+   }
+  }
+ }
+});
 test('Wien highlights both complete branches and their shared root',()=>{for(const method of ['ARCOL','DARCOL']){const t=cfg.part2.conditions[method].trees['wien-kurz'];assert.deepEqual(t.nodes,[0,1,2,3,4,5,6,7,20,21,22,23,24,25,26,27]);assert.equal(t.attachment,7);}});
 
 
