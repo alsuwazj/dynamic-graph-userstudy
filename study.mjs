@@ -7,7 +7,8 @@
 // (response-service.json). Add ?local to the URL to test without uploading;
 // responses can then be downloaded on the last page.
 
-import { loadResponseService, allocateResponse, sendResponse } from './response-service.mjs';
+import { loadResponseService, allocateResponse, sendResponse } from './response-service.mjs?v=loading-recovery-v43';
+import {readStudyJson} from './study-json.mjs?v=loading-recovery-v43';
 import { cropBox, drawingSvg, bindSelection, clearSelection, fitVideo } from './graph-view.mjs?v=clean-animation-ink-v42';
 import { buildScreens, score } from './plan.mjs?v=clean-animation-ink-v42';
 
@@ -82,8 +83,9 @@ function downloadJson(data, name) {
 
 async function boot() {
   try {
-    config = await (await fetch('study-config.json', { cache: 'no-store' })).json();
-    const stimuli = await (await fetch('stimuli.json', { cache: 'no-store' })).json();
+    config = await readStudyJson('study-config.json');
+    const stimuli = await readStudyJson('stimuli.json');
+    if(stimuli.version!==config.version)throw Error('The study files are being updated. Please try again.');
     graphs = {};
     for (const item of stimuli.items) {
       if (graphs[item.graphId]) continue;
@@ -125,7 +127,8 @@ async function boot() {
       welcome();
     }
   } catch (error) {
-    main.innerHTML = `<div class="notice error">The study could not start: ${escapeHtml(error.message)}</div>`;
+    main.innerHTML = `<div class="notice error"><h2>The study could not load.</h2><p>${escapeHtml(error.message)}</p><p>Your saved answers have not been cleared.</p><button class="primary" id="retry-start">Try again</button></div>`;
+    $('#retry-start').onclick=()=>{main.innerHTML='<p>Loading study…</p>';boot();};
   }
 }
 
@@ -377,11 +380,16 @@ function recordAnswer(screen, selected, extra) {
 
 function technicalProblem(screen, reason) {
   activeTrial?.cleanup();
-  session.answers.push({ ...describe(screen), position: session.position, technicalInvalid: true, reason, selected: [], correct: null, f1: null });
-  logEvent('technical_invalid', { position: session.position, reason });
+  logEvent('trial_load_error', { position: session.position, reason });
   save();
-  $('#stage-area').innerHTML = `<div class="stage-message"><h3>This question could not be shown.</h3><p>${escapeHtml(reason)} It will be skipped.</p><button class="primary" id="skip">Continue</button></div>`;
-  $('#skip').onclick = next;
+  const host=$('#stage-area')||$('#stage')||main;
+  if($('#phase'))$('#phase').textContent='Loading failed';
+  if($('#clock'))$('#clock').textContent='';
+  if($('#direction-options'))$('#direction-options').hidden=true;
+  host.innerHTML = `<div class="stage-message"><h3>This question could not be loaded.</h3><p>${escapeHtml(reason)}</p><p>Your earlier answers are saved. You can retry this question.</p><button class="primary" id="retry-question">Try again</button><button class="secondary" id="skip">Skip question</button></div>`;
+  let handled=false;
+  $('#retry-question').onclick=()=>{if(handled)return;handled=true;if(screen.type==='part2')part2Question(screen);else part1Question(screen);};
+  $('#skip').onclick=()=>{if(handled)return;handled=true;session.answers.push({...describe(screen),position:session.position,technicalInvalid:true,reason,selected:[],correct:null,f1:null});logEvent('technical_invalid',{position:session.position,reason});save();next();};
 }
 
 // ---------------------------------------------------------------- Part 1
@@ -448,9 +456,9 @@ async function part2Question(screen) {
     <div class="direction-task-layout"><section class="drawing-card single direction-card"><header><span id="phase">Loading</span><span class="timer" id="clock"></span></header><div class="stage tall" id="stage"></div></section>
     <div id="direction-options" hidden></div></div><div class="answer-bar"><p id="direction-help">Look at the whole graph for six seconds, then watch its animation.</p><button class="primary" id="submit" disabled hidden>Submit answer</button></div>`;
   const trial=watchTrial(),stage=$('#stage'),video=document.createElement('video');video.className='stage-video';video.muted=true;video.playsInline=true;video.disablePictureInPicture=true;video.preload='auto';video.loop=false;
-  const priorCleanup=trial.cleanup;trial.cleanup=()=>{video.onended=null;video.pause();priorCleanup();};
-  try{await withTimeout(Promise.all([preload([layouts.initial.url,layouts.final.url]),new Promise((resolve,reject)=>{video.oncanplaythrough=resolve;video.onerror=()=>reject(Error('Animation could not load.'));video.src=clip.url;video.load();})]),20000,'The question files did not load.');}
-  catch(error){return technicalProblem(screen,error.message);}
+  const priorCleanup=trial.cleanup;trial.cleanup=()=>{video.onended=video.onerror=video.onloadeddata=video.oncanplay=video.oncanplaythrough=null;video.pause();priorCleanup();};
+  try{await withTimeout(Promise.all([preload([layouts.initial.url,layouts.final.url]),new Promise((resolve,reject)=>{const ready=()=>{video.onloadeddata=video.oncanplay=video.oncanplaythrough=null;resolve();};video.onloadeddata=video.oncanplay=video.oncanplaythrough=ready;video.onerror=()=>reject(Error('The animation could not load.'));video.src=clip.url;video.load();if(video.readyState>=2)ready();})]),20000,'The question files did not load.');}
+  catch(error){if(activeTrial===trial)return technicalProblem(screen,error.message);return;}
   if(activeTrial!==trial)return;
   const times={memorizeStart:performance.now(),startedAt:nowIso()};$('#phase').textContent='Look at the whole graph';stage.innerHTML=drawingSvg(layouts.initial,{box,label:'Unmarked first drawing'});
   countdown(trial,$('#clock'),config.timing.part2MemorizeMs,s=>`${s}s`,animate);
@@ -463,6 +471,7 @@ async function part2Question(screen) {
       stage.innerHTML=drawingSvg(layouts.final,{box,label:'Unmarked final drawing'});
       trial.timers.add(setTimeout(respond,config.timing.part2RevealDelayMs));
     };
+    video.onerror=()=>{if(activeTrial===trial)technicalProblem(screen,'The animation stopped unexpectedly. Please try again.');};
     try{await video.play();}catch(error){technicalProblem(screen,'The animation could not play.');}
   }
   function respond(){
@@ -496,7 +505,7 @@ async function part3Question(screen) {
   function cancelReplay(){if(replayTimer!==null){clearTimeout(replayTimer);trial.timers.delete(replayTimer);replayTimer=null;}}
   async function playBoth(restart=false){if(activeTrial!==trial)return;cancelReplay();paused=false;if(restart){ended.clear();waiting=false;for(const v of videos)v.currentTime=0;}try{await Promise.all(videos.map(v=>v.play()));playing=true;$('#pref-play').textContent='Pause both';}catch{fail('The paired animations could not be played.');}}
   try{
-    await withTimeout(Promise.all(videos.map((v,i)=>new Promise((resolve,reject)=>{v.muted=true;v.oncanplaythrough=resolve;v.onerror=()=>reject(Error('An animation could not be loaded.'));v.src=pair[i===0?screen.leftMethod:screen.rightMethod].url;v.load();}))),20000,'The comparison files did not load.');
+    await withTimeout(Promise.all(videos.map((v,i)=>new Promise((resolve,reject)=>{v.muted=true;const ready=()=>{v.onloadeddata=v.oncanplay=v.oncanplaythrough=null;resolve();};v.onloadeddata=v.oncanplay=v.oncanplaythrough=ready;v.onerror=()=>reject(Error('An animation could not be loaded.'));v.src=pair[i===0?screen.leftMethod:screen.rightMethod].url;v.load();if(v.readyState>=2)ready();}))),20000,'The comparison files did not load.');
   }catch(error){return fail(error.message);}
   if(activeTrial!==trial)return;began=performance.now();
   videos.forEach(v=>{v.onended=()=>{ended.add(v);if(ended.size===2){loops++;playing=false;waiting=true;$('#pref-status').textContent='You can rate now. Both animations replay after a two-second pause.';$('#pref-play').textContent='Pause replay';update();replayTimer=setTimeout(()=>{trial.timers.delete(replayTimer);replayTimer=null;if(activeTrial===trial&&!paused)playBoth(true);},config.part3.replayPauseMs);trial.timers.add(replayTimer);}};});

@@ -206,3 +206,7 @@ Baseline: direct linear endpoint interpolation, gray nodes, no highlights or fad
 
 ## Revision 42: Part 3 node and edge presentation
 Same graph pairs, endpoints, node-center trajectories and highlighting masks as v41. Per user request, both Part 3 clips now last one second (60 fps), preserving exact first/last frames; Part 2 remains one second. The replay pause remains two seconds. Use one fixed square symbol size per graph in both conditions, capped by endpoint spacing, with visible 1.2px black borders. Draw 1.3px edges at 2x resolution and downsample. Morph the original sharp route skeletons, then round the resulting bends with radius 3px; do not interpolate rounded-curve sample points. Attach edge strokes to the actual drawn square boundaries. Baseline remains unhighlighted; rotation condition retains blue movement highlights and pale-gray context. Parts 1 and 2 remain unchanged. Revised preference summaries are separated by stimulus revision.
+
+
+## Loading recovery hotfix (UI 43; protocol 42 unchanged)
+Validate JSON responses, retry bounded transient downloads, and show startup retry controls. Accept loaded video data/canplay without requiring canplaythrough. Part 2 media errors render in the actual stage container. Retrying does not append a response or clear previous answers; explicitly skipping records one technical-invalid answer. Graphs, scoring, timing and active session version stay unchanged.

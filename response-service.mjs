@@ -1,6 +1,6 @@
+import {readStudyJson} from './study-json.mjs?v=loading-recovery-v43';
 export async function loadResponseService(){
- const r=await fetch('response-service.json',{cache:'no-store'});if(!r.ok)return null;
- const config=await r.json();if(config.enabled!==true)return null;
+ const config=await readStudyJson('response-service.json');if(config.enabled!==true)return null;
  const url=new URL(config.url);if(url.protocol!=='https:'||url.username||url.password||url.pathname!=='/'||url.search||url.hash)throw Error('Invalid response service configuration');return url.origin;
 }
 export async function allocateResponse(service,version){
