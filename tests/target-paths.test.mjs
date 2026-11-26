@@ -6,7 +6,7 @@ import {buildScreens} from '../plan.mjs';
 const config=JSON.parse(readFileSync(new URL('../study-config.json',import.meta.url)));
 const manifest=JSON.parse(readFileSync(new URL('../stimuli.json',import.meta.url)));
 test('Part 1 retains matching assets, four connected targets and no response cue leakage',()=>{
- const groups=[config.part1.graphs,config.part2.graphs,config.part3.graphs];assert.deepEqual(groups.map(g=>g.length),[9,9,5]);assert.equal(new Set(groups.flat()).size,21);
+ const groups=[config.part1.graphs,config.part2.graphs,config.part3.graphs];assert.deepEqual(groups.map(g=>g.length),[9,9,5]);assert.equal(new Set(groups.flat()).size,config.graphs.length);
  for(const [part,graphs] of groups.entries())for(const graph of graphs){
   const i=manifest.items.find(x=>x.graphId===graph);assert.ok(i);
   if(part!==0)continue;

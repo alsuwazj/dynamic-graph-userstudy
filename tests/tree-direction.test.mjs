@@ -25,6 +25,11 @@ test('Part 3 uses endpoint-only GUI tree turns and paired equal-duration videos'
 test('Wien highlights both complete branches and their shared root',()=>{for(const method of ['ARCOL','DARCOL']){const t=cfg.part2.conditions[method].trees['wien-kurz'];assert.deepEqual(t.nodes,[0,1,2,3,4,5,6,7,20,21,22,23,24,25,26,27]);assert.equal(t.attachment,7);}});
 
 
-test('Sydney excluded and replacement contains visible tree turns',()=>{assert.ok(!cfg.graphs.includes('sydney'));assert.ok(cfg.part3.graphs.includes('grafo2869.37'));for(const [method,condition] of Object.entries(cfg.part2.conditions))for(const g of cfg.part2.graphs){const t=condition.trees[g];if(g==='grafo1529.73'&&method==='DARCOL')assert.equal(t.correctDirection,t.finalDirection);else assert.notEqual(t.correctDirection,t.finalDirection,g);}});
-
-test('Q9 includes every attached branch and Q15 uses the largest rooted tree',()=>{for(const method of ['ARCOL','DARCOL']){const q9=cfg.part2.conditions[method].trees['grafo3043.36'];assert.deepEqual(q9.nodes,[3,10,19,20,21,22,23,24,25,27,28,31,35]);const q15=cfg.part2.conditions[method].trees['grafo1529.73'];assert.deepEqual(q15.nodes,[1,8,12,17,27,30,32,33,70]);assert.equal(q15.attachment,12);}});
+test('reviewed set excludes rejected graphs and records preservation cases honestly',()=>{
+ for(const g of ['sydney','grafo1529.73','grafo2869.37','grafo5399.35','grafo2519.37','grafo1244.26'])assert.ok(!cfg.graphs.includes(g));
+ assert.ok(cfg.part3.graphs.includes('grafo5838.35'));
+ for(const condition of Object.values(cfg.part2.conditions))for(const t of Object.values(condition.trees))assert.equal(t.directionChanged,t.correctDirection!==t.finalDirection);
+});
+test('the 2069 target is a complete branching tree that turns under both methods',()=>{
+ for(const method of ['ARCOL','DARCOL']){const t=cfg.part2.conditions[method].trees['grafo2069.32'];assert.deepEqual(t.nodes,[1,2,10,19,22,23,26]);assert.equal(t.attachment,2);assert.equal(t.correctDirection,'down');assert.equal(t.finalDirection,method==='DARCOL'?'left':'right');}
+});
