@@ -8,8 +8,8 @@
 // responses can then be downloaded on the last page.
 
 import { loadResponseService, allocateResponse, sendResponse } from './response-service.mjs';
-import { cropBox, drawingSvg, bindSelection, clearSelection, fitVideo } from './graph-view.mjs?v=direction-cross-v36';
-import { buildScreens, score } from './plan.mjs?v=direction-cross-v36';
+import { cropBox, drawingSvg, bindSelection, clearSelection, fitVideo } from './graph-view.mjs?v=larger-tree-tasks-v38';
+import { buildScreens, score } from './plan.mjs?v=larger-tree-tasks-v38';
 
 const $ = selector => document.querySelector(selector);
 const main = $('#main');
@@ -139,7 +139,7 @@ function welcome() {
       ${config.placeholderNotice ? `<div class="notice">${escapeHtml(config.placeholderNotice)}</div>` : ''}
       <h2>What you’ll do</h2>
       <p><strong>Part 1 · Match a path (${config.part1.graphs.length * config.part1.methodOrder.length} questions).</strong> Two drawings of the same graph, produced by the same method, appear at different aspect ratios. Select the ${config.part1.targetCount || 4} nodes on the right that match the highlighted path on the left.</p>
-      <p><strong>Part 2 · Remember a tree’s direction (${config.part2.graphs.length * Object.keys(config.part2.conditions).length} questions).</strong> Look at an unmarked drawing for six seconds. Watch a two-second animation to a different aspect ratio. After playback, a tree is marked red. Choose the tree’s direction in the previous drawing. The target is not highlighted during playback. You have up to 40 seconds to answer.</p>
+      <p><strong>Part 2 · Remember a tree’s direction (${config.part2.graphs.length * Object.keys(config.part2.conditions).length} questions).</strong> Look at an unmarked drawing for six seconds. Watch a one-second animation to a different aspect ratio. After playback, a tree is marked red. Choose the tree’s direction in the previous drawing. The target is not highlighted during playback. You have up to 40 seconds to answer.</p>
       <p><strong>Part 3 · Compare animations (${config.part3.graphs.length} comparisons).</strong> Watch two graph layout animations of the same resize side by side: smooth tree turns with movement highlights, and plain direct interpolation between identical endpoints. Give one overall preference rating.</p>
       <p><strong>Time:</strong> about 25–30 minutes, including instructions.</p>
       <h2>Good to know</h2>
@@ -465,7 +465,7 @@ async function part2Question(screen) {
     $('#direction-help').textContent='Click an arrow for its direction before the animation, or choose Give up.';
     const options=$('#direction-options');options.hidden=false;options.innerHTML=`<div class="direction-cross" role="group" aria-label="Direction in the first drawing"><button type="button" data-direction="up" class="direction-arrow direction-up" aria-label="Up" title="Up">↑</button><button type="button" data-direction="left" class="direction-arrow direction-left" aria-label="Left" title="Left">←</button><button type="button" class="direction-give-up" id="give-up">Give up</button><button type="button" data-direction="right" class="direction-arrow direction-right" aria-label="Right" title="Right">→</button><button type="button" data-direction="down" class="direction-arrow direction-down" aria-label="Down" title="Down">↓</button></div>`;
     let selectedDirection=null,done=false;times.responseStart=performance.now();
-    const submit=(timeout,choice=null,gaveUp=false)=>{if(done)return;done=true;selectedDirection=choice;const t=performance.now();session.answers.push({...describe(screen),position:session.position,questionIndex:index,taskType:'tree-direction',treeNodes:[...tree.nodes],treeAttachment:tree.attachment,selected:[],selectedDirection,correctDirection:tree.correctDirection,finalDirection:tree.finalDirection,correct:!timeout&&selectedDirection===tree.correctDirection,f1:null,timeout,gaveUp,outcome:timeout?'timeout':gaveUp?'give-up':'answered',responseMs:t-times.responseStart,memorizeMs:times.animationStart-times.memorizeStart,animationMs:times.animationEnd-times.animationStart,finalHoldMs:times.responseStart-times.animationEnd,presentationMode:'animated',responseMode:'immediate-direction-cross',animationMode:'direct-linear',totalMs:t-times.memorizeStart,shownAt:times.startedAt,answeredAt:nowIso(),...trial.flags});logEvent('answer',{position:session.position,taskType:'tree-direction'});save();next();};
+    const submit=(timeout,choice=null,gaveUp=false)=>{if(done)return;done=true;selectedDirection=choice;const t=performance.now();session.answers.push({...describe(screen),position:session.position,questionIndex:index,taskType:'tree-direction',treeNodes:[...tree.nodes],treeAttachment:tree.attachment,selected:[],selectedDirection,correctDirection:tree.correctDirection,finalDirection:tree.finalDirection,correct:!timeout&&selectedDirection===tree.correctDirection,f1:null,timeout,gaveUp,outcome:timeout?'timeout':gaveUp?'give-up':'answered',responseMs:t-times.responseStart,memorizeMs:times.animationStart-times.memorizeStart,animationMs:times.animationEnd-times.animationStart,finalHoldMs:times.responseStart-times.animationEnd,presentationMode:'animated',taskProtocol:config.part2.protocolId,responseMode:'immediate-direction-cross',animationMode:'direct-linear',totalMs:t-times.memorizeStart,shownAt:times.startedAt,answeredAt:nowIso(),...trial.flags});logEvent('answer',{position:session.position,taskType:'tree-direction'});save();next();};
     for(const button of options.querySelectorAll('[data-direction]'))button.onclick=()=>submit(false,button.dataset.direction,false);
     $('#give-up').onclick=()=>submit(false,null,true);
     countdown(trial,$('#clock'),config.timing.part2ResponseMs,s=>`${s}s left`,()=>submit(true));
@@ -474,7 +474,7 @@ async function part2Question(screen) {
 
 async function part3Question(screen) {
   const pair=comparisons[screen.graph], {index,total}=questionNumber(3), trial=watchTrial();
-  const values=new Map();let loops=0,playing=false,began=null;const ended=new Set();
+  const values=new Map();let loops=0,playing=false,began=null,replayTimer=null,waiting=false,paused=false;const ended=new Set();
   const options=[[-2,'Strongly prefer A'],[-1,'Slightly prefer A'],[0,'About equal'],[1,'Slightly prefer B'],[2,'Strongly prefer B']];
   main.innerHTML=`<div class="progress"><div style="width:${(index-1)/total*100}%"></div></div>
     <p class="eyebrow">PART 3 · COMPARISON ${index} OF ${total}</p><h2>Which animation do you prefer?</h2>
@@ -487,19 +487,20 @@ async function part3Question(screen) {
   const update=()=>{$('#pref-submit').disabled=loops<1||values.size!==config.part3.questions.length;};
   const fail=reason=>{trial.cleanup();session.ratings.push({position:session.position,graphId:screen.graph,leftMethod:screen.leftMethod,rightMethod:screen.rightMethod,technicalInvalid:true,reason,durationMs:began===null?0:performance.now()-began});save();main.innerHTML=`<div class="narrow"><h2>This comparison could not be shown.</h2><p>${escapeHtml(reason)}</p><button class="primary" id="pref-skip">Continue</button></div>`;$('#pref-skip').onclick=next;};
   const oldCleanup=trial.cleanup;trial.cleanup=()=>{for(const v of videos){v.onended=null;v.pause();}oldCleanup();};
-  async function playBoth(restart=false){if(activeTrial!==trial)return;if(restart){ended.clear();for(const v of videos)v.currentTime=0;}try{await Promise.all(videos.map(v=>v.play()));playing=true;$('#pref-play').textContent='Pause both';}catch{fail('The paired animations could not be played.');}}
+  function cancelReplay(){if(replayTimer!==null){clearTimeout(replayTimer);trial.timers.delete(replayTimer);replayTimer=null;}}
+  async function playBoth(restart=false){if(activeTrial!==trial)return;cancelReplay();paused=false;if(restart){ended.clear();waiting=false;for(const v of videos)v.currentTime=0;}try{await Promise.all(videos.map(v=>v.play()));playing=true;$('#pref-play').textContent='Pause both';}catch{fail('The paired animations could not be played.');}}
   try{
     await withTimeout(Promise.all(videos.map((v,i)=>new Promise((resolve,reject)=>{v.muted=true;v.oncanplaythrough=resolve;v.onerror=()=>reject(Error('An animation could not be loaded.'));v.src=pair[i===0?screen.leftMethod:screen.rightMethod].url;v.load();}))),20000,'The comparison files did not load.');
   }catch(error){return fail(error.message);}
   if(activeTrial!==trial)return;began=performance.now();
-  videos.forEach(v=>{v.onended=()=>{ended.add(v);if(ended.size===2){loops++;$('#pref-status').textContent='You can now rate the animations. They will keep looping.';update();playBoth(true);}};});
+  videos.forEach(v=>{v.onended=()=>{ended.add(v);if(ended.size===2){loops++;playing=false;waiting=true;$('#pref-status').textContent='You can rate now. Both animations replay after a two-second pause.';$('#pref-play').textContent='Pause replay';update();replayTimer=setTimeout(()=>{trial.timers.delete(replayTimer);replayTimer=null;if(activeTrial===trial&&!paused)playBoth(true);},config.part3.replayPauseMs);trial.timers.add(replayTimer);}};});
   $('#pref-play').disabled=false;$('#pref-restart').disabled=false;$('#pref-status').textContent='Watch one complete loop before submitting.';
-  $('#pref-play').onclick=()=>{if(playing){videos.forEach(v=>v.pause());playing=false;$('#pref-play').textContent='Play both';}else playBoth(false);};
+  $('#pref-play').onclick=()=>{if(playing||(waiting&&!paused)){paused=true;cancelReplay();videos.forEach(v=>v.pause());playing=false;$('#pref-play').textContent='Play both';$('#pref-status').textContent='Playback paused.';}else playBoth(waiting||ended.size>0);};
   $('#pref-restart').onclick=()=>playBoth(true);
   for(const input of main.querySelectorAll('input[type=radio]'))input.onchange=()=>{values.set(input.name,Number(input.value));update();};
   $('#pref-submit').onclick=()=>{
     const raw=Object.fromEntries(values),sign=screen.rightMethod==='animation'?1:-1;
-    session.ratings.push({position:session.position,graphId:screen.graph,leftMethod:screen.leftMethod,rightMethod:screen.rightMethod,rawResponses:raw,...Object.fromEntries(Object.entries(raw).map(([k,v])=>[k,v*sign])),ratingScale:config.part3.ratingScale,comparisonType:config.part3.comparisonType,leftCondition:screen.leftMethod,rightCondition:screen.rightMethod,durationMs:performance.now()-began,completedLoops:loops,...trial.flags});
+    session.ratings.push({position:session.position,graphId:screen.graph,leftMethod:screen.leftMethod,rightMethod:screen.rightMethod,rawResponses:raw,replayPauseMs:config.part3.replayPauseMs,...Object.fromEntries(Object.entries(raw).map(([k,v])=>[k,v*sign])),ratingScale:config.part3.ratingScale,comparisonType:config.part3.comparisonType,leftCondition:screen.leftMethod,rightCondition:screen.rightMethod,durationMs:performance.now()-began,completedLoops:loops,...trial.flags});
     logEvent('preference_rating',{position:session.position});save();next();
   };
   await playBoth(true);

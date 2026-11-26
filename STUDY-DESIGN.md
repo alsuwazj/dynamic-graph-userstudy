@@ -186,3 +186,7 @@ Part 1 retains 18 trials and 50s answer cap; every node selection/deselection, c
 
 ## Revision 36: direction cross and give-up response
 Part 2 uses four arrow buttons arranged in a cross around a central Give up button. All buttons submit immediately. The control column is reserved throughout viewing and playback so the graph does not shift when choices appear. Give up is saved as selectedDirection=null, gaveUp=true, outcome=give-up, correct=false, timeout=false. Give-ups count in accuracy denominator but are separate from timeouts and excluded from answer-time medians. CSV includes gave_up and outcome. Other stimuli, timings and Part 1 click logging unchanged.
+
+
+## Revision 38: larger direction examples and playback timing
+Replace grafo675.11 with grafo2869.37, grafo1031.16 with grafo1529.73, and grafo1952.26 with grafo3043.36. The first two replacements are in the selected paper gallery; grafo3043.36 is in the best-30 gallery. All new targets change dominant centroid direction under both methods. Connecting edges may bend. Preserve nine graphs and 18 Part 2 trials, but use exactly 1-second clips (60 frames at 60 fps). Part 3 retains its 2-second clips and holds their final drawings for 2 seconds before synchronized replay. Pause and restart controls cancel the pending replay timer. Keep protocol-specific summaries separate from earlier playback timings; historical responses remain in exports.

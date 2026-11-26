@@ -51,7 +51,7 @@ test('Part 1 retains its graph pool while all trial counts stay fixed',()=>{
   assert.equal(cfg[part].graphs.length,provenance.restoredOriginalGroups[part].length+provenance.additions[part].length);
   for(const g of provenance.additions[part])assert.ok(cfg[part].graphs.includes(g));
  }
- assert.equal(new Set(manifest.items.map(i=>i.sourceGraph)).size,22);
+ assert.equal(new Set(manifest.items.map(i=>i.sourceGraph)).size,21);
  for(let seed=0;seed<256;seed++){
   const q=buildScreens(cfg,seed).screens.filter(q=>/^part[123]$/.test(q.type));assert.deepEqual([1,2,3].map(p=>q.filter(q=>q.type==='part'+p).length),[18,18,5]);
   for(let i=1;i<q.length;i++)assert.notEqual(cfg.graphFamilies[q[i].graph],cfg.graphFamilies[q[i-1].graph]);
