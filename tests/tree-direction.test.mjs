@@ -33,3 +33,17 @@ test('reviewed set excludes rejected graphs and records preservation cases hones
 test('the 2069 target is a complete branching tree that turns under both methods',()=>{
  for(const method of ['ARCOL','DARCOL']){const t=cfg.part2.conditions[method].trees['grafo2069.32'];assert.deepEqual(t.nodes,[1,2,10,19,22,23,26]);assert.equal(t.attachment,2);assert.equal(t.correctDirection,'down');assert.equal(t.finalDirection,method==='DARCOL'?'left':'right');}
 });
+
+test('Part 2 contains no near-rigid whole-graph ARCOL quarter-turns',()=>{
+ for(const g of cfg.part2.graphs){
+  const i=m.items.find(i=>i.graphId===g),L=i.original.directionLayouts.ARCOL;
+  const pose=a=>a.hitboxes.map(n=>[n.x+n.width/2,n.y+n.height/2]);
+  const center=p=>{const mean=[0,1].map(k=>p.reduce((s,q)=>s+q[k],0)/p.length);return p.map(q=>q.map((v,k)=>v-mean[k]));};
+  const x=center(pose(L.initial)),y=center(pose(L.final));let A=0,B=0,xx=0,yy=0;
+  x.forEach((p,k)=>{const q=y[k];A+=p[0]*q[0]+p[1]*q[1];B+=p[0]*q[1]-p[1]*q[0];xx+=p[0]**2+p[1]**2;yy+=q[0]**2+q[1]**2;});
+  const angle=Math.atan2(B,A),scale=Math.hypot(A,B)/xx,c=Math.cos(angle),s=Math.sin(angle);
+  const residual=Math.sqrt(x.reduce((v,p,k)=>v+(scale*(c*p[0]-s*p[1])-y[k][0])**2+(scale*(s*p[0]+c*p[1])-y[k][1])**2,0)/yy);
+  assert.ok(!(Math.abs(angle)>Math.PI/6&&residual<.1),g+' is mainly a rigid rotation');
+  if(g==='grafo445.22'){assert.equal(i.sourceAspectTag,'AR1p00');assert.ok(Math.abs(angle)<Math.PI/9);assert.ok(residual>.4);}
+ }
+});

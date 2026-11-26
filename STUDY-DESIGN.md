@@ -210,3 +210,7 @@ Same graph pairs, endpoints, node-center trajectories and highlighting masks as 
 
 ## Loading recovery hotfix (UI 43; protocol 42 unchanged)
 Validate JSON responses, retry bounded transient downloads, and show startup retry controls. Accept loaded video data/canplay without requiring canplaythrough. Part 2 media errors render in the actual stage container. Retrying does not append a response or clear previous answers; explicitly skipping records one technical-invalid answer. Graphs, scoring, timing and active session version stay unchanged.
+
+
+## Revision 44: remove near-global rotation from the grafo445.22 pair
+Change this Part 2 pair from AR 1/3 -> 32/9 to AR 1 -> 32/9 for both methods. Use fresh DARCOL endpoints from the same original HOLA input and configuration, with archived ARCOL endpoints at the matched ARs. The old ARCOL pair has a near-rigid -91.5-degree similarity fit (relative RMS residual 0.069); the replacement has -8.3 degrees and residual 0.598, showing substantial rearrangement. Preserve the same target node IDs, graph count, randomization and one-second clips. Recalculate direction answers independently for each method. Part 1 and Part 3 are unchanged. Earlier protocols remain supported by the results service.
