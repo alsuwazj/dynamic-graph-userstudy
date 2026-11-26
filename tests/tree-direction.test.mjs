@@ -19,8 +19,17 @@ test('static methods use the same attached tree but method-specific direction an
   }
  }
 });
-test('Part 3 uses endpoint-only GUI tree turns and paired equal-duration videos',()=>{
- assert.equal(cfg.part3.ratingScale,'rotation-positive');for(const p of m.comparisons){assert.equal(p.protocol.keyframeCount,2);assert.equal(p.protocol.keyframes.length,2);assert.equal(p.protocol.intermediateComputedLayouts,false);assert.equal(p.protocol.optimizationDuringPlayback,false);assert.equal(p.protocol.interpolation,'endpoint-tree-chain-rotation');assert.equal(p.protocol.separateTreeRotation,true);assert.equal(p.animation.durationMs,1000);assert.equal(p.baseline.durationMs,1000);assert.ok(p.protocol.highlightNodes.length);assert.deepEqual(p.protocol.baselineHighlightNodes,[]);assert.equal(p.protocol.sharedColorPolicy,false);assert.equal(p.protocol.baselineHighlighting,'none');assert.equal(p.protocol.coreArcBulge,0);assert.ok(p.protocol.maxCorePositionDifference<1e-8);assert.ok(p.protocol.treeTurns.some(t=>Math.abs(t.angleDegrees)>10));}
+test('Part 3 compares ARCOL and DARCOL from a shared start for one second',()=>{
+ assert.equal(cfg.part3.ratingScale,'DARCOL-positive');assert.deepEqual(cfg.part3.methods,['DARCOL','ARCOL']);
+ for(const p of m.comparisons){
+  assert.equal(p.protocol.sharedStartingLayout,true);assert.equal(p.protocol.keyframeCount,2);
+  assert.equal(p.ARCOL.durationMs,1000);assert.equal(p.DARCOL.durationMs,1000);
+  assert.equal(p.protocol.ARCOL.interpolation,'direct-linear');assert.equal(p.protocol.ARCOL.separateTreeRotation,false);
+  assert.deepEqual(p.protocol.ARCOL.highlightNodes,[]);
+  assert.equal(p.protocol.DARCOL.interpolation,'endpoint-tree-chain-rotation');assert.ok(p.protocol.DARCOL.highlightNodes.length);
+  assert.notEqual(p.endpointLayouts.ARCOL.source,p.endpointLayouts.DARCOL.source);
+  assert.deepEqual(p.protocol.ARCOL.camera,p.protocol.DARCOL.camera);
+ }
 });
 test('Wien highlights both complete branches and their shared root',()=>{for(const method of ['ARCOL','DARCOL']){const t=cfg.part2.conditions[method].trees['wien-kurz'];assert.deepEqual(t.nodes,[0,1,2,3,4,5,6,7,20,21,22,23,24,25,26,27]);assert.equal(t.attachment,7);}});
 

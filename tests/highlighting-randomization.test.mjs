@@ -11,7 +11,7 @@ test('all participants see identical trials while graph, method and condition or
   orders.add(qs.map(q=>q.graph).join(','));methods.add(built.methodOrder.join(','));conditions.add(built.conditionOrder.join(','));
   for(let i=1;i<qs.length;i++)assert.notEqual(qs[i-1].graph,qs[i].graph);
   for(const graph of cfg.part2.graphs){const pair=qs.filter(q=>q.type==='part2'&&q.graph===graph);assert.equal(pair.length,2);assert.deepEqual(new Set(pair.map(q=>q.condition)),new Set(['ARCOL','DARCOL']));assert.deepEqual(pair[0].target,pair[1].target);}
-  const left=qs.filter(q=>q.type==='part3'&&q.leftMethod==='animation').length;assert.ok(left===2||left===3);
+  const left=qs.filter(q=>q.type==='part3'&&q.leftMethod==='DARCOL').length;assert.ok(left===2||left===3);
  }
  assert.ok(orders.size>200);assert.equal(methods.size,2);assert.equal(conditions.size,2);
 });

@@ -143,7 +143,7 @@ function welcome() {
       <h2>What you’ll do</h2>
       <p><strong>Part 1 · Match a path (${config.part1.graphs.length * config.part1.methodOrder.length} questions).</strong> Two drawings of the same graph, produced by the same method, appear at different aspect ratios. Select the ${config.part1.targetCount || 4} nodes on the right that match the highlighted path on the left.</p>
       <p><strong>Part 2 · Remember a tree’s direction (${config.part2.graphs.length * Object.keys(config.part2.conditions).length} questions).</strong> Look at an unmarked drawing for six seconds. Watch a one-second animation to a different aspect ratio. After playback, a tree is marked red. Choose the tree’s direction in the previous drawing. The target is not highlighted during playback. You have up to 40 seconds to answer.</p>
-      <p><strong>Part 3 · Compare animations (${config.part3.graphs.length} comparisons).</strong> Watch two graph layout animations of the same resize side by side: plain direct interpolation without highlights, and smooth tree-and-chain rotation with large-movement nodes highlighted blue and the remaining nodes pale gray. Give one overall preference rating.</p>
+      <p><strong>Part 3 · Compare animations (${config.part3.graphs.length} comparisons).</strong> Watch two graph layout animations of the same resize side by side: one with direct linear motion, and one with smooth tree turns and movement highlights. Give one overall preference rating.</p>
       <p><strong>Time:</strong> about 25–30 minutes, including instructions.</p>
       <h2>Good to know</h2>
       <ul>
@@ -494,7 +494,7 @@ async function part3Question(screen) {
   main.innerHTML=`<div class="progress"><div style="width:${(index-1)/total*100}%"></div></div>
     <p class="eyebrow">PART 3 · COMPARISON ${index} OF ${total}</p><h2>Which animation do you prefer?</h2>
     <p>Watch the same graph change between the same aspect ratios in both animations.</p>
-    <div class="pair preference-pair" id="stage-area"><section class="drawing-card"><header>Animation A</header><video id="pref-a" class="preference-video ${screen.leftMethod==='animation'?'landmark-motion':''}" muted playsinline preload="auto" disablepictureinpicture></video></section><section class="drawing-card"><header>Animation B</header><video id="pref-b" class="preference-video ${screen.rightMethod==='animation'?'landmark-motion':''}" muted playsinline preload="auto" disablepictureinpicture></video></section></div>
+    <div class="pair preference-pair" id="stage-area"><section class="drawing-card"><header>Animation A</header><video id="pref-a" class="preference-video ${screen.leftMethod==='DARCOL'?'landmark-motion':''}" muted playsinline preload="auto" disablepictureinpicture></video></section><section class="drawing-card"><header>Animation B</header><video id="pref-b" class="preference-video ${screen.rightMethod==='DARCOL'?'landmark-motion':''}" muted playsinline preload="auto" disablepictureinpicture></video></section></div>
     <div class="action-row"><button class="secondary" id="pref-play" disabled>Pause both</button><button class="text-button" id="pref-restart" disabled>Restart both</button><span id="pref-status" class="help">Loading animations…</span></div>
     <div class="preference-ratings">${config.part3.questions.map(q=>`<fieldset><legend>${escapeHtml(q.text)}</legend><div class="rating-options">${options.map(([value,label])=>`<label><input type="radio" name="${q.key}" value="${value}"><span>${label}</span></label>`).join('')}</div></fieldset>`).join('')}</div>
     <div class="answer-bar"><p>Watch one complete loop and answer the preference question.</p><button class="primary" id="pref-submit" disabled>Submit preference</button></div>`;
@@ -514,7 +514,7 @@ async function part3Question(screen) {
   $('#pref-restart').onclick=()=>playBoth(true);
   for(const input of main.querySelectorAll('input[type=radio]'))input.onchange=()=>{values.set(input.name,Number(input.value));update();};
   $('#pref-submit').onclick=()=>{
-    const raw=Object.fromEntries(values),sign=screen.rightMethod==='animation'?1:-1;
+    const raw=Object.fromEntries(values),sign=screen.rightMethod===config.part3.positiveMethod?1:-1;
     session.ratings.push({position:session.position,graphId:screen.graph,leftMethod:screen.leftMethod,rightMethod:screen.rightMethod,rawResponses:raw,replayPauseMs:config.part3.replayPauseMs,...Object.fromEntries(Object.entries(raw).map(([k,v])=>[k,v*sign])),ratingScale:config.part3.ratingScale,comparisonType:config.part3.comparisonType,leftCondition:screen.leftMethod,rightCondition:screen.rightMethod,durationMs:performance.now()-began,completedLoops:loops,...trial.flags});
     logEvent('preference_rating',{position:session.position});save();next();
   };
