@@ -198,3 +198,7 @@ Q9 (grafo3043.36) highlights both complete pendant branches at core root 20 and 
 
 ## Revision 40: reviewed Parts 2 and 3
 Part 1 configuration, target IDs, saved drawings and ordering remain equivalent to v39. Part 2 replaces 1529 with 2774, 2869 with 2133, and 5399 with 2069. Complete target trees and aspect-ratio pairs match the reviewed PDF; all directions are recalculated per method. Part 3 replaces 2519 with 5838, uses 3043 instead of 2869, and changes 3043 to AR 0.5625 -> 3.5556. Both Part 3 styles use identical computed endpoints, linear core paths, movement highlights and timing; only pendant tree/chain trajectories differ. Part 2 clips are 1s, unmarked during playback, then stopped with a 150ms unmarked hold before revealing the red whole tree. Part 3 clips are 2s followed by a 2s replay hold. Old protocols remain supported by the results service and are excluded from the revised Parts 2/3 summary. No participant records are deleted.
+
+
+## Revision 41: Part 3 animation packages
+Baseline: direct linear endpoint interpolation, gray nodes, no highlights or fading. Animation: endpoint tree/chain rotations, meaningful-movement nodes blue and remaining nodes pale gray during playback. Endpoints, linear core positions, durations, sides/order randomization and replay hold are unchanged. This comparison varies both motion and highlighting. No intermediate optimizer snapshots are used. Parts 1 and 2 retain v40 settings, assets and scoring. Revised preference summaries exclude earlier Part 3 variants; historical results remain available.

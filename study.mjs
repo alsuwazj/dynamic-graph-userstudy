@@ -8,8 +8,8 @@
 // responses can then be downloaded on the last page.
 
 import { loadResponseService, allocateResponse, sendResponse } from './response-service.mjs';
-import { cropBox, drawingSvg, bindSelection, clearSelection, fitVideo } from './graph-view.mjs?v=reviewed-stimuli-v40';
-import { buildScreens, score } from './plan.mjs?v=reviewed-stimuli-v40';
+import { cropBox, drawingSvg, bindSelection, clearSelection, fitVideo } from './graph-view.mjs?v=highlighted-rotation-v41';
+import { buildScreens, score } from './plan.mjs?v=highlighted-rotation-v41';
 
 const $ = selector => document.querySelector(selector);
 const main = $('#main');
@@ -140,7 +140,7 @@ function welcome() {
       <h2>What you’ll do</h2>
       <p><strong>Part 1 · Match a path (${config.part1.graphs.length * config.part1.methodOrder.length} questions).</strong> Two drawings of the same graph, produced by the same method, appear at different aspect ratios. Select the ${config.part1.targetCount || 4} nodes on the right that match the highlighted path on the left.</p>
       <p><strong>Part 2 · Remember a tree’s direction (${config.part2.graphs.length * Object.keys(config.part2.conditions).length} questions).</strong> Look at an unmarked drawing for six seconds. Watch a one-second animation to a different aspect ratio. After playback, a tree is marked red. Choose the tree’s direction in the previous drawing. The target is not highlighted during playback. You have up to 40 seconds to answer.</p>
-      <p><strong>Part 3 · Compare animations (${config.part3.graphs.length} comparisons).</strong> Watch two graph layout animations of the same resize side by side: linear motion and rotation of trees and chains, with the same endpoints, colors and motion for the rest of the graph. Give one overall preference rating.</p>
+      <p><strong>Part 3 · Compare animations (${config.part3.graphs.length} comparisons).</strong> Watch two graph layout animations of the same resize side by side: plain direct interpolation without highlights, and smooth tree-and-chain rotation with large-movement nodes highlighted blue and the remaining nodes pale gray. Give one overall preference rating.</p>
       <p><strong>Time:</strong> about 25–30 minutes, including instructions.</p>
       <h2>Good to know</h2>
       <ul>
