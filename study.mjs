@@ -116,6 +116,7 @@ async function boot() {
     if (localMode) document.body.classList.add('test-mode');
 
     if (part3Preview) {
+      document.body.classList.remove('welcome-only');
       await startSession();
       screens = screens.filter(screen => screen.type === 'part3' || screen.type === 'finish');
       next();
