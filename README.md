@@ -1,14 +1,14 @@
 # Graph layout study
 
-Protocol: gui-straight-playback-v50. The site is published through GitHub Pages; response collection uses the separate results service.
+Protocol: neutral-playback-v51. The site is published through GitHub Pages; response collection uses the separate results service.
 
 Part 1: 18 static path-matching questions, nine graphs once per method, four consecutive target nodes and a 50-second deadline. Method trials are interleaved; the same graph never immediately repeats.
 
 Part 2: 18 tree-direction questions, nine graphs once per method. The unmarked starting drawing appears for six seconds, followed by one-second direct linear interpolation. The whole target tree is highlighted only after playback and a 150 ms final hold. Responses allow 40 seconds; timing excludes viewing and playback. Both methods use the same tree IDs and nominal aspect-ratio pair. Direction-change and preservation cases are recorded.
 
-Part 3: nine side-by-side ARCOL-versus-DARCOL comparisons. Both start from the same DARCOL drawing and use the same destination aspect-ratio target. ARCOL linearly interpolates to an independently computed ARCOL final drawing without highlights. DARCOL uses endpoint interpolation with smooth tree/chain turns, blue movement highlights and pale context nodes. Both clips last one second and replay after a two-second pause. Participants give one overall five-point preference rating. Graph order and left/right method placement vary by seed; positive normalized scores favor DARCOL. This is a comparison of the two presentation systems, including their different endpoints and highlighting.
+Part 3: nine side-by-side ARCOL-versus-DARCOL comparisons. Both start from the same DARCOL drawing and use the same destination aspect-ratio target. ARCOL linearly interpolates to an independently computed ARCOL final drawing without highlights. DARCOL uses endpoint interpolation with smooth tree/chain turns, uniform gray nodes without highlights. Both clips last one second and replay after a two-second pause. Participants give one overall five-point preference rating. Graph order and left/right method placement vary by seed; positive normalized scores favor DARCOL. This is a comparison of the two presentation systems, including their different endpoints and highlighting.
 
-Part 3 follows the GUI playback convention: every edge is a straight node-to-node connection during motion. The saved rounded orthogonal routes appear only at the exact starting and final layouts. There is no bend interpolation during playback. Square fills are #848482, black edges and borders are 2px, and corner radius is 4px. DARCOL tree rotation and blue/pale highlighting remain.
+Part 3 follows the GUI playback convention: every edge is a straight node-to-node connection during motion. The saved rounded orthogonal routes appear only at the exact starting and final layouts. There is no bend interpolation during playback. Square fills are #848482, black edges and borders are 2px, and corner radius is 4px. DARCOL tree rotation remains; both methods use uniform gray nodes throughout.
 
 Edge attachments preserve offset route lines and add only short connectors to glyph borders. The long original segments are never dragged toward node centers. All exported endpoints are checked for introduced long diagonals.
 

@@ -26,7 +26,7 @@ test('Part 3 compares ARCOL and DARCOL from a shared start for one second',()=>{
   assert.equal(p.ARCOL.durationMs,1000);assert.equal(p.DARCOL.durationMs,1000);
   assert.equal(p.protocol.ARCOL.interpolation,'direct-linear');assert.equal(p.protocol.ARCOL.separateTreeRotation,false);
   assert.deepEqual(p.protocol.ARCOL.highlightNodes,[]);
-  assert.equal(p.protocol.DARCOL.interpolation,'endpoint-tree-chain-rotation');assert.ok(p.protocol.DARCOL.highlightNodes.length);
+  assert.equal(p.protocol.DARCOL.interpolation,'endpoint-tree-chain-rotation');assert.deepEqual(p.protocol.DARCOL.highlightNodes,[]);assert.equal(p.protocol.DARCOL.animationHighlighting,'none');assert.equal(cfg.part3.highlightingPolicy,'none-both-methods');
   assert.notEqual(p.endpointLayouts.ARCOL.source,p.endpointLayouts.DARCOL.source);
   assert.deepEqual(p.protocol.ARCOL.camera,p.protocol.DARCOL.camera);
  }
