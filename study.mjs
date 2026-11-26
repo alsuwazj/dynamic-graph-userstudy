@@ -277,7 +277,7 @@ function partIntro(part) {
   const text = config['part'+part];
   const total = questionNumber(part).total;
   main.innerHTML = `
-    <div class="narrow">
+    <div class="narrow part-intro">
       <p class="eyebrow">PART ${part} OF 3</p>
       <h1>${escapeHtml(text.title.replace(/^Part \d · /, ''))}</h1>
       <p class="lead">${escapeHtml(text.instruction)}</p>
