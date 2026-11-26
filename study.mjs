@@ -8,8 +8,8 @@
 // responses can then be downloaded on the last page.
 
 import { loadResponseService, allocateResponse, sendResponse } from './response-service.mjs';
-import { cropBox, drawingSvg, bindSelection, clearSelection, fitVideo } from './graph-view.mjs?v=larger-tree-tasks-v38';
-import { buildScreens, score } from './plan.mjs?v=larger-tree-tasks-v38';
+import { cropBox, drawingSvg, bindSelection, clearSelection, fitVideo } from './graph-view.mjs?v=isolated-tree-rotation-v39';
+import { buildScreens, score } from './plan.mjs?v=isolated-tree-rotation-v39';
 
 const $ = selector => document.querySelector(selector);
 const main = $('#main');
@@ -140,7 +140,7 @@ function welcome() {
       <h2>What you’ll do</h2>
       <p><strong>Part 1 · Match a path (${config.part1.graphs.length * config.part1.methodOrder.length} questions).</strong> Two drawings of the same graph, produced by the same method, appear at different aspect ratios. Select the ${config.part1.targetCount || 4} nodes on the right that match the highlighted path on the left.</p>
       <p><strong>Part 2 · Remember a tree’s direction (${config.part2.graphs.length * Object.keys(config.part2.conditions).length} questions).</strong> Look at an unmarked drawing for six seconds. Watch a one-second animation to a different aspect ratio. After playback, a tree is marked red. Choose the tree’s direction in the previous drawing. The target is not highlighted during playback. You have up to 40 seconds to answer.</p>
-      <p><strong>Part 3 · Compare animations (${config.part3.graphs.length} comparisons).</strong> Watch two graph layout animations of the same resize side by side: smooth tree turns with movement highlights, and plain direct interpolation between identical endpoints. Give one overall preference rating.</p>
+      <p><strong>Part 3 · Compare animations (${config.part3.graphs.length} comparisons).</strong> Watch two graph layout animations of the same resize side by side: linear motion and rotation of trees and chains, with the same endpoints, colors and motion for the rest of the graph. Give one overall preference rating.</p>
       <p><strong>Time:</strong> about 25–30 minutes, including instructions.</p>
       <h2>Good to know</h2>
       <ul>
@@ -465,7 +465,7 @@ async function part2Question(screen) {
     $('#direction-help').textContent='Click an arrow for its direction before the animation, or choose Give up.';
     const options=$('#direction-options');options.hidden=false;options.innerHTML=`<div class="direction-cross" role="group" aria-label="Direction in the first drawing"><button type="button" data-direction="up" class="direction-arrow direction-up" aria-label="Up" title="Up">↑</button><button type="button" data-direction="left" class="direction-arrow direction-left" aria-label="Left" title="Left">←</button><button type="button" class="direction-give-up" id="give-up">Give up</button><button type="button" data-direction="right" class="direction-arrow direction-right" aria-label="Right" title="Right">→</button><button type="button" data-direction="down" class="direction-arrow direction-down" aria-label="Down" title="Down">↓</button></div>`;
     let selectedDirection=null,done=false;times.responseStart=performance.now();
-    const submit=(timeout,choice=null,gaveUp=false)=>{if(done)return;done=true;selectedDirection=choice;const t=performance.now();session.answers.push({...describe(screen),position:session.position,questionIndex:index,taskType:'tree-direction',treeNodes:[...tree.nodes],treeAttachment:tree.attachment,selected:[],selectedDirection,correctDirection:tree.correctDirection,finalDirection:tree.finalDirection,correct:!timeout&&selectedDirection===tree.correctDirection,f1:null,timeout,gaveUp,outcome:timeout?'timeout':gaveUp?'give-up':'answered',responseMs:t-times.responseStart,memorizeMs:times.animationStart-times.memorizeStart,animationMs:times.animationEnd-times.animationStart,finalHoldMs:times.responseStart-times.animationEnd,presentationMode:'animated',taskProtocol:config.part2.protocolId,responseMode:'immediate-direction-cross',animationMode:'direct-linear',totalMs:t-times.memorizeStart,shownAt:times.startedAt,answeredAt:nowIso(),...trial.flags});logEvent('answer',{position:session.position,taskType:'tree-direction'});save();next();};
+    const submit=(timeout,choice=null,gaveUp=false)=>{if(done)return;done=true;selectedDirection=choice;const t=performance.now();session.answers.push({...describe(screen),position:session.position,questionIndex:index,taskType:'tree-direction',treeNodes:[...tree.nodes],treeAttachment:tree.attachment,selected:[],selectedDirection,correctDirection:tree.correctDirection,finalDirection:tree.finalDirection,targetDirectionChanged:tree.correctDirection!==tree.finalDirection,preservationCase:tree.correctDirection===tree.finalDirection,correct:!timeout&&selectedDirection===tree.correctDirection,f1:null,timeout,gaveUp,outcome:timeout?'timeout':gaveUp?'give-up':'answered',responseMs:t-times.responseStart,memorizeMs:times.animationStart-times.memorizeStart,animationMs:times.animationEnd-times.animationStart,finalHoldMs:times.responseStart-times.animationEnd,presentationMode:'animated',taskProtocol:config.part2.protocolId,responseMode:'immediate-direction-cross',animationMode:'direct-linear',totalMs:t-times.memorizeStart,shownAt:times.startedAt,answeredAt:nowIso(),...trial.flags});logEvent('answer',{position:session.position,taskType:'tree-direction'});save();next();};
     for(const button of options.querySelectorAll('[data-direction]'))button.onclick=()=>submit(false,button.dataset.direction,false);
     $('#give-up').onclick=()=>submit(false,null,true);
     countdown(trial,$('#clock'),config.timing.part2ResponseMs,s=>`${s}s left`,()=>submit(true));
