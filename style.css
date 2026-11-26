@@ -151,6 +151,7 @@ main > h2 { font-size: 17px; font-weight: 500; margin-bottom: 18px; }
 .preference-video.landmark-motion {filter:none;}
 .part-intro .lead { color: #000; font-size: 1.25rem; line-height: 1.6; }
 .part-intro .help { color: #000; font-size: 1.125rem; line-height: 1.6; }
+.consent-information { color: #000; font-size: 1.0625rem; line-height: 1.65; }
 .preference-ratings fieldset {border:0; padding:0; margin:24px 0;}
 .preference-ratings legend {font-weight:600; margin-bottom:12px;}
 .rating-options {display:grid; grid-template-columns:repeat(5,minmax(0,1fr)); gap:12px;}

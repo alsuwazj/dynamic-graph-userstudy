@@ -171,12 +171,17 @@ function welcome() {
 function consent() {
   document.body.classList.remove('welcome-only');
   main.innerHTML = `
-    <div class="narrow">
+    <div class="narrow consent-page">
       <h1>Before you begin</h1>
-      <div class="panel">
-        <p class="help">Consent text, investigator contact and ethics details go here before recruitment.</p>
+      <div class="panel consent-information">
+        <p><strong>Purpose.</strong> This study examines how people follow changes in graph drawings when their proportions change.</p>
+        <p><strong>What you will do.</strong> You will complete three parts: match highlighted nodes between drawings, remember a tree’s direction after an animation, and compare animations. Please allow approximately 30–35 minutes.</p>
+        <p><strong>Participation.</strong> You must be 18 or older. Participation is voluntary. You may stop at any time without giving a reason. Responses submitted before you stop may remain stored.</p>
+        <p><strong>Information collected.</strong> We record your answers, node selections, click and response times, and animation ratings under a randomly generated session ID. We do not ask for your name or email address.</p>
+        <p><strong>Data use.</strong> Responses will be used for research.</p>
+        <p><strong>Comfort.</strong> Viewing the drawings may cause minor visual fatigue. You may take a break between the sections or stop whenever you wish.</p>
         <label class="check"><input type="checkbox" id="adult"> <span>I confirm that I am 18 or older.</span></label>
-        <label class="check"><input type="checkbox" id="agree"> <span>I have read the information above and agree to take part.</span></label>
+        <label class="check"><input type="checkbox" id="agree"> <span>I have read the information above and voluntarily agree to participate.</span></label>
       </div>
       <div class="action-row">
         <button class="text-button" id="back">← Back</button>
