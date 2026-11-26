@@ -202,3 +202,7 @@ Part 1 configuration, target IDs, saved drawings and ordering remain equivalent 
 
 ## Revision 41: Part 3 animation packages
 Baseline: direct linear endpoint interpolation, gray nodes, no highlights or fading. Animation: endpoint tree/chain rotations, meaningful-movement nodes blue and remaining nodes pale gray during playback. Endpoints, linear core positions, durations, sides/order randomization and replay hold are unchanged. This comparison varies both motion and highlighting. No intermediate optimizer snapshots are used. Parts 1 and 2 retain v40 settings, assets and scoring. Revised preference summaries exclude earlier Part 3 variants; historical results remain available.
+
+
+## Revision 42: Part 3 node and edge presentation
+Same graph pairs, endpoints, node-center trajectories and highlighting masks as v41. Per user request, both Part 3 clips now last one second (60 fps), preserving exact first/last frames; Part 2 remains one second. The replay pause remains two seconds. Use one fixed square symbol size per graph in both conditions, capped by endpoint spacing, with visible 1.2px black borders. Draw 1.3px edges at 2x resolution and downsample. Morph the original sharp route skeletons, then round the resulting bends with radius 3px; do not interpolate rounded-curve sample points. Attach edge strokes to the actual drawn square boundaries. Baseline remains unhighlighted; rotation condition retains blue movement highlights and pale-gray context. Parts 1 and 2 remain unchanged. Revised preference summaries are separated by stimulus revision.
