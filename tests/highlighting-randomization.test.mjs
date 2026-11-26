@@ -7,11 +7,11 @@ const manifest=JSON.parse(readFileSync(new URL('../stimuli.json',import.meta.url
 test('all participants see identical trials while graph, method and condition order vary',()=>{
  const orders=new Set(),methods=new Set(),conditions=new Set();
  for(let seed=0;seed<256;seed++){
-  const built=buildScreens(cfg,seed),qs=built.screens.filter(q=>/^part[123]$/.test(q.type));assert.equal(qs.length,41);
+  const built=buildScreens(cfg,seed),qs=built.screens.filter(q=>/^part[123]$/.test(q.type));assert.equal(qs.length,45);
   orders.add(qs.map(q=>q.graph).join(','));methods.add(built.methodOrder.join(','));conditions.add(built.conditionOrder.join(','));
   for(let i=1;i<qs.length;i++)assert.notEqual(qs[i-1].graph,qs[i].graph);
   for(const graph of cfg.part2.graphs){const pair=qs.filter(q=>q.type==='part2'&&q.graph===graph);assert.equal(pair.length,2);assert.deepEqual(new Set(pair.map(q=>q.condition)),new Set(['ARCOL','DARCOL']));assert.deepEqual(pair[0].target,pair[1].target);}
-  const left=qs.filter(q=>q.type==='part3'&&q.leftMethod==='DARCOL').length;assert.ok(left===2||left===3);
+  const left=qs.filter(q=>q.type==='part3'&&q.leftMethod==='DARCOL').length;assert.ok(left===4||left===5);
  }
  assert.ok(orders.size>200);assert.equal(methods.size,2);assert.equal(conditions.size,2);
 });
@@ -53,12 +53,12 @@ test('Part 1 retains its graph pool while all trial counts stay fixed',()=>{
  }
  assert.equal(new Set(manifest.items.map(i=>i.sourceGraph)).size,cfg.graphs.length);
  for(let seed=0;seed<256;seed++){
-  const q=buildScreens(cfg,seed).screens.filter(q=>/^part[123]$/.test(q.type));assert.deepEqual([1,2,3].map(p=>q.filter(q=>q.type==='part'+p).length),[18,18,5]);
+  const q=buildScreens(cfg,seed).screens.filter(q=>/^part[123]$/.test(q.type));assert.deepEqual([1,2,3].map(p=>q.filter(q=>q.type==='part'+p).length),[18,18,9]);
   for(let i=1;i<q.length;i++)assert.notEqual(cfg.graphFamilies[q[i].graph],cfg.graphFamilies[q[i-1].graph]);
  }
 });
 
 test('Wien remains in Part 2 and Sydney is excluded',()=>{
  assert.ok(!cfg.part2.graphs.includes('sydney'));assert.ok(!cfg.graphs.includes('sydney'));assert.ok(cfg.part3.graphs.includes('grafo5838.35'));assert.ok(cfg.part2.graphs.includes('wien-kurz'));assert.ok(cfg.part3.graphs.includes('wien-kurz'));
- assert.deepEqual([cfg.part1.graphs.length,cfg.part2.graphs.length,cfg.part3.graphs.length],[9,9,5]);
+ assert.deepEqual([cfg.part1.graphs.length,cfg.part2.graphs.length,cfg.part3.graphs.length],[9,9,9]);
 });

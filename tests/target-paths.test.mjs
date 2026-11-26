@@ -6,7 +6,7 @@ import {buildScreens} from '../plan.mjs';
 const config=JSON.parse(readFileSync(new URL('../study-config.json',import.meta.url)));
 const manifest=JSON.parse(readFileSync(new URL('../stimuli.json',import.meta.url)));
 test('Part 1 retains matching assets, four connected targets and no response cue leakage',()=>{
- const groups=[config.part1.graphs,config.part2.graphs,config.part3.graphs];assert.deepEqual(groups.map(g=>g.length),[9,9,5]);assert.equal(new Set(groups.flat()).size,config.graphs.length);
+ const groups=[config.part1.graphs,config.part2.graphs,config.part3.graphs];assert.deepEqual(groups.map(g=>g.length),[9,9,9]);assert.equal(new Set(groups.flat()).size,config.graphs.length);
  for(const [part,graphs] of groups.entries())for(const graph of graphs){
   const i=manifest.items.find(x=>x.graphId===graph);assert.ok(i);
   if(part!==0)continue;
@@ -18,8 +18,8 @@ test('Part 1 retains matching assets, four connected targets and no response cue
   for(const a of Object.values(i.original).filter(a=>a?.url&&a.hitboxes)){assert.ok(existsSync(new URL('../'+a.url,import.meta.url)));for(const id of target)assert.ok(a.hitboxes.some(b=>b.id===id));}
  }
 });
-test('every participant sees all 41 trials, with repeated graphs separated',()=>{
+test('every participant sees all 45 trials, with repeated graphs separated',()=>{
  for(let seed=0;seed<100;seed++){
- const q=buildScreens(config,seed).screens.filter(x=>/^part[123]$/.test(x.type));assert.equal(q.length,41);assert.equal(q.filter(x=>x.type==='part1').length,18);for(let j=1;j<q.length;j++)assert.notEqual(q[j].graph,q[j-1].graph);
+ const q=buildScreens(config,seed).screens.filter(x=>/^part[123]$/.test(x.type));assert.equal(q.length,45);assert.equal(q.filter(x=>x.type==='part1').length,18);for(let j=1;j<q.length;j++)assert.notEqual(q[j].graph,q[j-1].graph);
  }
 });
